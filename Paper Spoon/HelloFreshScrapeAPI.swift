@@ -24,19 +24,20 @@ class HelloFreshScrapeAPI: NSObject {
                 for recipeLink in recipeLinks {
                     let link = recipeLink.components(separatedBy: ",label")
                     if link.count > 1 {
-//                        print(link)
-                        let recipe = link.first
-                        let recipeName = recipe?.components(separatedBy: ",slug:").first
-                        let recipeLink = recipe?.components(separatedBy: "websiteUrl:\"").last
+                        print(link)
+                        let recipeInfo = link.first
+                        let recipeDetail = link[1]
+                        
+                        let recipeName = recipeInfo?.components(separatedBy: ",slug:").first
+                        let recipeLink = recipeInfo?.components(separatedBy: "websiteUrl:\"").last
                         
                         print(recipeName)
                         print(recipeLink)
                         
-                        if let ingredients = recipe?.components(separatedBy: "priority:") {
-                            for ingredientContents in ingredients {
-                                let ingredient = ingredientContents.components(separatedBy: "\",name:")
-                                print(ingredient)
-                            }
+                        let recipeComponents = recipeDetail.components(separatedBy: "\",name:")
+                        for component in recipeComponents {
+                            let ingredient = component.components(separatedBy: ",").first
+                            print(ingredient)
                         }
                         
                         print()
