@@ -25,7 +25,7 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         
         self.setUp()
         
-        HelloFreshScrapeAPI.recipeLink()
+        HelloFreshScrapeAPI().recipeLink()
     }
     
     var recipeListVC: UIViewController = {

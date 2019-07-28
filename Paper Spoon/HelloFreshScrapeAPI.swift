@@ -8,50 +8,66 @@
 
 import Foundation
 
+struct MenuOption {
+    var recipeName: String
+    var recipeLink: String
+}
+
 class HelloFreshScrapeAPI: NSObject {
     
-    static func recipeLink() {
-        let urlString = "https://www.hellofresh.com/recipes/search/?order=-favorites"
+    func recipeLink() {
+//        let urlString = "https://www.hellofresh.com/recipes/search/?order=-favorites"
+        let urlString = "https://www.hellofresh.com/menus/"
+//        let urlString = "https://www.hellofresh.com/recipes/italian-meatloaf-5d07d08ca79ba000160eed63"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
                 print(err)
             }
-            if let webData = data {
-                let htmlCode = String(data: webData, encoding: String.Encoding.utf8)
-
-                guard let recipeLinks = htmlCode?.components(separatedBy: ",author:null,name:\"") else { return }
-                for recipeLink in recipeLinks {
-                    let link = recipeLink.components(separatedBy: ",label")
-                    if link.count > 1 {
-                        print(link)
-                        let recipeInfo = link.first
-                        let recipeDetail = link[1]
-                        
-                        let recipeName = recipeInfo?.components(separatedBy: ",slug:").first
-                        let recipeLink = recipeInfo?.components(separatedBy: "websiteUrl:\"").last
-                        
-                        print(recipeName)
-                        print(recipeLink)
-                        
-                        let recipeComponents = recipeDetail.components(separatedBy: "\",name:")
-                        for component in recipeComponents {
-                            let ingredient = component.components(separatedBy: ",").first
-                            print(ingredient)
-                        }
-                        
-                        print()
-                    }
-                }
+            if let htmlData = data {
+                self.parseMenuOptions(htmlData: htmlData)
             }
         }.resume()
 
     }
     
-//    static func recipeLink() {
-//        guard let urlString = URL(string: "https://www.hellofresh.com/recipes/search/?order=-favorites") else { return }
-//        let htmlContents = try? String(contentsOf: urlString)
-//        print(htmlContents)
-//
-//    }
+    func parseMenuOptions(htmlData: Data) {
+        // create container to store menu options
+        var menuOptions = [MenuOption]()
+        
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+        
+//        print(htmlCode)
+        
+        guard let recipeLinks = htmlCode?.components(separatedBy: ",category") else { return }
+        
+        for recipeLink in recipeLinks {
+            let link = recipeLink.components(separatedBy: ",label")
+            if link.count > 1 {
+                let recipeInfo = link.first
+                
+                // parse recipe name
+                let recipeNameSection0 = recipeInfo?.components(separatedBy: "author:").last
+                let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "name:")[1]
+                let recipeName = recipeNameSection1?.components(separatedBy: ",slug:").first ?? ""
+                
+                // parse recipe link
+                let recipeLink = recipeInfo?.components(separatedBy: "websiteUrl:\"").last ?? ""
+                
+                // create menu option
+                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink)
+                menuOptions.append(menuOption)
+            }
+        }
+        
+        for x in 0..<(menuOptions.count - 1) {
+            print(menuOptions[x].recipeName)
+            print(menuOptions[x].recipeLink)
+            print()
+            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print()
+        }
+    }
+    
 }
