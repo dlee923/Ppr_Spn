@@ -13,37 +13,44 @@ struct MenuOption {
     var recipeLink: String
 }
 
+struct Ingredients {
+    var name: String
+    var amount: Double
+    var measurementType: String
+}
+
 class HelloFreshScrapeAPI: NSObject {
     
-    func recipeLink() {
-//        let urlString = "https://www.hellofresh.com/recipes/search/?order=-favorites"
-        let urlString = "https://www.hellofresh.com/menus/"
-//        let urlString = "https://www.hellofresh.com/recipes/italian-meatloaf-5d07d08ca79ba000160eed63"
+    func retrieveMenuOptions() {
+//        let urlString = "https://www.hellofresh.com/menus/"
+        let urlString = "https://www.hellofresh.com/recipes/italian-meatloaf-5d07d08ca79ba000160eed63"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
                 print(err)
             }
             if let htmlData = data {
-                self.parseMenuOptions(htmlData: htmlData)
+//                self.parseMenuOptions(htmlData: htmlData)
+//                self.parseMenuIngredients(htmlData: htmlData)
+                self.parseRecipeInstructions(htmlData: htmlData)
             }
         }.resume()
-
     }
     
+    
+    // Retrieve recipe MENU OPTIONS
     func parseMenuOptions(htmlData: Data) {
         // create container to store menu options
         var menuOptions = [MenuOption]()
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
 //        print(htmlCode)
         
         guard let recipeLinks = htmlCode?.components(separatedBy: ",category") else { return }
         
-        for recipeLink in recipeLinks {
-            let link = recipeLink.components(separatedBy: ",label")
+        for x in 0..<(recipeLinks.count - 1) {
+            let link = recipeLinks[x].components(separatedBy: ",label")
             if link.count > 1 {
                 let recipeInfo = link.first
                 
@@ -60,14 +67,79 @@ class HelloFreshScrapeAPI: NSObject {
                 menuOptions.append(menuOption)
             }
         }
-        
-        for x in 0..<(menuOptions.count - 1) {
-            print(menuOptions[x].recipeName)
-            print(menuOptions[x].recipeLink)
+        for menuOption in menuOptions {
+            print(menuOption.recipeName)
+            print(menuOption.recipeLink)
             print()
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             print()
         }
     }
     
+    
+    // Retrieve recipe INGREDIENTS
+    func parseMenuIngredients(htmlData: Data) {
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+//        print(htmlCode)
+
+        let ingredientSection0 = htmlCode?.components(separatedBy: "recipeIngredient").last
+        let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
+        let ingredientSection2 = ingredientSection1?.components(separatedBy: ":[").last
+        let ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
+        
+        let ingredientList = ingredientSection3?.components(separatedBy: ",") ?? [String]()
+    }
+    
+    
+    // Retrieve recipe INSTRUCTIONS
+    func parseRecipeInstructions(htmlData: Data) {
+        // create container to store instructions
+        var instructions = [String]()
+        
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+//            print(htmlCode)
+        
+        let instructionsSection0 = htmlCode?.components(separatedBy: "recipeInstructions").last
+        
+        let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
+        let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
+        for instructionBlock in instructionsSection2 {
+            let instruction = instructionBlock.components(separatedBy: "\"}").first ?? ""
+            instructions.append(instruction)
+        }
+        
+        instructions.removeFirst()
+        
+        for instruction in instructions {
+            print(instruction)
+        }
+    }
+    
+    
+    // Retrieve recipe NUTRITION
+    func parseRecipeNutrition(htmlData: Data) {
+        // create container to store nutrition
+        var instructions = [String]()
+        
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+        //            print(htmlCode)
+        
+        let instructionsSection0 = htmlCode?.components(separatedBy: "recipeInstructions").last
+        
+        let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
+        let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
+        for instructionBlock in instructionsSection2 {
+            let instruction = instructionBlock.components(separatedBy: "\"}").first ?? ""
+            instructions.append(instruction)
+        }
+        
+        instructions.removeFirst()
+        
+        for instruction in instructions {
+            print(instruction)
+        }
+    }
 }
