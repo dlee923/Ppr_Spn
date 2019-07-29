@@ -32,7 +32,11 @@ class HelloFreshScrapeAPI: NSObject {
             if let htmlData = data {
 //                self.parseMenuOptions(htmlData: htmlData)
 //                self.parseMenuIngredients(htmlData: htmlData)
-                self.parseRecipeInstructions(htmlData: htmlData)
+//                self.parseRecipeInstructions(htmlData: htmlData)
+//                self.parseRecipeNutrition(htmlData: htmlData)
+//                self.parseRecipeTitle(htmlData: htmlData)
+//                self.parseRecipeDescription(htmlData: htmlData)
+                self.parseRecipeThumbnail(htmlData: htmlData)
             }
         }.resume()
     }
@@ -79,6 +83,9 @@ class HelloFreshScrapeAPI: NSObject {
     
     // Retrieve recipe INGREDIENTS
     func parseMenuIngredients(htmlData: Data) {
+        // create container to store ingredients
+        var ingredients = [String]()
+        
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
 //        print(htmlCode)
@@ -121,25 +128,57 @@ class HelloFreshScrapeAPI: NSObject {
     // Retrieve recipe NUTRITION
     func parseRecipeNutrition(htmlData: Data) {
         // create container to store nutrition
-        var instructions = [String]()
+        var nutrition = [String]()
         
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+//            print(htmlCode)
+        
+        let nutritionSection0 = htmlCode?.components(separatedBy: "NutritionInformation\",").last
+        let nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
+        let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
+        
+        for nutritionBlock in nutritionSection2 {
+            print(nutritionBlock)
+        }
+    }
+    
+    
+    // Retrieve recipe TITLE
+    func parseRecipeTitle(htmlData: Data) {
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
         //            print(htmlCode)
         
-        let instructionsSection0 = htmlCode?.components(separatedBy: "recipeInstructions").last
+        let titleSection0 = htmlCode?.components(separatedBy: "og:title\" content=\"").last
+        let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
         
-        let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
-        let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
-        for instructionBlock in instructionsSection2 {
-            let instruction = instructionBlock.components(separatedBy: "\"}").first ?? ""
-            instructions.append(instruction)
-        }
+        print(title)
+    }
+    
+    
+    // Retrieve recipe DESCRIPTION
+    func parseRecipeDescription(htmlData: Data) {
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+        //            print(htmlCode)
         
-        instructions.removeFirst()
+        let descriptionSection0 = htmlCode?.components(separatedBy: "description\" content=\"").last
+        let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
-        for instruction in instructions {
-            print(instruction)
-        }
+        print(description)
+    }
+    
+    
+    // Retrieve recipe THUMBNAIL
+    func parseRecipeThumbnail(htmlData: Data) {
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+        //            print(htmlCode)
+        
+        let thumbnailSection0 = htmlCode?.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
+        let thumbnail = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+        
+        print(thumbnail)
     }
 }
