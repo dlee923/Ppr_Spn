@@ -36,7 +36,8 @@ class HelloFreshScrapeAPI: NSObject {
 //                self.parseRecipeNutrition(htmlData: htmlData)
 //                self.parseRecipeTitle(htmlData: htmlData)
 //                self.parseRecipeDescription(htmlData: htmlData)
-                self.parseRecipeThumbnail(htmlData: htmlData)
+//                self.parseRecipeThumbnail(htmlData: htmlData)
+                self.parseRecipeInstructionsImage(htmlData: htmlData)
             }
         }.resume()
     }
@@ -125,6 +126,29 @@ class HelloFreshScrapeAPI: NSObject {
     }
     
     
+    // Retrieve recipe INSTRUCTIONS IMAGE LINKS
+    func parseRecipeInstructionsImage(htmlData: Data) {
+        // create container to store instructions
+        var instructionImgLinks = [String]()
+        
+        // parse html code here
+        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
+        //            print(htmlCode)
+        
+        let instructionsImgSection0 = htmlCode?.components(separatedBy: "recipeDetailFragment.instructions.step-image") ?? [String]()
+        
+        for x in 1..<(instructionsImgSection0.count - 1) {
+            let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
+            let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" alt=").first ?? ""
+            instructionImgLinks.append(instructionsImgLink)
+        }
+        
+        for instructionImgLink in instructionImgLinks {
+            print(instructionImgLink)
+        }
+    }
+    
+    
     // Retrieve recipe NUTRITION
     func parseRecipeNutrition(htmlData: Data) {
         // create container to store nutrition
@@ -170,15 +194,15 @@ class HelloFreshScrapeAPI: NSObject {
     }
     
     
-    // Retrieve recipe THUMBNAIL
+    // Retrieve recipe THUMBNAIL IMG LINK
     func parseRecipeThumbnail(htmlData: Data) {
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
         //            print(htmlCode)
         
         let thumbnailSection0 = htmlCode?.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
-        let thumbnail = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+        let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
-        print(thumbnail)
+        print(thumbnailLink)
     }
 }
