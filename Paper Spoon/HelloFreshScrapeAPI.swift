@@ -50,7 +50,6 @@ class HelloFreshScrapeAPI: NSObject {
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-//        print(htmlCode)
         
         guard let recipeLinks = htmlCode?.components(separatedBy: ",category") else { return }
         
@@ -89,7 +88,6 @@ class HelloFreshScrapeAPI: NSObject {
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-//        print(htmlCode)
 
         let ingredientSection0 = htmlCode?.components(separatedBy: "recipeIngredient").last
         let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
@@ -107,7 +105,6 @@ class HelloFreshScrapeAPI: NSObject {
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-//            print(htmlCode)
         
         let instructionsSection0 = htmlCode?.components(separatedBy: "recipeInstructions").last
         
@@ -133,7 +130,6 @@ class HelloFreshScrapeAPI: NSObject {
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        //            print(htmlCode)
         
         let instructionsImgSection0 = htmlCode?.components(separatedBy: "recipeDetailFragment.instructions.step-image") ?? [String]()
         
@@ -156,7 +152,6 @@ class HelloFreshScrapeAPI: NSObject {
         
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-//            print(htmlCode)
         
         let nutritionSection0 = htmlCode?.components(separatedBy: "NutritionInformation\",").last
         let nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
@@ -172,7 +167,6 @@ class HelloFreshScrapeAPI: NSObject {
     func parseRecipeTitle(htmlData: Data) {
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        //            print(htmlCode)
         
         let titleSection0 = htmlCode?.components(separatedBy: "og:title\" content=\"").last
         let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
@@ -185,7 +179,6 @@ class HelloFreshScrapeAPI: NSObject {
     func parseRecipeDescription(htmlData: Data) {
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        //            print(htmlCode)
         
         let descriptionSection0 = htmlCode?.components(separatedBy: "description\" content=\"").last
         let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
@@ -198,7 +191,6 @@ class HelloFreshScrapeAPI: NSObject {
     func parseRecipeThumbnail(htmlData: Data) {
         // parse html code here
         let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        //            print(htmlCode)
         
         let thumbnailSection0 = htmlCode?.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
         let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
