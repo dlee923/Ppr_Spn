@@ -30,28 +30,28 @@ class HelloFreshScrapeAPI: NSObject {
                 print(err)
             }
             if let htmlData = data {
-//                self.parseMenuOptions(htmlData: htmlData)
-//                self.parseMenuIngredients(htmlData: htmlData)
-//                self.parseRecipeInstructions(htmlData: htmlData)
-//                self.parseRecipeNutrition(htmlData: htmlData)
-//                self.parseRecipeTitle(htmlData: htmlData)
-//                self.parseRecipeDescription(htmlData: htmlData)
-//                self.parseRecipeThumbnail(htmlData: htmlData)
-                self.parseRecipeInstructionsImage(htmlData: htmlData)
+                guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
+                
+//                self.parseMenuOptions(htmlCode: htmlCode)
+                self.parseMenuIngredients(htmlCode: htmlCode)
+//                self.parseRecipeInstructions(htmlCode: htmlCode)
+//                self.parseRecipeNutrition(htmlCode: htmlCode)
+//                self.parseRecipeTitle(htmlCode: htmlCode)
+//                self.parseRecipeDescription(htmlCode: htmlCode)
+//                self.parseRecipeThumbnail(htmlCode: htmlCode)
+//                self.parseRecipeInstructionsImage(htmlCode: htmlCode)
             }
         }.resume()
     }
     
     
     // Retrieve recipe MENU OPTIONS
-    func parseMenuOptions(htmlData: Data) {
+    func parseMenuOptions(htmlCode: String) {
         // create container to store menu options
         var menuOptions = [MenuOption]()
         
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        guard let recipeLinks = htmlCode?.components(separatedBy: ",category") else { return }
+        let recipeLinks = htmlCode.components(separatedBy: ",category")
         
         for x in 0..<(recipeLinks.count - 1) {
             let link = recipeLinks[x].components(separatedBy: ",label")
@@ -74,39 +74,55 @@ class HelloFreshScrapeAPI: NSObject {
         for menuOption in menuOptions {
             print(menuOption.recipeName)
             print(menuOption.recipeLink)
-            print()
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            print()
         }
     }
     
     
     // Retrieve recipe INGREDIENTS
-    func parseMenuIngredients(htmlData: Data) {
+    func parseMenuIngredients(htmlCode: String) {
         // create container to store ingredients
-        var ingredients = [String]()
+        var ingredients = [(String, String)]()
         
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-
-        let ingredientSection0 = htmlCode?.components(separatedBy: "recipeIngredient").last
+        let ingredientSection0 = htmlCode.components(separatedBy: "recipeIngredient").last
         let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
         let ingredientSection2 = ingredientSection1?.components(separatedBy: ":[").last
-        let ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
-        
+        var ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
+        // remove '\' characters from ingredients
+        ingredientSection3?.removeAll(where: { (character) -> Bool in
+            character == "\""
+        })
+        // separate all ingredients via ','
         let ingredientList = ingredientSection3?.components(separatedBy: ",") ?? [String]()
+        
+        // separate measurement from ingredient name
+        for ingredient in ingredientList {
+            let ingredientDetails = ingredient.components(separatedBy: " ")
+            let measure = Double(String((ingredientDetails.first)!)) ?? 0.0
+            
+            if measure * 2 > 0 {
+                let unitMeasure = ingredientDetails[...1].joined(separator: " ")
+                let ingredientName = ingredientDetails[2...].joined(separator: " ")
+                let ingredientData = (ingredientName, unitMeasure)
+                ingredients.append(ingredientData)
+            } else {
+                ingredients.append((ingredientDetails[0], ""))
+            }
+        }
+        
+        for x in ingredients {
+            print(x)
+        }
     }
     
     
     // Retrieve recipe INSTRUCTIONS
-    func parseRecipeInstructions(htmlData: Data) {
+    func parseRecipeInstructions(htmlCode: String) {
         // create container to store instructions
         var instructions = [String]()
         
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let instructionsSection0 = htmlCode?.components(separatedBy: "recipeInstructions").last
+        let instructionsSection0 = htmlCode.components(separatedBy: "recipeInstructions").last
         
         let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
         let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
@@ -124,14 +140,12 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe INSTRUCTIONS IMAGE LINKS
-    func parseRecipeInstructionsImage(htmlData: Data) {
+    func parseRecipeInstructionsImage(htmlCode: String) {
         // create container to store instructions
         var instructionImgLinks = [String]()
         
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let instructionsImgSection0 = htmlCode?.components(separatedBy: "recipeDetailFragment.instructions.step-image") ?? [String]()
+        let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image") ?? [String]()
         
         for x in 1..<(instructionsImgSection0.count - 1) {
             let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
@@ -146,14 +160,12 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe NUTRITION
-    func parseRecipeNutrition(htmlData: Data) {
+    func parseRecipeNutrition(htmlCode: String) {
         // create container to store nutrition
         var nutrition = [String]()
         
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let nutritionSection0 = htmlCode?.components(separatedBy: "NutritionInformation\",").last
+        let nutritionSection0 = htmlCode.components(separatedBy: "NutritionInformation\",").last
         let nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
         let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
         
@@ -164,11 +176,9 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe TITLE
-    func parseRecipeTitle(htmlData: Data) {
+    func parseRecipeTitle(htmlCode: String) {
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let titleSection0 = htmlCode?.components(separatedBy: "og:title\" content=\"").last
+        let titleSection0 = htmlCode.components(separatedBy: "og:title\" content=\"").last
         let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
         
         print(title)
@@ -176,11 +186,9 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe DESCRIPTION
-    func parseRecipeDescription(htmlData: Data) {
+    func parseRecipeDescription(htmlCode: String) {
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let descriptionSection0 = htmlCode?.components(separatedBy: "description\" content=\"").last
+        let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
         let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
         print(description)
@@ -188,11 +196,9 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe THUMBNAIL IMG LINK
-    func parseRecipeThumbnail(htmlData: Data) {
+    func parseRecipeThumbnail(htmlCode: String) {
         // parse html code here
-        let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8)
-        
-        let thumbnailSection0 = htmlCode?.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
+        let thumbnailSection0 = htmlCode.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
         let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
         print(thumbnailLink)
