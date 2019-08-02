@@ -19,6 +19,23 @@ struct Ingredients {
     var measurementType: String
 }
 
+struct NutritionValue {
+    var amount: Double
+    var measurementType: String
+}
+
+struct Nutrition {
+    var calories: NutritionValue?
+    var fatContent: NutritionValue?
+    var saturatedFatContent: NutritionValue?
+    var carbohydrateContent: NutritionValue?
+    var sugarContent: NutritionValue?
+    var proteinContent: NutritionValue?
+    var fiberContent: NutritionValue?
+    var cholesterolContent: NutritionValue?
+    var sodiumContent: NutritionValue?
+}
+
 class HelloFreshScrapeAPI: NSObject {
     
     func retrieveMenuOptions() {
@@ -33,9 +50,9 @@ class HelloFreshScrapeAPI: NSObject {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
                 
 //                self.parseMenuOptions(htmlCode: htmlCode)
-                self.parseMenuIngredients(htmlCode: htmlCode)
+//                self.parseMenuIngredients(htmlCode: htmlCode)
 //                self.parseRecipeInstructions(htmlCode: htmlCode)
-//                self.parseRecipeNutrition(htmlCode: htmlCode)
+                self.parseRecipeNutrition(htmlCode: htmlCode)
 //                self.parseRecipeTitle(htmlCode: htmlCode)
 //                self.parseRecipeDescription(htmlCode: htmlCode)
 //                self.parseRecipeThumbnail(htmlCode: htmlCode)
@@ -88,19 +105,18 @@ class HelloFreshScrapeAPI: NSObject {
         let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
         let ingredientSection2 = ingredientSection1?.components(separatedBy: ":[").last
         var ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
+        
         // remove '\' characters from ingredients
-        ingredientSection3?.removeAll(where: { (character) -> Bool in
-            character == "\""
-        })
+        ingredientSection3?.removeAll(where: { $0 == "\"" })
+        
         // separate all ingredients via ','
         let ingredientList = ingredientSection3?.components(separatedBy: ",") ?? [String]()
         
         // separate measurement from ingredient name
         for ingredient in ingredientList {
             let ingredientDetails = ingredient.components(separatedBy: " ")
-            let measure = Double(String((ingredientDetails.first)!)) ?? 0.0
             
-            if measure * 2 > 0 {
+            if ingredientDetails.count > 1 {
                 let unitMeasure = ingredientDetails[...1].joined(separator: " ")
                 let ingredientName = ingredientDetails[2...].joined(separator: " ")
                 let ingredientData = (ingredientName, unitMeasure)
@@ -110,9 +126,9 @@ class HelloFreshScrapeAPI: NSObject {
             }
         }
         
-        for x in ingredients {
-            print(x)
-        }
+//        for x in ingredients {
+//            print(x)
+//        }
     }
     
     
@@ -133,9 +149,10 @@ class HelloFreshScrapeAPI: NSObject {
         
         instructions.removeFirst()
         
-        for instruction in instructions {
-            print(instruction)
-        }
+//        for instruction in instructions {
+//            print()
+//            print(instruction)
+//        }
     }
     
     
@@ -145,7 +162,7 @@ class HelloFreshScrapeAPI: NSObject {
         var instructionImgLinks = [String]()
         
         // parse html code here
-        let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image") ?? [String]()
+        let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image")
         
         for x in 1..<(instructionsImgSection0.count - 1) {
             let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
@@ -161,16 +178,20 @@ class HelloFreshScrapeAPI: NSObject {
     
     // Retrieve recipe NUTRITION
     func parseRecipeNutrition(htmlCode: String) {
-        // create container to store nutrition
-        var nutrition = [String]()
-        
         // parse html code here
         let nutritionSection0 = htmlCode.components(separatedBy: "NutritionInformation\",").last
-        let nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
+        var nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
+        nutritionSection1?.removeAll(where: { $0 == "\"" })
         let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
         
+        print(nutritionSection2)
+        
         for nutritionBlock in nutritionSection2 {
-            print(nutritionBlock)
+            let nutritionDetails = nutritionBlock.components(separatedBy: ":")
+            let nutritionMeasure = nutritionDetails[1...]
+            let nutritionAmount = Double(String(nutritionMeasure.first ?? "")) ?? 0.0
+            let nutritionType = nutritionMeasure.last ?? ""
+            let nutritionValue = NutritionValue(amount: nutritionAmount, measurementType: nutritionType)
         }
     }
     
