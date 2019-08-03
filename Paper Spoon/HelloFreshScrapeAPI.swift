@@ -52,7 +52,7 @@ class HelloFreshScrapeAPI: NSObject {
 //                self.parseMenuOptions(htmlCode: htmlCode)
 //                self.parseMenuIngredients(htmlCode: htmlCode)
 //                self.parseRecipeInstructions(htmlCode: htmlCode)
-                self.parseRecipeNutrition(htmlCode: htmlCode)
+//                self.parseRecipeNutrition(htmlCode: htmlCode)
 //                self.parseRecipeTitle(htmlCode: htmlCode)
 //                self.parseRecipeDescription(htmlCode: htmlCode)
 //                self.parseRecipeThumbnail(htmlCode: htmlCode)
@@ -178,6 +178,9 @@ class HelloFreshScrapeAPI: NSObject {
     
     // Retrieve recipe NUTRITION
     func parseRecipeNutrition(htmlCode: String) {
+        // create temp container to store nutrition values for creating Nutrition object
+        var nutritionValues = [String: NutritionValue]()
+        
         // parse html code here
         let nutritionSection0 = htmlCode.components(separatedBy: "NutritionInformation\",").last
         var nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
@@ -192,7 +195,20 @@ class HelloFreshScrapeAPI: NSObject {
             let nutritionAmount = Double(String(nutritionMeasure.first ?? "")) ?? 0.0
             let nutritionType = nutritionMeasure.last ?? ""
             let nutritionValue = NutritionValue(amount: nutritionAmount, measurementType: nutritionType)
+            if let nutritionName = nutritionDetails.first {
+                nutritionValues[nutritionName] = nutritionValue
+            }
         }
+        
+        let nutrition = Nutrition(calories: nutritionValues["calories"],
+                                  fatContent: nutritionValues["fatContent"],
+                                  saturatedFatContent: nutritionValues["saturatedFatContent"],
+                                  carbohydrateContent: nutritionValues["carbohydrateContent"],
+                                  sugarContent: nutritionValues["sugarContent"],
+                                  proteinContent: nutritionValues["proteinContent"],
+                                  fiberContent: nutritionValues["fiberContent"],
+                                  cholesterolContent: nutritionValues["cholesterolContent"],
+                                  sodiumContent: nutritionValues["sodiumContent"])
     }
     
     
