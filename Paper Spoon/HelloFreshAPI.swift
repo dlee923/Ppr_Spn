@@ -8,35 +8,14 @@
 
 import Foundation
 
+
 struct MenuOption {
     var recipeName: String
     var recipeLink: String
 }
 
-struct Ingredients {
-    var name: String
-    var amount: Double
-    var measurementType: String
-}
 
-struct NutritionValue {
-    var amount: Double
-    var measurementType: String
-}
-
-struct Nutrition {
-    var calories: NutritionValue?
-    var fatContent: NutritionValue?
-    var saturatedFatContent: NutritionValue?
-    var carbohydrateContent: NutritionValue?
-    var sugarContent: NutritionValue?
-    var proteinContent: NutritionValue?
-    var fiberContent: NutritionValue?
-    var cholesterolContent: NutritionValue?
-    var sodiumContent: NutritionValue?
-}
-
-class HelloFreshScrapeAPI: NSObject {
+class HelloFreshAPI: NSObject {
     
     func retrieveMenuOptions(completion: ((Any) -> ())? ) {
         let urlString = "https://www.hellofresh.com/menus/"
@@ -51,7 +30,6 @@ class HelloFreshScrapeAPI: NSObject {
             }
         }.resume()
     }
-    
     
     func retrieveRecipeInfo(urlString: String, completion: @escaping ((Any) -> ()) ) {
         guard let url = URL(string: urlString) else { return }
@@ -71,10 +49,14 @@ class HelloFreshScrapeAPI: NSObject {
             }
         }.resume()
     }
-    
+
+}
+
+// All parsing of html functions
+extension HelloFreshAPI {
     
     // Retrieve recipe MENU OPTIONS
-    func parseMenuOptions(htmlCode: String) {
+    fileprivate func parseMenuOptions(htmlCode: String) {
         // create container to store menu options
         var menuOptions = [MenuOption]()
         
@@ -107,7 +89,7 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe INGREDIENTS
-    func parseMenuIngredients(htmlCode: String) {
+    private func parseMenuIngredients(htmlCode: String) {
         // create container to store ingredients
         var ingredients = [(String, String)]()
         
@@ -137,14 +119,14 @@ class HelloFreshScrapeAPI: NSObject {
             }
         }
         
-//        for x in ingredients {
-//            print(x)
-//        }
+        //        for x in ingredients {
+        //            print(x)
+        //        }
     }
     
     
     // Retrieve recipe INSTRUCTIONS
-    func parseRecipeInstructions(htmlCode: String) {
+    private func parseRecipeInstructions(htmlCode: String) {
         // create container to store instructions
         var instructions = [String]()
         
@@ -160,15 +142,15 @@ class HelloFreshScrapeAPI: NSObject {
         
         instructions.removeFirst()
         
-//        for instruction in instructions {
-//            print()
-//            print(instruction)
-//        }
+        //        for instruction in instructions {
+        //            print()
+        //            print(instruction)
+        //        }
     }
     
     
     // Retrieve recipe INSTRUCTIONS IMAGE LINKS
-    func parseRecipeInstructionsImage(htmlCode: String) {
+    private func parseRecipeInstructionsImage(htmlCode: String) {
         // create container to store instructions
         var instructionImgLinks = [String]()
         
@@ -188,7 +170,7 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe NUTRITION
-    func parseRecipeNutrition(htmlCode: String) {
+    private func parseRecipeNutrition(htmlCode: String) {
         // create temp container to store nutrition values for creating Nutrition object
         var nutritionValues = [String: NutritionValue]()
         
@@ -224,7 +206,7 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe TITLE
-    func parseRecipeTitle(htmlCode: String) {
+    private func parseRecipeTitle(htmlCode: String) {
         // parse html code here
         let titleSection0 = htmlCode.components(separatedBy: "og:title\" content=\"").last
         let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
@@ -234,7 +216,7 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe DESCRIPTION
-    func parseRecipeDescription(htmlCode: String) {
+    private func parseRecipeDescription(htmlCode: String) {
         // parse html code here
         let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
         let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
@@ -244,11 +226,12 @@ class HelloFreshScrapeAPI: NSObject {
     
     
     // Retrieve recipe THUMBNAIL IMG LINK
-    func parseRecipeThumbnail(htmlCode: String) {
+    private func parseRecipeThumbnail(htmlCode: String) {
         // parse html code here
         let thumbnailSection0 = htmlCode.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
         let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
         print(thumbnailLink)
     }
+    
 }

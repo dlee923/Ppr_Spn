@@ -6,7 +6,6 @@
 //  Copyright © 2019 DLEE. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class Recipe {
@@ -35,4 +34,30 @@ class Recipe {
         self.nutrition = nutrition
         self.description = description
     }
+}
+
+
+struct Ingredients {
+    var name: String
+    var amount: Double
+    var measurementType: String
+}
+
+
+struct NutritionValue {
+    var amount: Double
+    var measurementType: String
+}
+
+
+struct Nutrition {
+    var calories: NutritionValue?
+    var fatContent: NutritionValue?
+    var saturatedFatContent: NutritionValue?
+    var carbohydrateContent: NutritionValue?
+    var sugarContent: NutritionValue?
+    var proteinContent: NutritionValue?
+    var fiberContent: NutritionValue?
+    var cholesterolContent: NutritionValue?
+    var sodiumContent: NutritionValue?
 }
