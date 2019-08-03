@@ -38,9 +38,8 @@ struct Nutrition {
 
 class HelloFreshScrapeAPI: NSObject {
     
-    func retrieveMenuOptions() {
-//        let urlString = "https://www.hellofresh.com/menus/"
-        let urlString = "https://www.hellofresh.com/recipes/italian-meatloaf-5d07d08ca79ba000160eed63"
+    func retrieveMenuOptions(completion: ((Any) -> ())? ) {
+        let urlString = "https://www.hellofresh.com/menus/"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -48,15 +47,27 @@ class HelloFreshScrapeAPI: NSObject {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
-                
-//                self.parseMenuOptions(htmlCode: htmlCode)
-//                self.parseMenuIngredients(htmlCode: htmlCode)
-//                self.parseRecipeInstructions(htmlCode: htmlCode)
-//                self.parseRecipeNutrition(htmlCode: htmlCode)
-//                self.parseRecipeTitle(htmlCode: htmlCode)
-//                self.parseRecipeDescription(htmlCode: htmlCode)
-//                self.parseRecipeThumbnail(htmlCode: htmlCode)
-//                self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+                self.parseMenuOptions(htmlCode: htmlCode)
+            }
+        }.resume()
+    }
+    
+    
+    func retrieveRecipeInfo(urlString: String, completion: @escaping ((Any) -> ()) ) {
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let err = error {
+                print(err)
+            }
+            if let htmlData = data {
+                guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
+                    self.parseMenuIngredients(htmlCode: htmlCode)
+                    self.parseRecipeInstructions(htmlCode: htmlCode)
+                    self.parseRecipeNutrition(htmlCode: htmlCode)
+                    self.parseRecipeTitle(htmlCode: htmlCode)
+                    self.parseRecipeDescription(htmlCode: htmlCode)
+                    self.parseRecipeThumbnail(htmlCode: htmlCode)
+                    self.parseRecipeInstructionsImage(htmlCode: htmlCode)
             }
         }.resume()
     }
