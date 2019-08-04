@@ -16,6 +16,7 @@ struct MenuOption {
 }
 
 
+// MARK:  HTML Calls
 class HelloFreshAPI: NSObject {
     
     func retrieveMenuOptions(completion: ((Any) -> ())? ) {
@@ -41,20 +42,28 @@ class HelloFreshAPI: NSObject {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
-                    self.parseMenuIngredients(htmlCode: htmlCode)
-                    self.parseRecipeInstructions(htmlCode: htmlCode)
-                    self.parseRecipeNutrition(htmlCode: htmlCode)
-                    self.parseRecipeTitle(htmlCode: htmlCode)
-                    self.parseRecipeDescription(htmlCode: htmlCode)
-                    self.parseRecipeThumbnail(htmlCode: htmlCode)
-                    self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+                
+                // parse recipe for recipe details
+                let ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
+                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
+                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
+                let title = self.parseRecipeTitle(htmlCode: htmlCode)
+                let description = self.parseRecipeDescription(htmlCode: htmlCode)
+                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+                
+                // create recipe object
+                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+                
+                completion(recipe)
             }
         }.resume()
     }
 
 }
 
-// All parsing of html functions
+
+// MARK:  All parsing of html functions
 extension HelloFreshAPI {
     
     // Retrieve recipe MENU OPTIONS
@@ -84,19 +93,19 @@ extension HelloFreshAPI {
             }
         }
         
-        for menuOption in menuOptions {
-            print(menuOption.recipeName)
-            print(menuOption.recipeLink)
-        }
+//        for menuOption in menuOptions {
+//            print(menuOption.recipeName)
+//            print(menuOption.recipeLink)
+//        }
         
         return menuOptions
     }
     
     
     // Retrieve recipe INGREDIENTS
-    private func parseMenuIngredients(htmlCode: String) -> [(String, String)] {
+    private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
         // create container to store ingredients
-        var ingredients = [(String, String)]()
+        var ingredients = [Ingredients]()
         
         // parse html code here
         let ingredientSection0 = htmlCode.components(separatedBy: "recipeIngredient").last
@@ -115,12 +124,14 @@ extension HelloFreshAPI {
             let ingredientDetails = ingredient.components(separatedBy: " ")
             
             if ingredientDetails.count > 1 {
-                let unitMeasure = ingredientDetails[...1].joined(separator: " ")
+                let ingredientAmount = Double(ingredientDetails.first ?? "0")
+                let unitMeasure = ingredientDetails[1]
                 let ingredientName = ingredientDetails[2...].joined(separator: " ")
-                let ingredientData = (ingredientName, unitMeasure)
+                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure)
                 ingredients.append(ingredientData)
             } else {
-                ingredients.append((ingredientDetails[0], ""))
+                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil)
+                ingredients.append(ingredientData)
             }
         }
         

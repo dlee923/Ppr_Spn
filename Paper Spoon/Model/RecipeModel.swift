@@ -12,7 +12,7 @@ class Recipe {
     
     var name: String?
     var recipeLink: String?
-    var ingredients: Ingredients?
+    var ingredients: [Ingredients]?
     var instructions: [String]?
     var instructionImageLinks: [String]?
     var thumbnailLink: String?
@@ -22,7 +22,7 @@ class Recipe {
     var instructionImages: [UIImage]?
     var thumbnail: UIImage?
     
-    init(name: String?, recipeLink: String?, ingredients: Ingredients?, instructions: [String]?,
+    init(name: String?, recipeLink: String?, ingredients: [Ingredients]?, instructions: [String]?,
          instructionImageLinks: [String]?, thumbnailLink: String?, nutrition: Nutrition?, description: String?) {
         
         self.name = name
@@ -39,8 +39,8 @@ class Recipe {
 
 struct Ingredients {
     var name: String
-    var amount: Double
-    var measurementType: String
+    var amount: Double?
+    var measurementType: String?
 }
 
 

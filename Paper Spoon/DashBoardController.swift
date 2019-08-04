@@ -62,6 +62,12 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         if let recipeListVC1 = controllers.first {
             self.setViewControllers([recipeListVC1], direction: .forward, animated: false, completion: nil)
         }
+        
+        // download recipe options
+        self.retrieveHelloFreshMenu()
+        
+        // download recipes after downloading menu
+        self.retrieveRecipeData()
     }
     
     fileprivate func retrieveRecipeData() {
@@ -70,14 +76,19 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
                 self.dispatchGroup.enter()
                 self.helloFreshAPI.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (data) in
                     if let recipe = data as? Recipe {
-                        
+                        // find index for recipe in menu options and attach recipe object
+                        if let menuIndex = self.menuOptions.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                            self.menuOptions[menuIndex].recipe = recipe
+                        }
                     }
                     self.dispatchGroup.leave()
                 })
             }
         }
-        
         dispatchQueue.async(group: dispatchGroup, execute: retrieveRecipeData)
+        dispatchGroup.notify(queue: dispatchQueue) {
+            print("Complete")
+        }
         
     }
     
@@ -91,7 +102,6 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
                 self.dispatchGroup.leave()
             })
         }
-        
         dispatchQueue.async(group: dispatchGroup, execute: retrieveMenuOptions)
     }
     
