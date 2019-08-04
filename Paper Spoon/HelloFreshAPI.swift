@@ -12,6 +12,7 @@ import Foundation
 struct MenuOption {
     var recipeName: String
     var recipeLink: String
+    var recipe: Recipe?
 }
 
 
@@ -26,12 +27,13 @@ class HelloFreshAPI: NSObject {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
-                self.parseMenuOptions(htmlCode: htmlCode)
+                let menuOptions = self.parseMenuOptions(htmlCode: htmlCode)
+                completion?(menuOptions)
             }
         }.resume()
     }
     
-    func retrieveRecipeInfo(urlString: String, completion: @escaping ((Any) -> ()) ) {
+    func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -56,7 +58,7 @@ class HelloFreshAPI: NSObject {
 extension HelloFreshAPI {
     
     // Retrieve recipe MENU OPTIONS
-    fileprivate func parseMenuOptions(htmlCode: String) {
+    fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {
         // create container to store menu options
         var menuOptions = [MenuOption]()
         
@@ -77,19 +79,22 @@ extension HelloFreshAPI {
                 let recipeLink = recipeInfo?.components(separatedBy: "websiteUrl:\"").last ?? ""
                 
                 // create menu option
-                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink)
+                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil)
                 menuOptions.append(menuOption)
             }
         }
+        
         for menuOption in menuOptions {
             print(menuOption.recipeName)
             print(menuOption.recipeLink)
         }
+        
+        return menuOptions
     }
     
     
     // Retrieve recipe INGREDIENTS
-    private func parseMenuIngredients(htmlCode: String) {
+    private func parseMenuIngredients(htmlCode: String) -> [(String, String)] {
         // create container to store ingredients
         var ingredients = [(String, String)]()
         
@@ -119,14 +124,12 @@ extension HelloFreshAPI {
             }
         }
         
-        //        for x in ingredients {
-        //            print(x)
-        //        }
+        return ingredients
     }
     
     
     // Retrieve recipe INSTRUCTIONS
-    private func parseRecipeInstructions(htmlCode: String) {
+    private func parseRecipeInstructions(htmlCode: String) -> [String] {
         // create container to store instructions
         var instructions = [String]()
         
@@ -142,15 +145,12 @@ extension HelloFreshAPI {
         
         instructions.removeFirst()
         
-        //        for instruction in instructions {
-        //            print()
-        //            print(instruction)
-        //        }
+        return instructions
     }
     
     
     // Retrieve recipe INSTRUCTIONS IMAGE LINKS
-    private func parseRecipeInstructionsImage(htmlCode: String) {
+    private func parseRecipeInstructionsImage(htmlCode: String) -> [String] {
         // create container to store instructions
         var instructionImgLinks = [String]()
         
@@ -163,14 +163,12 @@ extension HelloFreshAPI {
             instructionImgLinks.append(instructionsImgLink)
         }
         
-        for instructionImgLink in instructionImgLinks {
-            print(instructionImgLink)
-        }
+        return instructionImgLinks
     }
     
     
     // Retrieve recipe NUTRITION
-    private func parseRecipeNutrition(htmlCode: String) {
+    private func parseRecipeNutrition(htmlCode: String) -> Nutrition {
         // create temp container to store nutrition values for creating Nutrition object
         var nutritionValues = [String: NutritionValue]()
         
@@ -202,36 +200,38 @@ extension HelloFreshAPI {
                                   fiberContent: nutritionValues["fiberContent"],
                                   cholesterolContent: nutritionValues["cholesterolContent"],
                                   sodiumContent: nutritionValues["sodiumContent"])
+        
+        return nutrition
     }
     
     
     // Retrieve recipe TITLE
-    private func parseRecipeTitle(htmlCode: String) {
+    private func parseRecipeTitle(htmlCode: String) -> String {
         // parse html code here
         let titleSection0 = htmlCode.components(separatedBy: "og:title\" content=\"").last
         let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
         
-        print(title)
+        return title ?? ""
     }
     
     
     // Retrieve recipe DESCRIPTION
-    private func parseRecipeDescription(htmlCode: String) {
+    private func parseRecipeDescription(htmlCode: String) -> String {
         // parse html code here
         let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
         let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
-        print(description)
+        return description ?? ""
     }
     
     
     // Retrieve recipe THUMBNAIL IMG LINK
-    private func parseRecipeThumbnail(htmlCode: String) {
+    private func parseRecipeThumbnail(htmlCode: String) -> String {
         // parse html code here
         let thumbnailSection0 = htmlCode.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
         let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
-        print(thumbnailLink)
+        return thumbnailLink ?? ""
     }
     
 }

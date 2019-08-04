@@ -24,9 +24,6 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         self.dataSource = self
         
         self.setUp()
-        
-        HelloFreshAPI().retrieveMenuOptions(completion: nil)
-        
     }
     
     var recipeListVC: UIViewController = {
@@ -47,8 +44,14 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         return labVC
     }()
 
-    
     var controllers = [UIViewController]()
+    
+    let activityinidicator = ActivityIndicator()
+    let helloFreshAPI = HelloFreshAPI()
+    let dispatchGroup = DispatchGroup()
+    let dispatchQueue = DispatchQueue.global(qos: .background)
+    
+    var menuOptions = [MenuOption]()
     
     
     fileprivate func setUp() {
@@ -61,7 +64,43 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         }
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    fileprivate func retrieveRecipeData() {
+        let retrieveRecipeData = DispatchWorkItem {
+            for menuOption in self.menuOptions {
+                self.dispatchGroup.enter()
+                self.helloFreshAPI.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (data) in
+                    if let recipe = data as? Recipe {
+                        
+                    }
+                    self.dispatchGroup.leave()
+                })
+            }
+        }
+        
+        dispatchQueue.async(group: dispatchGroup, execute: retrieveRecipeData)
+        
+    }
+    
+    fileprivate func retrieveHelloFreshMenu() {
+        let retrieveMenuOptions = DispatchWorkItem {
+            self.dispatchGroup.enter()
+            self.helloFreshAPI.retrieveMenuOptions(completion: { (data) in
+                if let menuOptions = data as? [MenuOption] {
+                    self.menuOptions = menuOptions
+                }
+                self.dispatchGroup.leave()
+            })
+        }
+        
+        dispatchQueue.async(group: dispatchGroup, execute: retrieveMenuOptions)
+    }
+    
+}
+
+
+extension DashBoardController {
+
+    internal func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = controllers.firstIndex(of: viewController) else { return nil }
         let nextIndex = currentIndex + 1
         
@@ -72,7 +111,7 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         }
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    internal func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = controllers.firstIndex(of: viewController) else { return nil }
         let previousIndex = currentIndex - 1
         
@@ -82,5 +121,6 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
             return controllers[previousIndex]
         }
     }
+    
 }
 
