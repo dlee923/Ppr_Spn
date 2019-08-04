@@ -12,30 +12,38 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        
+        self.setup()
     }
     
-    private func setUp() {
+    private func setup() {
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = .purple
+        
+        self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
     }
     
-    var recipe: [MenuOption]?
+    var menuOptions: [MenuOption]?
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return recipe?.count ?? 1
+        return menuOptions?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize.zero
+        return CGSize(width: self.frame.width, height: self.frame.height * 0.2)
     }
     
     required init?(coder aDecoder: NSCoder) {
