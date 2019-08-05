@@ -24,18 +24,24 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
     }
     
-    var menuOptions: [MenuOption]?
+    var menuOptionsObj: MenuOptionObj? {
+        didSet {
+            print("menuOptions changed")
+            print("count = \(self.menuOptionsObj?.menuOptions?.count)")
+        }
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return menuOptions?.count ?? 1
+        return menuOptionsObj?.menuOptions?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
+            cell.menuOption = menuOptionsObj?.menuOptions?[indexPath.item]
             return cell
         } else {
             return UICollectionViewCell()

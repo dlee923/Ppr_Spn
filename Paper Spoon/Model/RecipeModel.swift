@@ -61,3 +61,12 @@ struct Nutrition {
     var cholesterolContent: NutritionValue?
     var sodiumContent: NutritionValue?
 }
+
+
+class MenuOptionObj {
+    var menuOptions: [MenuOption]?
+    
+    init(menuOptions: [MenuOption]?) {
+        self.menuOptions = menuOptions
+    }
+}

@@ -17,6 +17,7 @@ class RecipeListViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // add menu option list to view
+        self.setupMenuOptionsList()
         self.addViewMenuOptionList()
         
     }
@@ -26,10 +27,19 @@ class RecipeListViewController: UIViewController {
     }
     
     var menuOptionList: MenuOptionList!
-    var menuOptions = [MenuOption]()
+    var menuOptionsObj = MenuOptionObj(menuOptions: nil) {
+        didSet {
+            print("recipeVC menuOptions changed")
+            print("recipeVC count = \(self.menuOptionsObj.menuOptions?.count)")
+        }
+    }
+    
+    func setupMenuOptionsList() {
+        self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        self.menuOptionList.menuOptionsObj = self.menuOptionsObj
+    }
     
     func addViewMenuOptionList(){
-        self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.view.addSubview(self.menuOptionList)
         
         self.menuOptionList?.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +47,6 @@ class RecipeListViewController: UIViewController {
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
         self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
-        self.menuOptionList?.menuOptions = self.menuOptions
     }
 
     /*
