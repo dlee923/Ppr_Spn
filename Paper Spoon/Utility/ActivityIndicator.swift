@@ -13,7 +13,7 @@ class ActivityIndicator: UIActivityIndicatorView {
     let introBlankView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
     // Activity indicator method
-    private func activityInProgress() {
+    func activityInProgress() {
         // Add background view to prevent user interactions
         introBlankView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
         
@@ -37,7 +37,7 @@ class ActivityIndicator: UIActivityIndicatorView {
         print("start")
     }
     
-    private func activityEnded() {
+    func activityEnded() {
         // Remove view preventing user interaction
         UIView.animate(withDuration: 0.35, animations: {
             self.introBlankView.alpha = 0.0

@@ -26,6 +26,10 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         self.setUp()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.downloadData()
+    }
+    
     var recipeListViewController: RecipeListViewController = {
         let recipeListVC = RecipeListViewController()
         return recipeListVC
@@ -45,7 +49,7 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
 
     var controllers = [UIViewController]()
     
-    let activityinidicator = ActivityIndicator()
+    let activityindicator = ActivityIndicator()
     let dispatchGroup = DispatchGroup()
     let backgroundThread = DispatchQueue.global(qos: .background)
     let mainThread = DispatchQueue.main
@@ -59,6 +63,12 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         if let recipeListVC1 = controllers.first {
             self.setViewControllers([recipeListVC1], direction: .forward, animated: false, completion: nil)
         }
+    }
+    
+    
+    fileprivate func downloadData() {
+        // Add activity indicator
+        activityindicator.activityInProgress()
         
         // download recipe options
         self.retrieveHelloFreshMenu()
@@ -74,6 +84,8 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
                 // update UI
                 print("Updating UI")
                 self.recipeListViewController.menuOptionList.reloadData()
+                // Stop activity indicator
+                self.activityindicator.activityEnded()
             }
         }
     }
