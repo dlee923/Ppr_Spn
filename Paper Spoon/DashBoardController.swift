@@ -119,7 +119,6 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
                     // find index for recipe in menu options and attach recipe object
                     if let menuIndex = self.recipeListViewController.menuOptionsObj.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
                         self.recipeListViewController.menuOptionsObj.menuOptions?[menuIndex].recipe = recipe
-                        print("recipeDetails downloaded")
                         self.dispatchGroup.leave()
                     }
                 })
@@ -136,13 +135,11 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
             
             // download thumbnail for each menu option
             for menuOption in menuOptions {
-                print("grabbing thumbnail link")
                 self.dispatchGroup.enter()
                 if let thumbnailLink = menuOption.recipe?.thumbnailLink {
                     ImageAPI.shared.downloadImage(urlLink: thumbnailLink, completion: { (thumbnailData) in
                         if let menuIndex = self.recipeListViewController.menuOptionsObj.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
                             self.recipeListViewController.menuOptionsObj.menuOptions?[menuIndex].recipe?.thumbnail = UIImage(data: thumbnailData)
-                            print("thumbnail")
                             self.dispatchGroup.leave()
                         }
                     })
