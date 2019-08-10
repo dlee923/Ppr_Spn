@@ -27,11 +27,8 @@ class HelloFreshAPI: NSObject {
     }
     
     func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
-        print("retrieving")
-        print(urlString)
         guard let url = URL(string: urlString) else { return }
-        print("successful retrieval")
-        print(url)
+
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
                 print(err)
@@ -89,11 +86,6 @@ extension HelloFreshAPI {
                 menuOptions.append(menuOption)
             }
         }
-        
-//        for menuOption in menuOptions {
-//            print(menuOption.recipeName)
-//            print(menuOption.recipeLink)
-//        }
         
         return menuOptions
     }
@@ -185,8 +177,6 @@ extension HelloFreshAPI {
         var nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
         nutritionSection1?.removeAll(where: { $0 == "\"" })
         let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
-        
-        print(nutritionSection2)
         
         for nutritionBlock in nutritionSection2 {
             let nutritionDetails = nutritionBlock.components(separatedBy: ":")

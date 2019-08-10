@@ -72,37 +72,22 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
     fileprivate func retrieveRecipeData() {
         self.dispatchGroup.enter()
         let retrieveRecipeData = DispatchWorkItem {
-            print(self.recipeListViewController.menuOptionsObj.menuOptions?.count)
             guard let menuOptions = self.recipeListViewController.menuOptionsObj.menuOptions else { return }
             
+            // download recipe details for each menu option
             for menuOption in menuOptions {
-                print("initiate recipe download")
-                print(menuOption)
-                print()
-//                print(menuOption.recipeLink)
                 self.helloFreshAPI.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
-                    print("download in progress")
-                    print(self.recipeListViewController.menuOptionsObj.menuOptions?[0].recipeLink)
-                    
                     // find index for recipe in menu options and attach recipe object
                     if let menuIndex = self.recipeListViewController.menuOptionsObj.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
                         self.recipeListViewController.menuOptionsObj.menuOptions?[menuIndex].recipe = recipe
-                        print("recipe downloaded")
                     }
                 })
             }
             self.dispatchGroup.leave()
         }
         backgroundThread.async(group: dispatchGroup, execute: retrieveRecipeData)
-        
-//        dispatchGroup.notify(queue: backgroundThread) {
-//            print("Complete - reloading menu option list with new data")
-//            self.mainThread.async {
-//                self.recipeListViewController.menuOptionList?.reloadData()
-//            }
-//        }
-        
     }
+    
     
     fileprivate func retrieveHelloFreshMenu() {
         self.dispatchGroup.enter()
