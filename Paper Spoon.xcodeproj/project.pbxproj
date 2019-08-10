@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
+		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532C822F44DCA00C8F866 /* RecipeModel.swift */; };
 		70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532CA22F5EFAA00C8F866 /* Device.swift */; };
 		70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D022F6264C00C8F866 /* ActivityIndicator.swift */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
+		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		70D532C822F44DCA00C8F866 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		70D532CA22F5EFAA00C8F866 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		70D532D022F6264C00C8F866 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				70D532C822F44DCA00C8F866 /* RecipeModel.swift */,
+				701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */,
+				701058D922FF0CCB00D4D9FD /* ImageAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -314,10 +320,12 @@
 			files = (
 				70E6F4832198DE1A005C08EE /* DashBoardController.swift in Sources */,
 				70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */,
+				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* RecipeListViewController.swift in Sources */,
 				70E6F4892198DE1A005C08EE /* Paper_Spoon.xcdatamodeld in Sources */,
 				70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */,
+				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
 				70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */,
 				70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */,
 				70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */,

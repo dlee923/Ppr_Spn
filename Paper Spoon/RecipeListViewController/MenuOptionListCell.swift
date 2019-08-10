@@ -20,6 +20,7 @@ class MenuOptionListCell: UICollectionViewCell {
     var menuOption: MenuOption? {
         didSet {
             self.titleView.text = self.menuOption?.recipeName
+            self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
         }
     }
     

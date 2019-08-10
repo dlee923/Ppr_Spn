@@ -11,6 +11,8 @@ import Foundation
 // MARK:  HTML Calls
 class HelloFreshAPI: NSObject {
     
+    static let shared = HelloFreshAPI()
+    
     func retrieveMenuOptions(completion: ((Any) -> ())? ) {
         let urlString = "https://www.hellofresh.com/menus/"
         guard let url = URL(string: urlString) else { return }
