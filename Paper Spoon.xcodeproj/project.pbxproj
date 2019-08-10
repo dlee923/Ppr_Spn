@@ -115,6 +115,16 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		70D532D922F98CB100C8F866 /* RecipeListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */,
+				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
+				70D532D722F780E100C8F866 /* MenuOptionListCell.swift */,
+			);
+			path = RecipeListViewController;
+			sourceTree = "<group>";
+		};
 		70E6F4742198DE1A005C08EE = {
 			isa = PBXGroup;
 			children = (
@@ -140,9 +150,7 @@
 			children = (
 				70E6F4802198DE1A005C08EE /* AppDelegate.swift */,
 				70E6F4822198DE1A005C08EE /* DashBoardController.swift */,
-				70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */,
-				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
-				70D532D722F780E100C8F866 /* MenuOptionListCell.swift */,
+				70D532D922F98CB100C8F866 /* RecipeListViewController */,
 				70D532D422F77A0A00C8F866 /* API */,
 				70D532CD22F5EFD200C8F866 /* Model */,
 				70D532CC22F5EFC900C8F866 /* Utility */,

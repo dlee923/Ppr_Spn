@@ -27,12 +27,7 @@ class RecipeListViewController: UIViewController {
     }
     
     var menuOptionList: MenuOptionList!
-    var menuOptionsObj = MenuOptionObj(menuOptions: nil) {
-        didSet {
-            print("recipeVC menuOptions changed")
-            print("recipeVC count = \(self.menuOptionsObj.menuOptions?.count)")
-        }
-    }
+    var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
     func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())

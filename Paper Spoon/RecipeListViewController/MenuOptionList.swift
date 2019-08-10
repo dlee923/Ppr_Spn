@@ -24,12 +24,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
     }
     
-    var menuOptionsObj: MenuOptionObj? {
-        didSet {
-            print("menuOptions changed")
-            print("count = \(self.menuOptionsObj?.menuOptions?.count)")
-        }
-    }
+    var menuOptionsObj: MenuOptionObj?
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

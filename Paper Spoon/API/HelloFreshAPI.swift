@@ -8,14 +8,6 @@
 
 import Foundation
 
-
-struct MenuOption {
-    var recipeName: String
-    var recipeLink: String
-    var recipe: Recipe?
-}
-
-
 // MARK:  HTML Calls
 class HelloFreshAPI: NSObject {
     
@@ -35,7 +27,11 @@ class HelloFreshAPI: NSObject {
     }
     
     func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
+        print("retrieving")
+        print(urlString)
         guard let url = URL(string: urlString) else { return }
+        print("successful retrieval")
+        print(url)
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
                 print(err)
@@ -85,7 +81,8 @@ extension HelloFreshAPI {
                 let recipeName = recipeNameSection1?.components(separatedBy: ",slug:").first ?? ""
                 
                 // parse recipe link
-                let recipeLink = recipeInfo?.components(separatedBy: "websiteUrl:\"").last ?? ""
+                let recipeLink0 = recipeInfo?.components(separatedBy: "websiteUrl:\"").last
+                let recipeLink = recipeLink0?.components(separatedBy: "\"").first ?? ""
                 
                 // create menu option
                 let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil)

@@ -70,3 +70,10 @@ class MenuOptionObj {
         self.menuOptions = menuOptions
     }
 }
+
+
+struct MenuOption {
+    var recipeName: String
+    var recipeLink: String
+    var recipe: Recipe?
+}
