@@ -56,6 +56,30 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         return 10
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? MenuOptionListCell {
+            // mark cell as selected / unselected when tapped
+            cell.isSelect = cell.isSelect == false || cell.isSelect == nil ? true : false
+            
+            // UI change to cell based on selection
+            cell.titleView.backgroundColor = cell.isSelect == true ? .green : cell.titleViewColor
+            
+            // add or remove menu option to selected array
+            guard let menuOption = cell.menuOption else { return }
+            self.selectMenuOption(menuOption: menuOption)
+        }
+    }
+    
+    private func selectMenuOption(menuOption: MenuOption) {
+        // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
+        if let alreadySelectedIndex = self.menuOptionsObj?.selectedMenuOptions?.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
+            self.menuOptionsObj?.selectedMenuOptions?.remove(at: alreadySelectedIndex)
+        } else {
+            self.menuOptionsObj?.selectedMenuOptions?.append(menuOption)
+        }
+    }
+
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

@@ -76,8 +76,8 @@ extension HelloFreshAPI {
                 
                 // parse recipe name
                 let recipeNameSection0 = recipeInfo?.components(separatedBy: "author:").last
-                let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "name:")[1]
-                let recipeName = recipeNameSection1?.components(separatedBy: ",slug:").first ?? ""
+                let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "name:\"")[1]
+                let recipeName = recipeNameSection1?.components(separatedBy: "\",slug:").first ?? ""
                 
                 // parse recipe link
                 let recipeLink0 = recipeInfo?.components(separatedBy: "websiteUrl:\"").last

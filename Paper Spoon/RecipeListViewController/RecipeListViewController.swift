@@ -16,10 +16,13 @@ class RecipeListViewController: UIViewController {
         self.setup()
         // Do any additional setup after loading the view.
         
+        // add compile ingredients btn
+        self.setupCompileIngredientsBtn()
+        self.addCompileIngredientsBtn()
+        
         // add menu option list to view
         self.setupMenuOptionsList()
         self.addViewMenuOptionList()
-        
     }
     
     private func setup() {
@@ -27,21 +30,42 @@ class RecipeListViewController: UIViewController {
     }
     
     var menuOptionList: MenuOptionList!
+    var compileIngredientsBtn: CompileIngredientsBtn?
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
-    func setupMenuOptionsList() {
+    private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
     }
     
-    func addViewMenuOptionList(){
+    private func addViewMenuOptionList(){
         self.view.addSubview(self.menuOptionList)
         
         self.menuOptionList?.translatesAutoresizingMaskIntoConstraints = false
         self.menuOptionList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-        self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        self.menuOptionList?.bottomAnchor.constraint(equalTo: self.compileIngredientsBtn?.topAnchor ?? self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+    }
+    
+    private func addCompileIngredientsBtn() {
+        self.view.addSubview(self.compileIngredientsBtn ?? UIView())
+        
+        self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false
+        self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
+        self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+        self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1).isActive = true
+    }
+    
+    private func setupCompileIngredientsBtn() {
+        self.compileIngredientsBtn = CompileIngredientsBtn(frame: CGRect(x: 0, y: 0,
+                                                                         width: self.view.frame.width,
+                                                                         height: self.view.frame.height * 0.1))
+    }
+    
+    private func transitionCompileIngredientsView() {
+        
     }
 
 }

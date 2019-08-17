@@ -10,6 +10,7 @@ import UIKit
 
 class MenuOptionObj {
     var menuOptions: [MenuOption]?
+    var selectedMenuOptions: [MenuOption]?
     
     init(menuOptions: [MenuOption]?) {
         self.menuOptions = menuOptions
@@ -21,19 +22,4 @@ struct MenuOption {
     var recipeName: String
     var recipeLink: String
     var recipe: Recipe?
-//    {
-//        didSet {
-//            if let thumbnaillink = recipe?.thumbnailLink {
-//                ImageAPI.shared.downloadImage(urlLink: thumbnaillink) { (thumbnail) in
-//                    self.recipe?.thumbnail = UIImage(data: thumbnail)
-//                }
-//            }
-//        }
-//    }
-//    
-//    init(recipeName: String, recipeLink: String, recipe: Recipe?) {
-//        self.recipeName = recipeName
-//        self.recipeLink = recipeLink
-//        self.recipe = recipe
-//    }
 }

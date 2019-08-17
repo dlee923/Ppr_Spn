@@ -15,8 +15,10 @@ class MenuOptionListCell: UICollectionViewCell {
         self.setup()
     }
     
+    var isSelect: Bool?
     var thumbnailView = UIImageView()
     var titleView = UILabel()
+    let titleViewColor = UIColor.white
     var menuOption: MenuOption? {
         didSet {
             self.titleView.text = self.menuOption?.recipeName
@@ -46,7 +48,7 @@ class MenuOptionListCell: UICollectionViewCell {
     
     private func addViewTitle() {
         self.addSubview(titleView)
-        self.titleView.backgroundColor = .green
+        self.titleView.backgroundColor = self.titleViewColor
         
         self.titleView.translatesAutoresizingMaskIntoConstraints = false
         self.titleView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
