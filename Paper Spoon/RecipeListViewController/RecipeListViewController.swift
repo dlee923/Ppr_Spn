@@ -62,10 +62,12 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn = CompileIngredientsBtn(frame: CGRect(x: 0, y: 0,
                                                                          width: self.view.frame.width,
                                                                          height: self.view.frame.height * 0.1))
+        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     
-    private func transitionCompileIngredientsView() {
-        
+    @objc private func transitionCompileIngredientsView() {
+        let compiledIngredientsViewController = CompileIngredientsViewController()
+        self.present(compiledIngredientsViewController, animated: true, completion: nil)
     }
 
 }
