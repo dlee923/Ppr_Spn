@@ -17,6 +17,8 @@ class CompiledIngredientsCell: UITableViewCell {
 
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var ingredientImg: UIImageView!
+    @IBOutlet weak var measureAmount: UILabel!
+    @IBOutlet weak var measureLbl: UILabel!
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

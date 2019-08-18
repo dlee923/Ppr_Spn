@@ -32,6 +32,10 @@ class MenuOptionListCell: UICollectionViewCell {
         self.addViewTitle()
     }
     
+    override func prepareForReuse() {
+        self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : .green
+    }
+    
     private func addViewThumbnail() {
         self.addSubview(thumbnailView)
         self.thumbnailView.backgroundColor = .gray

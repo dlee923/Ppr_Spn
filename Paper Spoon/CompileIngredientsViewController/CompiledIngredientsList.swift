@@ -23,6 +23,8 @@ class CompiledIngredientsList: UITableView, UITableViewDelegate, UITableViewData
         self.dataSource = self
     }
     
+    var compiledIngredients: [Ingredients]?
+    
     private func registerCells() {
         self.register(UINib(nibName: "\(CompiledIngredientsCell.self)", bundle: .main), forCellReuseIdentifier: "compiledIngredients")
     }
@@ -36,11 +38,12 @@ class CompiledIngredientsList: UITableView, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return compiledIngredients?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
+            cell.ingredientName.text = self.compiledIngredients?[indexPath.row].name
             return cell
         } else {
             return UITableViewCell()

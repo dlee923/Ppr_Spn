@@ -37,10 +37,15 @@ class Recipe {
 }
 
 
-struct Ingredients {
+struct Ingredients: Equatable {
     var name: String
     var amount: Double?
     var measurementType: String?
+    
+    // confirm to Equatable protocol
+    static func == (lhs: Ingredients, rhs: Ingredients) -> Bool {
+        return lhs.name == rhs.name
+    }
 }
 
 

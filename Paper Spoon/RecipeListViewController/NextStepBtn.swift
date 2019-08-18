@@ -8,16 +8,16 @@
 
 import UIKit
 
-class CompileIngredientsBtn: UIButton {
+class NextStepBtn: UIButton {
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, setTitle: String) {
         super.init(frame: frame)
-        self.setup()
+        self.setup(setTitle: setTitle)
     }
     
-    private func setup() {
+    private func setup(setTitle: String) {
         self.backgroundColor = .orange
-        self.setTitle("Start Shopping!", for: .normal)
+        self.setTitle(setTitle, for: .normal)
     }
     
     required init?(coder aDecoder: NSCoder) {

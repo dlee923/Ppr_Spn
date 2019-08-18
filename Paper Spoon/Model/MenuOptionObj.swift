@@ -10,7 +10,7 @@ import UIKit
 
 class MenuOptionObj {
     var menuOptions: [MenuOption]?
-    var selectedMenuOptions: [MenuOption]?
+    var selectedMenuOptions = [MenuOption]()
     
     init(menuOptions: [MenuOption]?) {
         self.menuOptions = menuOptions

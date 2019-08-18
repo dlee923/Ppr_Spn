@@ -30,7 +30,7 @@ class RecipeListViewController: UIViewController {
     }
     
     var menuOptionList: MenuOptionList!
-    var compileIngredientsBtn: CompileIngredientsBtn?
+    var compileIngredientsBtn: NextStepBtn?
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
     private func setupMenuOptionsList() {
@@ -59,14 +59,16 @@ class RecipeListViewController: UIViewController {
     }
     
     private func setupCompileIngredientsBtn() {
-        self.compileIngredientsBtn = CompileIngredientsBtn(frame: CGRect(x: 0, y: 0,
-                                                                         width: self.view.frame.width,
-                                                                         height: self.view.frame.height * 0.1))
+        self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
+                                                               width: self.view.frame.width,
+                                                               height: self.view.frame.height * 0.1),
+                                                 setTitle: "Start Cooking!")
         self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     
     @objc private func transitionCompileIngredientsView() {
         let compiledIngredientsViewController = CompileIngredientsViewController()
+        compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
         self.present(compiledIngredientsViewController, animated: true, completion: nil)
     }
 

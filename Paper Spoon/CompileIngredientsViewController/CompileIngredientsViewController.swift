@@ -16,13 +16,23 @@ class CompileIngredientsViewController: UIViewController {
         self.setup()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     private func setup() {
         self.view.backgroundColor = .gray
         self.setupCompiledIngredientsList()
         self.addCompiledIngredientsList()
+        self.calculateIngredients()
+        self.injectCompiledIngredientsList()
     }
     
     var compiledIngredientsList: CompiledIngredientsList?
+    var menuOptionsObj: MenuOptionObj?
+    var compiledIngredients = [Ingredients]()
+    var reducedCompiledIngredients = [Ingredients]()
+    var finishedShoppingBtn: NextStepBtn?
     
     private func setupCompiledIngredientsList() {
         self.compiledIngredientsList = CompiledIngredientsList(frame: CGRect(x: 0, y: 0,
@@ -40,6 +50,32 @@ class CompileIngredientsViewController: UIViewController {
         self.compiledIngredientsList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.compiledIngredientsList?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    private func calculateIngredients() {
+        // aggregate all ingredients from selected recipes
+        if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
+            for menuOption in selectedMenuOptions {
+                if let recipeIngredients = menuOption.recipe?.ingredients {
+                    self.compiledIngredients += recipeIngredients
+                }
+            }
+        }
+        
+        // standardize ingredient measurements
+        
+        // standardize ingredient names
+        
+        // reduce ingredients list to just unique values based on name only
+        reducedCompiledIngredients = compiledIngredients.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+        
+        // modify ingredients list amounts based on original compiledIngredients list
+        
+    }
+    
+    private func injectCompiledIngredientsList() {
+        self.compiledIngredientsList?.compiledIngredients = self.reducedCompiledIngredients
+        self.compiledIngredientsList?.reloadData()
     }
 
 }

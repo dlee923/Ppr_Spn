@@ -72,10 +72,10 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     private func selectMenuOption(menuOption: MenuOption) {
         // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
-        if let alreadySelectedIndex = self.menuOptionsObj?.selectedMenuOptions?.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
-            self.menuOptionsObj?.selectedMenuOptions?.remove(at: alreadySelectedIndex)
+        if let alreadySelectedIndex = self.menuOptionsObj?.selectedMenuOptions.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
+            self.menuOptionsObj?.selectedMenuOptions.remove(at: alreadySelectedIndex)
         } else {
-            self.menuOptionsObj?.selectedMenuOptions?.append(menuOption)
+            self.menuOptionsObj?.selectedMenuOptions.append(menuOption)
         }
     }
 
