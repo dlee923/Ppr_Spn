@@ -17,6 +17,8 @@
 		701058EC2308BE0100D4D9FD /* CompileIngredientsBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058EB2308BE0100D4D9FD /* CompileIngredientsBtn.swift */; };
 		701058EE2308C33B00D4D9FD /* CompileIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058ED2308C33B00D4D9FD /* CompileIngredientsViewController.swift */; };
 		701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058F02308C3BF00D4D9FD /* CompiledIngredientsList.swift */; };
+		701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */; };
+		701058F52308EE8300D4D9FD /* CompiledIngredientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */; };
 		70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532C822F44DCA00C8F866 /* RecipeModel.swift */; };
 		70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532CA22F5EFAA00C8F866 /* Device.swift */; };
 		70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D022F6264C00C8F866 /* ActivityIndicator.swift */; };
@@ -62,6 +64,8 @@
 		701058EB2308BE0100D4D9FD /* CompileIngredientsBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileIngredientsBtn.swift; sourceTree = "<group>"; };
 		701058ED2308C33B00D4D9FD /* CompileIngredientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompileIngredientsViewController.swift; sourceTree = "<group>"; };
 		701058F02308C3BF00D4D9FD /* CompiledIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompiledIngredientsList.swift; sourceTree = "<group>"; };
+		701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompiledIngredientsCell.swift; sourceTree = "<group>"; };
+		701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompiledIngredientsCell.xib; sourceTree = "<group>"; };
 		70D532C822F44DCA00C8F866 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		70D532CA22F5EFAA00C8F866 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		70D532D022F6264C00C8F866 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 			children = (
 				701058ED2308C33B00D4D9FD /* CompileIngredientsViewController.swift */,
 				701058F02308C3BF00D4D9FD /* CompiledIngredientsList.swift */,
+				701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */,
+				701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */,
 			);
 			path = CompileIngredientsViewController;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70E6F48E2198DE1D005C08EE /* LaunchScreen.storyboard in Resources */,
+				701058F52308EE8300D4D9FD /* CompiledIngredientsCell.xib in Resources */,
 				70E6F48B2198DE1D005C08EE /* Assets.xcassets in Resources */,
 				70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */,
 				701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */,
@@ -385,6 +392,7 @@
 				701058EE2308C33B00D4D9FD /* CompileIngredientsViewController.swift in Sources */,
 				70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */,
 				70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */,
+				701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* CompileIngredientsBtn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,7 +27,7 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.downloadData()
+//        self.downloadData()
     }
     
     var recipeListViewController: RecipeListViewController = {

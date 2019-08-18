@@ -18,6 +18,8 @@ class CompileIngredientsViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = .gray
+        self.setupCompiledIngredientsList()
+        self.addCompiledIngredientsList()
     }
     
     var compiledIngredientsList: CompiledIngredientsList?
@@ -25,7 +27,8 @@ class CompileIngredientsViewController: UIViewController {
     private func setupCompiledIngredientsList() {
         self.compiledIngredientsList = CompiledIngredientsList(frame: CGRect(x: 0, y: 0,
                                                                              width: self.view.frame.width,
-                                                                             height: self.view.frame.height))
+                                                                             height: self.view.frame.height),
+                                                               style: .plain)
     }
     
     private func addCompiledIngredientsList() {
@@ -33,6 +36,10 @@ class CompileIngredientsViewController: UIViewController {
         self.view.addSubview(compiledIngredientsList)
         
         self.compiledIngredientsList?.translatesAutoresizingMaskIntoConstraints = false
+        self.compiledIngredientsList?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        self.compiledIngredientsList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        self.compiledIngredientsList?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
 
 }

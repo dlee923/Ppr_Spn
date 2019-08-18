@@ -18,6 +18,13 @@ class CompiledIngredientsList: UITableView, UITableViewDelegate, UITableViewData
     
     private func setup() {
         self.backgroundColor = .red
+        self.registerCells()
+        self.delegate = self
+        self.dataSource = self
+    }
+    
+    private func registerCells() {
+        self.register(UINib(nibName: "\(CompiledIngredientsCell.self)", bundle: .main), forCellReuseIdentifier: "compiledIngredients")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,7 +40,11 @@ class CompiledIngredientsList: UITableView, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
 
 }
