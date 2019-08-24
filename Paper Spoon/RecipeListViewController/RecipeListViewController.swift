@@ -67,6 +67,10 @@ class RecipeListViewController: UIViewController {
     }
     
     @objc private func transitionCompileIngredientsView() {
+        if self.menuOptionsObj == nil {
+            // prompt warning?
+            return
+        }
         let compiledIngredientsViewController = CompileIngredientsViewController()
         compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
         self.present(compiledIngredientsViewController, animated: true, completion: nil)

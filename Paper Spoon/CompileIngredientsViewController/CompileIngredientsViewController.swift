@@ -68,6 +68,9 @@ class CompileIngredientsViewController: UIViewController {
         
         // reduce ingredients list to just unique values based on name only
         reducedCompiledIngredients = compiledIngredients.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+        for ingredient in reducedCompiledIngredients {
+            print(ingredient.name)
+        }
         
         // modify ingredients list amounts based on original compiledIngredients list
         
