@@ -24,6 +24,8 @@ class CompileIngredientsViewController: UIViewController {
         self.view.backgroundColor = .gray
         self.setupCompiledIngredientsList()
         self.addCompiledIngredientsList()
+        self.addFinishedShoppingBtn()
+        
         self.calculateIngredients()
         self.injectCompiledIngredientsList()
     }
@@ -79,6 +81,21 @@ class CompileIngredientsViewController: UIViewController {
     private func injectCompiledIngredientsList() {
         self.compiledIngredientsList?.compiledIngredients = self.reducedCompiledIngredients
         self.compiledIngredientsList?.reloadData()
+    }
+    
+    private func addFinishedShoppingBtn() {
+        self.finishedShoppingBtn = NextStepBtn(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), setTitle: "Finished Shopping!")
+        guard let finishedShoppingButton = self.finishedShoppingBtn else { return }
+        guard let compiledIngList = self.compiledIngredientsList else { return }
+        self.view.addSubview(finishedShoppingButton)
+        
+        finishedShoppingButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            finishedShoppingButton.topAnchor.constraint(equalTo: compiledIngList.bottomAnchor, constant: 5),
+            finishedShoppingButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
+            finishedShoppingButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5),
+            finishedShoppingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5)
+        ])
     }
 
 }
