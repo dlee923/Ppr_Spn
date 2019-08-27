@@ -44,6 +44,8 @@ class CompiledIngredientsList: UITableView, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
             cell.ingredientName.text = self.compiledIngredients?[indexPath.row].name
+            cell.measureAmount.text = String(describing: self.compiledIngredients?[indexPath.row].amount ?? 1)
+            cell.measureLbl.text = self.compiledIngredients?[indexPath.row].measurementType
             return cell
         } else {
             return UITableViewCell()

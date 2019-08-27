@@ -22,9 +22,12 @@ class CompileIngredientsViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = .gray
+        
+        self.setupFinishedShoppingBtn()
+        self.addFinishedShoppingBtn()
+        
         self.setupCompiledIngredientsList()
         self.addCompiledIngredientsList()
-        self.addFinishedShoppingBtn()
         
         self.calculateIngredients()
         self.injectCompiledIngredientsList()
@@ -46,12 +49,13 @@ class CompileIngredientsViewController: UIViewController {
     private func addCompiledIngredientsList() {
         guard let compiledIngredientsList = self.compiledIngredientsList else { return }
         self.view.addSubview(compiledIngredientsList)
+        guard let finishedShoppingButton = self.finishedShoppingBtn else { return }
         
         self.compiledIngredientsList?.translatesAutoresizingMaskIntoConstraints = false
         self.compiledIngredientsList?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         self.compiledIngredientsList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.compiledIngredientsList?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: finishedShoppingButton.topAnchor, constant: 5).isActive = true
     }
     
     private func calculateIngredients() {
@@ -83,19 +87,28 @@ class CompileIngredientsViewController: UIViewController {
         self.compiledIngredientsList?.reloadData()
     }
     
-    private func addFinishedShoppingBtn() {
+    private func setupFinishedShoppingBtn() {
         self.finishedShoppingBtn = NextStepBtn(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), setTitle: "Finished Shopping!")
+        self.finishedShoppingBtn?.addTarget(self, action: #selector(finishedShoppingAction), for: .touchUpInside)
+    }
+    
+    private func addFinishedShoppingBtn() {
         guard let finishedShoppingButton = self.finishedShoppingBtn else { return }
-        guard let compiledIngList = self.compiledIngredientsList else { return }
         self.view.addSubview(finishedShoppingButton)
         
         finishedShoppingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            finishedShoppingButton.topAnchor.constraint(equalTo: compiledIngList.bottomAnchor, constant: 5),
-            finishedShoppingButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -5),
+            finishedShoppingButton.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
+            finishedShoppingButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
             finishedShoppingButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5),
             finishedShoppingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5)
         ])
+    }
+    
+    @objc private func finishedShoppingAction() {
+        let mealPrepViewController = MealPrepViewController()
+        mealPrepViewController.menuOptionsObj = self.menuOptionsObj
+        self.present(mealPrepViewController, animated: true, completion: nil)
     }
 
 }

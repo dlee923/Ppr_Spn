@@ -48,6 +48,14 @@ class RecipeListViewController: UIViewController {
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
     }
     
+    private func setupCompileIngredientsBtn() {
+        self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
+                                                               width: self.view.frame.width,
+                                                               height: self.view.frame.height * 0.1),
+                                                 setTitle: "Start Cooking!")
+        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
+    }
+    
     private func addCompileIngredientsBtn() {
         self.view.addSubview(self.compileIngredientsBtn ?? UIView())
         
@@ -56,14 +64,6 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1).isActive = true
-    }
-    
-    private func setupCompileIngredientsBtn() {
-        self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
-                                                               width: self.view.frame.width,
-                                                               height: self.view.frame.height * 0.1),
-                                                 setTitle: "Start Cooking!")
-        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     
     @objc private func transitionCompileIngredientsView() {
