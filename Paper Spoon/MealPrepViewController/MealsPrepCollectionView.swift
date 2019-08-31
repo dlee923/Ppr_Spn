@@ -22,12 +22,14 @@ class MealsPrepCollectionView: UICollectionView {
     private func setup() {
         self.backgroundColor = UIColor.color1
         self.registerCells()
+        self.dataSource = self
+        self.delegate = self
     }
     
     var menuOptionsObj: MenuOptionObj?
     
     private func registerCells() {
-        self.register(UINib(nibName: "MealsPrepCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
+        self.register(UINib(nibName: "\(MealsPrepCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -42,11 +44,12 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.menuOptionsObj?.selectedMenuOptions.count ?? 0) - 1
+        return (self.menuOptionsObj?.selectedMenuOptions.count ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
+            cell.menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
             return cell
         } else {
             return UICollectionViewCell()
@@ -57,7 +60,11 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
 extension MealsPrepCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width - 10, height: self.frame.height - 10)
+        return CGSize(width: self.frame.width, height: self.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
 }

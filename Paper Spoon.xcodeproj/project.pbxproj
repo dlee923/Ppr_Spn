@@ -19,6 +19,7 @@
 		701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058F02308C3BF00D4D9FD /* CompiledIngredientsList.swift */; };
 		701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */; };
 		701058F52308EE8300D4D9FD /* CompiledIngredientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */; };
+		701185FA231B137500F4D047 /* IngredientsPrepTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */; };
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		708735E32310E3750079CCA5 /* IngredientsCategorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708735E22310E3750079CCA5 /* IngredientsCategorization.swift */; };
 		70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */; };
@@ -71,6 +72,7 @@
 		701058F02308C3BF00D4D9FD /* CompiledIngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompiledIngredientsList.swift; sourceTree = "<group>"; };
 		701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompiledIngredientsCell.swift; sourceTree = "<group>"; };
 		701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompiledIngredientsCell.xib; sourceTree = "<group>"; };
+		701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsPrepTableView.swift; sourceTree = "<group>"; };
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		708735E22310E3750079CCA5 /* IngredientsCategorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsCategorization.swift; sourceTree = "<group>"; };
 		70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */,
 				70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */,
 				70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */,
+				701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */,
 			);
 			path = MealPrepViewController;
 			sourceTree = "<group>";
@@ -153,6 +156,13 @@
 				701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */,
 			);
 			path = CompileIngredientsViewController;
+			sourceTree = "<group>";
+		};
+		701185FB231B14A100F4D047 /* MealKitSelectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MealKitSelectionViewController;
 			sourceTree = "<group>";
 		};
 		70D532CC22F5EFC900C8F866 /* Utility */ = {
@@ -226,6 +236,7 @@
 				70D532D922F98CB100C8F866 /* RecipeListViewController */,
 				701058EF2308C34200D4D9FD /* CompileIngredientsViewController */,
 				701058DD22FF614B00D4D9FD /* MealPrepViewController */,
+				701185FB231B14A100F4D047 /* MealKitSelectionViewController */,
 				70D532D422F77A0A00C8F866 /* API */,
 				70D532CD22F5EFD200C8F866 /* Model */,
 				70D532CC22F5EFC900C8F866 /* Utility */,
@@ -414,6 +425,7 @@
 				70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */,
 				701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,
+				701185FA231B137500F4D047 /* IngredientsPrepTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

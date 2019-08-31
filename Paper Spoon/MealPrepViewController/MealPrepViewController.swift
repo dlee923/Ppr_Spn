@@ -41,7 +41,7 @@ class MealPrepViewController: UIViewController {
             self.mealsPrepCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.mealsPrepCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.mealsPrepCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            self.mealsPrepCollectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor)
+            self.mealsPrepCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         ])
     }
     
@@ -54,10 +54,10 @@ class MealPrepViewController: UIViewController {
         self.mealsPrepCollectionView.addSubview(self.mealsPrepCount)
         self.mealsPrepCount.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.mealsPrepCount.topAnchor.constraint(equalTo: self.mealsPrepCollectionView.topAnchor, constant: 0),
-            self.mealsPrepCount.centerXAnchor.constraint(equalTo: self.mealsPrepCollectionView.centerXAnchor, constant: 0),
+            self.mealsPrepCount.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            self.mealsPrepCount.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.mealsPrepCount.heightAnchor.constraint(equalToConstant: 20),
-            self.mealsPrepCount.widthAnchor.constraint(equalTo: self.mealsPrepCollectionView.widthAnchor, multiplier: 1)
+            self.mealsPrepCount.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         ])
     }
 

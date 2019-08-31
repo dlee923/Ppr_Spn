@@ -11,11 +11,17 @@ import UIKit
 class MealsPrepCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var mealsPrepImag: UIImageView!
-    @IBOutlet weak var ingredientsPrepTableView: UITableView!
+    @IBOutlet weak var ingredientsPrepTableView: IngredientsPrepTableView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.backgroundColor = .white
+    }
+    
+    var menuOption: MenuOption? {
+        didSet {
+            self.ingredientsPrepTableView.recipe = self.menuOption?.recipe
+        }
     }
     
     private func setup() {
