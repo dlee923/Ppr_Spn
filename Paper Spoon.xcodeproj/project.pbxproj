@@ -20,6 +20,9 @@
 		701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */; };
 		701058F52308EE8300D4D9FD /* CompiledIngredientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */; };
 		701185FA231B137500F4D047 /* IngredientsPrepTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */; };
+		701185FD231B22EB00F4D047 /* Sunflower_personal.otf in Resources */ = {isa = PBXBuildFile; fileRef = 701185FC231B22EA00F4D047 /* Sunflower_personal.otf */; };
+		701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */; };
+		70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70118600231B291D00F4D047 /* MealKitsCollectionView.swift */; };
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		708735E32310E3750079CCA5 /* IngredientsCategorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708735E22310E3750079CCA5 /* IngredientsCategorization.swift */; };
 		70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */; };
@@ -73,6 +76,9 @@
 		701058F22308EE8300D4D9FD /* CompiledIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompiledIngredientsCell.swift; sourceTree = "<group>"; };
 		701058F32308EE8300D4D9FD /* CompiledIngredientsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompiledIngredientsCell.xib; sourceTree = "<group>"; };
 		701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsPrepTableView.swift; sourceTree = "<group>"; };
+		701185FC231B22EA00F4D047 /* Sunflower_personal.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sunflower_personal.otf; sourceTree = "<group>"; };
+		701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitSelectionViewController.swift; sourceTree = "<group>"; };
+		70118600231B291D00F4D047 /* MealKitsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionView.swift; sourceTree = "<group>"; };
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		708735E22310E3750079CCA5 /* IngredientsCategorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsCategorization.swift; sourceTree = "<group>"; };
 		70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionView.swift; sourceTree = "<group>"; };
@@ -141,7 +147,9 @@
 		701058E422FF61B900D4D9FD /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				701058E522FF61D400D4D9FD /* Fonts.swift */,
 				701058E022FF618E00D4D9FD /* BebasNeue-Regular.otf */,
+				701185FC231B22EA00F4D047 /* Sunflower_personal.otf */,
 				701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */,
 			);
 			path = Fonts;
@@ -161,6 +169,8 @@
 		701185FB231B14A100F4D047 /* MealKitSelectionViewController */ = {
 			isa = PBXGroup;
 			children = (
+				701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */,
+				70118600231B291D00F4D047 /* MealKitsCollectionView.swift */,
 			);
 			path = MealKitSelectionViewController;
 			sourceTree = "<group>";
@@ -171,7 +181,6 @@
 				70D532D022F6264C00C8F866 /* ActivityIndicator.swift */,
 				701058E922FF620600D4D9FD /* Extensions.swift */,
 				70D532CA22F5EFAA00C8F866 /* Device.swift */,
-				701058E522FF61D400D4D9FD /* Fonts.swift */,
 				701058E722FF61FA00D4D9FD /* Colors.swift */,
 			);
 			path = Utility;
@@ -376,6 +385,7 @@
 				70E6F48B2198DE1D005C08EE /* Assets.xcassets in Resources */,
 				70AD620823137EFD00ABE458 /* MealsPrepCollectionViewCell.xib in Resources */,
 				70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */,
+				701185FD231B22EB00F4D047 /* Sunflower_personal.otf in Resources */,
 				701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */,
 				701058E322FF618E00D4D9FD /* BebasNeue-Regular.otf in Resources */,
 			);
@@ -402,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */,
 				70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */,
 				70E6F4832198DE1A005C08EE /* DashBoardController.swift in Sources */,
 				708735E32310E3750079CCA5 /* IngredientsCategorization.swift in Sources */,
@@ -409,6 +420,7 @@
 				701058E622FF61D400D4D9FD /* Fonts.swift in Sources */,
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
 				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,
+				701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */,
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* RecipeListViewController.swift in Sources */,
 				70E6F4892198DE1A005C08EE /* Paper_Spoon.xcdatamodeld in Sources */,

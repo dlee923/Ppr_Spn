@@ -21,6 +21,7 @@ class MealsPrepCollectionView: UICollectionView {
     
     private func setup() {
         self.backgroundColor = UIColor.color1
+        self.isPagingEnabled = true
         self.registerCells()
         self.dataSource = self
         self.delegate = self
@@ -49,7 +50,8 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
-            cell.menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
+            let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
+            cell.menuOption = menuOption
             return cell
         } else {
             return UICollectionViewCell()
@@ -63,7 +65,11 @@ extension MealsPrepCollectionView: UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.frame.width, height: self.frame.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return 0
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     

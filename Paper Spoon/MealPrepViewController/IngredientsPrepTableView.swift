@@ -9,8 +9,31 @@
 import UIKit
 
 class IngredientsPrepTableView: UITableView {
-
+    
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+        self.setup()
+        print("tableview initialized - default init")
+    }
+    
     var recipe: Recipe?
+    
+    private func setup() {
+        self.delegate = self
+        self.dataSource = self
+        self.backgroundColor = .blue
+        self.registerCells()
+    }
+    
+    private func registerCells() {
+        self.register(UITableViewCell.self, forCellReuseIdentifier: "ingredientsPrepTableViewCell")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setup()
+        print("tableview initialized - coder")
+    }
 
 }
 
@@ -28,6 +51,7 @@ extension IngredientsPrepTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "ingredientsPrepTableViewCell")
         let ingredient = self.recipe?.ingredients?[indexPath.row]
+        
         cell.textLabel?.text = ingredient?.name
         return UITableViewCell()
     }

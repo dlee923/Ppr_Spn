@@ -12,5 +12,6 @@ extension UIFont {
     
     static let fontBebas = UIFont(name: "Bebas Neue", size: 5)
     static let fontCoolvetica = UIFont(name: "Coolvetica", size: 5)
+    static let fontSunflower = UIFont(name: "MADE Sunflower", size: 5)
     
 }
