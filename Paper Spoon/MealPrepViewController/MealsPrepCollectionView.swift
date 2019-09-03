@@ -28,6 +28,7 @@ class MealsPrepCollectionView: UICollectionView {
     }
     
     var menuOptionsObj: MenuOptionObj?
+    weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
     
     private func registerCells() {
         self.register(UINib(nibName: "\(MealsPrepCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
@@ -52,6 +53,7 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
             let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
             cell.menuOption = menuOption
+            cell.mealPrepFinishedDelegate = self.mealPrepFinishedDelegate
             return cell
         } else {
             return UICollectionViewCell()

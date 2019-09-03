@@ -20,5 +20,6 @@ class MealKitSelectionViewController: UIViewController {
         self.view.backgroundColor = UIColor.color4
     }
     
-
+    var menuOptionsObj: MenuOptionObj?
+    
 }

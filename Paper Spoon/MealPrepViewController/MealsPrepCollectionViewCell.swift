@@ -13,6 +13,9 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var mealsPrepImag: UIImageView!
     @IBOutlet weak var ingredientsPrepTableView: IngredientsPrepTableView!
     @IBOutlet weak var mealPreppedBtn: UIButton!
+    @IBAction func mealPreppedBtnPressed(_ sender: Any) {
+        self.mealPreppedAction()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +30,17 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
+    
     private func setup() {
         self.mealPreppedBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
+    }
+    
+    private func mealPreppedAction() {
+        print("meal kit prepped")
+        self.mealPrepFinishedDelegate?.sendUserToMealKitSelection()
+
+        
     }
 
 }

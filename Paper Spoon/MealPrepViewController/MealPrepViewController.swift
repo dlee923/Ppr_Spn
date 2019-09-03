@@ -28,9 +28,11 @@ class MealPrepViewController: UIViewController {
     var menuOptionsObj: MenuOptionObj?
     var mealsPrepCount = UIPageControl()
     lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+    var mealPrepFinishedBtn = UIButton()
 
     private func setupMealsToPrep() {
         self.mealsPrepCollectionView.menuOptionsObj = self.menuOptionsObj
+        self.mealsPrepCollectionView.mealPrepFinishedDelegate = self
     }
     
     private func addMealsToPrep() {
@@ -61,4 +63,18 @@ class MealPrepViewController: UIViewController {
         ])
     }
 
+}
+
+extension MealPrepViewController: MealPrepFinishedDelegate {
+    
+    func sendUserToMealKitSelection() {
+        let mealKitSelectionViewController = MealKitSelectionViewController()
+        mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
+        self.present(mealKitSelectionViewController, animated: true, completion: nil)
+    }
+    
+}
+
+protocol MealPrepFinishedDelegate: AnyObject {
+    func sendUserToMealKitSelection()
 }

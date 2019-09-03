@@ -13,7 +13,6 @@ class IngredientsPrepTableView: UITableView {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.setup()
-        print("tableview initialized - default init")
     }
     
     var recipe: Recipe?
@@ -32,7 +31,6 @@ class IngredientsPrepTableView: UITableView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setup()
-        print("tableview initialized - coder")
     }
 
 }
@@ -43,6 +41,11 @@ extension IngredientsPrepTableView: UITableViewDelegate {
 }
 
 extension IngredientsPrepTableView: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfIngredients = self.recipe?.ingredients?.count
         return numberOfIngredients ?? 0
@@ -50,10 +53,10 @@ extension IngredientsPrepTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "ingredientsPrepTableViewCell")
+        cell.backgroundColor = .yellow
         let ingredient = self.recipe?.ingredients?[indexPath.row]
-        
         cell.textLabel?.text = ingredient?.name
-        return UITableViewCell()
+        return cell
     }
     
     
