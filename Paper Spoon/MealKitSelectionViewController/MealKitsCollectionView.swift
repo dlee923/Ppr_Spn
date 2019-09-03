@@ -19,6 +19,7 @@ class MealKitsCollectionView: UICollectionView {
     
     private func setup() {
         self.backgroundColor = UIColor.color2
+        self.register(MealKitsCollectionViewCell.self, forCellWithReuseIdentifier: "mealKitsCollectionViewCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,8 +34,14 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
     }
 }
 
-extension MealKitsCollectionView: UICollectionViewDelegateFlowLayout {}
+extension MealKitsCollectionView: UICollectionViewDelegateFlowLayout {
+    
+}

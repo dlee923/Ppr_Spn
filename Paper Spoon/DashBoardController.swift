@@ -68,7 +68,9 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
     
     fileprivate func downloadData() {
         // Add activity indicator
-        activityindicator.activityInProgress()
+        self.mainThread.async {
+            self.activityindicator.activityInProgress()
+        }
         
         // download recipe options
         self.retrieveHelloFreshMenu()
