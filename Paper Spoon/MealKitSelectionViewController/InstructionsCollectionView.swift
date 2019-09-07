@@ -1,32 +1,27 @@
 //
-//  MealKitsCollectionView.swift
+//  InstructionsCollectionView.swift
 //  Paper Spoon
 //
-//  Created by Daniel Lee on 8/31/19.
+//  Created by Daniel Lee on 9/7/19.
 //  Copyright © 2019 DLEE. All rights reserved.
 //
 
 import UIKit
 
-class MealKitsCollectionView: UICollectionView {
+class InstructionsCollectionView: UICollectionView {
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.setup()
-        if let layout = self.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
     }
-    
-    var menuOptionsObj: MenuOptionObj?
     
     private func setup() {
-        self.backgroundColor = UIColor.color2
-        self.register(MealKitsCollectionViewCell.self, forCellWithReuseIdentifier: "mealKitsCollectionViewCell")
+        self.backgroundColor = UIColor.color7
         self.delegate = self
         self.dataSource = self
-        self.isPagingEnabled = true
     }
+    
+    var recipe: Recipe?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,23 +29,21 @@ class MealKitsCollectionView: UICollectionView {
 
 }
 
-extension MealKitsCollectionView: UICollectionViewDataSource {
+extension InstructionsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.menuOptionsObj?.selectedMenuOptions.count ?? 0
+        return self.recipe?.instructions?.count ?? 0
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
-            let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
-            cell.menuOption = menuOption
-            return cell
-        } else {
-            return UICollectionViewCell()
-        }
+        return UICollectionViewCell()
     }
 }
 
-extension MealKitsCollectionView: UICollectionViewDelegateFlowLayout {
+extension InstructionsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.width, height: self.frame.height)
     }
