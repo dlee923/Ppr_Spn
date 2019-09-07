@@ -24,7 +24,8 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     
     let nameLabel = UILabel()
     let getCookingBtn = UIButton()
-    let descriptionTextfield = UITextField()
+    let descriptionTextfield = UITextView()
+    var scrollViewLockDelegate: ScrollViewLockDelegate?
     
     private func setup() {
         self.backgroundColor = UIColor.white
@@ -78,8 +79,12 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func showInstructions() {
+        // lock parent scroll view to prevent scrolling to other recipes
+        self.scrollViewLockDelegate?.lockScrollView()
+        
         print("show instructions")
         let instructionsCollectionView = InstructionsCollectionView(frame: self.frame)
+        instructionsCollectionView.recipe = self.menuOption?.recipe
         self.addSubview(instructionsCollectionView)
     }
     

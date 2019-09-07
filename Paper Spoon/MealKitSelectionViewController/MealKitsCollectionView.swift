@@ -41,6 +41,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
+            cell.scrollViewLockDelegate = self
             let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
             cell.menuOption = menuOption
             return cell
@@ -58,4 +59,21 @@ extension MealKitsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+}
+
+protocol ScrollViewLockDelegate: AnyObject {
+    func lockScrollView()
+    func unlockScrollView()
+}
+
+extension MealKitsCollectionView: ScrollViewLockDelegate {
+    func lockScrollView() {
+        self.isScrollEnabled = false
+    }
+    
+    func unlockScrollView() {
+        self.isScrollEnabled = false
+    }
+    
+    
 }

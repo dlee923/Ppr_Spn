@@ -16,11 +16,13 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
-        
+        self.addInstructionsImage()
+        self.addInstructionsTextView()
     }
     
-    let instructionsTextField = UITextField()
+    let instructionsTextView = UITextView()
     let instructionsImage = UIImageView()
+    var instructions: String? { didSet { self.instructionsTextView.text = instructions } }
     
     private func addInstructionsImage() {
         self.instructionsImage.backgroundColor = .purple
@@ -34,10 +36,17 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    private func addInstructionsTextfield() {
-        self.instructionsTextField.backgroundColor = .yellow
-        self.addSubview(self.instructionsTextField)
-        self.instructionsTextField.translatesAutoresizingMaskIntoConstraints = false
+    private func addInstructionsTextView() {
+        self.instructionsTextView.textColor = .red
+        self.instructionsTextView.backgroundColor = .yellow
+        self.addSubview(self.instructionsTextView)
+        self.instructionsTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.instructionsTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.instructionsTextView.topAnchor.constraint(equalTo: self.instructionsImage.bottomAnchor),
+            self.instructionsTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.instructionsTextView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
     
     required init?(coder aDecoder: NSCoder) {

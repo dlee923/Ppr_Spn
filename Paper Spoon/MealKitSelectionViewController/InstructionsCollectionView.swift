@@ -17,11 +17,13 @@ class InstructionsCollectionView: UICollectionView {
     
     private func setup() {
         self.backgroundColor = UIColor.color7
+        self.isPagingEnabled = true
         self.delegate = self
         self.dataSource = self
+        self.register(InstructionsCollectionViewCell.self, forCellWithReuseIdentifier: "instructionsCollectionViewCell")
     }
     
-    var recipe: Recipe?
+    var recipe: Recipe? { didSet { self.reloadData() } }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,7 +41,14 @@ extension InstructionsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instructionsCollectionViewCell", for: indexPath) as? InstructionsCollectionViewCell {
+            let instructions = self.recipe?.instructions?[indexPath.item]
+            print(instructions)
+            cell.instructions = instructions
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
     }
 }
 
