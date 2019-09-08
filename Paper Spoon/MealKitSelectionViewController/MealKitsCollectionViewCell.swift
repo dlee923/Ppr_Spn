@@ -78,18 +78,34 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    var instructionsView: InstructionsView?
+    
     @objc private func showInstructions() {
         // lock parent scroll view to prevent scrolling to other recipes
         self.scrollViewLockDelegate?.lockScrollView()
         
         print("show instructions")
-        let instructionsCollectionView = InstructionsCollectionView(frame: self.frame)
-        instructionsCollectionView.recipe = self.menuOption?.recipe
-        self.addSubview(instructionsCollectionView)
+        instructionsView = InstructionsView(frame: self.frame)
+        instructionsView?.menuOption = self.menuOption
+        instructionsView?.dismissPopUpDelegate = self
+        if let instructionsVw = instructionsView {
+            self.addSubview(instructionsVw)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+}
+
+protocol DismissPopUpDelegate: AnyObject {
+    func dismissPopup()
+}
+
+extension MealKitsCollectionViewCell: DismissPopUpDelegate {
+    func dismissPopup() {
+        self.instructionsView?.removeFromSuperview()
+        self.scrollViewLockDelegate?.unlockScrollView()
+    }
 }

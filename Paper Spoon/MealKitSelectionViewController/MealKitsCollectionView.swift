@@ -72,7 +72,7 @@ extension MealKitsCollectionView: ScrollViewLockDelegate {
     }
     
     func unlockScrollView() {
-        self.isScrollEnabled = false
+        self.isScrollEnabled = true
     }
     
     

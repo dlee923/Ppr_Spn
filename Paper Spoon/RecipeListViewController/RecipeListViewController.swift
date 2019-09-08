@@ -52,7 +52,7 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
                                                                width: self.view.frame.width,
                                                                height: self.view.frame.height * 0.1),
-                                                 setTitle: "Start Cooking!")
+                                                 setTitle: "Let's Go Shopping!")
         self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     
@@ -67,7 +67,7 @@ class RecipeListViewController: UIViewController {
     }
     
     @objc private func transitionCompileIngredientsView() {
-        if self.menuOptionsObj == nil {
+        if self.menuOptionsObj.menuOptions == nil {
             // prompt warning?
             return
         }
