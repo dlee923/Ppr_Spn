@@ -46,6 +46,10 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.frame.width, height: 100)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
             cell.menuOption = menuOptionsObj?.menuOptions?[indexPath.item]
@@ -86,8 +90,14 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
         if let alreadySelectedIndex = self.menuOptionsObj?.selectedMenuOptions.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
             self.menuOptionsObj?.selectedMenuOptions.remove(at: alreadySelectedIndex)
+            
+            // mark as not selected for prepareForReuse
+            menuOption.isSelected = false
         } else {
             self.menuOptionsObj?.selectedMenuOptions.append(menuOption)
+            
+            // mark as selected for prepareForReuse
+            menuOption.isSelected = true
         }
     }
 
@@ -109,12 +119,13 @@ class MenuOptionListHeaderCell: UICollectionViewCell {
     private func addHeaderLabel() {
         self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
         self.headerLabel.text = "Choose Recipes:"
+        self.addSubview(self.headerLabel)
         
         self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.headerLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            self.headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            self.headerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            self.headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            self.headerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             self.headerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
         ])
     }

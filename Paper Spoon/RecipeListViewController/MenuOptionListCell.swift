@@ -27,7 +27,7 @@ class MenuOptionListCell: UICollectionViewCell {
             self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
             self.subtitleView.text = self.menuOption?.recipeSubtitle
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
-            self.caloritesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 5)) Calories"
+            self.caloritesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
         }
     }
     
@@ -47,6 +47,9 @@ class MenuOptionListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        print(self.menuOption?.recipeName)
+        print(self.menuOption?.isSelected)
+        self.isSelect = self.menuOption?.isSelected
         self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
     }
     
