@@ -19,17 +19,15 @@ class MenuOptionListCell: UICollectionViewCell {
     var thumbnailView = UIImageView()
     var titleView = UILabel()
     var subtitleView = UILabel()
-    var nutritionView = UIView()
-    var proteinLabel = UILabel()
     var caloritesLabel = UILabel()
     let titleViewColor = UIColor.themeColor1
     let titleViewColorSelected = UIColor.color5
     var menuOption: MenuOption? {
         didSet {
-//            self.titleView.text = self.menuOption?.recipeName
             self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
             self.subtitleView.text = self.menuOption?.recipeSubtitle
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
+            self.caloritesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 5)) Calories"
         }
     }
     
@@ -38,6 +36,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.addViewThumbnail()
         self.addViewTitle()
         self.addViewSubtitle()
+        self.addCaloriesLabel()
     }
     
     private func setColors() {
@@ -104,6 +103,17 @@ class MenuOptionListCell: UICollectionViewCell {
         self.subtitleView.topAnchor.constraint(equalTo: titleView.bottomAnchor, constant: 0).isActive = true
         self.subtitleView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.subtitleView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+    }
+    
+    private func addCaloriesLabel() {
+        self.caloritesLabel.font = UIFont.fontCoolvetica?.withSize(10)
+        self.addSubview(self.caloritesLabel)
+        
+        self.caloritesLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.caloritesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        self.caloritesLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        self.caloritesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.caloritesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

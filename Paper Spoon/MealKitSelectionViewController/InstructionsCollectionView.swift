@@ -43,7 +43,6 @@ extension InstructionsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instructionsCollectionViewCell", for: indexPath) as? InstructionsCollectionViewCell {
             let instructions = self.recipe?.instructions?[indexPath.item]
-            print(instructions)
             cell.instructions = instructions
             return cell
         } else {

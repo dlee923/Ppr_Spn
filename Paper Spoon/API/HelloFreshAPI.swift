@@ -187,9 +187,10 @@ extension HelloFreshAPI {
         
         for nutritionBlock in nutritionSection2 {
             let nutritionDetails = nutritionBlock.components(separatedBy: ":")
-            let nutritionMeasure = nutritionDetails[1...]
-            let nutritionAmount = Double(String(nutritionMeasure.first ?? "")) ?? 0.0
-            let nutritionType = nutritionMeasure.last ?? ""
+            let nutritionData = nutritionDetails.last?.components(separatedBy: " ")
+            
+            let nutritionAmount = Double(String(nutritionData?.first ?? "")) ?? 0.0
+            let nutritionType = nutritionData?.last ?? ""
             let nutritionValue = NutritionValue(amount: nutritionAmount, measurementType: nutritionType)
             if let nutritionName = nutritionDetails.first {
                 nutritionValues[nutritionName] = nutritionValue

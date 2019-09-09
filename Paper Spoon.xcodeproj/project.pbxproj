@@ -356,13 +356,16 @@
 				TargetAttributes = {
 					70E6F47C2198DE1A005C08EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 					};
 					70E6F4932198DE1D005C08EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 						TestTargetID = 70E6F47C2198DE1A005C08EE;
 					};
 					70E6F49E2198DE1D005C08EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1030;
 						TestTargetID = 70E6F47C2198DE1A005C08EE;
 					};
 				};
@@ -637,7 +640,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-Spoon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -655,7 +658,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-Spoon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -675,7 +678,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-SpoonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paper Spoon.app/Paper Spoon";
 			};
@@ -696,7 +699,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-SpoonTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Paper Spoon.app/Paper Spoon";
 			};
@@ -716,7 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-SpoonUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Paper Spoon";
 			};
@@ -736,7 +739,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "dlee923.Paper-SpoonUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "Paper Spoon";
 			};
