@@ -79,12 +79,17 @@ extension HelloFreshAPI {
                 let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "name:\"")[1]
                 let recipeName = recipeNameSection1?.components(separatedBy: "\",slug:").first ?? ""
                 
+                // parse recipe subtitle
+                let recipeSubtitleSection0 = recipeInfo?.components(separatedBy: "headline:\"").last
+                let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "\",websiteUrl:").first
+                let recipeSubtitle = recipeSubtitleSection1 ?? ""
+                
                 // parse recipe link
                 let recipeLink0 = recipeInfo?.components(separatedBy: "websiteUrl:\"").last
                 let recipeLink = recipeLink0?.components(separatedBy: "\"").first ?? ""
                 
                 // create menu option
-                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil)
+                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle)
                 menuOptions.append(menuOption)
             }
         }

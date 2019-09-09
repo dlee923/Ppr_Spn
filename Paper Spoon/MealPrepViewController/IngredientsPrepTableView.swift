@@ -59,5 +59,23 @@ extension IngredientsPrepTableView: UITableViewDataSource {
         return cell
     }
     
+}
+
+
+class IngredientsTableViewCell: UITableViewCell {
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    let label = UILabel()
+    let checkMark = UIImageView()
+    let amount = UILabel()
+    let measure = UILabel()
+    let ingredientImg = UIImageView()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
 }

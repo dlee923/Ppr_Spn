@@ -21,7 +21,7 @@ class MealKitsCollectionView: UICollectionView {
     var menuOptionsObj: MenuOptionObj?
     
     private func setup() {
-        self.backgroundColor = UIColor.color2
+        self.backgroundColor = UIColor.themeColor1
         self.register(MealKitsCollectionViewCell.self, forCellWithReuseIdentifier: "mealKitsCollectionViewCell")
         self.delegate = self
         self.dataSource = self

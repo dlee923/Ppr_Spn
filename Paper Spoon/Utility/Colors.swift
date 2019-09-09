@@ -27,4 +27,7 @@ extension UIColor {
     // True Blue
     static let color8 = UIColor(red: 1/255, green: 103/255, blue: 213/255, alpha: 1.0)
     
+    // Theme Colors
+    static let themeColor1 = UIColor.white
+    
 }

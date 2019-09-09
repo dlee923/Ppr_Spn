@@ -16,8 +16,10 @@ class NextStepBtn: UIButton {
     }
     
     private func setup(setTitle: String) {
-        self.backgroundColor = .orange
+        self.backgroundColor = UIColor.color5
         self.setTitle(setTitle, for: .normal)
+        self.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
+        self.titleLabel?.textColor = UIColor.themeColor1
     }
     
     required init?(coder aDecoder: NSCoder) {

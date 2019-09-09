@@ -22,12 +22,14 @@ class MenuOption {
     var recipeName: String
     var recipeLink: String
     var recipe: Recipe?
+    var recipeSubtitle: String
     
-    init(recipeName: String, recipeLink: String, recipe: Recipe?) {
+    init(recipeName: String, recipeLink: String, recipe: Recipe?, recipeSubtitle: String) {
         self.recipeName = recipeName
         self.recipeLink = recipeLink
         if let recipe0 = recipe {
             self.recipe = recipe0
         }
+        self.recipeSubtitle = recipeSubtitle
     }
 }

@@ -21,7 +21,7 @@ class CompileIngredientsViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .gray
+        self.setColors()
         
         self.setupFinishedShoppingBtn()
         self.addFinishedShoppingBtn()
@@ -38,6 +38,10 @@ class CompileIngredientsViewController: UIViewController {
     var compiledIngredients = [Ingredients]()
     var reducedCompiledIngredients = [Ingredients]()
     var finishedShoppingBtn: NextStepBtn?
+    
+    private func setColors() {
+        self.view.backgroundColor = UIColor.themeColor1
+    }
     
     private func setupCompiledIngredientsList() {
         self.compiledIngredientsList = CompiledIngredientsList(frame: CGRect(x: 0, y: 0,
@@ -90,6 +94,7 @@ class CompileIngredientsViewController: UIViewController {
     private func setupFinishedShoppingBtn() {
         self.finishedShoppingBtn = NextStepBtn(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), setTitle: "Finished Shopping!")
         self.finishedShoppingBtn?.addTarget(self, action: #selector(finishedShoppingAction), for: .touchUpInside)
+        self.finishedShoppingBtn?.layer.cornerRadius = 5
     }
     
     private func addFinishedShoppingBtn() {

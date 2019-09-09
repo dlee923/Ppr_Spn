@@ -34,6 +34,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         self.mealPreppedBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
+        self.mealPreppedBtn.layer.cornerRadius = 5
     }
     
     private func mealPreppedAction() {

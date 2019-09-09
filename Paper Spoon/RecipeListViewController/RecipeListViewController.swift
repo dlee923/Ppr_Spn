@@ -26,12 +26,16 @@ class RecipeListViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .yellow
+        self.setColors()
     }
     
     var menuOptionList: MenuOptionList!
     var compileIngredientsBtn: NextStepBtn?
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
+    
+    private func setColors() {
+        self.view.backgroundColor = UIColor.themeColor1
+    }
     
     private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -52,11 +56,12 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
                                                                width: self.view.frame.width,
                                                                height: self.view.frame.height * 0.1),
-                                                 setTitle: "Let's Go Shopping!")
+                                                 setTitle: "Compile Ingredients!")
         self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     
     private func addCompileIngredientsBtn() {
+        self.compileIngredientsBtn?.layer.cornerRadius = 5
         self.view.addSubview(self.compileIngredientsBtn ?? UIView())
         
         self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false

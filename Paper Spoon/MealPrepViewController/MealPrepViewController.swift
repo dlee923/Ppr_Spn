@@ -18,7 +18,7 @@ class MealPrepViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = .red
+        self.setColors()
         self.setupMealsToPrep()
         self.addMealsToPrep()
         self.setupMealsPrepCount()
@@ -29,6 +29,11 @@ class MealPrepViewController: UIViewController {
     var mealsPrepCount = UIPageControl()
     lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
     var mealPrepFinishedBtn = UIButton()
+    
+    private func setColors() {
+        self.view.backgroundColor = UIColor.themeColor1
+        self.mealsPrepCount.backgroundColor = UIColor.color6
+    }
 
     private func setupMealsToPrep() {
         self.mealsPrepCollectionView.menuOptionsObj = self.menuOptionsObj
@@ -49,7 +54,6 @@ class MealPrepViewController: UIViewController {
     
     private func setupMealsPrepCount() {
         self.mealsPrepCount.numberOfPages = self.menuOptionsObj?.selectedMenuOptions.count ?? 0
-        self.mealsPrepCount.backgroundColor = UIColor.color6
     }
     
     private func addMealsPrepCount() {

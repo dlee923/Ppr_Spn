@@ -27,15 +27,15 @@
                         </constraints>
                     </imageView>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NAw-gr-xgH" customClass="IngredientsPrepTableView" customModule="Paper_Spoon" customModuleProvider="target">
-                        <rect key="frame" x="5" y="134" width="401" height="162"/>
+                        <rect key="frame" x="5" y="134" width="401" height="142"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" red="0.1529411765" green="0.62745098040000002" blue="0.62745098040000002" alpha="1" colorSpace="calibratedRGB"/>
                     </tableView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-qt-apO">
-                        <rect key="frame" x="5" y="301" width="401" height="40"/>
+                        <rect key="frame" x="5" y="281" width="401" height="60"/>
                         <color key="backgroundColor" red="0.0" green="0.70588235290000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="hQ2-Cb-G2g"/>
+                            <constraint firstAttribute="height" constant="60" id="hQ2-Cb-G2g"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Symbol" family="Symbol" pointSize="17"/>
                         <state key="normal" title="Meal Kit Prepped">

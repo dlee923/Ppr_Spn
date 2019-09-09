@@ -19,12 +19,15 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     private func setup() {
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = .purple
-        
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
+        self.setColors()
     }
     
     var menuOptionsObj: MenuOptionObj?
+    
+    private func setColors() {
+        self.backgroundColor = UIColor.themeColor1
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -62,7 +65,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             cell.isSelect = cell.isSelect == false || cell.isSelect == nil ? true : false
             
             // UI change to cell based on selection
-            cell.titleView.backgroundColor = cell.isSelect == true ? .green : cell.titleViewColor
+            cell.titleView.backgroundColor = cell.isSelect == true ? cell.titleViewColorSelected : cell.titleViewColor
             
             // add or remove menu option to selected array
             guard let menuOption = cell.menuOption else { return }

@@ -17,7 +17,7 @@ class MealKitSelectionViewController: UIViewController {
     }
     
     private func setup() {
-        self.view.backgroundColor = UIColor.color4
+        self.view.backgroundColor = UIColor.themeColor1
     }
     
     var menuOptionsObj: MenuOptionObj?

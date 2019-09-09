@@ -51,13 +51,14 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         self.getCookingBtn.setTitle("Get Cooking", for: .normal)
         self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
         self.getCookingBtn.backgroundColor = UIColor.color8
+        self.getCookingBtn.layer.cornerRadius = 5
         
         self.addSubview(self.getCookingBtn)
         self.getCookingBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.getCookingBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.getCookingBtn.heightAnchor.constraint(equalToConstant: 35),
-            self.getCookingBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.getCookingBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
+            self.getCookingBtn.heightAnchor.constraint(equalToConstant: 60),
+            self.getCookingBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
             self.getCookingBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
