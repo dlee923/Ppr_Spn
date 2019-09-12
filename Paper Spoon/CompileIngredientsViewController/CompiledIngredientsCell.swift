@@ -20,10 +20,23 @@ class CompiledIngredientsCell: UITableViewCell {
     @IBOutlet weak var measureAmount: UILabel!
     @IBOutlet weak var measureLbl: UILabel!
     
+    var ingredient: Ingredients? {
+        didSet {
+            self.ingredientName.text = self.ingredient?.name
+            self.measureAmount.text = String(describing: self.ingredient?.amount ?? 1)
+            self.measureLbl.text = self.ingredient?.measurementType
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.backgroundColor = UIColor.themeColor1
     }
     
 }

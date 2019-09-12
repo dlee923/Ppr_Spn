@@ -53,14 +53,16 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         return 50
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 35
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
             // section for ingredients list
             if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
-                cell.ingredientName.text = self.compiledIngredients[indexPath.row].name
-                cell.measureAmount.text = String(describing: self.compiledIngredients[indexPath.row].amount ?? 1)
-                cell.measureLbl.text = self.compiledIngredients[indexPath.row].measurementType
+                cell.ingredient = self.compiledIngredients[indexPath.row]
                 return cell
             } else {
             return UITableViewCell()
@@ -68,9 +70,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         case 1:
             // section for shopping bag
             if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
-                cell.ingredientName.text = self.purchasedIngredients[indexPath.row].name
-                cell.measureAmount.text = String(describing: self.purchasedIngredients[indexPath.row].amount ?? 1)
-                cell.measureLbl.text = self.purchasedIngredients[indexPath.row].measurementType
+                cell.ingredient = self.purchasedIngredients[indexPath.row]
                 cell.backgroundColor = UIColor.color6
                 return cell
             } else {
