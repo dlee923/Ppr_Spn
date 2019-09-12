@@ -28,6 +28,8 @@ class MenuOptionListCell: UICollectionViewCell {
             self.subtitleView.text = self.menuOption?.recipeSubtitle
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
             self.caloritesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
+            self.isSelect = self.menuOption?.isSelected
+            self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
         }
     }
     
@@ -47,10 +49,8 @@ class MenuOptionListCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        print(self.menuOption?.recipeName)
-        print(self.menuOption?.isSelected)
-        self.isSelect = self.menuOption?.isSelected
-        self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
+        self.isSelect = nil
+        self.titleView.backgroundColor = self.titleViewColor
     }
     
     private func addViewThumbnail() {
