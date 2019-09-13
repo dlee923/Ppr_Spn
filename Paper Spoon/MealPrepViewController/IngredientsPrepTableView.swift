@@ -25,7 +25,7 @@ class IngredientsPrepTableView: UITableView {
     }
     
     private func registerCells() {
-        self.register(UITableViewCell.self, forCellReuseIdentifier: "ingredientsPrepTableViewCell")
+        self.register(IngredientsPrepTableViewCell.self, forCellReuseIdentifier: "ingredientsPrepTableViewCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +37,16 @@ class IngredientsPrepTableView: UITableView {
 
 
 extension IngredientsPrepTableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? IngredientsPrepTableViewCell {
+            cell.checkMarkView.isHidden = false
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
     
 }
 
@@ -52,30 +62,12 @@ extension IngredientsPrepTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "ingredientsPrepTableViewCell")
-        cell.backgroundColor = .yellow
+        let cell = IngredientsPrepTableViewCell(style: .default, reuseIdentifier: "ingredientsPrepTableViewCell")
         let ingredient = self.recipe?.ingredients?[indexPath.row]
-        cell.textLabel?.text = ingredient?.name
+        cell.ingredient = ingredient
+        cell.backgroundColor = .yellow
         return cell
     }
     
 }
 
-
-class IngredientsTableViewCell: UITableViewCell {
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    let label = UILabel()
-    let checkMark = UIImageView()
-    let amount = UILabel()
-    let measure = UILabel()
-    let ingredientImg = UIImageView()
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-}

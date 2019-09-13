@@ -21,6 +21,8 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         self.registerCells()
         self.delegate = self
         self.dataSource = self
+        self.separatorColor = UIColor.themeColor1
+        
     }
     
     var compiledIngredients = [Ingredients]()
@@ -71,7 +73,6 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
             // section for shopping bag
             if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
                 cell.ingredient = self.purchasedIngredients[indexPath.row]
-                cell.backgroundColor = UIColor.color6
                 return cell
             } else {
                 return UITableViewCell()

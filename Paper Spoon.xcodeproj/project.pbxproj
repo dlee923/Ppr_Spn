@@ -38,6 +38,7 @@
 		70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D222F7284000C8F866 /* MenuOptionList.swift */; };
 		70D532D622F77C4D00C8F866 /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */; };
 		70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D722F780E100C8F866 /* MenuOptionListCell.swift */; };
+		70E3A581232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */; };
 		70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4802198DE1A005C08EE /* AppDelegate.swift */; };
 		70E6F4832198DE1A005C08EE /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4822198DE1A005C08EE /* DashBoardController.swift */; };
 		70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70E6F4842198DE1A005C08EE /* Main.storyboard */; };
@@ -98,6 +99,7 @@
 		70D532D222F7284000C8F866 /* MenuOptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionList.swift; sourceTree = "<group>"; };
 		70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		70D532D722F780E100C8F866 /* MenuOptionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListCell.swift; sourceTree = "<group>"; };
+		70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsPrepTableViewCell.swift; sourceTree = "<group>"; };
 		70E6F47D2198DE1A005C08EE /* Paper Spoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paper Spoon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70E6F4802198DE1A005C08EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70E6F4822198DE1A005C08EE /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */,
 				70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */,
 				701185F9231B137500F4D047 /* IngredientsPrepTableView.swift */,
+				70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */,
 			);
 			path = MealPrepViewController;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */,
 				70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */,
 				701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */,
+				70E3A581232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,
 				701185FA231B137500F4D047 /* IngredientsPrepTableView.swift in Sources */,
 			);
