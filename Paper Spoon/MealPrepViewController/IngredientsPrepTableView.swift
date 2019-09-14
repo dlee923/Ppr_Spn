@@ -22,6 +22,7 @@ class IngredientsPrepTableView: UITableView {
         self.delegate = self
         self.dataSource = self
         self.registerCells()
+        self.contentOffset = CGPoint(x: 0, y: 90)
     }
     
     private func registerCells() {

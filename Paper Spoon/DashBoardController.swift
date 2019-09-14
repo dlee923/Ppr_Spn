@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
+class DashBoardController: UIPageViewController {
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.spineLocation: UIPageViewController.SpineLocation.mid])
@@ -24,11 +24,17 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         self.dataSource = self
         
         self.setUp()
+        self.createBrands()
+        
+        // pass brands data to header
+        recipeListHeader.brands = self.brands
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.downloadData()
     }
+    
+    let recipeListHeader = RecipeListHeader()
     
     var recipeListViewController: RecipeListViewController = {
         let recipeListVC = RecipeListViewController()
@@ -53,7 +59,7 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
     let dispatchGroup = DispatchGroup()
     let backgroundThread = DispatchQueue.global(qos: .background)
     let mainThread = DispatchQueue.main
-    
+    var brands: [Brand]?
     
     fileprivate func setUp() {
         self.view.backgroundColor = .red
@@ -157,11 +163,26 @@ class DashBoardController: UIPageViewController, UIPageViewControllerDataSource{
         */
     }
     
-    
+    private func createBrands() {
+        let helloFresh = Brand(name: .HelloFresh, image: UIImage(named: "helloFresh_x1.png")!)
+        let blueApron = Brand(name: .BlueApron, image: UIImage(named: "blueApron_x1.png")!)
+        let everyPlate = Brand(name: .EveryPlate, image: UIImage(named: "plated_x1.png")!)
+        let homeChef = Brand(name: .HomeChef, image: UIImage(named: "homeChef_x1.png")!)
+        let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
+        let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
+        
+        self.brands = [
+            helloFresh,
+            blueApron,
+            everyPlate,
+            homeChef,
+            plated,
+            purpleCarrot]
+    }
 }
 
 
-extension DashBoardController {
+extension DashBoardController: UIPageViewControllerDataSource{
 
     internal func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = controllers.firstIndex(of: viewController) else { return nil }

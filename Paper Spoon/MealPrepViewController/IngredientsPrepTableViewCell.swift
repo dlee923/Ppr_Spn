@@ -20,12 +20,8 @@ class IngredientsPrepTableViewCell: UITableViewCell {
         didSet {
             self.label.text = self.ingredient?.name
             
-            if let ingredientAmount = self.ingredient?.amount {
-                self.measureAmountLbl.text = "\(ingredientAmount) "
-            }
-            
-            if let ingredientMeasure = self.ingredient?.measurementType {
-                self.measureAmountLbl.text = self.measureAmountLbl.text + ingredientMeasure
+            if let ingredientAmount = self.ingredient?.amount, let ingredientMeasure = self.ingredient?.measurementType {
+                self.measureAmountLbl.text = "\(ingredientAmount) \(ingredientMeasure)"
             }
             
             // enable visibility of 'packed' label

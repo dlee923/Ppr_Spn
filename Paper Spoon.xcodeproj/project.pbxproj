@@ -39,6 +39,9 @@
 		70D532D622F77C4D00C8F866 /* RecipeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */; };
 		70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D722F780E100C8F866 /* MenuOptionListCell.swift */; };
 		70E3A581232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */; };
+		70E3A583232D981A00F9A5A7 /* RecipeListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */; };
+		70E3A585232DA56F00F9A5A7 /* BrandPickerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A584232DA56F00F9A5A7 /* BrandPickerViewCell.swift */; };
+		70E3A587232DA59400F9A5A7 /* BrandPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A586232DA59400F9A5A7 /* BrandPickerView.swift */; };
 		70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4802198DE1A005C08EE /* AppDelegate.swift */; };
 		70E6F4832198DE1A005C08EE /* DashBoardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4822198DE1A005C08EE /* DashBoardController.swift */; };
 		70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70E6F4842198DE1A005C08EE /* Main.storyboard */; };
@@ -100,6 +103,9 @@
 		70D532D522F77C4D00C8F866 /* RecipeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewController.swift; sourceTree = "<group>"; };
 		70D532D722F780E100C8F866 /* MenuOptionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListCell.swift; sourceTree = "<group>"; };
 		70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsPrepTableViewCell.swift; sourceTree = "<group>"; };
+		70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListHeader.swift; sourceTree = "<group>"; };
+		70E3A584232DA56F00F9A5A7 /* BrandPickerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandPickerViewCell.swift; sourceTree = "<group>"; };
+		70E3A586232DA59400F9A5A7 /* BrandPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandPickerView.swift; sourceTree = "<group>"; };
 		70E6F47D2198DE1A005C08EE /* Paper Spoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paper Spoon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70E6F4802198DE1A005C08EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70E6F4822198DE1A005C08EE /* DashBoardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardController.swift; sourceTree = "<group>"; };
@@ -231,6 +237,16 @@
 			path = RecipeListViewController;
 			sourceTree = "<group>";
 		};
+		70E3A588232DA5A100F9A5A7 /* RecipeListHeader */ = {
+			isa = PBXGroup;
+			children = (
+				70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */,
+				70E3A584232DA56F00F9A5A7 /* BrandPickerViewCell.swift */,
+				70E3A586232DA59400F9A5A7 /* BrandPickerView.swift */,
+			);
+			path = RecipeListHeader;
+			sourceTree = "<group>";
+		};
 		70E6F4742198DE1A005C08EE = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +273,7 @@
 				70E6F4802198DE1A005C08EE /* AppDelegate.swift */,
 				701058E422FF61B900D4D9FD /* Fonts */,
 				70E6F4822198DE1A005C08EE /* DashBoardController.swift */,
+				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
 				70D532D922F98CB100C8F866 /* RecipeListViewController */,
 				701058EF2308C34200D4D9FD /* CompileIngredientsViewController */,
 				701058DD22FF614B00D4D9FD /* MealPrepViewController */,
@@ -432,6 +449,7 @@
 			files = (
 				70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */,
 				7077B5AA23244C8700359035 /* InstructionsView.swift in Sources */,
+				70E3A587232DA59400F9A5A7 /* BrandPickerView.swift in Sources */,
 				7034C3B9231DF48500C88106 /* MealKitsCollectionViewCell.swift in Sources */,
 				70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */,
 				70E6F4832198DE1A005C08EE /* DashBoardController.swift in Sources */,
@@ -439,11 +457,13 @@
 				70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */,
 				701058E622FF61D400D4D9FD /* Fonts.swift in Sources */,
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
+				70E3A585232DA56F00F9A5A7 /* BrandPickerViewCell.swift in Sources */,
 				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,
 				701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */,
 				7077B5A62323F82E00359035 /* InstructionsCollectionView.swift in Sources */,
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* RecipeListViewController.swift in Sources */,
+				70E3A583232D981A00F9A5A7 /* RecipeListHeader.swift in Sources */,
 				70E6F4892198DE1A005C08EE /* Paper_Spoon.xcdatamodeld in Sources */,
 				70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */,
 				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
