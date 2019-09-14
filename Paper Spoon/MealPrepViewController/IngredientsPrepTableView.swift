@@ -18,9 +18,9 @@ class IngredientsPrepTableView: UITableView {
     var recipe: Recipe?
     
     private func setup() {
+        self.backgroundColor = .clear
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = .blue
         self.registerCells()
     }
     
@@ -40,7 +40,7 @@ extension IngredientsPrepTableView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? IngredientsPrepTableViewCell {
-            cell.checkMarkView.isHidden = false
+            cell.ingredient?.isPacked = cell.ingredient?.isPacked == true ? false : true
         }
     }
     
@@ -62,11 +62,13 @@ extension IngredientsPrepTableView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = IngredientsPrepTableViewCell(style: .default, reuseIdentifier: "ingredientsPrepTableViewCell")
-        let ingredient = self.recipe?.ingredients?[indexPath.row]
-        cell.ingredient = ingredient
-        cell.backgroundColor = .yellow
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "ingredientsPrepTableViewCell", for: indexPath) as? IngredientsPrepTableViewCell {
+            let ingredient = self.recipe?.ingredients?[indexPath.row]
+            cell.ingredient = ingredient
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
 }

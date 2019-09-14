@@ -42,6 +42,7 @@ struct Ingredients: Equatable {
     var name: String
     var amount: Double?
     var measurementType: String?
+    var isPacked: Bool?
     
     // confirm to Equatable protocol
     static func == (lhs: Ingredients, rhs: Ingredients) -> Bool {

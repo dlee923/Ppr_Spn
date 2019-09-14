@@ -123,10 +123,10 @@ extension HelloFreshAPI {
                 let ingredientAmount = Double(ingredientDetails.first ?? "0")
                 let unitMeasure = ingredientDetails[1]
                 let ingredientName = ingredientDetails[2...].joined(separator: " ")
-                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure)
+                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil)
                 ingredients.append(ingredientData)
             } else {
-                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil)
+                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil, isPacked: nil)
                 ingredients.append(ingredientData)
             }
         }
