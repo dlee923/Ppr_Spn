@@ -12,12 +12,12 @@ class BrandPickerViewCell: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addBrandImage()
+        
     }
     
     var brand: Brand? {
         didSet {
-            
+            self.addBrandImage()
         }
     }
     
@@ -34,7 +34,7 @@ class BrandPickerViewCell: UIView {
             self.brandImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.brandImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.brandImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            ])
+        ])
     }
     
     required init?(coder aDecoder: NSCoder) {

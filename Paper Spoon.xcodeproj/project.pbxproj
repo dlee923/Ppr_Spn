@@ -241,8 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */,
-				70E3A584232DA56F00F9A5A7 /* BrandPickerViewCell.swift */,
 				70E3A586232DA59400F9A5A7 /* BrandPickerView.swift */,
+				70E3A584232DA56F00F9A5A7 /* BrandPickerViewCell.swift */,
 			);
 			path = RecipeListHeader;
 			sourceTree = "<group>";

@@ -20,7 +20,7 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     private func setup() {
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = .orange
+        self.showsSelectionIndicator = false
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -29,6 +29,16 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return self.brands?.count ?? 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let view = BrandPickerViewCell(frame: self.frame)
+        view.brand = self.brands?[row]
+        return view
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 60
     }
     
     required init?(coder aDecoder: NSCoder) {

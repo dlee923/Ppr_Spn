@@ -22,7 +22,11 @@ class RecipeListHeader: UIView {
     
     let headerLabel = UILabel()
     let brandPickerView = BrandPickerView()
-    var brands: [Brand]?
+    var brands: [Brand]? {
+        didSet {
+            self.brandPickerView.brands = self.brands
+        }
+    }
     
     private func addHeaderLabel() {
         self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
@@ -40,7 +44,6 @@ class RecipeListHeader: UIView {
     
     private func addBrandPickerView() {
         self.addSubview(self.brandPickerView)
-        self.brandPickerView.brands = self.brands
         self.brandPickerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.brandPickerView.topAnchor.constraint(equalTo: self.topAnchor),
@@ -52,6 +55,7 @@ class RecipeListHeader: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.setup()
     }
     
 }

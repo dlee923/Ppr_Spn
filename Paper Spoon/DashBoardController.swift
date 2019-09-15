@@ -25,6 +25,7 @@ class DashBoardController: UIPageViewController {
         
         self.setUp()
         self.createBrands()
+        self.addRecipeListHeader()
         
         // pass brands data to header
         recipeListHeader.brands = self.brands
@@ -62,7 +63,7 @@ class DashBoardController: UIPageViewController {
     var brands: [Brand]?
     
     fileprivate func setUp() {
-        self.view.backgroundColor = .red
+        self.view.backgroundColor = UIColor.themeColor1
         
         controllers = [recipeListViewController, favoritesVC, labVC]
         
@@ -163,11 +164,22 @@ class DashBoardController: UIPageViewController {
         */
     }
     
+    private func addRecipeListHeader() {
+        self.view.addSubview(self.recipeListHeader)
+        self.recipeListHeader.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.recipeListHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.recipeListHeader.heightAnchor.constraint(equalToConstant: 100),
+            self.recipeListHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
+            self.recipeListHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5)
+        ])
+    }
+    
     private func createBrands() {
-        let helloFresh = Brand(name: .HelloFresh, image: UIImage(named: "helloFresh_x1.png")!)
-        let blueApron = Brand(name: .BlueApron, image: UIImage(named: "blueApron_x1.png")!)
+        let helloFresh = Brand(name: .HelloFresh, image: UIImage(named: "hellofresh_x1.png")!)
+        let blueApron = Brand(name: .BlueApron, image: UIImage(named: "blueapron_x1.png")!)
         let everyPlate = Brand(name: .EveryPlate, image: UIImage(named: "plated_x1.png")!)
-        let homeChef = Brand(name: .HomeChef, image: UIImage(named: "homeChef_x1.png")!)
+        let homeChef = Brand(name: .HomeChef, image: UIImage(named: "homechef_x1.png")!)
         let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
         let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
         
@@ -177,8 +189,10 @@ class DashBoardController: UIPageViewController {
             everyPlate,
             homeChef,
             plated,
-            purpleCarrot]
+            purpleCarrot
+        ]
     }
+
 }
 
 
