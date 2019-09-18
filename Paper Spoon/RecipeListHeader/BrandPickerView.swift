@@ -20,7 +20,7 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     private func setup() {
         self.delegate = self
         self.dataSource = self
-        self.showsSelectionIndicator = false
+        self.transform = CGAffineTransform(rotationAngle: -90 * (.pi/180))
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -32,13 +32,17 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        // remove pickerview selection lines
+        pickerView.subviews[1].isHidden = true
+        pickerView.subviews[2].isHidden = true
+        
         let view = BrandPickerViewCell(frame: self.frame)
         view.brand = self.brands?[row]
         return view
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 60
+        return 100
     }
     
     required init?(coder aDecoder: NSCoder) {

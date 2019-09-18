@@ -20,7 +20,6 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.delegate = self
         self.dataSource = self
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
-//        self.register(MenuOptionListHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeaderCell")
         self.setColors()
     }
     
@@ -37,18 +36,6 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuOptionsObj?.menuOptions?.count ?? 6
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeaderCell", for: indexPath) as? MenuOptionListHeaderCell{
-//            return header
-//        } else {
-//            return UICollectionViewCell()
-//        }
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: self.frame.width, height: 100)
-//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
@@ -106,32 +93,3 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         super.init(coder: aDecoder)
     }
 }
-
-//class MenuOptionListHeaderCell: UICollectionViewCell {
-//
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        self.addHeaderLabel()
-//    }
-//
-//    let headerLabel = UILabel()
-//
-//    private func addHeaderLabel() {
-//        self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
-//        self.headerLabel.text = "Choose Recipes:"
-//        self.addSubview(self.headerLabel)
-//
-//        self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            self.headerLabel.topAnchor.constraint(equalTo: self.topAnchor),
-//            self.headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-//            self.headerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-//            self.headerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-//        ])
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//
-//}

@@ -12,7 +12,6 @@ class BrandPickerViewCell: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
     }
     
     var brand: Brand? {
@@ -26,14 +25,15 @@ class BrandPickerViewCell: UIView {
     private func addBrandImage() {
         self.brandImage.image = brand?.image
         self.brandImage.contentMode = .scaleAspectFit
+        self.transform = CGAffineTransform(rotationAngle: 90 * (.pi/180))
         self.addSubview(self.brandImage)
         
         self.brandImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.brandImage.topAnchor.constraint(equalTo: self.topAnchor),
-            self.brandImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.brandImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.brandImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.brandImage.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7),
+            self.brandImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9),
+            self.brandImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.brandImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
     

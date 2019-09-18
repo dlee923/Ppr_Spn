@@ -15,14 +15,17 @@ class IngredientsPrepTableView: UITableView {
         self.setup()
     }
     
-    var recipe: Recipe?
+    var recipe: Recipe? {
+        didSet {
+            self.contentOffset = CGPoint(x: 0, y: -90)
+        }
+    }
     
     private func setup() {
         self.backgroundColor = .clear
         self.delegate = self
         self.dataSource = self
         self.registerCells()
-        self.contentOffset = CGPoint(x: 0, y: 90)
     }
     
     private func registerCells() {

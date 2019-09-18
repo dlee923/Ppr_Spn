@@ -32,10 +32,10 @@ class DashBoardController: UIPageViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.downloadData()
+//        self.downloadData()
     }
     
-    let recipeListHeader = RecipeListHeader()
+    lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
     
     var recipeListViewController: RecipeListViewController = {
         let recipeListVC = RecipeListViewController()
@@ -222,3 +222,13 @@ extension DashBoardController: UIPageViewControllerDataSource{
     
 }
 
+
+protocol MovePickerPositionDelegate: AnyObject {
+    func movePickerPosition(position: Int)
+}
+
+extension DashBoardController: MovePickerPositionDelegate {
+    func movePickerPosition(position: Int) {
+        
+    }
+}

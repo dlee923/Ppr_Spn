@@ -20,6 +20,7 @@ class RecipeListHeader: UIView {
         self.addHeaderLabel()
     }
     
+    var brandPickerViewHeight: CGFloat = 120
     let headerLabel = UILabel()
     let brandPickerView = BrandPickerView()
     var brands: [Brand]? {
@@ -34,10 +35,11 @@ class RecipeListHeader: UIView {
         self.addSubview(self.headerLabel)
         
         self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        let leadingAnchorConstant = ((self.frame.height - brandPickerViewHeight)/2)
         NSLayoutConstraint.activate([
             self.headerLabel.topAnchor.constraint(equalTo: self.topAnchor),
             self.headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.headerLabel.trailingAnchor.constraint(equalTo: self.brandPickerView.leadingAnchor, constant: 0),
+            self.headerLabel.trailingAnchor.constraint(equalTo: self.brandPickerView.leadingAnchor, constant: leadingAnchorConstant),
             self.headerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             ])
     }
@@ -45,11 +47,12 @@ class RecipeListHeader: UIView {
     private func addBrandPickerView() {
         self.addSubview(self.brandPickerView)
         self.brandPickerView.translatesAutoresizingMaskIntoConstraints = false
+        let trailingAnchorConstant = ((self.frame.height - brandPickerViewHeight)/2)
         NSLayoutConstraint.activate([
-            self.brandPickerView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.brandPickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            self.brandPickerView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.brandPickerView.widthAnchor.constraint(equalToConstant: 75)
+            self.brandPickerView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.brandPickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: trailingAnchorConstant),
+            self.brandPickerView.heightAnchor.constraint(equalToConstant: brandPickerViewHeight),
+            self.brandPickerView.widthAnchor.constraint(equalToConstant: self.frame.height)
         ])
     }
 
