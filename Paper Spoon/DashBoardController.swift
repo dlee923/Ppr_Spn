@@ -29,10 +29,15 @@ class DashBoardController: UIPageViewController {
         
         // pass brands data to header
         recipeListHeader.brands = self.brands
+        
+        // Add activity indicator
+        self.mainThread.async {
+            self.activityindicator.activityInProgress()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        self.downloadData()
+        self.downloadData()
     }
     
     lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
@@ -74,10 +79,7 @@ class DashBoardController: UIPageViewController {
     
     
     fileprivate func downloadData() {
-        // Add activity indicator
-        self.mainThread.async {
-            self.activityindicator.activityInProgress()
-        }
+        
         
         // download recipe options
         self.retrieveHelloFreshMenu()

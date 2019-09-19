@@ -13,11 +13,12 @@ class IngredientsPrepTableView: UITableView {
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         self.setup()
+        
     }
     
     var recipe: Recipe? {
         didSet {
-            self.contentOffset = CGPoint(x: 0, y: -90)
+            self.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
         }
     }
     
