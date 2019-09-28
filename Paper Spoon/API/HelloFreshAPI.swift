@@ -46,9 +46,10 @@ class HelloFreshAPI: NSObject {
                 let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
                 
                 // create recipe object
-                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
                 
                 completion(recipe)
             }
@@ -238,6 +239,39 @@ extension HelloFreshAPI {
         let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
         
         return thumbnailLink ?? ""
+    }
+    
+    
+    // Retrieve recipe RECIPE IMG LINKS
+    private func parseImageLinks(htmlCode: String) -> String? {
+        var imageLinks = [String:String]()
+        
+        // parse html code here
+        let imagesSection0 = htmlCode.components(separatedBy: "fela-_1b1idjb\" src=\"").last
+        let imagesSection1 = imagesSection0?.components(separatedBy: "srcSet=\\").last
+        let imagesSection2 = imagesSection1?.components(separatedBy: "\" sizes=").first
+        guard let imagesSection3 = imagesSection2?.components(separatedBy: ", ") else { return nil }
+        for imagesSection4 in imagesSection3 {
+            // parse each image set
+            let imagesSection5 = imagesSection4.components(separatedBy: " ")
+            // parse image size and image link
+            let imageType: String = imagesSection5.last ?? ""
+            var imageLink0: String = imagesSection5.first ?? ""
+            imageLink0.removeAll(where: { $0 == "\"" })
+            // add parsed strings to dict
+            imageLinks[imageType] = imageLink0
+        }
+        
+        /*
+         OPTIONS
+         ----------
+         320w   1024w
+         380w   1260w
+         420w   1900w
+         800w   2600w
+        */
+        
+        return imageLinks["420w"]
     }
     
 }

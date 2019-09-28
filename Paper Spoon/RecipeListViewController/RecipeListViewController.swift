@@ -71,11 +71,13 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1).isActive = true
     }
     
+    // button action to proceed to shopping list screen
     @objc private func transitionCompileIngredientsView() {
         if self.menuOptionsObj.menuOptions == nil {
             // prompt warning?
             return
         }
+        if self.menuOptionsObj.selectedMenuOptions.count <= 0 { return }
         let compiledIngredientsViewController = CompileIngredientsViewController()
         compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
         self.present(compiledIngredientsViewController, animated: true, completion: nil)

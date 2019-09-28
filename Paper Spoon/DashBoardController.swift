@@ -32,12 +32,16 @@ class DashBoardController: UIPageViewController {
         
         // Add activity indicator
         self.mainThread.async {
+            self.dispatchGroup.enter()
             self.activityindicator.activityInProgress()
+            self.dispatchGroup.leave()
         }
+        
+        self.downloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.downloadData()
+        
     }
     
     lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
@@ -79,8 +83,6 @@ class DashBoardController: UIPageViewController {
     
     
     fileprivate func downloadData() {
-        
-        
         // download recipe options
         self.retrieveHelloFreshMenu()
         
@@ -182,16 +184,14 @@ class DashBoardController: UIPageViewController {
         let blueApron = Brand(name: .BlueApron, image: UIImage(named: "blueapron_x1.png")!)
         let everyPlate = Brand(name: .EveryPlate, image: UIImage(named: "plated_x1.png")!)
         let homeChef = Brand(name: .HomeChef, image: UIImage(named: "homechef_x1.png")!)
-        let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
-        let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
+//        let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
+//        let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
         
         self.brands = [
             helloFresh,
             blueApron,
             everyPlate,
-            homeChef,
-            plated,
-            purpleCarrot
+            homeChef
         ]
     }
 
