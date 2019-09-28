@@ -23,6 +23,7 @@ class Recipe {
     var instructionImages: [UIImage]?
     var thumbnail: UIImage?
     var isMealKitComplete: Bool?
+    var recipeImage: UIImage?
     
     init(name: String?, recipeLink: String?, ingredients: [Ingredients]?, instructions: [String]?,
          instructionImageLinks: [String]?, recipeImageLink: String?, thumbnailLink: String?, nutrition: Nutrition?, description: String?) {

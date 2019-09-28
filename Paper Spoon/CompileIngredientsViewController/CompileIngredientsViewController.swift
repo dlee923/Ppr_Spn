@@ -112,6 +112,12 @@ class CompileIngredientsViewController: UIViewController {
     
     @objc private func finishedShoppingAction() {
         let mealPrepViewController = MealPrepViewController()
+        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
+        for menuOption in selectedMenuOptions {
+            if let imageURL = menuOption.recipe?.recipeImageLink {
+                ImageAPI.shared.downloadImage(urlLink: imageURL, completion: { menuOption.recipe?.recipeImage = UIImage(data: $0) })
+            }
+        }
         mealPrepViewController.menuOptionsObj = self.menuOptionsObj
         self.present(mealPrepViewController, animated: true, completion: nil)
     }
