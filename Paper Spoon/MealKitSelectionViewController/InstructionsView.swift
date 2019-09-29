@@ -25,7 +25,7 @@ class InstructionsView: UIView {
     var dismissPopUpDelegate: DismissPopUpDelegate?
     
     private func setup() {
-        self.backgroundColor = .blue
+        self.backgroundColor = UIColor.themeColor1
         self.addFinishedCookingBtn()
         self.addInstructionsCollectionView()
     }
@@ -33,12 +33,13 @@ class InstructionsView: UIView {
     private func addFinishedCookingBtn() {
         self.finishedCookingBtn.setTitle("Finished Cooking!", for: .normal)
         self.finishedCookingBtn.backgroundColor = UIColor.color2
+        self.finishedCookingBtn.layer.cornerRadius = 5
         self.addSubview(self.finishedCookingBtn)
         
         self.finishedCookingBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.finishedCookingBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.finishedCookingBtn.heightAnchor.constraint(equalToConstant: 40),
+            self.finishedCookingBtn.heightAnchor.constraint(equalToConstant: 60),
             self.finishedCookingBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.finishedCookingBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
@@ -60,7 +61,7 @@ class InstructionsView: UIView {
             instructionsCV.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             instructionsCV.topAnchor.constraint(equalTo: self.topAnchor),
             instructionsCV.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            instructionsCV.bottomAnchor.constraint(equalTo: self.finishedCookingBtn.topAnchor)
+            instructionsCV.bottomAnchor.constraint(equalTo: self.finishedCookingBtn.topAnchor, constant: -5)
         ])
     }
     

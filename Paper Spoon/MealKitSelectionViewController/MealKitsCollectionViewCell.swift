@@ -27,6 +27,11 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     let descriptionTextfield = UITextView()
     var scrollViewLockDelegate: ScrollViewLockDelegate?
     
+    let activityIndicator = ActivityIndicator()
+    let backgroundThread = DispatchQueue.global(qos: .background)
+    let mainThread = DispatchQueue.main
+    let dispatchGroup = DispatchGroup()
+    
     private func setup() {
         self.backgroundColor = UIColor.white
         self.addLabel()
@@ -85,13 +90,43 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         // lock parent scroll view to prevent scrolling to other recipes
         self.scrollViewLockDelegate?.lockScrollView()
         
-        print("show instructions")
-        instructionsView = InstructionsView(frame: self.frame)
-        instructionsView?.menuOption = self.menuOption
-        instructionsView?.dismissPopUpDelegate = self
-        if let instructionsVw = instructionsView {
-            self.addSubview(instructionsVw)
+        // download instructions images
+        self.mainThread.async {
+            self.activityIndicator.activityInProgress()
         }
+        
+        self.backgroundThread.async {
+            if let instructionImageLinks = self.menuOption?.recipe?.instructionImageLinks {
+                var instructionImages = [UIImage]()
+                for imageLink in instructionImageLinks {
+                    self.dispatchGroup.enter()
+                    ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
+                        if let image = UIImage(data: $0) {
+                            instructionImages.append(image)
+                        }
+                        self.dispatchGroup.leave()
+                        print(imageLink)
+                        print("instruction image downloaded")
+                    })
+                    self.dispatchGroup.wait()
+                }
+            }
+        }
+        
+        dispatchGroup.notify(queue: backgroundThread) {
+            self.mainThread.async { [weak self] in
+                guard let mealKitsCollectionViewCell = self else { return }
+                mealKitsCollectionViewCell.activityIndicator.activityEnded()
+                print("show instructions")
+                mealKitsCollectionViewCell.instructionsView = InstructionsView(frame: mealKitsCollectionViewCell.frame)
+                mealKitsCollectionViewCell.instructionsView?.menuOption = mealKitsCollectionViewCell.menuOption
+                mealKitsCollectionViewCell.instructionsView?.dismissPopUpDelegate = self
+                if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
+                    mealKitsCollectionViewCell.addSubview(instructionsVw)
+                }
+            }
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

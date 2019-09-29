@@ -39,6 +39,9 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     private func addInstructionsTextView() {
         self.instructionsTextView.textColor = .red
         self.instructionsTextView.backgroundColor = .yellow
+        self.instructionsTextView.isEditable = false
+        self.instructionsTextView.font = UIFont.fontCoolvetica?.withSize(20)
+        
         self.addSubview(self.instructionsTextView)
         self.instructionsTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

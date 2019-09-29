@@ -44,6 +44,8 @@ extension InstructionsCollectionView: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instructionsCollectionViewCell", for: indexPath) as? InstructionsCollectionViewCell {
             let instructions = self.recipe?.instructions?[indexPath.item]
             cell.instructions = instructions
+            let instructionImage = self.recipe?.instructionImages?[indexPath.item]
+            cell.instructionsImage.image = instructionImage
             return cell
         } else {
             return UICollectionViewCell()

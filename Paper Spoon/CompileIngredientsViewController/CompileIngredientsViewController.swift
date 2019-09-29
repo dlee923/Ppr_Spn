@@ -142,7 +142,6 @@ class CompileIngredientsViewController: UIViewController {
             }
         }
         
-        
         mealPrepViewController.menuOptionsObj = self.menuOptionsObj
         self.present(mealPrepViewController, animated: true, completion: nil)
     }
