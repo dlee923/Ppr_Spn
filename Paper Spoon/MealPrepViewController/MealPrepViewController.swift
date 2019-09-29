@@ -30,6 +30,8 @@ class MealPrepViewController: UIViewController {
     lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
     var mealPrepFinishedBtn = UIButton()
     
+    let activityIndicator = ActivityIndicator()
+    
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
         self.mealsPrepCount.backgroundColor = UIColor.color6
@@ -73,6 +75,7 @@ extension MealPrepViewController: MealPrepFinishedDelegate {
     
     func sendUserToMealKitSelection() {
         let mealKitSelectionViewController = MealKitSelectionViewController()
+        
         mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
         self.present(mealKitSelectionViewController, animated: true, completion: nil)
     }

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="411" height="346"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-GH-ZZ7">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-GH-ZZ7">
                         <rect key="frame" x="0.0" y="44" width="411" height="200"/>
                         <color key="backgroundColor" red="0.0" green="0.17822062650000001" blue="0.35104432400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -65,7 +65,7 @@
             <connections>
                 <outlet property="ingredientsPrepTableView" destination="NAw-gr-xgH" id="EHt-Q7-kC6"/>
                 <outlet property="mealPreppedBtn" destination="6sj-qt-apO" id="8ru-Fu-S6k"/>
-                <outlet property="mealsPrepImag" destination="QHB-GH-ZZ7" id="yge-nV-hdH"/>
+                <outlet property="mealsPrepImage" destination="QHB-GH-ZZ7" id="yge-nV-hdH"/>
             </connections>
             <point key="canvasLocation" x="135.50724637681159" y="69.642857142857139"/>
         </collectionViewCell>

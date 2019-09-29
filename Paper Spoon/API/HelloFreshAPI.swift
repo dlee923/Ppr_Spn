@@ -271,7 +271,7 @@ extension HelloFreshAPI {
          800w   2600w
         */
         
-        return imageLinks["420w"]
+        return imageLinks["800w"]
     }
     
 }

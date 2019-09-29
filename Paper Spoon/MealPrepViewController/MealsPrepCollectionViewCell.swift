@@ -10,7 +10,7 @@ import UIKit
 
 class MealsPrepCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var mealsPrepImag: UIImageView!
+    @IBOutlet weak var mealsPrepImage: UIImageView!
     @IBOutlet weak var ingredientsPrepTableView: IngredientsPrepTableView!
     @IBOutlet weak var mealPreppedBtn: UIButton!
     @IBAction func mealPreppedBtnPressed(_ sender: Any) {
@@ -26,6 +26,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     var menuOption: MenuOption? {
         didSet {
             self.ingredientsPrepTableView.recipe = self.menuOption?.recipe
+            self.mealsPrepImage.image = self.menuOption?.recipe?.recipeImage
             self.ingredientsPrepTableView.reloadData()
         }
     }

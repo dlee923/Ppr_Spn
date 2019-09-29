@@ -39,6 +39,11 @@ class CompileIngredientsViewController: UIViewController {
     var reducedCompiledIngredients = [Ingredients]()
     var finishedShoppingBtn: NextStepBtn?
     
+    let dispatchGroup = DispatchGroup()
+    let backgroundThread = DispatchQueue.global(qos: .background)
+    let mainThread = DispatchQueue.main
+    let activityIndicator = ActivityIndicator()
+    
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
     }
@@ -113,11 +118,31 @@ class CompileIngredientsViewController: UIViewController {
     @objc private func finishedShoppingAction() {
         let mealPrepViewController = MealPrepViewController()
         guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
-        for menuOption in selectedMenuOptions {
-            if let imageURL = menuOption.recipe?.recipeImageLink {
-                ImageAPI.shared.downloadImage(urlLink: imageURL, completion: { menuOption.recipe?.recipeImage = UIImage(data: $0) })
+        
+        self.mainThread.async {
+            self.activityIndicator.activityInProgress()
+        }
+        
+        self.backgroundThread.async {
+            for menuOption in selectedMenuOptions {
+                self.dispatchGroup.enter()
+                if let imageURL = menuOption.recipe?.recipeImageLink {
+                    ImageAPI.shared.downloadImage(urlLink: imageURL, completion: {
+                        menuOption.recipe?.recipeImage = UIImage(data: $0)
+                        self.dispatchGroup.leave()
+                    })
+                }
+                self.dispatchGroup.wait()
             }
         }
+
+        self.dispatchGroup.notify(queue: self.backgroundThread) {
+            self.mainThread.async {
+                self.activityIndicator.activityEnded()
+            }
+        }
+        
+        
         mealPrepViewController.menuOptionsObj = self.menuOptionsObj
         self.present(mealPrepViewController, animated: true, completion: nil)
     }

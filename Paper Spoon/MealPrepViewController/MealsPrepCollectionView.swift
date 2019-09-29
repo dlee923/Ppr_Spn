@@ -27,7 +27,11 @@ class MealsPrepCollectionView: UICollectionView {
         self.delegate = self
     }
     
-    var menuOptionsObj: MenuOptionObj?
+    var menuOptionsObj: MenuOptionObj? {
+        didSet {
+            self.reloadData()
+        }
+    }
     weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
     
     private func registerCells() {
