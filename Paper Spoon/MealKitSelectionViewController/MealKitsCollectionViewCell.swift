@@ -95,35 +95,43 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
             self.activityIndicator.activityInProgress()
         }
         
-        self.backgroundThread.async {
-            if let instructionImageLinks = self.menuOption?.recipe?.instructionImageLinks {
-                var instructionImages = [UIImage]()
-                for imageLink in instructionImageLinks {
-                    self.dispatchGroup.enter()
+        // create temp container for instruction images
+        var instructionImages = [UIImage]()
+        
+        if let instructionImageLinks = self.menuOption?.recipe?.instructionImageLinks {
+            for imageLink in instructionImageLinks {
+                // create a dispatch work item for each instruction image to download
+                let dispatchWorkItem = DispatchWorkItem(block: {
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
                         if let image = UIImage(data: $0) {
                             instructionImages.append(image)
                         }
-                        self.dispatchGroup.leave()
                         print(imageLink)
                         print("instruction image downloaded")
+                        self.dispatchGroup.leave()
                     })
-                    self.dispatchGroup.wait()
-                }
+                })
+                // add each dispatch work item to Group
+                self.dispatchGroup.enter()
+                self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
+                
             }
         }
         
-        dispatchGroup.notify(queue: backgroundThread) {
-            self.mainThread.async { [weak self] in
-                guard let mealKitsCollectionViewCell = self else { return }
-                mealKitsCollectionViewCell.activityIndicator.activityEnded()
-                print("show instructions")
-                mealKitsCollectionViewCell.instructionsView = InstructionsView(frame: mealKitsCollectionViewCell.frame)
-                mealKitsCollectionViewCell.instructionsView?.menuOption = mealKitsCollectionViewCell.menuOption
-                mealKitsCollectionViewCell.instructionsView?.dismissPopUpDelegate = self
-                if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
-                    mealKitsCollectionViewCell.addSubview(instructionsVw)
-                }
+        // execute after all dispatch group items have run
+        dispatchGroup.notify(queue: mainThread) { [weak self] in
+            guard let mealKitsCollectionViewCell = self else { return }
+            // pass instruction images to menuOption object
+            self?.menuOption?.recipe?.instructionImages = instructionImages
+            mealKitsCollectionViewCell.activityIndicator.activityEnded()
+            
+            // present instructions view
+            print("show instructions")
+            mealKitsCollectionViewCell.instructionsView = InstructionsView(frame: mealKitsCollectionViewCell.frame)
+            mealKitsCollectionViewCell.instructionsView?.menuOption = mealKitsCollectionViewCell.menuOption
+            mealKitsCollectionViewCell.instructionsView?.dismissPopUpDelegate = self
+            if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
+                mealKitsCollectionViewCell.addSubview(instructionsVw)
             }
         }
         

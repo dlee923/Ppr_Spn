@@ -123,23 +123,21 @@ class CompileIngredientsViewController: UIViewController {
             self.activityIndicator.activityInProgress()
         }
         
-        self.backgroundThread.async {
-            for menuOption in selectedMenuOptions {
-                self.dispatchGroup.enter()
+        for menuOption in selectedMenuOptions {
+            let dispatchWorkItem = DispatchWorkItem {
                 if let imageURL = menuOption.recipe?.recipeImageLink {
                     ImageAPI.shared.downloadImage(urlLink: imageURL, completion: {
                         menuOption.recipe?.recipeImage = UIImage(data: $0)
                         self.dispatchGroup.leave()
                     })
                 }
-                self.dispatchGroup.wait()
             }
+            self.dispatchGroup.enter()
+            self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
 
-        self.dispatchGroup.notify(queue: self.backgroundThread) {
-            self.mainThread.async {
-                self.activityIndicator.activityEnded()
-            }
+        self.dispatchGroup.notify(queue: self.mainThread) {
+            self.activityIndicator.activityEnded()
         }
         
         mealPrepViewController.menuOptionsObj = self.menuOptionsObj

@@ -37,8 +37,8 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     }
     
     private func addInstructionsTextView() {
-        self.instructionsTextView.textColor = .red
-        self.instructionsTextView.backgroundColor = .yellow
+        self.instructionsTextView.textColor = UIColor.themeColor2
+        self.instructionsTextView.backgroundColor = UIColor.themeColor1
         self.instructionsTextView.isEditable = false
         self.instructionsTextView.font = UIFont.fontCoolvetica?.withSize(20)
         
