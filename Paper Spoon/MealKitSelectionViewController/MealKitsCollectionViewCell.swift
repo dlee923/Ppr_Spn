@@ -114,6 +114,8 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
                 // add each dispatch work item to Group
                 self.dispatchGroup.enter()
                 self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
+                // use wait to download in chronological order?
+                self.dispatchGroup.wait()
                 
             }
         }

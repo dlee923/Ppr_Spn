@@ -32,9 +32,9 @@ class DashBoardController: UIPageViewController {
         
         // Add activity indicator
         self.mainThread.async {
-            self.dispatchGroup.enter()
+//            self.dispatchGroup.enter()
             self.activityindicator.activityInProgress()
-            self.dispatchGroup.leave()
+//            self.dispatchGroup.leave()
         }
         
         self.downloadData()
@@ -92,20 +92,17 @@ class DashBoardController: UIPageViewController {
         // download thumbnail after retrieving recipe data
         self.retrieveThumbnail()
         
-        self.dispatchGroup.notify(queue: backgroundThread) {
-            self.mainThread.async {
-                // update UI
-                print("Updating UI")
-                self.recipeListViewController.menuOptionList.reloadData()
-                // Stop activity indicator
-                self.activityindicator.activityEnded()
-            }
+        self.dispatchGroup.notify(queue: self.mainThread) {
+            // update UI
+            print("Updating UI")
+            self.recipeListViewController.menuOptionList.reloadData()
+            // Stop activity indicator
+            self.activityindicator.activityEnded()
         }
     }
     
     
     fileprivate func retrieveHelloFreshMenu() {
-        self.dispatchGroup.enter()
         let retrieveMenuOptions = DispatchWorkItem {
             HelloFreshAPI.shared.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
@@ -115,18 +112,18 @@ class DashBoardController: UIPageViewController {
                 }
             })
         }
+        self.dispatchGroup.enter()
         backgroundThread.async(group: dispatchGroup, execute: retrieveMenuOptions)
         self.dispatchGroup.wait()
     }
     
     
     fileprivate func retrieveRecipeData() {
-        let retrieveRecipeData = DispatchWorkItem {
-            guard let menuOptions = self.recipeListViewController.menuOptionsObj.menuOptions else { return }
-            
-            // download recipe details for each menu option
-            for menuOption in menuOptions {
-                self.dispatchGroup.enter()
+        guard let menuOptions = self.recipeListViewController.menuOptionsObj.menuOptions else { return }
+        
+        // download recipe details for each menu option
+        for menuOption in menuOptions {
+            let retrieveRecipeData = DispatchWorkItem {
                 HelloFreshAPI.shared.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
                     
                     // find index for recipe in menu options and attach recipe object
@@ -136,19 +133,19 @@ class DashBoardController: UIPageViewController {
                     }
                 })
             }
-            
+            self.dispatchGroup.enter()
+            self.backgroundThread.async(group: dispatchGroup, execute: retrieveRecipeData)
+            self.dispatchGroup.wait()
         }
-        backgroundThread.async(group: dispatchGroup, execute: retrieveRecipeData)
-        self.dispatchGroup.wait()
     }
     
     fileprivate func retrieveThumbnail() {
-        let retrieveThumbnail = DispatchWorkItem {
-            guard let menuOptions = self.recipeListViewController.menuOptionsObj.menuOptions else { return }
-            
-            // download thumbnail for each menu option
-            for menuOption in menuOptions {
-                self.dispatchGroup.enter()
+        guard let menuOptions = self.recipeListViewController.menuOptionsObj.menuOptions else { return }
+        
+        // download thumbnail for each menu option
+        for menuOption in menuOptions {
+            let retrieveThumbnail = DispatchWorkItem {
+                
                 if let thumbnailLink = menuOption.recipe?.thumbnailLink {
                     ImageAPI.shared.downloadImage(urlLink: thumbnailLink, completion: { (thumbnailData) in
                         if let menuIndex = self.recipeListViewController.menuOptionsObj.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
@@ -157,9 +154,11 @@ class DashBoardController: UIPageViewController {
                         }
                     })
                 }
+                
             }
+            self.dispatchGroup.enter()
+            backgroundThread.async(group: dispatchGroup, execute: retrieveThumbnail)
         }
-        backgroundThread.async(group: dispatchGroup, execute: retrieveThumbnail)
         
         /*
          !!!!!
