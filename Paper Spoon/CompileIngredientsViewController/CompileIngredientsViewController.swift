@@ -115,8 +115,7 @@ class CompileIngredientsViewController: UIViewController {
         ])
     }
     
-    @objc private func finishedShoppingAction() {
-        let mealPrepViewController = MealPrepViewController()
+    private func downloadRecipeImages() {
         guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
         
         self.mainThread.async {
@@ -135,13 +134,18 @@ class CompileIngredientsViewController: UIViewController {
             self.dispatchGroup.enter()
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
-
+    }
+    
+    @objc private func finishedShoppingAction() {
+        let mealPrepViewController = MealPrepViewController()
+        
+        self.downloadRecipeImages()
+        
         self.dispatchGroup.notify(queue: self.mainThread) {
             self.activityIndicator.activityEnded()
+            mealPrepViewController.menuOptionsObj = self.menuOptionsObj
+            self.present(mealPrepViewController, animated: true, completion: nil)
         }
-        
-        mealPrepViewController.menuOptionsObj = self.menuOptionsObj
-        self.present(mealPrepViewController, animated: true, completion: nil)
     }
 
 }

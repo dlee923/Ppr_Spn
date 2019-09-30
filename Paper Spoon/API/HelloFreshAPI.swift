@@ -30,6 +30,7 @@ class HelloFreshAPI: NSObject {
     
     func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
         guard let url = URL(string: urlString) else { return }
+        print(url)
 
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -165,7 +166,7 @@ extension HelloFreshAPI {
         // parse html code here
         let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image")
         
-        for x in 1..<(instructionsImgSection0.count - 1) {
+        for x in 0..<(instructionsImgSection0.count - 1) {
             let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
             let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" alt=").first ?? ""
             instructionImgLinks.append(instructionsImgLink)
