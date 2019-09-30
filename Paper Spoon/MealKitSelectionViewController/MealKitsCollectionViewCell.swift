@@ -84,19 +84,16 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    var instructionsView: InstructionsView?
+    // create temp container for instruction images
+    var instructionImages = [UIImage]()
     
-    @objc private func showInstructions() {
-        // lock parent scroll view to prevent scrolling to other recipes
-        self.scrollViewLockDelegate?.lockScrollView()
+    private func downloadInstructionImages() {
+        // skip if instructions have already been downloaded
+        if self.menuOption?.recipe?.instructionImages != nil { return }
         
-        // download instructions images
         self.mainThread.async {
             self.activityIndicator.activityInProgress()
         }
-        
-        // create temp container for instruction images
-        var instructionImages = [UIImage]()
         
         if let instructionImageLinks = self.menuOption?.recipe?.instructionImageLinks {
             for imageLink in instructionImageLinks {
@@ -104,7 +101,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
                 let dispatchWorkItem = DispatchWorkItem(block: {
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
                         if let image = UIImage(data: $0) {
-                            instructionImages.append(image)
+                            self.instructionImages.append(image)
                         }
                         print(imageLink)
                         print("instruction image downloaded")
@@ -116,15 +113,24 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
                 self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
                 // use wait to download in chronological order?
                 self.dispatchGroup.wait()
-                
             }
         }
+    }
+    
+    var instructionsView: InstructionsView?
+    
+    @objc private func showInstructions() {
+        // lock parent scroll view to prevent scrolling to other recipes
+        self.scrollViewLockDelegate?.lockScrollView()
+        
+        // download instructions images
+        self.downloadInstructionImages()
         
         // execute after all dispatch group items have run
         dispatchGroup.notify(queue: mainThread) { [weak self] in
             guard let mealKitsCollectionViewCell = self else { return }
             // pass instruction images to menuOption object
-            self?.menuOption?.recipe?.instructionImages = instructionImages
+            self?.menuOption?.recipe?.instructionImages = self?.instructionImages
             mealKitsCollectionViewCell.activityIndicator.activityEnded()
             
             // present instructions view
@@ -133,7 +139,10 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
             mealKitsCollectionViewCell.instructionsView?.menuOption = mealKitsCollectionViewCell.menuOption
             mealKitsCollectionViewCell.instructionsView?.dismissPopUpDelegate = self
             if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
+                // need to attach to center of collectionView??
                 mealKitsCollectionViewCell.addSubview(instructionsVw)
+                
+                print(mealKitsCollectionViewCell.menuOption?.recipeName)
             }
         }
         
