@@ -22,6 +22,7 @@ class DashBoardController: UIPageViewController {
         super.viewDidLoad()
         
         self.dataSource = self
+        self.delegate = self
         
         self.setUp()
         self.createBrands()
@@ -87,6 +88,13 @@ class DashBoardController: UIPageViewController {
     let mainThread = DispatchQueue.main
     var brands: [Brand]?
     
+    var pageIndex: Int? {
+        didSet {
+            self.recipeListHeader.brandPickerView.selectRow(self.pageIndex!, inComponent: 0, animated: true)
+        }
+    }
+    private var pendingPageIndex: Int?
+    
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1
         
@@ -103,7 +111,6 @@ class DashBoardController: UIPageViewController {
             HelloFreshAPI.shared.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
                     self.recipeListViewController.menuOptionsObj.menuOptions = menuOptions
-                    print("menu options downloaded")
                     self.dispatchGroup.leave()
                 }
             })
@@ -133,7 +140,6 @@ class DashBoardController: UIPageViewController {
                         
                         // trigger leave group if final completion
                         if menuOptionsCount >= menuOptions.count {
-                            print("leave group")
                             self.dispatchGroup.leave()
                         }
                     }
@@ -157,7 +163,7 @@ class DashBoardController: UIPageViewController {
                     ImageAPI.shared.downloadImage(urlLink: thumbnailLink, completion: { (thumbnailData) in
                         if let menuIndex = self.recipeListViewController.menuOptionsObj.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
                             self.recipeListViewController.menuOptionsObj.menuOptions?[menuIndex].recipe?.thumbnail = UIImage(data: thumbnailData)
-                            print("image downloaded")
+
                             self.dispatchGroup.leave()
                         }
                     })
@@ -167,12 +173,6 @@ class DashBoardController: UIPageViewController {
             self.dispatchGroup.enter()
             backgroundThread.async(group: dispatchGroup, execute: retrieveThumbnail)
         }
-        
-        /*
-         !!!!!
-         DO NOT DISPATCH GROUP WAIT AS IT IS LAST TASK
-         !!!!!
-        */
     }
     
     
@@ -231,6 +231,21 @@ extension DashBoardController: UIPageViewControllerDataSource{
         }
     }
     
+}
+
+extension DashBoardController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        pendingPageIndex = self.controllers.firstIndex(of: pendingViewControllers.first!)
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            self.pageIndex = self.pendingPageIndex
+            if let index = self.pageIndex {
+                print(index)
+            }
+        }
+    }
 }
 
 
