@@ -48,9 +48,10 @@ class HelloFreshAPI: NSObject {
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
                 let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
+                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
                 
                 // create recipe object
-                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
                 
                 completion(recipe)
             }
@@ -280,17 +281,24 @@ extension HelloFreshAPI {
     private func parseIngredientImgLinks(htmlCode: String) -> [String:String]? {
         var ingImageLinks = [String:String]()
         
+        let baseUrl = "https://img.hellofresh.com/f_auto,fl_lossy,h_100,q_auto,w_100/hellofresh_s3"
+        let baseUrlFull = "https://img.hellofresh.com/hellofresh_s3" // ONLY USE THIS IF NEED FULL SIZE
+        
         // parse html code here
-        let ingImagesSection0 = htmlCode.components(separatedBy: "recipe-detail.ingredients\">Ingredients").last
-        guard let imagesSection1 = ingImagesSection0?.components(separatedBy: "img alt=") else { return nil }
-        for imagesSection2 in imagesSection1 {
-            let imagesSection3 = imagesSection2.components(separatedBy: "></div>").first
-            let ingredientName = imagesSection3?.components(separatedBy: "class=").first
-            let ingImageLink = imagesSection3?.components(separatedBy: "src=").last
-            // add parsed strings to dict
-            ingImageLinks[ingredientName!] = ingImageLink
-//            imageLink0.removeAll(where: { $0 == "\"" })
+        let ingImagesSection0 = htmlCode.components(separatedBy: "ingredientsCatalog").last
+        let ingImagesSection1 = ingImagesSection0?.components(separatedBy: "utensils").first
+        guard let ingImagesSection2 = ingImagesSection1?.components(separatedBy: "imagePath\":\"") else { return nil }
+        for section in 1..<ingImagesSection2.count {
+            // parse for ingredient name
+            let imagesSection3 = ingImagesSection2[section].components(separatedBy: "name\":\"").last
+            let ingredientName = imagesSection3?.components(separatedBy: "\",\"slug").first
+            // parse for image link
+            if let ingImageLink = ingImagesSection2[section].components(separatedBy: "\",\"usage").first {
+                // add parsed strings to dict
+                ingImageLinks[ingredientName!] = baseUrl + ingImageLink
+            }
         }
+        
         return ingImageLinks
     }
     

@@ -95,9 +95,7 @@ class RecipeListViewController: UIViewController {
         
         // modify ingredients list amounts based on original compiledIngredients list
         
-        
         completion()
-        
     }
     
     
@@ -119,7 +117,6 @@ class RecipeListViewController: UIViewController {
             // present compiledIngredientsViewController
             self.present(compiledIngredientsViewController, animated: true, completion: nil)
         }
-        
     }
 
 }

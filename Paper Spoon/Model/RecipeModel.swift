@@ -24,9 +24,10 @@ class Recipe {
     var thumbnail: UIImage?
     var isMealKitComplete: Bool?
     var recipeImage: UIImage?
+    var ingredientImageLinks: [String: String]?
     
     init(name: String?, recipeLink: String?, ingredients: [Ingredients]?, instructions: [String]?,
-         instructionImageLinks: [String]?, recipeImageLink: String?, thumbnailLink: String?, nutrition: Nutrition?, description: String?) {
+         instructionImageLinks: [String]?, ingredientImageLinks: [String: String]?, recipeImageLink: String?, thumbnailLink: String?, nutrition: Nutrition?, description: String?) {
         
         self.name = name
         self.recipeLink = recipeLink
@@ -37,6 +38,7 @@ class Recipe {
         self.thumbnailLink = thumbnailLink
         self.nutrition = nutrition
         self.description = description
+        self.ingredientImageLinks = ingredientImageLinks
     }
 }
 
