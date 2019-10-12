@@ -32,6 +32,8 @@ class RecipeListViewController: UIViewController {
     var menuOptionList: MenuOptionList!
     var compileIngredientsBtn: NextStepBtn?
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
+    var compiledIngredients = [Ingredients]()
+    var reducedCompiledIngredients = [Ingredients]()
     
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
@@ -71,6 +73,34 @@ class RecipeListViewController: UIViewController {
         self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1).isActive = true
     }
     
+    private func calculateIngredients(completion: () -> ()) {
+        // aggregate all ingredients from selected recipes
+        let selectedMenuOptions = self.menuOptionsObj.selectedMenuOptions
+        
+        for menuOption in selectedMenuOptions {
+            if let recipeIngredients = menuOption.recipe?.ingredients {
+                self.compiledIngredients += recipeIngredients
+            }
+        }
+        
+        // standardize ingredient measurements
+        
+        // standardize ingredient names
+        
+        // reduce ingredients list to just unique values based on name only
+        reducedCompiledIngredients = compiledIngredients.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
+        for ingredient in reducedCompiledIngredients {
+            print(ingredient.name)
+        }
+        
+        // modify ingredients list amounts based on original compiledIngredients list
+        
+        
+        completion()
+        
+    }
+    
+    
     // button action to proceed to shopping list screen
     @objc private func transitionCompileIngredientsView() {
         if self.menuOptionsObj.menuOptions == nil {
@@ -80,7 +110,16 @@ class RecipeListViewController: UIViewController {
         if self.menuOptionsObj.selectedMenuOptions.count <= 0 { return }
         let compiledIngredientsViewController = CompileIngredientsViewController()
         compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
-        self.present(compiledIngredientsViewController, animated: true, completion: nil)
+        
+        
+        // inject compiled ingredients list
+        self.calculateIngredients {
+            compiledIngredientsViewController.reducedCompiledIngredients = self.reducedCompiledIngredients
+
+            // present compiledIngredientsViewController
+            self.present(compiledIngredientsViewController, animated: true, completion: nil)
+        }
+        
     }
 
 }

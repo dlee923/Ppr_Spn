@@ -275,4 +275,23 @@ extension HelloFreshAPI {
         return imageLinks["800w"]
     }
     
+    
+    // Retrieve recipe INGREDIENT IMG LINKS
+    private func parseIngredientImgLinks(htmlCode: String) -> [String:String]? {
+        var ingImageLinks = [String:String]()
+        
+        // parse html code here
+        let ingImagesSection0 = htmlCode.components(separatedBy: "recipe-detail.ingredients\">Ingredients").last
+        guard let imagesSection1 = ingImagesSection0?.components(separatedBy: "img alt=") else { return nil }
+        for imagesSection2 in imagesSection1 {
+            let imagesSection3 = imagesSection2.components(separatedBy: "></div>").first
+            let ingredientName = imagesSection3?.components(separatedBy: "class=").first
+            let ingImageLink = imagesSection3?.components(separatedBy: "src=").last
+            // add parsed strings to dict
+            ingImageLinks[ingredientName!] = ingImageLink
+//            imageLink0.removeAll(where: { $0 == "\"" })
+        }
+        return ingImageLinks
+    }
+    
 }

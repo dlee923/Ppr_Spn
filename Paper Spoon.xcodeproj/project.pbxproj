@@ -196,6 +196,14 @@
 			path = MealKitSelectionViewController;
 			sourceTree = "<group>";
 		};
+		7073E2CA2349359D0041223D /* DashboardController */ = {
+			isa = PBXGroup;
+			children = (
+				70E6F4822198DE1A005C08EE /* DashBoardController.swift */,
+			);
+			path = DashboardController;
+			sourceTree = "<group>";
+		};
 		70D532CC22F5EFC900C8F866 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +281,7 @@
 				70E6F4802198DE1A005C08EE /* AppDelegate.swift */,
 				701058E422FF61B900D4D9FD /* Fonts */,
 				70D532D422F77A0A00C8F866 /* API */,
-				70E6F4822198DE1A005C08EE /* DashBoardController.swift */,
+				7073E2CA2349359D0041223D /* DashboardController */,
 				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
 				70D532D922F98CB100C8F866 /* RecipeListViewController */,
 				701058EF2308C34200D4D9FD /* CompileIngredientsViewController */,

@@ -13,6 +13,7 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
+        self.backgroundColor = .yellow
     }
     
     var brands: [Brand]?
@@ -21,6 +22,7 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
         self.delegate = self
         self.dataSource = self
         self.transform = CGAffineTransform(rotationAngle: -90 * (.pi/180))
+        self.showsSelectionIndicator = true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -42,6 +44,10 @@ class BrandPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 100
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
         return 100
     }
     

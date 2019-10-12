@@ -37,7 +37,7 @@ class DashBoardController: UIPageViewController {
         DispatchQueue.main.async {
             self.activityindicator.activityInProgress()
         }
-        
+
         self.downloadData()
     }
 
@@ -70,13 +70,13 @@ class DashBoardController: UIPageViewController {
     
     var favoritesVC: UIViewController = {
         let favoritesVC = UIViewController()
-        favoritesVC.view.backgroundColor = .green
+        favoritesVC.view.backgroundColor = .white
         return favoritesVC
     }()
     
     var labVC: UIViewController = {
         let labVC = UIViewController()
-        labVC.view.backgroundColor = .blue
+        labVC.view.backgroundColor = .gray
         return labVC
     }()
 
