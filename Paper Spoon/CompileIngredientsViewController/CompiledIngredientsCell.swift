@@ -25,6 +25,7 @@ class CompiledIngredientsCell: UITableViewCell {
             self.ingredientName.text = self.ingredient?.name
             self.measureAmount.text = String(describing: self.ingredient?.amount ?? 1)
             self.measureLbl.text = self.ingredient?.measurementType
+            self.ingredientImg.image = self.ingredient?.image
         }
     }
     

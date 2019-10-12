@@ -40,7 +40,7 @@ class HelloFreshAPI: NSObject {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
                 
                 // parse recipe for recipe details
-                let ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
+                var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
                 let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
                 let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
                 let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
@@ -49,6 +49,11 @@ class HelloFreshAPI: NSObject {
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
                 let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
                 let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
+                
+                // assign ingredient image links to each ingredient
+                for x in 0..<ingredients.count {
+                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
+                }
                 
                 // create recipe object
                 let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
@@ -126,10 +131,10 @@ extension HelloFreshAPI {
                 let ingredientAmount = Double(ingredientDetails.first ?? "0")
                 let unitMeasure = ingredientDetails[1]
                 let ingredientName = ingredientDetails[2...].joined(separator: " ")
-                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil)
+                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil, imageLink: nil, image: nil)
                 ingredients.append(ingredientData)
             } else {
-                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil, isPacked: nil)
+                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil, isPacked: nil, imageLink: nil, image: nil)
                 ingredients.append(ingredientData)
             }
         }
@@ -281,7 +286,7 @@ extension HelloFreshAPI {
     private func parseIngredientImgLinks(htmlCode: String) -> [String:String]? {
         var ingImageLinks = [String:String]()
         
-        let baseUrl = "https://img.hellofresh.com/f_auto,fl_lossy,h_100,q_auto,w_100/hellofresh_s3"
+        let baseUrl = "https://img.hellofresh.com/f_auto,fl_lossy,h_70,q_auto,w_70/hellofresh_s3"
         let baseUrlFull = "https://img.hellofresh.com/hellofresh_s3" // ONLY USE THIS IF NEED FULL SIZE
         
         // parse html code here

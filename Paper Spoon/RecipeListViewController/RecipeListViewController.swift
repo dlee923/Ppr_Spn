@@ -35,6 +35,11 @@ class RecipeListViewController: UIViewController {
     var compiledIngredients = [Ingredients]()
     var reducedCompiledIngredients = [Ingredients]()
     
+    let dispatchGroup = DispatchGroup()
+    let mainThread = DispatchQueue.main
+    let backgroundThread = DispatchQueue.global(qos: .background)
+    let activityIndicator = ActivityIndicator()
+    
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
     }
@@ -98,6 +103,32 @@ class RecipeListViewController: UIViewController {
         completion()
     }
     
+    private func downloadIngredientImages() {
+        self.mainThread.async {
+            self.activityIndicator.activityInProgress()
+        }
+        
+        var workItemCompletionCount: Int = 0
+        
+        self.dispatchGroup.enter()
+        for x in 0..<self.reducedCompiledIngredients.count {
+            let dispatchWorkItem = DispatchWorkItem(block: {
+                print(self.reducedCompiledIngredients[x].imageLink!)
+                ImageAPI.shared.downloadImage(urlLink: self.reducedCompiledIngredients[x].imageLink!, completion: {
+                    self.reducedCompiledIngredients[x].image = UIImage(data: $0)
+                    workItemCompletionCount += 1
+                    print("\(workItemCompletionCount) / \(self.reducedCompiledIngredients.count)")
+                    if workItemCompletionCount == self.reducedCompiledIngredients.count {
+                        print("done")
+                        self.dispatchGroup.leave()
+                        
+                    }
+                })
+            })
+            self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
+        }
+    }
+    
     
     // button action to proceed to shopping list screen
     @objc private func transitionCompileIngredientsView() {
@@ -109,13 +140,17 @@ class RecipeListViewController: UIViewController {
         let compiledIngredientsViewController = CompileIngredientsViewController()
         compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
         
-        
         // inject compiled ingredients list
         self.calculateIngredients {
-            compiledIngredientsViewController.reducedCompiledIngredients = self.reducedCompiledIngredients
-
-            // present compiledIngredientsViewController
-            self.present(compiledIngredientsViewController, animated: true, completion: nil)
+            
+            self.downloadIngredientImages()
+            
+            dispatchGroup.notify(queue: mainThread, execute: {
+                compiledIngredientsViewController.reducedCompiledIngredients = self.reducedCompiledIngredients
+                // present compiledIngredientsViewController
+                self.activityIndicator.activityEnded()
+                self.present(compiledIngredientsViewController, animated: true, completion: nil)
+            })
         }
     }
 

@@ -49,6 +49,9 @@ struct Ingredients: Equatable {
     var measurementType: String?
     var isPacked: Bool?
     
+    var imageLink: String?
+    var image: UIImage?
+    
     // confirm to Equatable protocol
     static func == (lhs: Ingredients, rhs: Ingredients) -> Bool {
         return lhs.name == rhs.name

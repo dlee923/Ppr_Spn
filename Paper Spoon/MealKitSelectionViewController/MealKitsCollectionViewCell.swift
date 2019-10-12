@@ -141,8 +141,6 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
             if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
                 // need to attach to center of collectionView??
                 mealKitsCollectionViewCell.addSubview(instructionsVw)
-                
-                print(mealKitsCollectionViewCell.menuOption?.recipeName)
             }
         }
         
