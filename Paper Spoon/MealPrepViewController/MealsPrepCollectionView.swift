@@ -20,7 +20,7 @@ class MealsPrepCollectionView: UICollectionView {
     }
     
     private func setup() {
-        self.backgroundColor = UIColor.color1
+        self.backgroundColor = UIColor.themeColor1
         self.isPagingEnabled = true
         self.registerCells()
         self.dataSource = self
@@ -36,6 +36,7 @@ class MealsPrepCollectionView: UICollectionView {
     
     private func registerCells() {
         self.register(UINib(nibName: "\(MealsPrepCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
+        self.register(MealPrepEmptyCollectionViewCell.self, forCellWithReuseIdentifier: "mealPrepEmptyCollectionViewCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,17 +51,28 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.menuOptionsObj?.selectedMenuOptions.count ?? 0)
+        return (self.menuOptionsObj?.selectedMenuOptions.count ?? 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
-            let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
-            cell.menuOption = menuOption
-            cell.mealPrepFinishedDelegate = self.mealPrepFinishedDelegate
-            return cell
+        // empty cell if no meals to prep
+        if self.menuOptionsObj?.selectedMenuOptions.count == 0 || self.menuOptionsObj?.selectedMenuOptions.count == nil {
+            if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealPrepEmptyCollectionViewCell", for: indexPath) as? MealPrepEmptyCollectionViewCell {
+                return emptyCell
+            } else {
+                return UICollectionViewCell()
+            }
+            
         } else {
-            return UICollectionViewCell()
+        // normal meal prep cells
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
+                let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
+                cell.menuOption = menuOption
+                cell.mealPrepFinishedDelegate = self.mealPrepFinishedDelegate
+                return cell
+            } else {
+                return UICollectionViewCell()
+            }
         }
     }
 }

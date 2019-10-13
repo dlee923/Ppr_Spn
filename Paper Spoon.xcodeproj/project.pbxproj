@@ -39,6 +39,7 @@
 		70D532D622F77C4D00C8F866 /* BrandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D522F77C4D00C8F866 /* BrandViewController.swift */; };
 		70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D722F780E100C8F866 /* MenuOptionListCell.swift */; };
 		70E0499923528DB0005A1B71 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E0499823528DB0005A1B71 /* ParentViewController.swift */; };
+		70E0499B235387EB005A1B71 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E0499A235387EB005A1B71 /* EmptyCollectionViewCell.swift */; };
 		70E3A581232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */; };
 		70E3A583232D981A00F9A5A7 /* RecipeListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */; };
 		70E3A585232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E3A584232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift */; };
@@ -104,6 +105,7 @@
 		70D532D522F77C4D00C8F866 /* BrandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandViewController.swift; sourceTree = "<group>"; };
 		70D532D722F780E100C8F866 /* MenuOptionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListCell.swift; sourceTree = "<group>"; };
 		70E0499823528DB0005A1B71 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
+		70E0499A235387EB005A1B71 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		70E3A580232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsPrepTableViewCell.swift; sourceTree = "<group>"; };
 		70E3A582232D981A00F9A5A7 /* RecipeListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListHeader.swift; sourceTree = "<group>"; };
 		70E3A584232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 		70D532CC22F5EFC900C8F866 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				70E0499A235387EB005A1B71 /* EmptyCollectionViewCell.swift */,
 				70D532D022F6264C00C8F866 /* ActivityIndicator.swift */,
 				701058E922FF620600D4D9FD /* Extensions.swift */,
 				70D532CA22F5EFAA00C8F866 /* Device.swift */,
@@ -249,6 +252,14 @@
 			path = BrandViewController;
 			sourceTree = "<group>";
 		};
+		70E0499C23538B9F005A1B71 /* ParentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				70E0499823528DB0005A1B71 /* ParentViewController.swift */,
+			);
+			path = ParentViewController;
+			sourceTree = "<group>";
+		};
 		70E3A588232DA5A100F9A5A7 /* RecipeListHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +296,7 @@
 				70E6F4802198DE1A005C08EE /* AppDelegate.swift */,
 				701058E422FF61B900D4D9FD /* Fonts */,
 				70D532D422F77A0A00C8F866 /* API */,
-				70E0499823528DB0005A1B71 /* ParentViewController.swift */,
+				70E0499C23538B9F005A1B71 /* ParentViewController */,
 				7073E2CA2349359D0041223D /* DashboardController */,
 				701058EF2308C34200D4D9FD /* CompileIngredientsViewController */,
 				701058DD22FF614B00D4D9FD /* MealPrepViewController */,
@@ -492,6 +503,7 @@
 				70E0499923528DB0005A1B71 /* ParentViewController.swift in Sources */,
 				70E3A581232B393200F9A5A7 /* IngredientsPrepTableViewCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,
+				70E0499B235387EB005A1B71 /* EmptyCollectionViewCell.swift in Sources */,
 				701185FA231B137500F4D047 /* IngredientsPrepTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

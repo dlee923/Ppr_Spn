@@ -13,7 +13,6 @@ class RecipeListHeader: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
-        self.backgroundColor = .yellow
     }
     
     private func setup() {
@@ -32,7 +31,6 @@ class RecipeListHeader: UIView {
     private func addHeaderLabel() {
         self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
         self.headerLabel.text = "Choose Recipes:"
-        self.headerLabel.backgroundColor = .white
         self.addSubview(self.headerLabel)
         
         self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +47,9 @@ class RecipeListHeader: UIView {
         self.brandsPickerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.brandsPickerView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.brandsPickerView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.brandsPickerView.heightAnchor.constraint(equalToConstant: 30),
-            self.brandsPickerView.widthAnchor.constraint(equalToConstant: self.frame.width/2)
+            self.brandsPickerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.brandsPickerView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
 

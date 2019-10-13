@@ -29,6 +29,7 @@ class MealPrepViewController: UIViewController {
     var mealsPrepCount = UIPageControl()
     lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
     var mealPrepFinishedBtn = UIButton()
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     let activityIndicator = ActivityIndicator()
     

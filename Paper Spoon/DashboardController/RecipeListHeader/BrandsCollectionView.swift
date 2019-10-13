@@ -18,7 +18,6 @@ class BrandsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout
         }
         // additional setup
         self.setup()
-        self.backgroundColor = .red
     }
     
     var brands: [Brand]?
@@ -38,7 +37,7 @@ class BrandsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -34,7 +34,7 @@ class ParentViewController: UITabBarController {
     
     let brandDashboardController = BrandDashboardController()
     let compileIngredientsViewController = UIViewController()
-    let mealPrepViewController = UIViewController()
+    let mealPrepViewController = MealPrepViewController()
     let mealKitSelectionViewController = UIViewController()
     
     private func setTabBarItems() {
@@ -61,7 +61,7 @@ class ParentViewController: UITabBarController {
     private func sendDelegates() {
         self.brandDashboardController.parentViewControllerDelegate = self
 //        self.compileIngredientsViewController.delegate = self
-//        self.mealPrepViewController.delegate = self
+        self.mealPrepViewController.parentViewControllerDelegate = self
 //        self.mealKitSelectionViewController.delegate = self
     }
 

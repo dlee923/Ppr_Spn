@@ -25,7 +25,6 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     private func addBrandImage() {
         self.brandImage.image = brand?.image
-        self.brandImage.backgroundColor = .gray
         self.brandImage.contentMode = .scaleAspectFit
         self.addSubview(self.brandImage)
         
