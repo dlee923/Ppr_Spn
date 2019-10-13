@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipeListViewController: UIViewController {
+class HelloFreshViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

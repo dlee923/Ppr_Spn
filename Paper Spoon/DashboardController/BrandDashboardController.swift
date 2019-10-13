@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashBoardController: UIPageViewController {
+class BrandDashboardController: UIPageViewController {
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: [UIPageViewController.OptionsKey.spineLocation: UIPageViewController.SpineLocation.mid])
@@ -30,17 +30,14 @@ class DashBoardController: UIPageViewController {
         
         // pass brands data to header
         recipeListHeader.brands = self.brands
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         // Add activity indicator
-        DispatchQueue.main.async {
-            self.activityindicator.activityInProgress()
-        }
-
-        self.downloadData()
+//        DispatchQueue.main.async {
+//            self.activityindicator.activityInProgress()
+//        }
+//
+//        self.downloadData()
     }
-
     
     fileprivate func downloadData() {
         // download recipe options
@@ -63,8 +60,8 @@ class DashBoardController: UIPageViewController {
     
     lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
     
-    var recipeListViewController: RecipeListViewController = {
-        let recipeListVC = RecipeListViewController()
+    var recipeListViewController: HelloFreshViewController = {
+        let recipeListVC = HelloFreshViewController()
         return recipeListVC
     }()
     
@@ -87,6 +84,7 @@ class DashBoardController: UIPageViewController {
     let backgroundThread = DispatchQueue(label: "backgroundThread")
     let mainThread = DispatchQueue.main
     var brands: [Brand]?
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     var pageIndex: Int? {
         didSet {
@@ -207,7 +205,7 @@ class DashBoardController: UIPageViewController {
 }
 
 
-extension DashBoardController: UIPageViewControllerDataSource{
+extension BrandDashboardController: UIPageViewControllerDataSource{
 
     internal func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = controllers.firstIndex(of: viewController) else { return nil }
@@ -233,7 +231,7 @@ extension DashBoardController: UIPageViewControllerDataSource{
     
 }
 
-extension DashBoardController: UIPageViewControllerDelegate {
+extension BrandDashboardController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
         pendingPageIndex = self.controllers.firstIndex(of: pendingViewControllers.first!)
     }
@@ -253,7 +251,7 @@ protocol MovePickerPositionDelegate: AnyObject {
     func movePickerPosition(position: Int)
 }
 
-extension DashBoardController: MovePickerPositionDelegate {
+extension BrandDashboardController: MovePickerPositionDelegate {
     func movePickerPosition(position: Int) {
         
     }

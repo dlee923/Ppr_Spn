@@ -30,5 +30,6 @@ extension UIColor {
     // Theme Colors
     static let themeColor1 = UIColor.white
     static let themeColor2 = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0)
+    static let themeColorNull = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1.0)
     
 }
