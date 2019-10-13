@@ -187,5 +187,8 @@ extension BrandViewController: BrandViewControllerDelegate {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
             }
         }
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }

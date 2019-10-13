@@ -73,9 +73,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             self.selectMenuOption(menuOption: menuOption)
             
             // show / hide compile button
-            UIView.animate(withDuration: 0.5) {
-                self.brandViewControllerDelegate?.showHideCompileButton()
-            }
+            self.brandViewControllerDelegate?.showHideCompileButton()
         }
     }
     

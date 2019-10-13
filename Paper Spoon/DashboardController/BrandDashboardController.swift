@@ -32,11 +32,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-//        DispatchQueue.main.async {
-//            self.activityindicator.activityInProgress()
-//        }
-//
-//        self.downloadData()
+        DispatchQueue.main.async {
+            self.activityindicator.activityInProgress()
+        }
+
+        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -76,6 +76,12 @@ class BrandDashboardController: UIPageViewController {
         labVC.view.backgroundColor = .gray
         return labVC
     }()
+    
+    var homeChefVC: UIViewController = {
+        let homeChefVC = UIViewController()
+        homeChefVC.view.backgroundColor = .green
+        return homeChefVC
+    }()
 
     var controllers = [UIViewController]()
     
@@ -88,7 +94,10 @@ class BrandDashboardController: UIPageViewController {
     
     var pageIndex: Int? {
         didSet {
-//            self.recipeListHeader.brandPickerView.selectRow(self.pageIndex!, inComponent: 0, animated: true)
+            self.recipeListHeader.moveBrandsSelectorView(index: self.pageIndex!)
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
+                self.recipeListHeader.layoutIfNeeded()
+            }, completion: nil)
         }
     }
     private var pendingPageIndex: Int?
@@ -96,7 +105,7 @@ class BrandDashboardController: UIPageViewController {
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1
         
-        controllers = [recipeListViewController, favoritesVC, labVC]
+        controllers = [recipeListViewController, favoritesVC, labVC, homeChefVC]
         
         if let recipeListVC1 = controllers.first {
             self.setViewControllers([recipeListVC1], direction: .forward, animated: false, completion: nil)
