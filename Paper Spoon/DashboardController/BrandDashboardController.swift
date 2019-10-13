@@ -60,8 +60,8 @@ class BrandDashboardController: UIPageViewController {
     
     lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
     
-    var recipeListViewController: HelloFreshViewController = {
-        let recipeListVC = HelloFreshViewController()
+    var recipeListViewController: BrandViewController = {
+        let recipeListVC = BrandViewController()
         return recipeListVC
     }()
     
@@ -88,7 +88,7 @@ class BrandDashboardController: UIPageViewController {
     
     var pageIndex: Int? {
         didSet {
-            self.recipeListHeader.brandPickerView.selectRow(self.pageIndex!, inComponent: 0, animated: true)
+//            self.recipeListHeader.brandPickerView.selectRow(self.pageIndex!, inComponent: 0, animated: true)
         }
     }
     private var pendingPageIndex: Int?

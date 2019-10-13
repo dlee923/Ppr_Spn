@@ -41,7 +41,7 @@ class ParentViewController: UITabBarController {
         self.tabBar.items?[0].image = UIImage(named: "list_75")
         self.tabBar.items?[0].title = "Select Recipes"
         self.tabBar.items?[1].image = UIImage(named: "cart_75")
-        self.tabBar.items?[1].title = "Ingredient List"
+        self.tabBar.items?[1].title = "Shopping List"
         self.tabBar.items?[2].image = UIImage(named: "box_75")
         self.tabBar.items?[2].title = "Assemble Meals"
         self.tabBar.items?[3].image = UIImage(named: "chef_75")

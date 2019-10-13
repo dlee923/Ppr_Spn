@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HelloFreshViewController: UIViewController {
+class BrandViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,7 @@ class HelloFreshViewController: UIViewController {
         self.setColors()
     }
     
+    // MARK:  Variables
     var menuOptionList: MenuOptionList!
     var compileIngredientsBtn: NextStepBtn?
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
@@ -40,6 +41,10 @@ class HelloFreshViewController: UIViewController {
     let backgroundThread = DispatchQueue.global(qos: .background)
     let activityIndicator = ActivityIndicator()
     
+    // MARK:  Animatable constraints
+    var compileIngredientsBtnHeightCollapsed: NSLayoutConstraint?
+    var compileIngredientsBtnExpanded: NSLayoutConstraint?
+    
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
     }
@@ -47,6 +52,7 @@ class HelloFreshViewController: UIViewController {
     private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
+        self.menuOptionList.brandViewControllerDelegate = self
     }
     
     private func addViewMenuOptionList(){
@@ -75,7 +81,12 @@ class HelloFreshViewController: UIViewController {
         self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
-        self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1).isActive = true
+        
+        self.compileIngredientsBtnExpanded = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
+        
+        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
+        
+        self.compileIngredientsBtnHeightCollapsed?.isActive = true
     }
     
     private func calculateIngredients(completion: () -> ()) {
@@ -156,3 +167,25 @@ class HelloFreshViewController: UIViewController {
 
 }
 
+
+protocol BrandViewControllerDelegate: AnyObject {
+    func showHideCompileButton()
+}
+
+
+extension BrandViewController: BrandViewControllerDelegate {
+    func showHideCompileButton() {
+        guard let compileIngredientsButtonHeightCollapsed = self.compileIngredientsBtnHeightCollapsed else { return }
+        if self.menuOptionsObj.selectedMenuOptions.count == 1 {
+            if compileIngredientsButtonHeightCollapsed.isActive == true {
+                self.compileIngredientsBtnHeightCollapsed?.isActive = false
+                self.compileIngredientsBtnExpanded?.isActive = true
+            }
+        } else if self.menuOptionsObj.selectedMenuOptions.count == 0 {
+            if compileIngredientsButtonHeightCollapsed.isActive == false {
+                self.compileIngredientsBtnExpanded?.isActive = false
+                self.compileIngredientsBtnHeightCollapsed?.isActive = true
+            }
+        }
+    }
+}

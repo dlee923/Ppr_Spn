@@ -24,6 +24,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     }
     
     var menuOptionsObj: MenuOptionObj?
+    var brandViewControllerDelegate: BrandViewControllerDelegate?
     
     private func setColors() {
         self.backgroundColor = UIColor.themeColor1
@@ -70,6 +71,11 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             // add or remove menu option to selected array
             guard let menuOption = cell.menuOption else { return }
             self.selectMenuOption(menuOption: menuOption)
+            
+            // show / hide compile button
+            UIView.animate(withDuration: 0.5) {
+                self.brandViewControllerDelegate?.showHideCompileButton()
+            }
         }
     }
     

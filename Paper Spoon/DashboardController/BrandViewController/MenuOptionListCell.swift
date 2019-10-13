@@ -19,7 +19,7 @@ class MenuOptionListCell: UICollectionViewCell {
     var thumbnailView = UIImageView()
     var titleView = UILabel()
     var subtitleView = UILabel()
-    var caloritesLabel = UILabel()
+    var caloriesLabel = UILabel()
     let titleViewColor = UIColor.themeColor1
     let titleViewColorSelected = UIColor.color5
     var menuOption: MenuOption? {
@@ -27,14 +27,17 @@ class MenuOptionListCell: UICollectionViewCell {
             self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
             self.subtitleView.text = self.menuOption?.recipeSubtitle
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
-            self.caloritesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
+            self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
             self.isSelect = self.menuOption?.isSelected
             self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
+            // set normal colors if data exists
+            if self.menuOption?.recipe != nil { self.setColors() }
         }
     }
     
     private func setup() {
-        self.setColors()
+        // initialize with null colors until data is passed
+        self.setNullColors()
         self.addViewThumbnail()
         self.addViewTitle()
         self.addViewSubtitle()
@@ -43,8 +46,15 @@ class MenuOptionListCell: UICollectionViewCell {
     
     private func setColors() {
         self.backgroundColor = UIColor.themeColor1
-        self.thumbnailView.backgroundColor = UIColor.themeColor1
         self.subtitleView.textColor = UIColor.black.withAlphaComponent(0.7)
+        self.subtitleView.backgroundColor = UIColor.clear
+        self.caloriesLabel.textColor = UIColor.themeColor2
+    }
+    
+    private func setNullColors() {
+        self.thumbnailView.backgroundColor = UIColor.themeColorNull
+        self.subtitleView.backgroundColor = UIColor.themeColorNull
+        self.caloriesLabel.textColor = UIColor.themeColor1
     }
     
     override func prepareForReuse() {
@@ -109,14 +119,14 @@ class MenuOptionListCell: UICollectionViewCell {
     }
     
     private func addCaloriesLabel() {
-        self.caloritesLabel.font = UIFont.fontCoolvetica?.withSize(10)
-        self.addSubview(self.caloritesLabel)
+        self.caloriesLabel.font = UIFont.fontCoolvetica?.withSize(10)
+        self.addSubview(self.caloriesLabel)
         
-        self.caloritesLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.caloritesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        self.caloritesLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
-        self.caloritesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
-        self.caloritesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+        self.caloriesLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.caloriesLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        self.caloriesLabel.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        self.caloriesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.caloriesLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
