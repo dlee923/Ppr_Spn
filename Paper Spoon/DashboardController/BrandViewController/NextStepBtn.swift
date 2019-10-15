@@ -20,6 +20,7 @@ class NextStepBtn: UIButton {
         self.setTitle(setTitle, for: .normal)
         self.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
         self.titleLabel?.textColor = UIColor.themeColor1
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {
