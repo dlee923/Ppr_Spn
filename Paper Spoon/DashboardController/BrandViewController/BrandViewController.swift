@@ -37,6 +37,11 @@ class BrandViewController: UIViewController {
     // MARK:  Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
     
+    // MARK:  Animatable constraints
+    var menuOptionListCollapsed: NSLayoutConstraint?
+    var menuOptionListExpanded: NSLayoutConstraint?
+    var menuOptionListExpandedConstant: CGFloat?
+    
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1
     }
@@ -53,8 +58,15 @@ class BrandViewController: UIViewController {
         self.menuOptionList?.translatesAutoresizingMaskIntoConstraints = false
         self.menuOptionList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-        self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+        
+        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
+        
+        if let menuOptionListExpandedConstant = self.menuOptionListExpandedConstant {
+            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -menuOptionListExpandedConstant)
+        }
+        
+        self.menuOptionListCollapsed?.isActive = true
     }
 
 }

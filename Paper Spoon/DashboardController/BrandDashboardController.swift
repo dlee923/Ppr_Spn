@@ -92,6 +92,9 @@ class BrandDashboardController: UIPageViewController {
         let recipeListVC = BrandViewController()
         recipeListVC.brandDashboardControllerDelegate = self
         recipeListVC.menuOptionsObj = self.menuOptionsObj
+        let compileIngredientsBtnHeight = (UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height)! * CGFloat(0.1)
+        // pass to each view controller?
+        recipeListVC.menuOptionListExpandedConstant = compileIngredientsBtnHeight
         return recipeListVC
     }()
     
@@ -395,11 +398,15 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             if compileIngredientsButtonHeightCollapsed.isActive == true {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = false
                 self.compileIngredientsBtnExpanded?.isActive = true
+                self.recipeListViewController.menuOptionListCollapsed?.isActive = false
+                self.recipeListViewController.menuOptionListExpanded?.isActive = true
             }
         } else if self.menuOptionsObj.selectedMenuOptions.count == 0 {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
                 self.compileIngredientsBtnExpanded?.isActive = false
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
+                self.recipeListViewController.menuOptionListExpanded?.isActive = false
+                self.recipeListViewController.menuOptionListCollapsed?.isActive = true
             }
         }
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
