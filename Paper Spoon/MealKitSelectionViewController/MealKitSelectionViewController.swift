@@ -21,11 +21,13 @@ class MealKitSelectionViewController: UIViewController {
     }
     
     var menuOptionsObj: MenuOptionObj?
+    var instructionsView = InstructionsViewController()
     
     lazy var mealKitsCollectionView = MealKitsCollectionView(frame: self.view.frame)
     
     private func addMealKitsCollectionView() {
         self.mealKitsCollectionView.menuOptionsObj = self.menuOptionsObj
+        self.mealKitsCollectionView.mealKitSelectionViewControllerDelegate = self
         
         self.view.addSubview(self.mealKitsCollectionView)
         self.mealKitsCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,4 +40,16 @@ class MealKitSelectionViewController: UIViewController {
         ])
     }
     
+}
+
+protocol MealKitSelectionViewControllerDelegate: AnyObject {
+    func presentInstructions(menuOption: MenuOption)
+}
+
+extension MealKitSelectionViewController: MealKitSelectionViewControllerDelegate {
+    func presentInstructions(menuOption: MenuOption) {
+        self.instructionsView.menuOption = menuOption
+        self.instructionsView.modalPresentationStyle = .pageSheet
+        self.present(self.instructionsView, animated: true, completion: nil)
+    }
 }

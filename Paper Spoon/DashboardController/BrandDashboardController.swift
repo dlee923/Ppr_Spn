@@ -92,27 +92,29 @@ class BrandDashboardController: UIPageViewController {
         let recipeListVC = BrandViewController()
         recipeListVC.brandDashboardControllerDelegate = self
         recipeListVC.menuOptionsObj = self.menuOptionsObj
-        let compileIngredientsBtnHeight = (UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height)! * CGFloat(0.1)
+        
         // pass to each view controller?
-        recipeListVC.menuOptionListExpandedConstant = compileIngredientsBtnHeight
+        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
+            recipeListVC.menuOptionListExpandedConstant = compileIngredientsBtnHeight * CGFloat(0.1)
+        }
         return recipeListVC
     }()
     
     var blueApronViewController: UIViewController = {
         let favoritesVC = UIViewController()
-        favoritesVC.view.backgroundColor = .white
+        favoritesVC.view.backgroundColor = UIColor.themeColor1
         return favoritesVC
     }()
     
     var platedViewController: UIViewController = {
         let labVC = UIViewController()
-        labVC.view.backgroundColor = .gray
+        labVC.view.backgroundColor = UIColor.themeColor1
         return labVC
     }()
     
     var homeChefViewController: UIViewController = {
         let homeChefVC = UIViewController()
-        homeChefVC.view.backgroundColor = .green
+        homeChefVC.view.backgroundColor = UIColor.themeColor1
         return homeChefVC
     }()
     
@@ -226,7 +228,7 @@ class BrandDashboardController: UIPageViewController {
     }
     
     // button action to proceed to shopping list screen
-    @objc private func transitionCompileIngredientsView() {
+    @objc internal func transitionCompileIngredientsView() {
         if self.menuOptionsObj.menuOptions == nil {
             // prompt warning?
             return
@@ -282,63 +284,31 @@ class BrandDashboardController: UIPageViewController {
         var workItemCompletionCount: Int = 0
         
         self.dispatchGroup.enter()
+        
+        // find number of ingredients that only have a picture source
+        let reducedCompiledIngredientsCount = self.reducedCompiledIngredients.filter({ $0.imageLink != nil }).count
+        
         for x in 0..<self.reducedCompiledIngredients.count {
             let dispatchWorkItem = DispatchWorkItem(block: {
-                print(self.reducedCompiledIngredients[x].imageLink!)
-                ImageAPI.shared.downloadImage(urlLink: self.reducedCompiledIngredients[x].imageLink!, completion: {
-                    self.reducedCompiledIngredients[x].image = UIImage(data: $0)
-                    workItemCompletionCount += 1
-                    print("\(workItemCompletionCount) / \(self.reducedCompiledIngredients.count)")
-                    if workItemCompletionCount == self.reducedCompiledIngredients.count {
-                        print("done")
-                        self.dispatchGroup.leave()
-                        
-                    }
-                })
+                
+                if let imageLink = self.reducedCompiledIngredients[x].imageLink {
+                    print(imageLink)
+                    ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
+                        self.reducedCompiledIngredients[x].image = UIImage(data: $0)
+                        workItemCompletionCount += 1
+                        print("\(workItemCompletionCount) / \(reducedCompiledIngredientsCount)")
+                        if workItemCompletionCount >= reducedCompiledIngredientsCount {
+                            print("done")
+                            self.dispatchGroup.leave()
+                        }
+                    })
+                }
+                
             })
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
     }
 
-}
-
-// MARK: Setting up views
-extension BrandDashboardController {
-    
-    private func addRecipeListHeader() {
-        self.view.addSubview(self.recipeListHeader)
-        self.recipeListHeader.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.recipeListHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.recipeListHeader.heightAnchor.constraint(equalToConstant: 100),
-            self.recipeListHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
-            self.recipeListHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5)
-            ])
-    }
-    
-    private func setupCompileIngredientsBtn() {
-        self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
-                                                               width: self.view.frame.width,
-                                                               height: self.view.frame.height * 0.1),
-                                                 setTitle: "Compile Ingredients!")
-        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
-    }
-    
-    private func addCompileIngredientsBtn() {
-        self.compileIngredientsBtn?.layer.cornerRadius = 5
-        self.view.addSubview(self.compileIngredientsBtn ?? UIView())
-        
-        self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false
-        self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-        self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
-        
-        self.compileIngredientsBtnExpanded = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
-        
-        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
-        
-        self.compileIngredientsBtnHeightCollapsed?.isActive = true
-    }
 }
 
 
@@ -383,36 +353,3 @@ extension BrandDashboardController: UIPageViewControllerDelegate {
     }
 }
 
-
-protocol BrandDashboardControllerDelegate: AnyObject {
-    func showHideCompileButton()
-    func movePickerPosition(position: Int)
-}
-
-
-extension BrandDashboardController: BrandDashboardControllerDelegate {
-    
-    func showHideCompileButton() {
-        guard let compileIngredientsButtonHeightCollapsed = self.compileIngredientsBtnHeightCollapsed else { return }
-        if self.menuOptionsObj.selectedMenuOptions.count == 1 {
-            if compileIngredientsButtonHeightCollapsed.isActive == true {
-                self.compileIngredientsBtnHeightCollapsed?.isActive = false
-                self.compileIngredientsBtnExpanded?.isActive = true
-                self.recipeListViewController.menuOptionListCollapsed?.isActive = false
-                self.recipeListViewController.menuOptionListExpanded?.isActive = true
-            }
-        } else if self.menuOptionsObj.selectedMenuOptions.count == 0 {
-            if compileIngredientsButtonHeightCollapsed.isActive == false {
-                self.compileIngredientsBtnExpanded?.isActive = false
-                self.compileIngredientsBtnHeightCollapsed?.isActive = true
-                self.recipeListViewController.menuOptionListExpanded?.isActive = false
-                self.recipeListViewController.menuOptionListCollapsed?.isActive = true
-            }
-        }
-        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
-    }
-    
-    func movePickerPosition(position: Int) { }
-}

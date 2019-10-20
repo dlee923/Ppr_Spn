@@ -22,7 +22,6 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         self.delegate = self
         self.dataSource = self
         self.separatorColor = UIColor.themeColor1
-        
     }
     
     var compiledIngredients = [Ingredients]()

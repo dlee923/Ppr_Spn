@@ -8,10 +8,10 @@
 
 import UIKit
 
-class InstructionsView: UIView {
+class InstructionsViewController: UIViewController {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setup()
     }
     
@@ -25,7 +25,7 @@ class InstructionsView: UIView {
     var dismissPopUpDelegate: DismissPopUpDelegate?
     
     private func setup() {
-        self.backgroundColor = UIColor.themeColor1
+        self.view.backgroundColor = UIColor.themeColor1
         self.addFinishedCookingBtn()
         self.addInstructionsCollectionView()
     }
@@ -34,39 +34,37 @@ class InstructionsView: UIView {
         self.finishedCookingBtn.setTitle("Finished Cooking!", for: .normal)
         self.finishedCookingBtn.backgroundColor = UIColor.color2
         self.finishedCookingBtn.layer.cornerRadius = 5
-        self.addSubview(self.finishedCookingBtn)
+        self.view.addSubview(self.finishedCookingBtn)
         
         self.finishedCookingBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.finishedCookingBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.finishedCookingBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.finishedCookingBtn.heightAnchor.constraint(equalToConstant: 60),
-            self.finishedCookingBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.finishedCookingBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.finishedCookingBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.finishedCookingBtn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        self.finishedCookingBtn.addTarget(self, action: #selector(self.dismiss), for: .touchUpInside)
+        self.finishedCookingBtn.addTarget(self, action: #selector(self.dismissInstructions), for: .touchUpInside)
     }
     
-    @objc private func dismiss() {
-        self.dismissPopUpDelegate?.dismissPopup()
+    @objc private func dismissInstructions() {
+//        self.dismissPopUpDelegate?.dismissPopup()
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func addInstructionsCollectionView() {
-        self.instructionsCollectionView = InstructionsCollectionView(frame: self.frame)
+        self.instructionsCollectionView = InstructionsCollectionView(frame: self.view.frame)
+        self.instructionsCollectionView?.recipe = self.menuOption?.recipe
         guard let instructionsCV = self.instructionsCollectionView else { return }
-        self.addSubview(instructionsCV)
+        self.view.addSubview(instructionsCV)
         
         instructionsCV.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            instructionsCV.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            instructionsCV.topAnchor.constraint(equalTo: self.topAnchor),
-            instructionsCV.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            instructionsCV.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            instructionsCV.topAnchor.constraint(equalTo: self.view.topAnchor),
+            instructionsCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             instructionsCV.bottomAnchor.constraint(equalTo: self.finishedCookingBtn.topAnchor, constant: -5)
         ])
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
 }

@@ -18,7 +18,11 @@ class MealKitsCollectionView: UICollectionView {
         }
     }
     
+    // MARK:  Variables
     var menuOptionsObj: MenuOptionObj?
+    
+    // MARK:  Delegates
+    var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
@@ -42,6 +46,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
             cell.scrollViewLockDelegate = self
+            cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
             let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
             cell.menuOption = menuOption
             return cell

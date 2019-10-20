@@ -287,13 +287,11 @@ extension HelloFreshAPI {
         var ingImageLinks = [String:String]()
         
         let baseUrl = "https://img.hellofresh.com/f_auto,fl_lossy,h_70,q_auto,w_70/hellofresh_s3"
-        let baseUrlFull = "https://img.hellofresh.com/hellofresh_s3" // ONLY USE THIS IF NEED FULL SIZE
+//        let baseUrlFull = "https://img.hellofresh.com/hellofresh_s3" // ONLY USE THIS IF NEED FULL SIZE
         
         // parse html code here
-        let ingImagesSection0 = htmlCode.components(separatedBy: "ingredientsCatalog").last
-        let ingImagesSection1 = ingImagesSection0?.components(separatedBy: "utensils").first
-        guard let ingImagesSection2 = ingImagesSection1?.components(separatedBy: "imagePath\":\"") else { return nil }
-        for section in 1..<ingImagesSection2.count {
+        let ingImagesSection2 = htmlCode.components(separatedBy: "imagePath\":\"")
+        for section in 2..<ingImagesSection2.count - 1 {
             // parse for ingredient name
             let imagesSection3 = ingImagesSection2[section].components(separatedBy: "name\":\"").last
             let ingredientName = imagesSection3?.components(separatedBy: "\",\"slug").first
@@ -302,6 +300,7 @@ extension HelloFreshAPI {
                 // add parsed strings to dict
                 ingImageLinks[ingredientName!] = baseUrl + ingImageLink
             }
+            
         }
         
         return ingImageLinks

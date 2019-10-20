@@ -22,12 +22,17 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK:  UI Elements
     let nameLabel = UILabel()
     let getCookingBtn = UIButton()
     let descriptionTextfield = UITextView()
-    var scrollViewLockDelegate: ScrollViewLockDelegate?
-    
     let activityIndicator = ActivityIndicator()
+    
+    // MARK:  Delegates
+    var scrollViewLockDelegate: ScrollViewLockDelegate?
+    var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
+    
+    // MARK:  Threading
     let backgroundThread = DispatchQueue.global(qos: .background)
     let mainThread = DispatchQueue.main
     let dispatchGroup = DispatchGroup()
@@ -85,39 +90,63 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     }
     
     // create temp container for instruction images
-    var instructionImages = [UIImage]()
+    var instructionImages = [Int: UIImage]()
+    var instructionImgArray = [UIImage]()
     
     private func downloadInstructionImages() {
         // skip if instructions have already been downloaded
         if self.menuOption?.recipe?.instructionImages != nil { return }
+        
+        // counter for instruction images downloaded
+        var instructionsCounter = 0
         
         self.mainThread.async {
             self.activityIndicator.activityInProgress()
         }
         
         if let instructionImageLinks = self.menuOption?.recipe?.instructionImageLinks {
-            for imageLink in instructionImageLinks {
+            for x in 0..<instructionImageLinks.count {
+                let imageLink = instructionImageLinks[x]
+                
                 // create a dispatch work item for each instruction image to download
                 let dispatchWorkItem = DispatchWorkItem(block: {
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
-                        if let image = UIImage(data: $0) {
-                            self.instructionImages.append(image)
-                        }
+                        
                         print(imageLink)
-                        print("instruction image downloaded")
-                        self.dispatchGroup.leave()
+                        instructionsCounter += 1
+                        print(instructionsCounter)
+                        
+                        if let image = UIImage(data: $0) {
+                            self.instructionImages[x] = image
+                            
+                            if instructionsCounter >= instructionImageLinks.count {
+                                print("dispatch leave")
+                                self.convertInstructionsIntoArray()
+                                self.dispatchGroup.leave()
+                            }
+                        }
                     })
                 })
                 // add each dispatch work item to Group
-                self.dispatchGroup.enter()
                 self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
-                // use wait to download in chronological order?
-                self.dispatchGroup.wait()
             }
+            self.dispatchGroup.enter()
         }
     }
     
-    var instructionsView: InstructionsView?
+    private func convertInstructionsIntoArray() {
+        // convert dictionary into ORDERED array (otherwise could have used dic.values.map {$0})
+        for x in 0..<instructionImages.count {
+            if let image = instructionImages[x] {
+                self.instructionImgArray.append(image)
+                print("instructions image available")
+            }
+        }        
+        
+        // pass instruction images to menuOption object
+        self.menuOption?.recipe?.instructionImages = self.instructionImgArray
+    }
+    
     
     @objc private func showInstructions() {
         // lock parent scroll view to prevent scrolling to other recipes
@@ -128,20 +157,13 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         
         // execute after all dispatch group items have run
         dispatchGroup.notify(queue: mainThread) { [weak self] in
-            guard let mealKitsCollectionViewCell = self else { return }
-            // pass instruction images to menuOption object
-            self?.menuOption?.recipe?.instructionImages = self?.instructionImages
-            mealKitsCollectionViewCell.activityIndicator.activityEnded()
+            guard let menuOption = self?.menuOption else { return }
+            
+            self?.activityIndicator.activityEnded()
             
             // present instructions view
             print("show instructions")
-            mealKitsCollectionViewCell.instructionsView = InstructionsView(frame: mealKitsCollectionViewCell.frame)
-            mealKitsCollectionViewCell.instructionsView?.menuOption = mealKitsCollectionViewCell.menuOption
-            mealKitsCollectionViewCell.instructionsView?.dismissPopUpDelegate = self
-            if let instructionsVw = mealKitsCollectionViewCell.instructionsView {
-                // need to attach to center of collectionView??
-                mealKitsCollectionViewCell.addSubview(instructionsVw)
-            }
+            self?.mealKitSelectionViewControllerDelegate?.presentInstructions(menuOption: menuOption)
         }
         
     }
@@ -158,7 +180,7 @@ protocol DismissPopUpDelegate: AnyObject {
 
 extension MealKitsCollectionViewCell: DismissPopUpDelegate {
     func dismissPopup() {
-        self.instructionsView?.removeFromSuperview()
+//        self.instructionsView?.dismiss(animated: true, completion: nil)
         self.scrollViewLockDelegate?.unlockScrollView()
     }
 }
