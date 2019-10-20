@@ -29,6 +29,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     
     private func registerCells() {
         self.register(UINib(nibName: "\(CompiledIngredientsCell.self)", bundle: .main), forCellReuseIdentifier: "compiledIngredients")
+        self.register(EmptyCompiledIngredientsCell.self, forCellReuseIdentifier: "emptyCompiledIngredientsCell")
         self.register(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: "compiledIngredientsHeader")
     }
     
@@ -61,12 +62,22 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            // section for ingredients list
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
-                cell.ingredient = self.compiledIngredients[indexPath.row]
-                return cell
+            // empty cell if no meals to prep
+            if self.compiledIngredients.count == 0 || self.compiledIngredients.count == nil {
+                if let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyCompiledIngredientsCell", for: indexPath) as? EmptyCompiledIngredientsCell {
+                    return emptyCell
+                } else {
+                    return UITableViewCell()
+                }
+                
             } else {
-            return UITableViewCell()
+                // section for ingredients list
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
+                    cell.ingredient = self.compiledIngredients[indexPath.row]
+                    return cell
+                } else {
+                return UITableViewCell()
+                }
             }
         case 1:
             // section for shopping bag

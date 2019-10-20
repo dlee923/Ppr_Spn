@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealPrepEmptyCollectionViewCell: EmptyCollectionViewCell {
+class EmptyMealsPrepCell: EmptyCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.image.image = UIImage(named: "sad_chef")

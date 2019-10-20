@@ -68,6 +68,12 @@ class BrandViewController: UIViewController {
         
         self.menuOptionListCollapsed?.isActive = true
     }
+    
+    func scrollMenuOptionList(){
+        if self.menuOptionListCollapsed?.isActive == true {
+            
+        }
+    }
 
 }
 

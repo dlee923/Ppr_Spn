@@ -89,9 +89,29 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    // create temp container for instruction images
+    // MARK:  Temp containers for instruction images
     var instructionImages = [Int: UIImage]()
     var instructionImgArray = [UIImage]()
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+}
+
+protocol DismissPopUpDelegate: AnyObject {
+    func dismissPopup()
+}
+
+extension MealKitsCollectionViewCell: DismissPopUpDelegate {
+    func dismissPopup() {
+//        self.instructionsView?.dismiss(animated: true, completion: nil)
+        self.scrollViewLockDelegate?.unlockScrollView()
+    }
+}
+
+
+extension MealKitsCollectionViewCell {
     
     private func downloadInstructionImages() {
         // skip if instructions have already been downloaded
@@ -141,7 +161,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
                 self.instructionImgArray.append(image)
                 print("instructions image available")
             }
-        }        
+        }
         
         // pass instruction images to menuOption object
         self.menuOption?.recipe?.instructionImages = self.instructionImgArray
@@ -165,22 +185,6 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
             print("show instructions")
             self?.mealKitSelectionViewControllerDelegate?.presentInstructions(menuOption: menuOption)
         }
-        
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-}
-
-protocol DismissPopUpDelegate: AnyObject {
-    func dismissPopup()
-}
-
-extension MealKitsCollectionViewCell: DismissPopUpDelegate {
-    func dismissPopup() {
-//        self.instructionsView?.dismiss(animated: true, completion: nil)
-        self.scrollViewLockDelegate?.unlockScrollView()
-    }
 }

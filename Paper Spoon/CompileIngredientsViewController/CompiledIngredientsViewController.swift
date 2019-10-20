@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CompileIngredientsViewController: UIViewController {
+class CompiledIngredientsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +30,22 @@ class CompileIngredientsViewController: UIViewController {
         self.addCompiledIngredientsList()
     }
     
-    var compiledIngredientsList: CompiledIngredientsList?
+    // MARK:  Variables
     var menuOptionsObj: MenuOptionObj?
     var reducedCompiledIngredients = [Ingredients]()
+    
+    // MARK:  UI Elements
+    var compiledIngredientsList: CompiledIngredientsList?
+    let activityIndicator = ActivityIndicator()
     var finishedShoppingBtn: NextStepBtn?
     
+    // MARK:  Threading
     let dispatchGroup = DispatchGroup()
     let backgroundThread = DispatchQueue.global(qos: .background)
     let mainThread = DispatchQueue.main
-    let activityIndicator = ActivityIndicator()
+    
+    // MARK:  Delegates
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     private func setColors() {
         self.view.backgroundColor = UIColor.themeColor1

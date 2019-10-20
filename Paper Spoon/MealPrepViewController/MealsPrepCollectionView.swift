@@ -36,7 +36,7 @@ class MealsPrepCollectionView: UICollectionView {
     
     private func registerCells() {
         self.register(UINib(nibName: "\(MealsPrepCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
-        self.register(MealPrepEmptyCollectionViewCell.self, forCellWithReuseIdentifier: "mealPrepEmptyCollectionViewCell")
+        self.register(EmptyMealsPrepCell.self, forCellWithReuseIdentifier: "emptyMealsPrepCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,7 +57,7 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // empty cell if no meals to prep
         if self.menuOptionsObj?.selectedMenuOptions.count == 0 || self.menuOptionsObj?.selectedMenuOptions.count == nil {
-            if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealPrepEmptyCollectionViewCell", for: indexPath) as? MealPrepEmptyCollectionViewCell {
+            if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyMealsPrepCell", for: indexPath) as? EmptyMealsPrepCell {
                 return emptyCell
             } else {
                 return UICollectionViewCell()

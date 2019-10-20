@@ -65,3 +65,63 @@ class EmptyCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
 }
+
+
+class EmptyTableViewCell: UITableViewCell {
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        // Initialization code
+        self.addEmptyContainer()
+        self.addMessage()
+        self.addImage()
+    }
+    
+    var cellImageView = UIImageView()
+    var message = UILabel()
+    var emptyContainer = UIView()
+    
+    private func addEmptyContainer() {
+        self.addSubview(self.emptyContainer)
+        self.emptyContainer.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.emptyContainer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
+            self.emptyContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            self.emptyContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.emptyContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+    }
+    
+    private func addImage() {
+        self.emptyContainer.addSubview(self.cellImageView)
+        self.cellImageView.alpha = 0.6
+        self.cellImageView.contentMode = .scaleAspectFit
+        self.cellImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.cellImageView.topAnchor.constraint(equalTo: self.emptyContainer.topAnchor),
+            self.cellImageView.leadingAnchor.constraint(equalTo: self.emptyContainer.leadingAnchor),
+            self.cellImageView.trailingAnchor.constraint(equalTo: self.emptyContainer.trailingAnchor),
+            self.cellImageView.bottomAnchor.constraint(equalTo: self.message.topAnchor),
+        ])
+    }
+    
+    private func addMessage() {
+        self.emptyContainer.addSubview(self.message)
+        self.message.numberOfLines = 3
+        self.message.alpha = 0.75
+        self.message.textAlignment = .center
+        self.message.textColor = UIColor.themeColor2
+        self.message.font = UIFont.fontCoolvetica?.withSize(15)
+        self.message.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.message.bottomAnchor.constraint(equalTo: self.emptyContainer.bottomAnchor),
+            self.message.leadingAnchor.constraint(equalTo: self.emptyContainer.leadingAnchor),
+            self.message.trailingAnchor.constraint(equalTo: self.emptyContainer.trailingAnchor),
+            self.message.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            ])
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+}

@@ -234,7 +234,7 @@ class BrandDashboardController: UIPageViewController {
             return
         }
         if self.menuOptionsObj.selectedMenuOptions.count <= 0 { return }
-        let compiledIngredientsViewController = CompileIngredientsViewController()
+        let compiledIngredientsViewController = CompiledIngredientsViewController()
         compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
         
         // inject compiled ingredients list
