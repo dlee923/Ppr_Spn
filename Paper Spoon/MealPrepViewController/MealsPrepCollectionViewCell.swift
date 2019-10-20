@@ -19,7 +19,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor.themeColor1
         self.setup()
     }
     

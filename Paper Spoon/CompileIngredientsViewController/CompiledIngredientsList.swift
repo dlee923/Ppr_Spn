@@ -44,7 +44,11 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return self.compiledIngredients.count
+            if self.compiledIngredients.count == 0 {
+                return 1
+            } else {
+                return self.compiledIngredients.count
+            }
         case 1:
             return self.purchasedIngredients.count
         default: return 0
@@ -56,7 +60,11 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 35
+        if self.compiledIngredients.count == 0 {
+            return self.frame.height * 0.5
+        } else {
+            return 35
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
