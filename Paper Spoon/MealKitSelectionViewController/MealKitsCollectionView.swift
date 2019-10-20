@@ -24,6 +24,17 @@ class MealKitsCollectionView: UICollectionView {
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
+    // MARK: - Cell Colors
+    let colors = [UIColor.color1,
+                  UIColor.color3,
+                  UIColor.color4,
+                  UIColor.color5,
+                  UIColor.color6,
+                  UIColor.color7,
+                  UIColor.color8,
+                  UIColor.color3,
+                  UIColor.color4]
+    
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
         self.register(MealKitsCollectionViewCell.self, forCellWithReuseIdentifier: "mealKitsCollectionViewCell")
@@ -45,10 +56,16 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
-            cell.scrollViewLockDelegate = self
+            
+            cell.splashColor = self.colors[indexPath.item]
+            cell.modifyColors()
+            
             cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
+            cell.scrollViewLockDelegate = self
+            
             let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
             cell.menuOption = menuOption
+            
             return cell
         } else {
             return UICollectionViewCell()

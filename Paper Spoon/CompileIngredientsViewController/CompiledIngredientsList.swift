@@ -63,7 +63,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             // empty cell if no meals to prep
-            if self.compiledIngredients.count == 0 || self.compiledIngredients.count == nil {
+            if self.compiledIngredients.count <= 0 {
                 if let emptyCell = tableView.dequeueReusableCell(withIdentifier: "emptyCompiledIngredientsCell", for: indexPath) as? EmptyCompiledIngredientsCell {
                     return emptyCell
                 } else {

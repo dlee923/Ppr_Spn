@@ -25,6 +25,9 @@ class MenuOption {
     var recipeSubtitle: String
     var isSelected: Bool?
     
+    var isLiked: Bool?
+    var userRating: Int?
+    
     init(recipeName: String, recipeLink: String, recipe: Recipe?, recipeSubtitle: String) {
         self.recipeName = recipeName
         self.recipeLink = recipeLink

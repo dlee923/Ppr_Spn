@@ -38,9 +38,9 @@ class InstructionsViewController: UIViewController {
         
         self.finishedCookingBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.finishedCookingBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.finishedCookingBtn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5),
             self.finishedCookingBtn.heightAnchor.constraint(equalToConstant: 60),
-            self.finishedCookingBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.finishedCookingBtn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
             self.finishedCookingBtn.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
