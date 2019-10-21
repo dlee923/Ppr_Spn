@@ -112,14 +112,11 @@ class CompiledIngredientsViewController: UIViewController {
     }
     
     @objc private func finishedShoppingAction() {
-        let mealPrepViewController = MealPrepViewController()
-        
         self.downloadRecipeImages()
         
         self.dispatchGroup.notify(queue: self.mainThread) {
             self.activityIndicator.activityEnded()
-            mealPrepViewController.menuOptionsObj = self.menuOptionsObj
-            self.present(mealPrepViewController, animated: true, completion: nil)
+            self.parentViewControllerDelegate?.changeViewController(index: 2)
         }
     }
 

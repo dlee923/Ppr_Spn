@@ -12,7 +12,10 @@ class ParentViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // send delegate to viewControllers
+        self.setupViewControllers()
+        
         // set viewcontrollers
         self.viewControllers = [
             self.brandDashboardController,
@@ -26,16 +29,16 @@ class ParentViewController: UITabBarController {
         
         // set properties
         self.setTabBarProperties()
-        
-        // send delegate to viewControllers
-        self.sendDelegates()
-        
     }
     
+    // MARK:  Variables
+    var menuOptionsObj = MenuOptionObj(menuOptions: nil)
+    
+    // MARK:  UI Elements
     let brandDashboardController = BrandDashboardController()
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
-    let mealKitSelectionViewController = UIViewController()
+    let mealKitSelectionViewController = MealKitSelectionViewController()
     
     private func setTabBarItems() {
         self.tabBar.items?[0].image = UIImage(named: "list_75")
@@ -58,21 +61,33 @@ class ParentViewController: UITabBarController {
         self.tabBar.clipsToBounds = true
     }
     
-    private func sendDelegates() {
+    private func setupViewControllers() {
         self.brandDashboardController.parentViewControllerDelegate = self
+        self.brandDashboardController.menuOptionsObj = self.menuOptionsObj
+        
         self.compiledIngredientsViewController.parentViewControllerDelegate = self
+        self.compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
+        
         self.mealPrepViewController.parentViewControllerDelegate = self
-//        self.mealKitSelectionViewController.delegate = self
+        self.mealPrepViewController.menuOptionsObj = self.menuOptionsObj
+        
+        self.mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
     }
 
 }
 
 protocol ParentViewControllerDelegate: AnyObject {
     func changeViewController(index position: Int)
+    func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients])
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
     func changeViewController(index position: Int) {
         self.selectedIndex = position
+    }
+    
+    func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients]) {
+        self.compiledIngredientsViewController.reducedCompiledIngredients = reducedCompiledIngredients
+        self.compiledIngredientsViewController.compiledIngredientsList?.reloadData()
     }
 }

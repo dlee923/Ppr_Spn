@@ -38,11 +38,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-//        DispatchQueue.main.async {
-//            self.activityIndicator.activityInProgress()
-//        }
-//
-//        self.downloadData()
+        DispatchQueue.main.async {
+            self.activityIndicator.activityInProgress()
+        }
+
+        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -65,7 +65,7 @@ class BrandDashboardController: UIPageViewController {
     }
     
     // MARK: Variables
-    var menuOptionsObj = MenuOptionObj(menuOptions: nil)
+    var menuOptionsObj: MenuOptionObj?
     var controllers = [UIViewController]()
     var compiledIngredients = [Ingredients]()
     var reducedCompiledIngredients = [Ingredients]()
@@ -227,33 +227,9 @@ class BrandDashboardController: UIPageViewController {
         ]
     }
     
-    // button action to proceed to shopping list screen
-    @objc internal func transitionCompileIngredientsView() {
-        if self.menuOptionsObj.menuOptions == nil {
-            // prompt warning?
-            return
-        }
-        if self.menuOptionsObj.selectedMenuOptions.count <= 0 { return }
-        let compiledIngredientsViewController = CompiledIngredientsViewController()
-        compiledIngredientsViewController.menuOptionsObj = self.menuOptionsObj
-        
-        // inject compiled ingredients list
-        self.calculateIngredients {
-            
-            self.downloadIngredientImages()
-            
-            dispatchGroup.notify(queue: mainThread, execute: {
-                compiledIngredientsViewController.reducedCompiledIngredients = self.reducedCompiledIngredients
-                // present compiledIngredientsViewController
-                self.activityIndicator.activityEnded()
-                self.present(compiledIngredientsViewController, animated: true, completion: nil)
-            })
-        }
-    }
-    
     private func calculateIngredients(completion: () -> ()) {
         // aggregate all ingredients from selected recipes
-        let selectedMenuOptions = self.menuOptionsObj.selectedMenuOptions
+        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
         
         for menuOption in selectedMenuOptions {
             if let recipeIngredients = menuOption.recipe?.ingredients {
@@ -306,6 +282,32 @@ class BrandDashboardController: UIPageViewController {
                 
             })
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
+        }
+    }
+    
+    // button action to proceed to shopping list screen
+    @objc internal func transitionCompileIngredientsView() {
+        if self.menuOptionsObj?.menuOptions == nil {
+            // prompt warning?
+            return
+        }
+        
+        if self.menuOptionsObj?.selectedMenuOptions.count ?? 0 <= 0 { return }
+        
+        // inject compiled ingredients list
+        self.calculateIngredients {
+            
+            self.downloadIngredientImages()
+            
+            dispatchGroup.notify(queue: mainThread, execute: {
+                
+                self.parentViewControllerDelegate?.sendReducedCompiledIngredients(reducedCompiledIngredients: self.reducedCompiledIngredients)
+                
+                // present compiledIngredientsViewController
+                self.activityIndicator.activityEnded()
+                
+                self.parentViewControllerDelegate?.changeViewController(index: 1)
+            })
         }
     }
 

@@ -14,6 +14,9 @@ class CompiledIngredientsCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.selectionStyle = .none
+        self.ingredientName.backgroundColor = UIColor.themeColor1
+        self.measureLbl.backgroundColor = UIColor.themeColor1
+        self.measureAmount.backgroundColor = UIColor.themeColor1
     }
 
     @IBOutlet weak var ingredientName: UILabel!

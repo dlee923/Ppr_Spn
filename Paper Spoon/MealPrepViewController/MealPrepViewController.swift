@@ -75,10 +75,7 @@ class MealPrepViewController: UIViewController {
 extension MealPrepViewController: MealPrepFinishedDelegate {
     
     func sendUserToMealKitSelection() {
-        let mealKitSelectionViewController = MealKitSelectionViewController()
-        
-        mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
-        self.present(mealKitSelectionViewController, animated: true, completion: nil)
+        self.parentViewControllerDelegate?.changeViewController(index: 3)
     }
     
 }
