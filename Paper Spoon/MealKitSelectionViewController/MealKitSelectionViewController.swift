@@ -35,7 +35,7 @@ class MealKitSelectionViewController: UIViewController {
         NSLayoutConstraint.activate([
             self.mealKitsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.mealKitsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.mealKitsCollectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            self.mealKitsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
             self.mealKitsCollectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
         ])
     }

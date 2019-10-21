@@ -57,7 +57,9 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
             
-            cell.splashColor = self.colors[indexPath.item]
+            let colorIndex = indexPath.item % self.colors.count
+            
+            cell.splashColor = self.colors[colorIndex]
             cell.modifyColors()
             
             cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
