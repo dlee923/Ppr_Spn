@@ -47,7 +47,7 @@ extension MealKitsCollectionViewCell {
     internal func modifyLikeBtn() {
         
         self.likeButton.backgroundColor = .white
-        self.likeButton.setImage(UIImage(named: "heart2_hf.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.likeButton.setImage(UIImage(named: "heart_hf.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
         self.likeButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.likeButton.addTarget(self, action: #selector(self.userPressedLike), for: .touchUpInside)
     }

@@ -252,12 +252,12 @@ class BrandDashboardController: UIPageViewController {
         completion()
     }
     
+    var workItemCompletionCount: Int = 0
+    
     private func downloadIngredientImages() {
         self.mainThread.async {
             self.activityIndicator.activityInProgress()
         }
-        
-        var workItemCompletionCount: Int = 0
         
         self.dispatchGroup.enter()
         
@@ -271,9 +271,9 @@ class BrandDashboardController: UIPageViewController {
                     print(imageLink)
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
                         self.reducedCompiledIngredients[x].image = UIImage(data: $0)
-                        workItemCompletionCount += 1
-                        print("\(workItemCompletionCount) / \(reducedCompiledIngredientsCount)")
-                        if workItemCompletionCount >= reducedCompiledIngredientsCount {
+                        self.workItemCompletionCount += 1
+                        print("\(self.workItemCompletionCount) / \(reducedCompiledIngredientsCount)")
+                        if self.workItemCompletionCount >= reducedCompiledIngredientsCount {
                             print("done")
                             self.dispatchGroup.leave()
                         }
@@ -281,6 +281,23 @@ class BrandDashboardController: UIPageViewController {
                 }
                 
             })
+            self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
+        }
+    }
+    
+    private func downloadRecipeImages() {
+        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
+        
+        for menuOption in selectedMenuOptions {
+            let dispatchWorkItem = DispatchWorkItem {
+                if let imageURL = menuOption.recipe?.recipeImageLink {
+                    ImageAPI.shared.downloadImage(urlLink: imageURL, completion: {
+                        menuOption.recipe?.recipeImage = UIImage(data: $0)
+//                        self.dispatchGroup.leave()
+                    })
+                }
+            }
+//            self.dispatchGroup.enter()
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
     }
@@ -297,7 +314,11 @@ class BrandDashboardController: UIPageViewController {
         // inject compiled ingredients list
         self.calculateIngredients {
             
+            // download ingredients images
             self.downloadIngredientImages()
+            
+            // download recipe images
+            self.downloadRecipeImages()
             
             dispatchGroup.notify(queue: mainThread, execute: {
                 

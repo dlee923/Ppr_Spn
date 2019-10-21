@@ -90,32 +90,8 @@ class CompiledIngredientsViewController: UIViewController {
         ])
     }
     
-    private func downloadRecipeImages() {
-        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
-        
-        self.mainThread.async {
-            self.activityIndicator.activityInProgress()
-        }
-        
-        for menuOption in selectedMenuOptions {
-            let dispatchWorkItem = DispatchWorkItem {
-                if let imageURL = menuOption.recipe?.recipeImageLink {
-                    ImageAPI.shared.downloadImage(urlLink: imageURL, completion: {
-                        menuOption.recipe?.recipeImage = UIImage(data: $0)
-                        self.dispatchGroup.leave()
-                    })
-                }
-            }
-            self.dispatchGroup.enter()
-            self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
-        }
-    }
-    
     @objc private func finishedShoppingAction() {
-        self.downloadRecipeImages()
-        
         self.dispatchGroup.notify(queue: self.mainThread) {
-            self.activityIndicator.activityEnded()
             self.parentViewControllerDelegate?.changeViewController(index: 2)
         }
     }
