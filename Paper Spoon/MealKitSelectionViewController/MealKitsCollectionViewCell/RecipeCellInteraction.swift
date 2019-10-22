@@ -23,13 +23,13 @@ extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
         if let isLiked = self.menuOption?.isLiked {
             self.menuOption?.isLiked = isLiked ? false : true
             
-//            self.userFeedbackDelegate?.userLiked(liked: (self.menuOption?.isLiked)!)
+            print("unliked")
             
         } else {
             // If nil then assume false and switch to true
             self.menuOption?.isLiked = true
             
-//            self.userFeedbackDelegate?.userLiked(liked: (self.menuOption?.isLiked)!)
+            print("liked")
             
         }
         // reload view based on recipe changes
@@ -60,7 +60,7 @@ extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
             self.menuOption?.userRating = rating
             // Command view controller to send rating to server
             
-//            self.userFeedbackDelegate?.userRated(rating: rating, isRated: self.rating.isRated ?? false)
+            print(rating)
             
         }
     }

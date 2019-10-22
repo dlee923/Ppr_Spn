@@ -253,6 +253,7 @@ class BrandDashboardController: UIPageViewController {
     }
     
     var workItemCompletionCount: Int = 0
+    var workItemCompletionLimit: Int = 0
     
     private func downloadIngredientImages() {
         self.mainThread.async {
@@ -260,9 +261,6 @@ class BrandDashboardController: UIPageViewController {
         }
         
         self.dispatchGroup.enter()
-        
-        // find number of ingredients that only have a picture source
-        let reducedCompiledIngredientsCount = self.reducedCompiledIngredients.filter({ $0.imageLink != nil }).count
         
         for x in 0..<self.reducedCompiledIngredients.count {
             let dispatchWorkItem = DispatchWorkItem(block: {
@@ -272,11 +270,12 @@ class BrandDashboardController: UIPageViewController {
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
                         self.reducedCompiledIngredients[x].image = UIImage(data: $0)
                         self.workItemCompletionCount += 1
-                        print("\(self.workItemCompletionCount) / \(reducedCompiledIngredientsCount)")
-                        if self.workItemCompletionCount >= reducedCompiledIngredientsCount {
+                        
+                        if self.workItemCompletionCount >= self.workItemCompletionLimit {
                             print("done")
                             self.dispatchGroup.leave()
                         }
+                        
                     })
                 }
                 
@@ -293,11 +292,16 @@ class BrandDashboardController: UIPageViewController {
                 if let imageURL = menuOption.recipe?.recipeImageLink {
                     ImageAPI.shared.downloadImage(urlLink: imageURL, completion: {
                         menuOption.recipe?.recipeImage = UIImage(data: $0)
-//                        self.dispatchGroup.leave()
+                        self.workItemCompletionCount += 1
+                        
+                        if self.workItemCompletionCount >= self.workItemCompletionLimit {
+                            print("done")
+                            self.dispatchGroup.leave()
+                        }
+                        
                     })
                 }
             }
-//            self.dispatchGroup.enter()
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
     }
@@ -313,6 +317,12 @@ class BrandDashboardController: UIPageViewController {
         
         // inject compiled ingredients list
         self.calculateIngredients {
+            
+            // find number of ingredients that only have a picture source
+            let reducedCompiledIngredientsCount = self.reducedCompiledIngredients.filter({ $0.imageLink != nil }).count
+            let selectedMenuOptionsCount = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.recipe?.recipeImageLink != nil }).count ?? 0
+            
+            self.workItemCompletionLimit = reducedCompiledIngredientsCount + selectedMenuOptionsCount
             
             // download ingredients images
             self.downloadIngredientImages()
