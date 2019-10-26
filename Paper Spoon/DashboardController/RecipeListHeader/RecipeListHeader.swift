@@ -22,21 +22,26 @@ class RecipeListHeader: UIView {
         self.addBrandsSelectorArrow()
     }
     
+    // MARK:  UI Elements
     let brandsSelectorArrow = BrandsSelectorView()
     lazy var brandsPickerView = BrandsCollectionView(frame: self.frame, collectionViewLayout: UICollectionViewFlowLayout())
     let headerLabel = UILabel()
     var clearSelectionView = UIStackView()
     
+    // MARK:  Data Variables
     var brands: [Brand]? {
         didSet {
             self.brandsPickerView.brands = self.brands
         }
     }
     
+    // MARK:  Animatable Constraints
     var brandsSelectorLeadingConstraint: NSLayoutConstraint?
     
+    // MARK:  Delegates
+    var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
+    
     private func addHeaderLabel() {
-        self.headerLabel.backgroundColor = .yellow
         self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
         self.headerLabel.text = "Choose Recipes:"
         self.addSubview(self.headerLabel)
@@ -76,7 +81,6 @@ class RecipeListHeader: UIView {
     
     private func addClearSelectionOption() {
         self.addSubview(self.clearSelectionView)
-        self.clearSelectionView.backgroundColor = .black
         self.clearSelectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.clearSelectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
@@ -102,6 +106,10 @@ class RecipeListHeader: UIView {
         
         self.clearSelectionView.stackProperties(axis: .horizontal, spacing: 5, alignment: .fill, distribution: .fillProportionally)
         
+        // add tap gesture action
+        let clearActionTap = UITapGestureRecognizer(target: self, action: #selector(self.clearAll))
+        self.clearSelectionView.addGestureRecognizer(clearActionTap)
+        
         // By default - set as hidden
         self.clearSelectionView.isHidden = true
     }
@@ -112,8 +120,15 @@ class RecipeListHeader: UIView {
     }
     
     func changeRecipeListHeader(numberOfRecipesSelected: Int, maxRecipes: Int) {
-        self.headerLabel.text = numberOfRecipesSelected > 0 ? "\(numberOfRecipesSelected) / \(maxRecipes) Selected" : "Choose Recipes:"
-        self.clearSelectionView.isHidden = numberOfRecipesSelected > 0 ? false : true
+        self.headerLabel.text = numberOfRecipesSelected > 0 ? "\(numberOfRecipesSelected) of \(maxRecipes)  Selected" : "Choose Recipes:"
+        
+        UIView.animate(withDuration: 0.5) {
+            self.clearSelectionView.isHidden = numberOfRecipesSelected > 0 ? false : true
+        }
+    }
+    
+    @objc func clearAll() {
+        self.brandDashboardControllerDelegate?.clearSelections()
     }
 
     required init?(coder aDecoder: NSCoder) {

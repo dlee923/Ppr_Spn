@@ -11,6 +11,8 @@ import UIKit
 protocol BrandDashboardControllerDelegate: AnyObject {
     func showHideCompileButton()
     func movePickerPosition(position: Int)
+    func changeRecipeHeadertext()
+    func clearSelections()
 }
 
 
@@ -45,4 +47,24 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     }
     
     func movePickerPosition(position: Int) { }
+    
+    func changeRecipeHeadertext() {
+        self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.menuOptionsObj?.selectedMenuOptions.count ?? 0, maxRecipes: 5)
+    }
+    
+    func clearSelections() {
+        self.menuOptionsObj?.selectedMenuOptions.removeAll()
+        if let menuOptions = self.menuOptionsObj?.menuOptions {
+            for menuOption in menuOptions {
+                menuOption.isSelected = false
+            }
+        }
+        // remove highlighting
+        self.recipeListViewController.menuOptionList.reloadData()
+        
+        // remove button
+        self.showHideCompileButton()
+        
+        self.changeRecipeHeadertext()
+    }
 }

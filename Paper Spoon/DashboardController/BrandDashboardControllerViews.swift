@@ -36,8 +36,7 @@ extension BrandDashboardController {
         
         self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false
         self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-//        self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-//        self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+
         self.compileIngredientsBtn?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
         self.compileIngredientsBtnPopped = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)

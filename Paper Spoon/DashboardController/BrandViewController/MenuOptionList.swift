@@ -72,6 +72,9 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             guard let menuOption = cell.menuOption else { return }
             self.selectMenuOption(menuOption: menuOption)
             
+            // modify recipe header
+            self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
+            
             // show / hide compile button
             self.brandDashboardControllerDelegate?.showHideCompileButton()
         }

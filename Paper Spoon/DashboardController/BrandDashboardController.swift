@@ -38,11 +38,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-//        DispatchQueue.main.async {
-//            self.activityIndicator.activityInProgress()
-//        }
-//
-//        self.downloadData()
+        DispatchQueue.main.async {
+            self.activityIndicator.activityInProgress()
+        }
+
+        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -86,7 +86,11 @@ class BrandDashboardController: UIPageViewController {
     var compileIngredientsBtn: NextStepBtn?
     let activityIndicator = ActivityIndicator()
     
-    lazy var recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+    lazy var recipeListHeader: RecipeListHeader = {
+        let recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+        recipeListHeader.brandDashboardControllerDelegate = self
+        return recipeListHeader
+    }()
     
     lazy var recipeListViewController: BrandViewController = {
         let recipeListVC = BrandViewController()
