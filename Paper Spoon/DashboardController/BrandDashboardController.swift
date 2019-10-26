@@ -38,11 +38,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-        DispatchQueue.main.async {
-            self.activityIndicator.activityInProgress()
-        }
-
-        self.downloadData()
+//        DispatchQueue.main.async {
+//            self.activityIndicator.activityInProgress()
+//        }
+//
+//        self.downloadData()
     }
     
     fileprivate func downloadData() {
