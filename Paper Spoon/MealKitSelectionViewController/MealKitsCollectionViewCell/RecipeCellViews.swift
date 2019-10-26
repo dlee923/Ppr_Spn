@@ -60,9 +60,9 @@ extension MealKitsCollectionViewCell {
         let fatsLbl = UILabel()
         fatsLbl.text = "Fats"
         let carbsLbl = UILabel()
-        carbsLbl.text = "Carbos"
+        carbsLbl.text = "Carbs"
         let caloriesLbl = UILabel()
-        caloriesLbl.text = "Cal."
+        caloriesLbl.text = "Calories"
         
         let labelStackView = UIStackView(arrangedSubviews: [proteinLbl, fatsLbl, carbsLbl, caloriesLbl])
         labelStackView.stackProperties(axis: .horizontal, spacing: 5, alignment: .fill, distribution: .fillEqually)

@@ -160,13 +160,15 @@ extension MealKitsCollectionViewCell {
     internal func ingredientsViewConstraints() {
         self.ingredientsView.translatesAutoresizingMaskIntoConstraints = false
         self.ingredientsView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
-        ingredientsViewBottom = self.ingredientsView.bottomAnchor.constraint(equalTo: self.recipeDescription.bottomAnchor)
-        ingredientsViewBottom?.isActive = true
-        ingredientsViewBottomSquished = self.ingredientsView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         self.ingredientsView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin * 0.8).isActive = true
+        
+        ingredientsViewBottom = self.ingredientsView.bottomAnchor.constraint(equalTo: self.recipeDescription.bottomAnchor)
+        ingredientsViewBottomSquished = self.ingredientsView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ingredientsViewBottom?.isActive = true
+        
         ingredientsViewTop = self.ingredientsView.topAnchor.constraint(equalTo: self.recipeDescription.topAnchor)
+        ingredientsViewTopSquished = self.ingredientsView.topAnchor.constraint(equalTo: self.recipeDescription.topAnchor, constant: 5)
         ingredientsViewTop?.isActive = true
-        ingredientsViewTopSquished = self.ingredientsView.topAnchor.constraint(equalTo: self.recipeDescription.bottomAnchor, constant: -5)
     }
     
     internal func squishIngredients() {

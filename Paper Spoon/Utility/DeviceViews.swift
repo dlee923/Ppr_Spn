@@ -46,7 +46,7 @@ class DeviceViews {
         Device.DeviceTypes.iPhone5      : 13,
         Device.DeviceTypes.iPhone8      : 13,
         Device.DeviceTypes.iPhone8Plus  : 13,
-        Device.DeviceTypes.iPhoneXs     : 13,
+        Device.DeviceTypes.iPhoneXs     : 10,
         Device.DeviceTypes.iPhoneXsPlus : 13
     ]
     

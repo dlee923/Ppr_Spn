@@ -21,14 +21,20 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         if self.menuOptionsObj?.selectedMenuOptions.count == 1 {
             if compileIngredientsButtonHeightCollapsed.isActive == true {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = false
+                self.compileIngredientsBtnPopped?.isActive = true
+                self.compileIngredientsBtnNarrowed?.isActive = false
                 self.compileIngredientsBtnExpanded?.isActive = true
+                
                 self.recipeListViewController.menuOptionListCollapsed?.isActive = false
                 self.recipeListViewController.menuOptionListExpanded?.isActive = true
             }
         } else if self.menuOptionsObj?.selectedMenuOptions.count == 0 {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
-                self.compileIngredientsBtnExpanded?.isActive = false
+                self.compileIngredientsBtnPopped?.isActive = false
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
+                self.compileIngredientsBtnExpanded?.isActive = false
+                self.compileIngredientsBtnNarrowed?.isActive = true
+                
                 self.recipeListViewController.menuOptionListExpanded?.isActive = false
                 self.recipeListViewController.menuOptionListCollapsed?.isActive = true
             }

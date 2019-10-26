@@ -81,20 +81,20 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     var sideMargin: CGFloat { return self.frame.width * self.sideMarginMultiplier }
 
     // MARK: - View Animatable Constraint Properties
-       var backgroundSplashHeight: NSLayoutConstraint?
-       var backgroundSplashHeightSquished: NSLayoutConstraint?
+    var backgroundSplashHeight: NSLayoutConstraint?
+    var backgroundSplashHeightSquished: NSLayoutConstraint?
        
-       var imageShadowBottom: NSLayoutConstraint?
-       var imageBottom: NSLayoutConstraint?
+    var imageShadowBottom: NSLayoutConstraint?
+    var imageBottom: NSLayoutConstraint?
        
-       var ingredientsButtonBottom: NSLayoutConstraint?
-       var ingredientsButtonBottomSquished: NSLayoutConstraint?
+    var ingredientsButtonBottom: NSLayoutConstraint?
+    var ingredientsButtonBottomSquished: NSLayoutConstraint?
        
-       var ingredientsViewBottom: NSLayoutConstraint?
-       var ingredientsViewTop: NSLayoutConstraint?
+    var ingredientsViewBottom: NSLayoutConstraint?
+    var ingredientsViewTop: NSLayoutConstraint?
        
-       var ingredientsViewBottomSquished: NSLayoutConstraint?
-       var ingredientsViewTopSquished: NSLayoutConstraint?
+    var ingredientsViewBottomSquished: NSLayoutConstraint?
+    var ingredientsViewTopSquished: NSLayoutConstraint?
     
     
     private func setup() {
@@ -128,13 +128,13 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     private func addViews() {
             self.addSubview(self.backgroundSplash)                          // Included
             self.addSubview(self.title)                                     // Included
-    //        self.addSubview(self.subtitle)                                // NOT INCLUDED
+            self.addSubview(self.subtitle)                                  // Included
             self.addSubview(self.rating)                                    // Included
             self.addSubview(self.likeButton)                                // Included
     //        self.addSubview(self.difficulty)                              // NOT INCLUDED
             self.addSubview(self.nutritionStackContainer)                   // Included
-            self.addSubview(self.ingredientsView)                           // Included + must overlap nutritionStackContainer in view heirarchy
             self.addSubview(self.recipeDescription)                         // Included + must overlap ingredientsView in view heirarchy
+            self.addSubview(self.ingredientsView)                           // Included + must overlap nutritionStackContainer in view heirarchy
             self.nutritionStackContainer.addSubview(self.nutritionStack)    // Included
             self.addSubview(self.ingredientsButton)                         // Included
             self.addSubview(self.imageShadow)                               // Included

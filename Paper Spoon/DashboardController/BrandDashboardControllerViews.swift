@@ -36,14 +36,17 @@ extension BrandDashboardController {
         
         self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false
         self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-        self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+//        self.compileIngredientsBtn?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
+//        self.compileIngredientsBtn?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+        self.compileIngredientsBtn?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
-        self.compileIngredientsBtnExpanded = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
-        
+        self.compileIngredientsBtnPopped = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
         self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
-        
         self.compileIngredientsBtnHeightCollapsed?.isActive = true
+        
+        self.compileIngredientsBtnExpanded = self.compileIngredientsBtn?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+        self.compileIngredientsBtnNarrowed = self.compileIngredientsBtn?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0)
+        self.compileIngredientsBtnNarrowed?.isActive = true
     }
 }
 

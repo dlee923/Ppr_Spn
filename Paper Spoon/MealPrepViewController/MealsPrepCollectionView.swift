@@ -51,7 +51,9 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (self.menuOptionsObj?.selectedMenuOptions.count ?? 1)
+        let selectedMenuOptionsCount = self.menuOptionsObj?.selectedMenuOptions.count ?? 0
+        let numberOfItems = selectedMenuOptionsCount ?? 0 <= 1 ? 1 : self.menuOptionsObj?.selectedMenuOptions.count
+        return (numberOfItems ?? 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

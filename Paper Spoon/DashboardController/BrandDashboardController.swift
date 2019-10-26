@@ -128,8 +128,9 @@ class BrandDashboardController: UIPageViewController {
     
     // MARK:  Animatable constraints
     var compileIngredientsBtnHeightCollapsed: NSLayoutConstraint?
+    var compileIngredientsBtnPopped: NSLayoutConstraint?
     var compileIngredientsBtnExpanded: NSLayoutConstraint?
-    
+    var compileIngredientsBtnNarrowed: NSLayoutConstraint?
     
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1
@@ -272,6 +273,7 @@ class BrandDashboardController: UIPageViewController {
                         self.workItemCompletionCount += 1
                         
                         if self.workItemCompletionCount >= self.workItemCompletionLimit {
+                            print("\(self.workItemCompletionCount) / \(self.workItemCompletionLimit)")
                             print("done")
                             self.dispatchGroup.leave()
                         }
@@ -295,6 +297,7 @@ class BrandDashboardController: UIPageViewController {
                         self.workItemCompletionCount += 1
                         
                         if self.workItemCompletionCount >= self.workItemCompletionLimit {
+                            print("\(self.workItemCompletionCount) / \(self.workItemCompletionLimit)")
                             print("done")
                             self.dispatchGroup.leave()
                         }
@@ -331,13 +334,11 @@ class BrandDashboardController: UIPageViewController {
             self.downloadRecipeImages()
             
             dispatchGroup.notify(queue: mainThread, execute: {
-                
-                self.parentViewControllerDelegate?.sendReducedCompiledIngredients(reducedCompiledIngredients: self.reducedCompiledIngredients)
-                
-                // present compiledIngredientsViewController
-                self.activityIndicator.activityEnded()
-                
-                self.parentViewControllerDelegate?.changeViewController(index: 1)
+                self.parentViewControllerDelegate?.sendReducedCompiledIngredients(reducedCompiledIngredients: self.reducedCompiledIngredients, completion: {
+                    // present compiledIngredientsViewController
+                    self.activityIndicator.activityEnded()
+                    self.parentViewControllerDelegate?.changeViewController(index: 1)
+                })
             })
         }
     }
