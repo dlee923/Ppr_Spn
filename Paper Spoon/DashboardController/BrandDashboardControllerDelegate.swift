@@ -61,16 +61,12 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             }
         }
         // remove highlighting
-//        self.recipeListViewController.menuOptionList.reloadData()
-        for tile in self.recipeListViewController.menuOptionList.visibleCells {
-            if let menuOptionListCell = tile as? MenuOptionListCell {
-                self.recipeListViewController.menuOptionList.setSelectionHighlights(cell: menuOptionListCell)
-            }
-        }
+        self.recipeListViewController.menuOptionList.reloadData()
         
         // remove button
         self.showHideCompileButton()
         
         self.changeRecipeHeadertext()
     }
+    
 }

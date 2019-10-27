@@ -61,7 +61,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.compiledIngredients.count == 0 {
-            return self.frame.height * 0.5
+            return 50
         } else {
             return 35
         }

@@ -23,7 +23,7 @@ class MenuOptionListCell: UICollectionViewCell {
     var titleView = UILabel()
     var subtitleView = UILabel()
     var caloriesLabel = UILabel()
-    let titleViewColor = UIColor.themeColor1
+    let titleViewColor = UIColor.themeColor2
     let titleViewColorSelected = UIColor.color5
     var selectionCheckMarkView = UIView()
     
@@ -48,7 +48,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.addSelectionCheckmark()
         self.addViewTitle()
         self.addViewSubtitle()
-        self.addCaloriesLabel()
+//        self.addCaloriesLabel()
         self.tintColor = self.titleViewColorSelected
     }
     
@@ -61,11 +61,12 @@ class MenuOptionListCell: UICollectionViewCell {
     
     func setHighlightColors() {
         self.selectionCheckMarkView.isHidden = self.isSelect == true ? false : true
-        self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
+        self.titleView.textColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
     }
     
     private func setNullColors() {
         self.thumbnailView.backgroundColor = UIColor.themeColorNull
+        self.titleView.backgroundColor = UIColor.themeColorNull
         self.subtitleView.backgroundColor = UIColor.themeColorNull
         self.caloriesLabel.textColor = UIColor.themeColor1
     }
@@ -73,7 +74,8 @@ class MenuOptionListCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.isSelect = nil
-        self.titleView.backgroundColor = self.titleViewColor
+//        self.titleView.backgroundColor = self.titleViewColor
+        self.titleView.textColor = self.titleViewColor
         self.selectionCheckMarkView.isHidden = true
     }
     
@@ -164,6 +166,7 @@ class MenuOptionListCell: UICollectionViewCell {
     
     private func addCaloriesLabel() {
         self.caloriesLabel.font = UIFont.fontCoolvetica?.withSize(10)
+        self.caloriesLabel.textAlignment = .right
         self.addSubview(self.caloriesLabel)
         
         self.caloriesLabel.translatesAutoresizingMaskIntoConstraints = false

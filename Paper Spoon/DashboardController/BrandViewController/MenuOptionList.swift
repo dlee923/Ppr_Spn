@@ -66,7 +66,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             cell.isSelect = cell.isSelect == false || cell.isSelect == nil ? true : false
             
             // UI change to cell based on selection
-            self.setSelectionHighlights(cell: cell)
+            cell.setHighlightColors()
             
             // add or remove menu option to selected array
             guard let menuOption = cell.menuOption else { return }
@@ -78,10 +78,6 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             // show / hide compile button
             self.brandDashboardControllerDelegate?.showHideCompileButton()
         }
-    }
-    
-    func setSelectionHighlights(cell: MenuOptionListCell) {
-        cell.setHighlightColors()
     }
     
     private func selectMenuOption(menuOption: MenuOption) {

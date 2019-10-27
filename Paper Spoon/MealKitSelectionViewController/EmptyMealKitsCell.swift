@@ -1,14 +1,14 @@
 //
-//  MealsPrepEmptyCollectionViewCell.swift
+//  EmptyMealKitsCell.swift
 //  Paper Spoon
 //
-//  Created by Daniel Lee on 10/13/19.
+//  Created by Daniel Lee on 10/27/19.
 //  Copyright © 2019 DLEE. All rights reserved.
 //
 
 import UIKit
 
-class EmptyMealsPrepCell: EmptyCollectionViewCell {
+class EmptyMealKitsCell: EmptyCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 //        self.image.image = UIImage(named: "sad_chef")

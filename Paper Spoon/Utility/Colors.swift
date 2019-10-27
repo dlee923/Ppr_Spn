@@ -16,8 +16,8 @@ extension UIColor {
     static let color2 = UIColor(red: 180/255, green: 0/255, blue: 30/255, alpha: 1.0)
     // Dry Magenta
     static let color3 = UIColor(red: 237/255, green: 63/255, blue: 177/255, alpha: 1.0)
-    // Golden Yellow
-    static let color4 = UIColor(red: 255/255, green: 223/255, blue: 30/255, alpha: 1.0)
+    // Mandarin Orange
+    static let color4 = UIColor(red: 233/255, green: 156/255, blue: 0/255, alpha: 1.0)
     // Sea Blue
     static let color5 = UIColor(red: 0/255, green: 237/255, blue: 150/255, alpha: 1.0)
     // Dusty Purple
@@ -32,4 +32,6 @@ extension UIColor {
     static let themeColor2 = UIColor(red: 25/255, green: 25/255, blue: 25/255, alpha: 1.0)
     static let themeColorNull = UIColor(red: 225/255, green: 225/255, blue: 225/255, alpha: 1.0)
     
+//    // Golden Yellow
+//    static let color4 = UIColor(red: 255/255, green: 223/255, blue: 30/255, alpha: 1.0)
 }

@@ -22,9 +22,9 @@ class CompiledIngredientsViewController: UIViewController {
     
     private func setup() {
         self.setColors()
-        
-        self.setupFinishedShoppingBtn()
-        self.addFinishedShoppingBtn()
+
+//        self.setupFinishedShoppingBtn()
+//        self.addFinishedShoppingBtn()
         
         self.setupCompiledIngredientsList()
         self.addCompiledIngredientsList()
@@ -65,13 +65,12 @@ class CompiledIngredientsViewController: UIViewController {
     private func addCompiledIngredientsList() {
         guard let compiledIngredientsList = self.compiledIngredientsList else { return }
         self.view.addSubview(compiledIngredientsList)
-        guard let finishedShoppingButton = self.finishedShoppingBtn else { return }
-        
         self.compiledIngredientsList?.translatesAutoresizingMaskIntoConstraints = false
+        
         self.compiledIngredientsList?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         self.compiledIngredientsList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.compiledIngredientsList?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: finishedShoppingButton.topAnchor, constant: -5).isActive = true
+        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     private func setupFinishedShoppingBtn() {

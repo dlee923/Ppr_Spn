@@ -29,6 +29,7 @@
 		7077B5A62323F82E00359035 /* InstructionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */; };
 		7077B5A82323F9C100359035 /* InstructionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */; };
 		7077B5AA23244C8700359035 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A923244C8700359035 /* InstructionsViewController.swift */; };
+		707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */; };
 		708735E32310E3750079CCA5 /* IngredientsCategorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708735E22310E3750079CCA5 /* IngredientsCategorization.swift */; };
 		708A6757235CF00800C53011 /* BrandDashboardControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */; };
 		70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */; };
@@ -111,6 +112,7 @@
 		7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsCollectionView.swift; sourceTree = "<group>"; };
 		7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7077B5A923244C8700359035 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMealKitsCell.swift; sourceTree = "<group>"; };
 		708735E22310E3750079CCA5 /* IngredientsCategorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsCategorization.swift; sourceTree = "<group>"; };
 		708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerDelegate.swift; sourceTree = "<group>"; };
 		70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */,
 				70118600231B291D00F4D047 /* MealKitsCollectionView.swift */,
+				707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */,
 				70D46CA8235C107700AB3488 /* MealKitsCollectionViewCell */,
 				7077B5A923244C8700359035 /* InstructionsViewController.swift */,
 				7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */,
@@ -566,6 +569,7 @@
 				70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
+				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,
 				70D46CAC235C109900AB3488 /* IngredientsListCollectionView.swift in Sources */,
 				70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */,
 				70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */,

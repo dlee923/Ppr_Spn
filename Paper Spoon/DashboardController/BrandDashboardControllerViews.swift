@@ -16,17 +16,18 @@ extension BrandDashboardController {
         self.recipeListHeader.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.recipeListHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.recipeListHeader.heightAnchor.constraint(equalToConstant: 100),
             self.recipeListHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
             self.recipeListHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5)
-            ])
+        ])
+        self.recipeHeaderHeight = self.recipeListHeader.heightAnchor.constraint(equalToConstant: self.recipeHeaderHeightConstant)
+        self.recipeHeaderHeight?.isActive = true
     }
     
     internal func setupCompileIngredientsBtn() {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
                                                                width: self.view.frame.width,
                                                                height: self.view.frame.height * 0.1),
-                                                 setTitle: "Compile Ingredients!")
+                                                 setTitle: "Create Shopping List!")
         self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
     }
     

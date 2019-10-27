@@ -38,11 +38,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-        DispatchQueue.main.async {
-            self.activityIndicator.activityInProgress()
-        }
-
-        self.downloadData()
+//        DispatchQueue.main.async {
+//            self.activityIndicator.activityInProgress()
+//        }
+//
+//        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -135,6 +135,8 @@ class BrandDashboardController: UIPageViewController {
     var compileIngredientsBtnPopped: NSLayoutConstraint?
     var compileIngredientsBtnExpanded: NSLayoutConstraint?
     var compileIngredientsBtnNarrowed: NSLayoutConstraint?
+    var recipeHeaderHeight: NSLayoutConstraint?
+    var recipeHeaderHeightConstant: CGFloat = 100
     
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1
