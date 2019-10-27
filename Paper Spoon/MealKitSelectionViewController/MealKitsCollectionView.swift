@@ -38,6 +38,7 @@ class MealKitsCollectionView: UICollectionView {
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
         self.register(MealKitsCollectionViewCell.self, forCellWithReuseIdentifier: "mealKitsCollectionViewCell")
+        self.register(EmptyMealKitsCell.self, forCellWithReuseIdentifier: "emptyMealKitsCell")
         self.delegate = self
         self.dataSource = self
         self.isPagingEnabled = true
@@ -56,22 +57,30 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
-            
-            let colorIndex = indexPath.item % self.colors.count
-            
-            cell.splashColor = self.colors[colorIndex]
-            cell.modifyColors()
-            
-            cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
-            cell.scrollViewLockDelegate = self
-            
-            let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
-            cell.menuOption = menuOption
-            
-            return cell
+        if self.menuOptionsObj?.selectedMenuOptions.count == 0 || self.menuOptionsObj?.selectedMenuOptions.count == nil {
+            if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyMealKitsCell", for: indexPath) as? EmptyMealKitsCell {
+                return emptyCell
+            } else {
+                return UICollectionViewCell()
+            }
         } else {
-            return UICollectionViewCell()
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealKitsCollectionViewCell", for: indexPath) as? MealKitsCollectionViewCell {
+                
+                let colorIndex = indexPath.item % self.colors.count
+                
+                cell.splashColor = self.colors[colorIndex]
+                cell.modifyColors()
+                
+                cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
+                cell.scrollViewLockDelegate = self
+                
+                let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
+                cell.menuOption = menuOption
+                
+                return cell
+            } else {
+                return UICollectionViewCell()
+            }
         }
     }
 }
