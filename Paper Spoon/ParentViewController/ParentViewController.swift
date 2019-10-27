@@ -102,7 +102,7 @@ extension ParentViewController: ParentViewControllerDelegate {
     }
     
     func reloadAllControllers() {
-        self.compiledIngredientsViewController.compiledIngredientsList?.reloadData()
+        self.compiledIngredientsViewController.compiledIngredientsList.reloadData()
         self.mealPrepViewController.mealsPrepCollectionView.reloadData()
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }

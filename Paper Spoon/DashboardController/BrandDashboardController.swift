@@ -283,10 +283,8 @@ class BrandDashboardController: UIPageViewController {
                             print("done")
                             self.dispatchGroup.leave()
                         }
-                        
                     })
                 }
-                
             })
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }

@@ -16,10 +16,6 @@ class CompiledIngredientsViewController: UIViewController {
         self.setup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
     private func setup() {
         self.setColors()
 
@@ -34,12 +30,12 @@ class CompiledIngredientsViewController: UIViewController {
     var menuOptionsObj: MenuOptionObj?
     var reducedCompiledIngredients = [Ingredients]() {
         didSet {
-            self.compiledIngredientsList?.compiledIngredients = self.reducedCompiledIngredients
+            self.compiledIngredientsList.compiledIngredients = self.reducedCompiledIngredients
         }
     }
     
     // MARK:  UI Elements
-    var compiledIngredientsList: CompiledIngredientsList?
+    var compiledIngredientsList = CompiledIngredientsList()
     let activityIndicator = ActivityIndicator()
     var finishedShoppingBtn: NextStepBtn?
     
@@ -56,21 +52,18 @@ class CompiledIngredientsViewController: UIViewController {
     }
     
     private func setupCompiledIngredientsList() {
-        self.compiledIngredientsList = CompiledIngredientsList(frame: CGRect(x: 0, y: 0,
-                                                                             width: self.view.frame.width,
-                                                                             height: self.view.frame.height),
-                                                               style: .plain)   
+        self.compiledIngredientsList.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        self.compiledIngredientsList.parentViewControllerDelegate = self.parentViewControllerDelegate
     }
     
     private func addCompiledIngredientsList() {
-        guard let compiledIngredientsList = self.compiledIngredientsList else { return }
         self.view.addSubview(compiledIngredientsList)
-        self.compiledIngredientsList?.translatesAutoresizingMaskIntoConstraints = false
+        self.compiledIngredientsList.translatesAutoresizingMaskIntoConstraints = false
         
-        self.compiledIngredientsList?.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
-        self.compiledIngredientsList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
-        self.compiledIngredientsList?.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
-        self.compiledIngredientsList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+        self.compiledIngredientsList.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
+        self.compiledIngredientsList.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        self.compiledIngredientsList.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
+        self.compiledIngredientsList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
     
     private func setupFinishedShoppingBtn() {

@@ -24,8 +24,12 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         self.separatorColor = UIColor.themeColor1
     }
     
+    // MARK:  Data Variables
     var compiledIngredients = [Ingredients]()
     var purchasedIngredients = [Ingredients]()
+    
+    // MARK:  Delegates
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     private func registerCells() {
         self.register(UINib(nibName: "\(CompiledIngredientsCell.self)", bundle: .main), forCellReuseIdentifier: "compiledIngredients")
@@ -122,24 +126,28 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
 extension CompiledIngredientsList: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case 0:
-            print("purchased!")
-            self.swapIngredient(pullOutfrom: &self.compiledIngredients, insertInto: &self.purchasedIngredients, index: indexPath.row)
+        if let _ = tableView.cellForRow(at: indexPath) as? EmptyCompiledIngredientsCell {
+            self.parentViewControllerDelegate?.changeViewController(index: 0)
+        } else {
+            switch indexPath.section {
+            case 0:
+                print("purchased!")
+                self.swapIngredient(pullOutfrom: &self.compiledIngredients, insertInto: &self.purchasedIngredients, index: indexPath.row)
 
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.insertRows(at: [IndexPath(row: self.purchasedIngredients.count - 1, section: 1)], with: .top)
-            tableView.endUpdates()
-        case 1:
-            print("unpurchased!")
-            self.swapIngredient(pullOutfrom: &self.purchasedIngredients, insertInto: &self.compiledIngredients, index: indexPath.row)
-            
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-            tableView.insertRows(at: [IndexPath(row: self.compiledIngredients.count - 1, section: 0)], with: .top)
-            tableView.endUpdates()
-        default: break
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .bottom)
+                tableView.insertRows(at: [IndexPath(row: self.purchasedIngredients.count - 1, section: 1)], with: .top)
+                tableView.endUpdates()
+            case 1:
+                print("unpurchased!")
+                self.swapIngredient(pullOutfrom: &self.purchasedIngredients, insertInto: &self.compiledIngredients, index: indexPath.row)
+                
+                tableView.beginUpdates()
+                tableView.deleteRows(at: [indexPath], with: .bottom)
+                tableView.insertRows(at: [IndexPath(row: self.compiledIngredients.count - 1, section: 0)], with: .top)
+                tableView.endUpdates()
+            default: break
+            }
         }
     }
     

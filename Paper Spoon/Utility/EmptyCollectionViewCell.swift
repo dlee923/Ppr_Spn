@@ -23,7 +23,6 @@ class EmptyCollectionViewCell: UICollectionViewCell {
     
     private func addEmptyContainer() {
         self.addSubview(self.emptyContainer)
-        self.emptyContainer.backgroundColor = .yellow
         self.emptyContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.emptyContainer.heightAnchor.constraint(equalTo: self.heightAnchor),
@@ -84,7 +83,6 @@ class EmptyTableViewCell: UITableViewCell {
     
     private func addEmptyContainer() {
         self.addSubview(self.emptyContainer)
-        self.emptyContainer.backgroundColor = .yellow
         self.emptyContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.emptyContainer.heightAnchor.constraint(equalTo: self.heightAnchor),
