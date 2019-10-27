@@ -32,7 +32,11 @@ class CompiledIngredientsViewController: UIViewController {
     
     // MARK:  Variables
     var menuOptionsObj: MenuOptionObj?
-    var reducedCompiledIngredients = [Ingredients]()
+    var reducedCompiledIngredients = [Ingredients]() {
+        didSet {
+            self.compiledIngredientsList?.compiledIngredients = self.reducedCompiledIngredients
+        }
+    }
     
     // MARK:  UI Elements
     var compiledIngredientsList: CompiledIngredientsList?
@@ -55,8 +59,7 @@ class CompiledIngredientsViewController: UIViewController {
         self.compiledIngredientsList = CompiledIngredientsList(frame: CGRect(x: 0, y: 0,
                                                                              width: self.view.frame.width,
                                                                              height: self.view.frame.height),
-                                                               style: .plain)
-        self.compiledIngredientsList?.compiledIngredients = self.reducedCompiledIngredients
+                                                               style: .plain)   
     }
     
     private func addCompiledIngredientsList() {

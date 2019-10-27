@@ -37,6 +37,10 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     let calories = UILabel()
     let carbs = UILabel()
     let fats = UILabel()
+    let proteinLbl = UILabel()
+    let fatsLbl = UILabel()
+    let carbsLbl = UILabel()
+    let caloriesLbl = UILabel()
     let ingredientsView = IngredientsListCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     lazy var ingredientsButton = RecipeCellButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * self.BtnSizeMultiplier, height: self.frame.width * self.BtnSizeMultiplier), color: self.splashColor ?? UIColor.blue)
@@ -104,6 +108,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         
         self.backgroundSplashConstraints()
         self.titleConstraints()
+        self.subTitleConstraints()
         self.ImageConstraints()
         self.descriptionConstraints()
         self.ingredientsButtonConstraints()
@@ -114,6 +119,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         
         self.modifyColors()
         self.modifyTitle()
+        self.modifySubtitle()
         self.modifyImage()
         self.modifyDescription()
         self.modifyIngredientsBtn()

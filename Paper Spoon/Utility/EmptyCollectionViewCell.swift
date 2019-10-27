@@ -25,8 +25,8 @@ class EmptyCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.emptyContainer)
         self.emptyContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.emptyContainer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-            self.emptyContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            self.emptyContainer.heightAnchor.constraint(equalToConstant: 300),
+            self.emptyContainer.widthAnchor.constraint(equalToConstant: 300),
             self.emptyContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.emptyContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
@@ -57,7 +57,7 @@ class EmptyCollectionViewCell: UICollectionViewCell {
             self.message.bottomAnchor.constraint(equalTo: self.emptyContainer.bottomAnchor),
             self.message.leadingAnchor.constraint(equalTo: self.emptyContainer.leadingAnchor),
             self.message.trailingAnchor.constraint(equalTo: self.emptyContainer.trailingAnchor),
-            self.message.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            self.message.heightAnchor.constraint(equalTo: self.emptyContainer.heightAnchor, multiplier: 0.2),
             ])
     }
     
@@ -85,8 +85,8 @@ class EmptyTableViewCell: UITableViewCell {
         self.addSubview(self.emptyContainer)
         self.emptyContainer.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.emptyContainer.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3),
-            self.emptyContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            self.emptyContainer.heightAnchor.constraint(equalToConstant: 300),
+            self.emptyContainer.widthAnchor.constraint(equalToConstant: 300),
             self.emptyContainer.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.emptyContainer.centerYAnchor.constraint(equalTo: self.centerYAnchor)
         ])
@@ -117,7 +117,7 @@ class EmptyTableViewCell: UITableViewCell {
             self.message.bottomAnchor.constraint(equalTo: self.emptyContainer.bottomAnchor),
             self.message.leadingAnchor.constraint(equalTo: self.emptyContainer.leadingAnchor),
             self.message.trailingAnchor.constraint(equalTo: self.emptyContainer.trailingAnchor),
-            self.message.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.1),
+            self.message.heightAnchor.constraint(equalTo: self.emptyContainer.heightAnchor, multiplier: 0.2),
             ])
     }
     

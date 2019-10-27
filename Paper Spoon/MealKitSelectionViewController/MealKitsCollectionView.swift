@@ -41,6 +41,7 @@ class MealKitsCollectionView: UICollectionView {
         self.delegate = self
         self.dataSource = self
         self.isPagingEnabled = true
+        self.showsHorizontalScrollIndicator = false
     }
     
     required init?(coder aDecoder: NSCoder) {

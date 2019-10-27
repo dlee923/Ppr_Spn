@@ -11,6 +11,7 @@ import UIKit
 class MenuOptionObj {
     var menuOptions: [MenuOption]?
     var selectedMenuOptions = [MenuOption]()
+    var preppedMenuOptions = [MenuOption]()
     
     init(menuOptions: [MenuOption]?) {
         self.menuOptions = menuOptions

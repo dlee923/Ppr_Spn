@@ -17,8 +17,8 @@ extension MealKitsCollectionViewCell {
         self.backgroundSplash.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         self.backgroundSplash.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         self.backgroundSplash.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        backgroundSplashHeight = self.backgroundSplash.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.53)
-        backgroundSplashHeightSquished = self.backgroundSplash.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.45)
+        backgroundSplashHeight = self.backgroundSplash.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.58)
+        backgroundSplashHeightSquished = self.backgroundSplash.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)
         backgroundSplashHeight?.isActive = true
     }
     
@@ -40,7 +40,25 @@ extension MealKitsCollectionViewCell {
         self.title.topAnchor.constraint(equalTo: self.topAnchor, constant: inset).isActive = true
         self.title.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
         self.title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin * 0.8).isActive = true
-        self.title.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        self.title.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    }
+    
+    internal func subTitleConstraints() {
+        self.subtitle.translatesAutoresizingMaskIntoConstraints = false
+        self.subtitle.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 0).isActive = true
+        self.subtitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
+        self.subtitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin * 0.8).isActive = true
+        self.subtitle.heightAnchor.constraint(equalToConstant: 15).isActive = true
+    }
+    
+    // MARK: - Rating
+    internal func ratingConstraints() {
+        self.rating.translatesAutoresizingMaskIntoConstraints = false
+        self.rating.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
+        self.rating.topAnchor.constraint(equalTo: self.subtitle.bottomAnchor, constant: 5).isActive = true
+        self.rating.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        // (height * number of stars) + (spacing * number of stars - 1)
+        self.rating.widthAnchor.constraint(equalToConstant: (20 * 4) + (5 * 3)).isActive = true
     }
     
     // MARK: - Image + Animatable Constraints
@@ -62,14 +80,14 @@ extension MealKitsCollectionViewCell {
     }
     
     internal func squishImage() {
-        let scaleMultiplier: CGFloat = 0.55
+        let scaleMultiplier: CGFloat = 0.7
         let isSquished = self.isIngredientsVisible ?? false
         if !isSquished {
             imageShadow.transform = CGAffineTransform.identity
             image.transform = CGAffineTransform.identity
         } else {
-            imageShadow.transform = CGAffineTransform(translationX: -sideMargin * 1.15, y: self.frame.height * 0.0075).scaledBy(x: scaleMultiplier, y: scaleMultiplier)
-            image.transform = CGAffineTransform(translationX: -sideMargin * 1.15, y: self.frame.height * 0.0075).scaledBy(x: scaleMultiplier, y: scaleMultiplier)
+            imageShadow.transform = CGAffineTransform(translationX: -sideMargin * 1.15, y: self.frame.height * 0.005).scaledBy(x: scaleMultiplier, y: scaleMultiplier)
+            image.transform = CGAffineTransform(translationX: -sideMargin * 1.15, y: self.frame.height * 0.005).scaledBy(x: scaleMultiplier, y: scaleMultiplier)
         }
     }
     
@@ -88,9 +106,11 @@ extension MealKitsCollectionViewCell {
         self.ingredientsButton.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: self.BtnSizeMultiplier).isActive = true
         self.ingredientsButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: self.BtnSizeMultiplier).isActive = true
         self.ingredientsButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin / 2).isActive = true
+        
+        // Animatable Constraints
         ingredientsButtonBottom = self.ingredientsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
         ingredientsButtonBottom?.isActive = true
-        ingredientsButtonBottomSquished = self.ingredientsButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -150)
+        ingredientsButtonBottomSquished = self.ingredientsButton.topAnchor.constraint(equalTo: self.recipeDescription.topAnchor, constant: 5)
     }
     
     internal func squishIngredientsButton() {
@@ -126,16 +146,6 @@ extension MealKitsCollectionViewCell {
         } else {
             self.nutritionStackContainer.alpha = 0.0
         }
-    }
-    
-    // MARK: - Rating
-    internal func ratingConstraints() {
-        self.rating.translatesAutoresizingMaskIntoConstraints = false
-        self.rating.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
-        self.rating.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 5).isActive = true
-        self.rating.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        // (height * number of stars) + (spacing * number of stars - 1)
-        self.rating.widthAnchor.constraint(equalToConstant: (20 * 4) + (5 * 3)).isActive = true
     }
     
     // MARK: - Like Button + Animatable Constraints

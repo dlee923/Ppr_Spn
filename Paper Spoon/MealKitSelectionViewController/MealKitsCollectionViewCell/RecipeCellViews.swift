@@ -15,6 +15,16 @@ extension MealKitsCollectionViewCell {
         self.backgroundSplash.backgroundColor = self.splashColor ?? UIColor.blue
         self.ingredientsButton.backgroundColor = self.splashColor ?? UIColor.blue
         self.likeButton.tintColor = self.splashColor ?? UIColor.blue
+        
+        // modify nutrition colors
+        self.proteinLbl.backgroundColor = self.splashColor ?? UIColor.blue
+        self.fatsLbl.backgroundColor = self.splashColor ?? UIColor.blue
+        self.carbsLbl.backgroundColor = self.splashColor ?? UIColor.blue
+        self.caloriesLbl.backgroundColor = self.splashColor ?? UIColor.blue
+        self.protein.backgroundColor = self.splashColor ?? UIColor.blue
+        self.fats.backgroundColor = self.splashColor ?? UIColor.blue
+        self.carbs.backgroundColor = self.splashColor ?? UIColor.blue
+        self.calories.backgroundColor = self.splashColor ?? UIColor.blue
     }
     
 }
@@ -26,6 +36,11 @@ extension MealKitsCollectionViewCell {
     internal func modifyTitle() {
         self.title.textColor = .white
         self.title.font = UIFont.fontBebas?.withSize(40)
+    }
+    
+    internal func modifySubtitle() {
+        self.subtitle.textColor = .white
+        self.subtitle.font = UIFont.fontBebas?.withSize(15)
     }
     
     internal func modifyDescription() {
@@ -55,15 +70,33 @@ extension MealKitsCollectionViewCell {
     internal func modifyNutritionStack() {
         self.nutritionStackContainer.backgroundColor = .white
         
-        let proteinLbl = UILabel()
         proteinLbl.text = "Protein"
-        let fatsLbl = UILabel()
         fatsLbl.text = "Fats"
-        let carbsLbl = UILabel()
         carbsLbl.text = "Carbs"
-        let caloriesLbl = UILabel()
         caloriesLbl.text = "Calories"
         
+        // create rounded corners
+        proteinLbl.layer.cornerRadius = 2
+        fatsLbl.layer.cornerRadius = 2
+        carbsLbl.layer.cornerRadius = 2
+        caloriesLbl.layer.cornerRadius = 2
+        
+        proteinLbl.clipsToBounds = true
+        fatsLbl.clipsToBounds = true
+        carbsLbl.clipsToBounds = true
+        caloriesLbl.clipsToBounds = true
+        
+        proteinLbl.textAlignment = .center
+        fatsLbl.textAlignment = .center
+        carbsLbl.textAlignment = .center
+        caloriesLbl.textAlignment = .center
+        
+        protein.textAlignment = .center
+        fats.textAlignment = .center
+        carbs.textAlignment = .center
+        calories.textAlignment = .center
+        
+        // create stackviews
         let labelStackView = UIStackView(arrangedSubviews: [proteinLbl, fatsLbl, carbsLbl, caloriesLbl])
         labelStackView.stackProperties(axis: .horizontal, spacing: 5, alignment: .fill, distribution: .fillEqually)
         
@@ -84,7 +117,7 @@ extension MealKitsCollectionViewCell {
         
         self.nutritionStack.addArrangedSubview(labelStackView)
         self.nutritionStack.addArrangedSubview(dataStackView)
-        self.nutritionStack.stackProperties(axis: .vertical, spacing: 0, alignment: .fill, distribution: .fill)
+        self.nutritionStack.stackProperties(axis: .vertical, spacing: -2, alignment: .fill, distribution: .fill)
     }
     
     internal func modifyImage() {

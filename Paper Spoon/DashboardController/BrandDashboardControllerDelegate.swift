@@ -54,13 +54,19 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     
     func clearSelections() {
         self.menuOptionsObj?.selectedMenuOptions.removeAll()
+        // clear selection
         if let menuOptions = self.menuOptionsObj?.menuOptions {
             for menuOption in menuOptions {
                 menuOption.isSelected = false
             }
         }
         // remove highlighting
-        self.recipeListViewController.menuOptionList.reloadData()
+//        self.recipeListViewController.menuOptionList.reloadData()
+        for tile in self.recipeListViewController.menuOptionList.visibleCells {
+            if let menuOptionListCell = tile as? MenuOptionListCell {
+                self.recipeListViewController.menuOptionList.setSelectionHighlights(cell: menuOptionListCell)
+            }
+        }
         
         // remove button
         self.showHideCompileButton()
