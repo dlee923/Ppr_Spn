@@ -38,11 +38,11 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-//        DispatchQueue.main.async {
-//            self.activityIndicator.activityInProgress()
-//        }
-//
-//        self.downloadData()
+        DispatchQueue.main.async {
+            self.activityIndicator.activityInProgress()
+        }
+
+        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -81,6 +81,7 @@ class BrandDashboardController: UIPageViewController {
     }
     
     private var pendingPageIndex: Int?
+    var tempSelectedMenuOptions: [MenuOption]?
     
     // MARK: UI Elements
     var compileIngredientsBtn: NextStepBtn?
@@ -320,7 +321,11 @@ class BrandDashboardController: UIPageViewController {
             return
         }
         
-        if self.menuOptionsObj?.selectedMenuOptions.count ?? 0 <= 0 { return }
+        guard let temporarySelectedMenuOptions = self.tempSelectedMenuOptions else { return }
+        
+        if temporarySelectedMenuOptions.count <= 0 { return }
+        
+        self.menuOptionsObj?.selectedMenuOptions = temporarySelectedMenuOptions
         
         // inject compiled ingredients list
         self.calculateIngredients {

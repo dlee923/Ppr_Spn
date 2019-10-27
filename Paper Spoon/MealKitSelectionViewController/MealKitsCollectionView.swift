@@ -53,11 +53,15 @@ class MealKitsCollectionView: UICollectionView {
 
 extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.menuOptionsObj?.selectedMenuOptions.count ?? 0
+        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
+        return preppedMenuOptions?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if self.menuOptionsObj?.selectedMenuOptions.count == 0 || self.menuOptionsObj?.selectedMenuOptions.count == nil {
+        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
+        let preppedMenuOptionsCount = preppedMenuOptions?.count
+        
+        if preppedMenuOptionsCount == 0 || preppedMenuOptionsCount == nil {
             if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyMealKitsCell", for: indexPath) as? EmptyMealKitsCell {
                 return emptyCell
             } else {
@@ -74,7 +78,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
                 cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
                 cell.scrollViewLockDelegate = self
                 
-                let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
+                let menuOption = preppedMenuOptions?[indexPath.item]
                 cell.menuOption = menuOption
                 
                 return cell

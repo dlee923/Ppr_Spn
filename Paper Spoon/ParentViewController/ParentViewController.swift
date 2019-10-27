@@ -87,7 +87,9 @@ class ParentViewController: UITabBarController {
 protocol ParentViewControllerDelegate: AnyObject {
     func changeViewController(index position: Int)
     func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients], completion: (() -> Void))
-    func reloadAllControllers()
+    func reloadCompiledIngredients()
+    func reloadMealPrep()
+    func reloadMealKitSelection()
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -97,13 +99,20 @@ extension ParentViewController: ParentViewControllerDelegate {
     
     func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients], completion: (() -> Void)) {
         self.compiledIngredientsViewController.reducedCompiledIngredients = reducedCompiledIngredients
-        self.reloadAllControllers()
+        self.reloadCompiledIngredients()
+        self.reloadMealPrep()
         completion()
     }
     
-    func reloadAllControllers() {
+    func reloadCompiledIngredients() {
         self.compiledIngredientsViewController.compiledIngredientsList.reloadData()
+    }
+    
+    func reloadMealPrep() {
         self.mealPrepViewController.mealsPrepCollectionView.reloadData()
+    }
+    
+    func reloadMealKitSelection() {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }
 }

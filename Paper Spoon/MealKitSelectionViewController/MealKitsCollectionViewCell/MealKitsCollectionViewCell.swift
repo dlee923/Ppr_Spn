@@ -190,7 +190,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         }
     
     private func addGetCookingButton() {
-        self.getCookingBtn.setTitle("Get Cooking", for: .normal)
+        self.getCookingBtn.setTitle("Get Cooking!", for: .normal)
         self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
         self.getCookingBtn.backgroundColor = UIColor.color8
         self.getCookingBtn.layer.cornerRadius = 5

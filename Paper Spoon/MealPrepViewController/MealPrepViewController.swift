@@ -78,8 +78,13 @@ extension MealPrepViewController: MealPrepFinishedDelegate {
         self.parentViewControllerDelegate?.changeViewController(index: 3)
     }
     
+    func addToPreppedMeals() {
+        self.parentViewControllerDelegate?.reloadMealKitSelection()
+    }
+    
 }
 
 protocol MealPrepFinishedDelegate: AnyObject {
     func sendUserToMealKitSelection()
+    func addToPreppedMeals()
 }

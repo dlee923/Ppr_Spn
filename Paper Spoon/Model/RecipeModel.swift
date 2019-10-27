@@ -22,7 +22,6 @@ class Recipe {
     
     var instructionImages: [UIImage]?
     var thumbnail: UIImage?
-    var isMealKitComplete: Bool?
     var recipeImage: UIImage?
     var ingredientImageLinks: [String: String]?
     

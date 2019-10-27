@@ -13,6 +13,7 @@ protocol BrandDashboardControllerDelegate: AnyObject {
     func movePickerPosition(position: Int)
     func changeRecipeHeadertext()
     func clearSelections()
+    func selectMenuOption(menuOption: MenuOption)
 }
 
 
@@ -20,7 +21,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     
     func showHideCompileButton() {
         guard let compileIngredientsButtonHeightCollapsed = self.compileIngredientsBtnHeightCollapsed else { return }
-        if self.menuOptionsObj?.selectedMenuOptions.count == 1 {
+        if self.tempSelectedMenuOptions?.count == 1 {
             if compileIngredientsButtonHeightCollapsed.isActive == true {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = false
                 self.compileIngredientsBtnPopped?.isActive = true
@@ -30,7 +31,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 self.recipeListViewController.menuOptionListCollapsed?.isActive = false
                 self.recipeListViewController.menuOptionListExpanded?.isActive = true
             }
-        } else if self.menuOptionsObj?.selectedMenuOptions.count == 0 {
+        } else if self.tempSelectedMenuOptions?.count == 0 {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
                 self.compileIngredientsBtnPopped?.isActive = false
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
@@ -49,17 +50,18 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     func movePickerPosition(position: Int) { }
     
     func changeRecipeHeadertext() {
-        self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.menuOptionsObj?.selectedMenuOptions.count ?? 0, maxRecipes: 5)
+        self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.tempSelectedMenuOptions?.count ?? 0, maxRecipes: 5)
     }
     
     func clearSelections() {
-        self.menuOptionsObj?.selectedMenuOptions.removeAll()
+        self.tempSelectedMenuOptions?.removeAll()
         // clear selection
         if let menuOptions = self.menuOptionsObj?.menuOptions {
             for menuOption in menuOptions {
                 menuOption.isSelected = false
             }
         }
+        
         // remove highlighting
         self.recipeListViewController.menuOptionList.reloadData()
         
@@ -67,6 +69,24 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         self.showHideCompileButton()
         
         self.changeRecipeHeadertext()
+    }
+    
+    func selectMenuOption(menuOption: MenuOption) {
+        // create array if nil
+        if self.tempSelectedMenuOptions == nil { self.tempSelectedMenuOptions = [MenuOption]() }
+        
+        // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
+        if let alreadySelectedIndex = self.tempSelectedMenuOptions?.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
+            self.tempSelectedMenuOptions?.remove(at: alreadySelectedIndex)
+            
+            // mark as not selected for prepareForReuse
+            menuOption.isSelected = false
+        } else {
+            self.tempSelectedMenuOptions?.append(menuOption)
+            
+            // mark as selected for prepareForReuse
+            menuOption.isSelected = true
+        }
     }
     
 }

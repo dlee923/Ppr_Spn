@@ -11,7 +11,6 @@ import UIKit
 class MenuOptionObj {
     var menuOptions: [MenuOption]?
     var selectedMenuOptions = [MenuOption]()
-    var preppedMenuOptions = [MenuOption]()
     
     init(menuOptions: [MenuOption]?) {
         self.menuOptions = menuOptions
@@ -25,6 +24,7 @@ class MenuOption {
     var recipe: Recipe?
     var recipeSubtitle: String
     var isSelected: Bool?
+    var isMealKitComplete: Bool?
     
     var isLiked: Bool?
     var userRating: Int?

@@ -23,7 +23,10 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.setColors()
     }
     
+    // MARK:  Object Variables
     var menuOptionsObj: MenuOptionObj?
+    
+    // MARK:  Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
     
     private func setColors() {
@@ -70,7 +73,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             
             // add or remove menu option to selected array
             guard let menuOption = cell.menuOption else { return }
-            self.selectMenuOption(menuOption: menuOption)
+            self.brandDashboardControllerDelegate?.selectMenuOption(menuOption: menuOption)
             
             // modify recipe header
             self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
@@ -79,22 +82,6 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             self.brandDashboardControllerDelegate?.showHideCompileButton()
         }
     }
-    
-    private func selectMenuOption(menuOption: MenuOption) {
-        // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
-        if let alreadySelectedIndex = self.menuOptionsObj?.selectedMenuOptions.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
-            self.menuOptionsObj?.selectedMenuOptions.remove(at: alreadySelectedIndex)
-            
-            // mark as not selected for prepareForReuse
-            menuOption.isSelected = false
-        } else {
-            self.menuOptionsObj?.selectedMenuOptions.append(menuOption)
-            
-            // mark as selected for prepareForReuse
-            menuOption.isSelected = true
-        }
-    }
-
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -38,6 +38,8 @@ class MenuOptionListCell: UICollectionViewCell {
             self.setHighlightColors()
             // set normal colors if data exists
             if self.menuOption?.recipe != nil { self.setColors() }
+            // enable once given a menu option
+            self.isUserInteractionEnabled = true
         }
     }
     
@@ -50,6 +52,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.addViewSubtitle()
 //        self.addCaloriesLabel()
         self.tintColor = self.titleViewColorSelected
+        self.isUserInteractionEnabled = false
     }
     
     private func setColors() {

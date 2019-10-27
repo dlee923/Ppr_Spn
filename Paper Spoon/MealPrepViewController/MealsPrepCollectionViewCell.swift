@@ -39,9 +39,9 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     }
     
     private func mealPreppedAction() {
-        print("meal kit prepped")
-        self.mealPrepFinishedDelegate?.sendUserToMealKitSelection()
-        self.menuOption?.recipe?.isMealKitComplete = true
+        print("meal kit prepped")        
+        self.menuOption?.isMealKitComplete = true
+        self.mealPrepFinishedDelegate?.addToPreppedMeals()
     }
 
 }
