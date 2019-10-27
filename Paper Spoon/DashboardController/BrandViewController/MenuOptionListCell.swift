@@ -15,13 +15,19 @@ class MenuOptionListCell: UICollectionViewCell {
         self.setup()
     }
     
+    // MARK:  Variables
     var isSelect: Bool?
+    
+    // MARK:  UI Elements
     var thumbnailView = UIImageView()
     var titleView = UILabel()
     var subtitleView = UILabel()
     var caloriesLabel = UILabel()
     let titleViewColor = UIColor.themeColor1
     let titleViewColorSelected = UIColor.color5
+    var selectionCheckMarkView = UIView()
+    
+    // MARK:  Data Variables
     var menuOption: MenuOption? {
         didSet {
             self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
@@ -29,7 +35,7 @@ class MenuOptionListCell: UICollectionViewCell {
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
             self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
             self.isSelect = self.menuOption?.isSelected
-            self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
+            self.setHighlightColors()
             // set normal colors if data exists
             if self.menuOption?.recipe != nil { self.setColors() }
         }
@@ -39,9 +45,11 @@ class MenuOptionListCell: UICollectionViewCell {
         // initialize with null colors until data is passed
         self.setNullColors()
         self.addViewThumbnail()
+        self.addSelectionCheckmark()
         self.addViewTitle()
         self.addViewSubtitle()
         self.addCaloriesLabel()
+        self.tintColor = self.titleViewColorSelected
     }
     
     private func setColors() {
@@ -49,6 +57,11 @@ class MenuOptionListCell: UICollectionViewCell {
         self.subtitleView.textColor = UIColor.black.withAlphaComponent(0.7)
         self.subtitleView.backgroundColor = UIColor.clear
         self.caloriesLabel.textColor = UIColor.themeColor2
+    }
+    
+    func setHighlightColors() {
+        self.selectionCheckMarkView.isHidden = self.isSelect == true ? false : true
+        self.titleView.backgroundColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
     }
     
     private func setNullColors() {
@@ -61,6 +74,7 @@ class MenuOptionListCell: UICollectionViewCell {
         super.prepareForReuse()
         self.isSelect = nil
         self.titleView.backgroundColor = self.titleViewColor
+        self.selectionCheckMarkView.isHidden = true
     }
     
     private func addViewThumbnail() {
@@ -74,6 +88,36 @@ class MenuOptionListCell: UICollectionViewCell {
         self.thumbnailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         self.thumbnailView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.thumbnailView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+    }
+    
+    private func addSelectionCheckmark() {
+        self.addSubview(selectionCheckMarkView)
+        self.selectionCheckMarkView.isHidden = true
+        self.selectionCheckMarkView.layer.borderWidth = 3
+        self.selectionCheckMarkView.layer.borderColor = self.titleViewColorSelected.cgColor
+        self.selectionCheckMarkView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        
+        self.selectionCheckMarkView.contentMode = .scaleAspectFill
+        self.selectionCheckMarkView.layer.cornerRadius = 5
+        self.selectionCheckMarkView.clipsToBounds = true
+        
+        self.selectionCheckMarkView.translatesAutoresizingMaskIntoConstraints = false
+        self.selectionCheckMarkView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+        self.selectionCheckMarkView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+        self.selectionCheckMarkView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        self.selectionCheckMarkView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+        
+        let selectionCheckMark = UIImageView()
+        selectionCheckMark.translatesAutoresizingMaskIntoConstraints = false
+        selectionCheckMark.image = UIImage(named: "checkmark")?.withRenderingMode(.alwaysTemplate)
+        selectionCheckMark.contentMode = .scaleAspectFit
+        self.selectionCheckMarkView.addSubview(selectionCheckMark)
+        NSLayoutConstraint.activate([
+            selectionCheckMark.centerXAnchor.constraint(equalTo: self.selectionCheckMarkView.centerXAnchor),
+            selectionCheckMark.centerYAnchor.constraint(equalTo: self.selectionCheckMarkView.centerYAnchor),
+            selectionCheckMark.widthAnchor.constraint(equalTo: self.selectionCheckMarkView.widthAnchor, multiplier: 0.3),
+            selectionCheckMark.heightAnchor.constraint(equalTo: self.selectionCheckMarkView.widthAnchor, multiplier: 0.3)
+        ])
     }
     
     private func addViewTitle() {

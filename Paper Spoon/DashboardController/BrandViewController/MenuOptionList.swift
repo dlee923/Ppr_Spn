@@ -81,7 +81,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func setSelectionHighlights(cell: MenuOptionListCell) {
-        cell.titleView.backgroundColor = cell.isSelect == true ? cell.titleViewColorSelected : cell.titleViewColor
+        cell.setHighlightColors()
     }
     
     private func selectMenuOption(menuOption: MenuOption) {
