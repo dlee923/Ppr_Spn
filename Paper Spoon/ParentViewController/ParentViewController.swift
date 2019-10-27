@@ -17,12 +17,7 @@ class ParentViewController: UITabBarController {
         self.setupViewControllers()
         
         // set viewcontrollers
-        self.viewControllers = [
-            self.brandDashboardController,
-            self.compiledIngredientsViewController,
-            self.mealPrepViewController,
-            self.mealKitSelectionViewController
-        ]
+        self.addViewControllers()
         
         // set tabbar images
         self.setTabBarItems()
@@ -39,16 +34,29 @@ class ParentViewController: UITabBarController {
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
     let mealKitSelectionViewController = MealKitSelectionViewController()
+    let savedMenuListViewController = UIViewController()
+    
+    private func addViewControllers() {
+        self.viewControllers = [
+            self.brandDashboardController,
+            self.compiledIngredientsViewController,
+            self.mealPrepViewController,
+            self.mealKitSelectionViewController,
+            self.savedMenuListViewController
+        ]
+    }
     
     private func setTabBarItems() {
         self.tabBar.items?[0].image = UIImage(named: "list_75")
-        self.tabBar.items?[0].title = "Select Recipes"
+        self.tabBar.items?[0].title = "Recipes"
         self.tabBar.items?[1].image = UIImage(named: "cart_75")
-        self.tabBar.items?[1].title = "Shopping List"
+        self.tabBar.items?[1].title = "Ingredients"
         self.tabBar.items?[2].image = UIImage(named: "box_75")
-        self.tabBar.items?[2].title = "Assemble Meals"
+        self.tabBar.items?[2].title = "Assemble"
         self.tabBar.items?[3].image = UIImage(named: "chef_75")
-        self.tabBar.items?[3].title = "Prepped Meals"
+        self.tabBar.items?[3].title = "Meals"
+        self.tabBar.items?[4].image = UIImage(named: "folder_75")
+        self.tabBar.items?[4].title = "Saved Menus"
     }
     
     private func setTabBarProperties() {
