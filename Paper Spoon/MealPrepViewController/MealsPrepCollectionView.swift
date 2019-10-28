@@ -27,12 +27,16 @@ class MealsPrepCollectionView: UICollectionView {
         self.delegate = self
     }
     
+    // MARK:  Data Variables
     var menuOptionsObj: MenuOptionObj? {
         didSet {
             self.reloadData()
         }
     }
+    
+    // MARK:  Delegates
     weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
+    weak var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     private func registerCells() {
         self.register(UINib(nibName: "\(MealsPrepCollectionViewCell.self)", bundle: .main), forCellWithReuseIdentifier: "mealsPrepCollectionViewCell")
@@ -75,6 +79,12 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
             } else {
                 return UICollectionViewCell()
             }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let _ = collectionView.cellForItem(at: indexPath) as? EmptyMealsPrepCell {
+            self.parentViewControllerDelegate?.changeViewController(index: 0)
         }
     }
 }

@@ -25,10 +25,16 @@ class MealPrepViewController: UIViewController {
         self.addMealsPrepCount()
     }
     
+    
+    // MARK:  Data Variables
     var menuOptionsObj: MenuOptionObj?
+    
+    // MARK:  UI Elements
     var mealsPrepCount = UIPageControl()
     lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
     var mealPrepFinishedBtn = UIButton()
+    
+    // MARK:  Delegates
     var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     let activityIndicator = ActivityIndicator()
@@ -41,6 +47,7 @@ class MealPrepViewController: UIViewController {
     private func setupMealsToPrep() {
         self.mealsPrepCollectionView.menuOptionsObj = self.menuOptionsObj
         self.mealsPrepCollectionView.mealPrepFinishedDelegate = self
+        self.mealsPrepCollectionView.parentViewControllerDelegate = self.parentViewControllerDelegate
     }
     
     private func addMealsToPrep() {
