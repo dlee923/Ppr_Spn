@@ -15,6 +15,10 @@ class InstructionsViewController: UIViewController {
         self.setup()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.mealKitSelectionViewControllerDelegate?.unlockScrollView()
+    }
+    
     var instructionsCollectionView: InstructionsCollectionView?
     var finishedCookingBtn = UIButton()
     var menuOption: MenuOption? {
@@ -22,7 +26,8 @@ class InstructionsViewController: UIViewController {
             self.instructionsCollectionView?.recipe = self.menuOption?.recipe
         }
     }
-    var dismissPopUpDelegate: DismissPopUpDelegate?
+    
+    var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
     private func setup() {
         self.view.backgroundColor = UIColor.themeColor1
@@ -48,7 +53,6 @@ class InstructionsViewController: UIViewController {
     }
     
     @objc private func dismissInstructions() {
-//        self.dismissPopUpDelegate?.dismissPopup()
         self.dismiss(animated: true, completion: nil)
     }
     

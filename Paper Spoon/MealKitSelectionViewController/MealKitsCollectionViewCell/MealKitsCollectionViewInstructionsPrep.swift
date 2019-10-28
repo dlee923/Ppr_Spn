@@ -67,7 +67,7 @@ extension MealKitsCollectionViewCell {
     
     @objc internal func showInstructions() {
         // lock parent scroll view to prevent scrolling to other recipes
-        self.scrollViewLockDelegate?.lockScrollView()
+        self.mealKitSelectionViewControllerDelegate?.lockScrollView()
         
         // download instructions images
         self.downloadInstructionImages()

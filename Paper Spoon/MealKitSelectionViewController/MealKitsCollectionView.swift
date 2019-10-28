@@ -83,7 +83,6 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
                 cell.modifyColors()
                 
                 cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
-                cell.scrollViewLockDelegate = self
                 
                 let menuOption = preppedMenuOptions?[indexPath.item]
                 cell.menuOption = menuOption
@@ -104,21 +103,4 @@ extension MealKitsCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-}
-
-protocol ScrollViewLockDelegate: AnyObject {
-    func lockScrollView()
-    func unlockScrollView()
-}
-
-extension MealKitsCollectionView: ScrollViewLockDelegate {
-    func lockScrollView() {
-        self.isScrollEnabled = false
-    }
-    
-    func unlockScrollView() {
-        self.isScrollEnabled = true
-    }
-    
-    
 }

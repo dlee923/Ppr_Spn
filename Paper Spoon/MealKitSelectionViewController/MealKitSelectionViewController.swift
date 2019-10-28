@@ -18,6 +18,7 @@ class MealKitSelectionViewController: UIViewController {
     
     private func setup() {
         self.view.backgroundColor = UIColor.themeColor1
+        self.instructionsView.mealKitSelectionViewControllerDelegate = self
     }
     
     var menuOptionsObj: MenuOptionObj?
@@ -46,6 +47,8 @@ class MealKitSelectionViewController: UIViewController {
 
 protocol MealKitSelectionViewControllerDelegate: AnyObject {
     func presentInstructions(menuOption: MenuOption)
+    func lockScrollView()
+    func unlockScrollView()
 }
 
 extension MealKitSelectionViewController: MealKitSelectionViewControllerDelegate {
@@ -53,5 +56,13 @@ extension MealKitSelectionViewController: MealKitSelectionViewControllerDelegate
         self.instructionsView.menuOption = menuOption
         self.instructionsView.modalPresentationStyle = .pageSheet
         self.present(self.instructionsView, animated: true, completion: nil)
+    }
+    
+    func lockScrollView() {
+        self.mealKitsCollectionView.isScrollEnabled = false
+    }
+    
+    func unlockScrollView() {
+        self.mealKitsCollectionView.isScrollEnabled = true
     }
 }

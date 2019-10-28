@@ -59,7 +59,6 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     let activityIndicator = ActivityIndicator()
     
     // MARK:  Delegates
-    var scrollViewLockDelegate: ScrollViewLockDelegate?
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
     // MARK:  Temp containers for instruction images
@@ -197,15 +196,4 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         super.init(coder: aDecoder)
     }
     
-}
-
-protocol DismissPopUpDelegate: AnyObject {
-    func dismissPopup()
-}
-
-extension MealKitsCollectionViewCell: DismissPopUpDelegate {
-    func dismissPopup() {
-//        self.instructionsView?.dismiss(animated: true, completion: nil)
-        self.scrollViewLockDelegate?.unlockScrollView()
-    }
 }

@@ -149,8 +149,8 @@ extension MealKitsCollectionViewCell {
     }
     
     internal func modifyGetCookingButton() {
-        self.getCookingBtn.setTitle("Get Cooking!", for: .normal)
-        self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(10)
+        self.getCookingBtn.setTitle("Show Instructions", for: .normal)
+        self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(15)
         self.getCookingBtn.backgroundColor = UIColor.color8
         self.getCookingBtn.layer.cornerRadius = 15
         
@@ -159,12 +159,13 @@ extension MealKitsCollectionViewCell {
             self.getCookingBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
             self.getCookingBtn.heightAnchor.constraint(equalToConstant: 30),
             self.getCookingBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            self.getCookingBtn.bottomAnchor.constraint(equalTo: self.nutritionStackContainer.topAnchor)
+            self.getCookingBtn.bottomAnchor.constraint(equalTo: self.nutritionStackContainer.topAnchor, constant: -15)
         ])
         
         self.getCookingBtn.addTarget(self, action: #selector(self.showInstructions), for: .touchUpInside)
         
-        getCookingBtnShadow.addShadow(
+        self.getCookingBtn.frame = CGRect(x: 0, y: 0, width: self.frame.width * 0.5, height: 30)
+        self.getCookingBtn.addShadow(
             path: UIBezierPath(roundedRect: self.getCookingBtn.layer.bounds, cornerRadius: 15),
             color: .black,
             offset: CGSize(width: 3.0, height: 3.0),
