@@ -23,6 +23,7 @@ class MealKitsCollectionView: UICollectionView {
     
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     // MARK: - Cell Colors
     let colors = [UIColor.color1,
@@ -54,7 +55,13 @@ class MealKitsCollectionView: UICollectionView {
 extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
-        return preppedMenuOptions?.count ?? 0
+        return max(preppedMenuOptions?.count ?? 1, 1)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let _ = collectionView.cellForItem(at: indexPath) as? EmptyMealKitsCell {
+            self.parentViewControllerDelegate?.changeViewController(index: 2)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

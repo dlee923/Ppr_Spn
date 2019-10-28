@@ -47,13 +47,15 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     
     lazy var likeButton = RecipeCellButton(frame: CGRect(x: 0, y: 0, width: self.frame.width * self.BtnSizeMultiplier, height: self.frame.width * self.BtnSizeMultiplier), color: self.splashColor ?? UIColor.blue)
     
+    let getCookingBtn = UIButton()
+    let getCookingBtnShadow = UIView()
+    
     var splashColor: UIColor? {
         didSet {
             self.ingredientsView.splashColor = self.splashColor
         }
     }
     
-    let getCookingBtn = UIButton()
     let activityIndicator = ActivityIndicator()
     
     // MARK:  Delegates
@@ -128,83 +130,67 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         self.modifyRating()
         self.modifyIngredientsView()
         
-//        self.addGetCookingButton()
+        self.modifyGetCookingButton()
     }
     
     private func addViews() {
-            self.addSubview(self.backgroundSplash)                          // Included
-            self.addSubview(self.title)                                     // Included
-            self.addSubview(self.subtitle)                                  // Included
-            self.addSubview(self.rating)                                    // Included
-            self.addSubview(self.likeButton)                                // Included
-    //        self.addSubview(self.difficulty)                              // NOT INCLUDED
-            self.addSubview(self.nutritionStackContainer)                   // Included
-            self.addSubview(self.recipeDescription)                         // Included + must overlap ingredientsView in view heirarchy
-            self.addSubview(self.ingredientsView)                           // Included + must overlap nutritionStackContainer in view heirarchy
-            self.nutritionStackContainer.addSubview(self.nutritionStack)    // Included
-            self.addSubview(self.ingredientsButton)                         // Included
-            self.addSubview(self.imageShadow)                               // Included
-            self.addSubview(self.image)                                     // Included
-        }
+        self.addSubview(self.backgroundSplash)                          // Included
+        self.addSubview(self.title)                                     // Included
+        self.addSubview(self.subtitle)                                  // Included
+        self.addSubview(self.rating)                                    // Included
+        self.addSubview(self.likeButton)                                // Included
+//        self.addSubview(self.difficulty)                              // NOT INCLUDED
+        self.addSubview(self.nutritionStackContainer)                   // Included
+        self.addSubview(self.recipeDescription)                         // Included + must overlap ingredientsView in view heirarchy
+        self.addSubview(self.ingredientsView)                           // Included + must overlap nutritionStackContainer in view heirarchy
+        self.nutritionStackContainer.addSubview(self.nutritionStack)    // Included
+        self.addSubview(self.ingredientsButton)                         // Included
+        self.addSubview(self.imageShadow)                               // Included
+        self.addSubview(self.image)                                     // Included
+        self.addSubview(self.getCookingBtnShadow)                       // Included
+        self.addSubview(self.getCookingBtn)                             // Included
+    }
         
-        // Method to load and reload data based on changes to Recipe Obj.
-        internal func loadRecipeData() {
-            self.title.text = self.menuOption?.recipeName
-            self.subtitle.text = self.menuOption?.recipeSubtitle
-            if let imageData = self.menuOption?.recipe?.recipeImage {
-                self.image.image = imageData
-            }
-            self.recipeDescription.text = self.menuOption?.recipe?.description
-            self.protein.text = "\(self.menuOption?.recipe?.nutrition?.proteinContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.proteinContent?.measurementType ?? "")"
-            self.fats.text = "\(self.menuOption?.recipe?.nutrition?.fatContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.fatContent?.measurementType ?? "")"
-            self.carbs.text = "\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.measurementType ?? "")"
-            self.calories.text = "\(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.calories?.measurementType ?? "")"
-            
-            if let isLiked = self.menuOption?.isLiked {
-                self.likeButton.tintColor = isLiked ? UIColor.color2 : self.splashColor ?? UIColor.blue
-            }
-            if let userRating = self.menuOption?.userRating {
-                self.rating.highlightStars(rating: userRating)
-            }
-            self.ingredientsView.ingredients = self.menuOption?.recipe?.ingredients
+    // Method to load and reload data based on changes to Recipe Obj.
+    internal func loadRecipeData() {
+        self.title.text = self.menuOption?.recipeName
+        self.subtitle.text = self.menuOption?.recipeSubtitle
+        if let imageData = self.menuOption?.recipe?.recipeImage {
+            self.image.image = imageData
         }
+        self.recipeDescription.text = self.menuOption?.recipe?.description
+        self.protein.text = "\(self.menuOption?.recipe?.nutrition?.proteinContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.proteinContent?.measurementType ?? "")"
+        self.fats.text = "\(self.menuOption?.recipe?.nutrition?.fatContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.fatContent?.measurementType ?? "")"
+        self.carbs.text = "\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.measurementType ?? "")"
+        self.calories.text = "\(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.calories?.measurementType ?? "")"
         
-        // reset reusable cell's default color and other non content properties
-        override func prepareForReuse() {
-            self.likeButton.tintColor = self.splashColor ?? UIColor.blue
-            self.backgroundSplashHeightSquished?.isActive = false
-            self.backgroundSplashHeight?.isActive = true
-            self.imageShadow.transform = CGAffineTransform.identity
-            self.image.transform = CGAffineTransform.identity
-            self.likeButton.transform = CGAffineTransform.identity
-            self.rating.prepareForReuse()
-            self.ingredientsButtonBottomSquished?.isActive = false
-            self.ingredientsButtonBottom?.isActive = true
-            self.ingredientsButton.tintColor = .white
-            self.nutritionStackContainer.alpha = 1.0
-            self.ingredientsViewTopSquished?.isActive = false
-            self.ingredientsViewBottomSquished?.isActive = false
-            self.ingredientsViewTop?.isActive = true
-            self.ingredientsViewBottom?.isActive = true
-            super.prepareForReuse()
+        if let isLiked = self.menuOption?.isLiked {
+            self.likeButton.tintColor = isLiked ? UIColor.color2 : self.splashColor ?? UIColor.blue
         }
+        if let userRating = self.menuOption?.userRating {
+            self.rating.highlightStars(rating: userRating)
+        }
+        self.ingredientsView.ingredients = self.menuOption?.recipe?.ingredients
+    }
     
-    private func addGetCookingButton() {
-        self.getCookingBtn.setTitle("Get Cooking!", for: .normal)
-        self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
-        self.getCookingBtn.backgroundColor = UIColor.color8
-        self.getCookingBtn.layer.cornerRadius = 5
-        
-        self.addSubview(self.getCookingBtn)
-        self.getCookingBtn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.getCookingBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0),
-            self.getCookingBtn.heightAnchor.constraint(equalToConstant: 60),
-            self.getCookingBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0),
-            self.getCookingBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ])
-        
-        self.getCookingBtn.addTarget(self, action: #selector(self.showInstructions), for: .touchUpInside)
+    // reset reusable cell's default color and other non content properties
+    override func prepareForReuse() {
+        self.likeButton.tintColor = self.splashColor ?? UIColor.blue
+        self.backgroundSplashHeightSquished?.isActive = false
+        self.backgroundSplashHeight?.isActive = true
+        self.imageShadow.transform = CGAffineTransform.identity
+        self.image.transform = CGAffineTransform.identity
+        self.likeButton.transform = CGAffineTransform.identity
+        self.rating.prepareForReuse()
+        self.ingredientsButtonBottomSquished?.isActive = false
+        self.ingredientsButtonBottom?.isActive = true
+        self.ingredientsButton.tintColor = .white
+        self.nutritionStackContainer.alpha = 1.0
+        self.ingredientsViewTopSquished?.isActive = false
+        self.ingredientsViewBottomSquished?.isActive = false
+        self.ingredientsViewTop?.isActive = true
+        self.ingredientsViewBottom?.isActive = true
+        super.prepareForReuse()
     }
     
     required init?(coder aDecoder: NSCoder) {

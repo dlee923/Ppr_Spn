@@ -79,6 +79,7 @@ class ParentViewController: UITabBarController {
         self.mealPrepViewController.parentViewControllerDelegate = self
         self.mealPrepViewController.menuOptionsObj = self.menuOptionsObj
         
+        self.mealKitSelectionViewController.parentViewControllerDelegate = self
         self.mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
     }
 

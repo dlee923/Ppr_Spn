@@ -25,13 +25,15 @@ class MealKitSelectionViewController: UIViewController {
     
     lazy var mealKitsCollectionView = MealKitsCollectionView(frame: self.view.frame)
     
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
+    
     private func addMealKitsCollectionView() {
         self.mealKitsCollectionView.menuOptionsObj = self.menuOptionsObj
         self.mealKitsCollectionView.mealKitSelectionViewControllerDelegate = self
+        self.mealKitsCollectionView.parentViewControllerDelegate = self.parentViewControllerDelegate
         
         self.view.addSubview(self.mealKitsCollectionView)
         self.mealKitsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
             self.mealKitsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.mealKitsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
