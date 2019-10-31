@@ -50,6 +50,7 @@ extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
             self.squishIngredientsButton()
             self.squishNutrition()
             self.squishIngredients()
+            self.squishGetCookingButton()
             self.layoutIfNeeded()
         }, completion: nil)
     }

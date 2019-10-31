@@ -64,6 +64,9 @@ class BrandDashboardController: UIPageViewController {
         }
     }
     
+    // MARK: App Settings
+    let recipeMaxCount = 5
+    
     // MARK: Variables
     var menuOptionsObj: MenuOptionObj?
     var controllers = [UIViewController]()

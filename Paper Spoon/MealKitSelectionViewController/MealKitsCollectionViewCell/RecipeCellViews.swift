@@ -15,6 +15,7 @@ extension MealKitsCollectionViewCell {
         self.backgroundSplash.backgroundColor = self.splashColor ?? UIColor.blue
         self.ingredientsButton.backgroundColor = self.splashColor ?? UIColor.blue
         self.likeButton.tintColor = self.splashColor ?? UIColor.blue
+        self.getCookingBtn.titleLabel?.textColor = self.splashColor ?? UIColor.blue
         
         // modify nutrition colors
         self.proteinLbl.backgroundColor = self.splashColor ?? UIColor.blue
@@ -151,16 +152,8 @@ extension MealKitsCollectionViewCell {
     internal func modifyGetCookingButton() {
         self.getCookingBtn.setTitle("Show Instructions", for: .normal)
         self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(15)
-        self.getCookingBtn.backgroundColor = UIColor.color8
+        self.getCookingBtn.backgroundColor = UIColor.themeColor3
         self.getCookingBtn.layer.cornerRadius = 15
-        
-        self.getCookingBtn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.getCookingBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
-            self.getCookingBtn.heightAnchor.constraint(equalToConstant: 30),
-            self.getCookingBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            self.getCookingBtn.bottomAnchor.constraint(equalTo: self.nutritionStackContainer.topAnchor, constant: -15)
-        ])
         
         self.getCookingBtn.addTarget(self, action: #selector(self.showInstructions), for: .touchUpInside)
         
@@ -169,7 +162,7 @@ extension MealKitsCollectionViewCell {
             path: UIBezierPath(roundedRect: self.getCookingBtn.layer.bounds, cornerRadius: 15),
             color: .black,
             offset: CGSize(width: 3.0, height: 3.0),
-            radius: 15,
-            opacity: 0.5)
+            radius: 10,
+            opacity: 0.7)
     }
 }

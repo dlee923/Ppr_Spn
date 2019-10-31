@@ -14,6 +14,7 @@ protocol BrandDashboardControllerDelegate: AnyObject {
     func changeRecipeHeadertext()
     func clearSelections()
     func selectMenuOption(menuOption: MenuOption)
+    func isMaxedOut() -> Bool
 }
 
 
@@ -50,7 +51,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     func movePickerPosition(position: Int) { }
     
     func changeRecipeHeadertext() {
-        self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.tempSelectedMenuOptions?.count ?? 0, maxRecipes: 5)
+        self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.tempSelectedMenuOptions?.count ?? 0, maxRecipes: self.recipeMaxCount)
     }
     
     func clearSelections() {
@@ -72,6 +73,9 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     }
     
     func selectMenuOption(menuOption: MenuOption) {
+        // return if already at max options count
+        if self.tempSelectedMenuOptions?.count ?? 0 >= self.recipeMaxCount { return }
+        
         // create array if nil
         if self.tempSelectedMenuOptions == nil { self.tempSelectedMenuOptions = [MenuOption]() }
         
@@ -87,6 +91,12 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             // mark as selected for prepareForReuse
             menuOption.isSelected = true
         }
+    }
+    
+    func isMaxedOut() -> Bool {
+        // return if max selection is hit
+        let response = self.tempSelectedMenuOptions?.count ?? 0 > self.recipeMaxCount ? true : false
+        return response
     }
     
 }

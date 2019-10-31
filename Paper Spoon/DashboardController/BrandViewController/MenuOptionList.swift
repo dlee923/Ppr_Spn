@@ -68,18 +68,22 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             // mark cell as selected / unselected when tapped
             cell.isSelect = cell.isSelect == false || cell.isSelect == nil ? true : false
             
-            // UI change to cell based on selection
-            cell.setHighlightColors()
-            
-            // add or remove menu option to selected array
-            guard let menuOption = cell.menuOption else { return }
-            self.brandDashboardControllerDelegate?.selectMenuOption(menuOption: menuOption)
-            
-            // modify recipe header
-            self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
-            
-            // show / hide compile button
-            self.brandDashboardControllerDelegate?.showHideCompileButton()
+            // check if not maxed out
+            if (self.brandDashboardControllerDelegate?.isMaxedOut() ?? true) == false {
+                
+                // add or remove menu option to selected array
+                guard let menuOption = cell.menuOption else { return }
+                self.brandDashboardControllerDelegate?.selectMenuOption(menuOption: menuOption)
+                        
+                // UI change to cell based on selection
+                cell.setHighlightColors()
+                
+                // modify recipe header
+                self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
+                
+                // show / hide compile button
+                self.brandDashboardControllerDelegate?.showHideCompileButton()
+            }
         }
     }
     

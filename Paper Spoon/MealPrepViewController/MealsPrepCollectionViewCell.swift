@@ -39,9 +39,16 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     }
     
     private func mealPreppedAction() {
-        print("meal kit prepped")        
+        print("meal kit prepped")
+        // mark menu option as being meal kit complete
         self.menuOption?.isMealKitComplete = true
+        
+        // button animation to transition screen
+        
+        
+        // reload the meal kits selection view controller
         self.mealPrepFinishedDelegate?.addToPreppedMeals()
     }
+    
 
 }

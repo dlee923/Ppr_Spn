@@ -117,6 +117,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         self.ratingConstraints()
         self.likeConstraints()
         self.ingredientsViewConstraints()
+        self.getCookingButtonConstraints()
         
         self.modifyColors()
         self.modifyTitle()
@@ -128,7 +129,6 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
         self.modifyLikeBtn()
         self.modifyRating()
         self.modifyIngredientsView()
-        
         self.modifyGetCookingButton()
     }
     

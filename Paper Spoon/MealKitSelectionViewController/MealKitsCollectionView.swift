@@ -20,6 +20,7 @@ class MealKitsCollectionView: UICollectionView {
     
     // MARK:  Variables
     var menuOptionsObj: MenuOptionObj?
+    lazy var preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
     
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
@@ -27,14 +28,13 @@ class MealKitsCollectionView: UICollectionView {
     
     // MARK: - Cell Colors
     let colors = [UIColor.color1,
+                  UIColor.color2,
                   UIColor.color3,
                   UIColor.color4,
                   UIColor.color5,
                   UIColor.color6,
                   UIColor.color7,
-                  UIColor.color8,
-                  UIColor.color3,
-                  UIColor.color4]
+                  UIColor.color8]
     
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
@@ -65,7 +65,6 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
         let preppedMenuOptionsCount = preppedMenuOptions?.count
         
         if preppedMenuOptionsCount == 0 || preppedMenuOptionsCount == nil {

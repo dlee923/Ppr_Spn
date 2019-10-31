@@ -35,9 +35,13 @@ class MenuOptionListCell: UICollectionViewCell {
             self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
             self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
             self.isSelect = self.menuOption?.isSelected
-            self.setHighlightColors()
+            
             // set normal colors if data exists
             if self.menuOption?.recipe != nil { self.setColors() }
+            
+            // set highlight colors if highlighted
+            self.setHighlightColors()
+            
             // enable once given a menu option
             self.isUserInteractionEnabled = true
         }
@@ -65,6 +69,7 @@ class MenuOptionListCell: UICollectionViewCell {
     func setHighlightColors() {
         self.selectionCheckMarkView.isHidden = self.isSelect == true ? false : true
         self.titleView.textColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
+        self.subtitleView.textColor = isSelect == false || isSelect == nil ? self.titleViewColor : self.titleViewColorSelected
     }
     
     private func setNullColors() {
@@ -76,8 +81,8 @@ class MenuOptionListCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.isSelect = nil
-//        self.titleView.backgroundColor = self.titleViewColor
         self.titleView.textColor = self.titleViewColor
+        self.subtitleView.textColor = self.titleViewColor
         self.selectionCheckMarkView.isHidden = true
     }
     

@@ -20,7 +20,7 @@ class BrandsSelectorView: UIView {
     private func addImage() {
         self.addSubview(self.image)
         self.image.image = UIImage(named: "selector")?.withRenderingMode(.alwaysTemplate)
-        self.image.tintColor = UIColor.color7
+        self.image.tintColor = UIColor.themeColor3
         self.image.contentMode = .scaleAspectFit
         self.image.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

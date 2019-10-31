@@ -197,4 +197,26 @@ extension MealKitsCollectionViewCell {
             self.ingredientsView.alpha = 1.0
         }
     }
+    
+    // MARK: - GetCooking Button + Animatable Constraints
+    internal func getCookingButtonConstraints() {
+        self.getCookingBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.getCookingBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: 0),
+            self.getCookingBtn.heightAnchor.constraint(equalToConstant: 30),
+            self.getCookingBtn.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            self.getCookingBtn.bottomAnchor.constraint(equalTo: self.nutritionStackContainer.topAnchor, constant: -15)
+        ])
+    }
+    
+    internal func squishGetCookingButton() {
+        let isSquished = self.isIngredientsVisible ?? false
+        if !isSquished {
+            self.getCookingBtn.alpha = 1.0
+            self.getCookingBtn.isHidden = false
+        } else {
+            self.getCookingBtn.alpha = 0.0
+            self.getCookingBtn.isHidden = true
+        }
+    }
 }

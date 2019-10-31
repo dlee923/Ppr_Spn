@@ -79,7 +79,7 @@ class RatingView: UIStackView {
             guard let isRated = self.isRated else { return }
             if isRated {
                 for x in 0...rating {
-                    views[x].tintColor = .orange
+                    views[x].tintColor = UIColor.themeColor3
                 }
             }
         }
