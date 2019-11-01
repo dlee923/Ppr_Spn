@@ -256,6 +256,7 @@
 				708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */,
 				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
 				70D532D922F98CB100C8F866 /* BrandViewController */,
+				7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */,
 			);
 			path = DashboardController;
 			sourceTree = "<group>";
@@ -316,7 +317,6 @@
 				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
 				70D532D722F780E100C8F866 /* MenuOptionListCell.swift */,
 				701058EB2308BE0100D4D9FD /* NextStepBtn.swift */,
-				7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */,
 			);
 			path = BrandViewController;
 			sourceTree = "<group>";

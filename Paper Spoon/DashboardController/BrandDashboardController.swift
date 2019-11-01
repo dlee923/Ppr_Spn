@@ -30,19 +30,21 @@ class BrandDashboardController: UIPageViewController {
         // add ui views
         
         self.addRecipeListHeader()
-        // add compile ingredients btn
+        // add compile ingredients View + Button
+        self.addCompileIngredientsView()
         self.setupCompileIngredientsBtn()
         self.addCompileIngredientsBtn()
+        self.addFingerPointer()
         
         // pass brands data to header
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-        DispatchQueue.main.async {
-            self.activityIndicator.activityInProgress()
-        }
-
-        self.downloadData()
+//        DispatchQueue.main.async {
+//            self.activityIndicator.activityInProgress()
+//        }
+//
+//        self.downloadData()
     }
     
     fileprivate func downloadData() {
@@ -88,6 +90,7 @@ class BrandDashboardController: UIPageViewController {
     
     // MARK: UI Elements
     var compileIngredientsBtn: NextStepBtn?
+    var compileIngredientsView = UIView()
     let activityIndicator = ActivityIndicator()
     
     lazy var recipeListHeader: RecipeListHeader = {
@@ -137,10 +140,10 @@ class BrandDashboardController: UIPageViewController {
     // MARK:  Animatable constraints
     var compileIngredientsBtnHeightCollapsed: NSLayoutConstraint?
     var compileIngredientsBtnPopped: NSLayoutConstraint?
-    var compileIngredientsBtnExpanded: NSLayoutConstraint?
-    var compileIngredientsBtnNarrowed: NSLayoutConstraint?
     var recipeHeaderHeight: NSLayoutConstraint?
     var recipeHeaderHeightConstant: CGFloat = 100
+    var fingerTrailingAnchorClose: NSLayoutConstraint?
+    var fingerTrailingAnchorFar: NSLayoutConstraint?
     
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1

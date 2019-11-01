@@ -54,7 +54,7 @@ class MealKitsCollectionView: UICollectionView {
 
 extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
+//        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
         return max(preppedMenuOptions?.count ?? 1, 1)
     }
     

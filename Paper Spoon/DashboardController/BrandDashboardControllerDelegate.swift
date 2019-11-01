@@ -26,8 +26,6 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             if compileIngredientsButtonHeightCollapsed.isActive == true {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = false
                 self.compileIngredientsBtnPopped?.isActive = true
-                self.compileIngredientsBtnNarrowed?.isActive = false
-                self.compileIngredientsBtnExpanded?.isActive = true
                 
                 self.recipeListViewController.menuOptionListCollapsed?.isActive = false
                 self.recipeListViewController.menuOptionListExpanded?.isActive = true
@@ -36,8 +34,6 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
                 self.compileIngredientsBtnPopped?.isActive = false
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
-                self.compileIngredientsBtnExpanded?.isActive = false
-                self.compileIngredientsBtnNarrowed?.isActive = true
                 
                 self.recipeListViewController.menuOptionListExpanded?.isActive = false
                 self.recipeListViewController.menuOptionListCollapsed?.isActive = true
@@ -73,19 +69,21 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     }
     
     func selectMenuOption(menuOption: MenuOption) {
-        // return if already at max options count
-        if self.tempSelectedMenuOptions?.count ?? 0 >= self.recipeMaxCount { return }
-        
         // create array if nil
         if self.tempSelectedMenuOptions == nil { self.tempSelectedMenuOptions = [MenuOption]() }
         
         // check if menuOptionObj exists in selectedMenuOptions and remove otherwise add to array
         if let alreadySelectedIndex = self.tempSelectedMenuOptions?.firstIndex(where: { $0.recipeName == menuOption.recipeName }) {
+            
             self.tempSelectedMenuOptions?.remove(at: alreadySelectedIndex)
             
             // mark as not selected for prepareForReuse
             menuOption.isSelected = false
         } else {
+            
+            // return if already at max options count
+            if self.tempSelectedMenuOptions?.count ?? 0 >= self.recipeMaxCount { return }
+            
             self.tempSelectedMenuOptions?.append(menuOption)
             
             // mark as selected for prepareForReuse
@@ -95,7 +93,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     
     func isMaxedOut() -> Bool {
         // return if max selection is hit
-        let response = self.tempSelectedMenuOptions?.count ?? 0 > self.recipeMaxCount ? true : false
+        let response = self.tempSelectedMenuOptions?.count ?? 0 >= self.recipeMaxCount ? true : false
         return response
     }
     

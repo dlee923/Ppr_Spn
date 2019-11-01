@@ -33,7 +33,8 @@ class MealsPrepCollectionView: UICollectionView {
             self.reloadData()
         }
     }
-    lazy var needKittingMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete == false })
+    
+    lazy var needKittingMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete == false || $0.isMealKitComplete == nil })
     
     // MARK:  Delegates
     weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?

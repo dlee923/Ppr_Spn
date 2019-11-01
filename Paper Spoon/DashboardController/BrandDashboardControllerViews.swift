@@ -23,30 +23,63 @@ extension BrandDashboardController {
         self.recipeHeaderHeight?.isActive = true
     }
     
+    internal func addCompileIngredientsView() {
+        self.view.addSubview(self.compileIngredientsView)
+        
+        self.compileIngredientsView.translatesAutoresizingMaskIntoConstraints = false
+        self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+
+        self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10).isActive = true
+        
+        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
+        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
+//        self.compileIngredientsBtnHeightCollapsed?.isActive = true
+        self.compileIngredientsBtnPopped?.isActive = true
+    }
+    
     internal func setupCompileIngredientsBtn() {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
-                                                               width: self.view.frame.width,
+                                                               width: self.view.frame.width * 0.1,
                                                                height: self.view.frame.height * 0.1),
                                                  setTitle: "Create Shopping List!")
+        self.compileIngredientsBtn?.titleLabel?.font = UIFont.fontSunflower?.withSize(14)
+        self.compileIngredientsBtn?.titleLabel?.numberOfLines = 2
+        self.compileIngredientsBtn?.titleLabel?.textAlignment = .center
         self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
+        
+        self.compileIngredientsBtn?.layer.cornerRadius = (self.compileIngredientsBtn?.frame.height ?? 0) / 2
     }
     
     internal func addCompileIngredientsBtn() {
-        self.compileIngredientsBtn?.layer.cornerRadius = 5
-        self.view.addSubview(self.compileIngredientsBtn ?? UIView())
+        guard let compileIngredientsBtn = self.compileIngredientsBtn else { return }
+        self.compileIngredientsView.addSubview(compileIngredientsBtn)
         
-        self.compileIngredientsBtn?.translatesAutoresizingMaskIntoConstraints = false
-        self.compileIngredientsBtn?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-
-        self.compileIngredientsBtn?.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        compileIngredientsBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            compileIngredientsBtn.topAnchor.constraint(equalTo: self.compileIngredientsView.topAnchor),
+            compileIngredientsBtn.trailingAnchor.constraint(equalTo: self.compileIngredientsView.trailingAnchor),
+            compileIngredientsBtn.bottomAnchor.constraint(equalTo: self.compileIngredientsView.bottomAnchor),
+            compileIngredientsBtn.widthAnchor.constraint(equalTo: self.compileIngredientsView.heightAnchor)
+        ])
+    }
+    
+    internal func addFingerPointer() {
+        guard let compileIngredientsBtn = self.compileIngredientsBtn else { return }
+        let finger = UIImageView(image: UIImage(named: "hand"))
+        finger.contentMode = .scaleAspectFit
+        self.compileIngredientsView.addSubview(finger)
         
-        self.compileIngredientsBtnPopped = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
-        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsBtn?.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
-        self.compileIngredientsBtnHeightCollapsed?.isActive = true
+        finger.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            finger.topAnchor.constraint(equalTo: self.compileIngredientsView.topAnchor),
+            finger.bottomAnchor.constraint(equalTo: self.compileIngredientsView.bottomAnchor),
+            finger.widthAnchor.constraint(equalTo: self.compileIngredientsView.widthAnchor, multiplier: 0.1)
+        ])
         
-        self.compileIngredientsBtnExpanded = self.compileIngredientsBtn?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
-        self.compileIngredientsBtnNarrowed = self.compileIngredientsBtn?.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0)
-        self.compileIngredientsBtnNarrowed?.isActive = true
+        fingerTrailingAnchorClose = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -5)
+        fingerTrailingAnchorFar = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -20)
+        fingerTrailingAnchorClose?.isActive = true
     }
 }
 
