@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateNewMenuPrompt: UIView {
+class NewMenuPrompt: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

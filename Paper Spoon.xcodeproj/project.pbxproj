@@ -23,7 +23,7 @@
 		701185FD231B22EB00F4D047 /* Sunflower_personal.otf in Resources */ = {isa = PBXBuildFile; fileRef = 701185FC231B22EA00F4D047 /* Sunflower_personal.otf */; };
 		701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */; };
 		70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70118600231B291D00F4D047 /* MealKitsCollectionView.swift */; };
-		7011AF7B23666778007EF159 /* CreateNewMenuPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011AF7A23666778007EF159 /* CreateNewMenuPrompt.swift */; };
+		7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011AF7A23666778007EF159 /* NewMenuPrompt.swift */; };
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		7034C3B9231DF48500C88106 /* MealKitsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */; };
 		703B9579235559D500F17F33 /* BrandDashboardControllerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */; };
@@ -107,7 +107,7 @@
 		701185FC231B22EA00F4D047 /* Sunflower_personal.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sunflower_personal.otf; sourceTree = "<group>"; };
 		701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitSelectionViewController.swift; sourceTree = "<group>"; };
 		70118600231B291D00F4D047 /* MealKitsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionView.swift; sourceTree = "<group>"; };
-		7011AF7A23666778007EF159 /* CreateNewMenuPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewMenuPrompt.swift; sourceTree = "<group>"; };
+		7011AF7A23666778007EF159 /* NewMenuPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuPrompt.swift; sourceTree = "<group>"; };
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewCell.swift; sourceTree = "<group>"; };
 		703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerViews.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */ = {
 			isa = PBXGroup;
 			children = (
-				7011AF7A23666778007EF159 /* CreateNewMenuPrompt.swift */,
+				7011AF7A23666778007EF159 /* NewMenuPrompt.swift */,
 			);
 			path = CreateNewMenuPrompt;
 			sourceTree = "<group>";
@@ -552,7 +552,7 @@
 				70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */,
 				70D46CB0235C110900AB3488 /* IngredientsHeader.swift in Sources */,
 				701058E622FF61D400D4D9FD /* Fonts.swift in Sources */,
-				7011AF7B23666778007EF159 /* CreateNewMenuPrompt.swift in Sources */,
+				7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */,
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
 				70E3A585232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift in Sources */,
 				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,

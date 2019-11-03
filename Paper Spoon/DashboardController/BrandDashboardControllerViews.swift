@@ -32,23 +32,24 @@ extension BrandDashboardController {
         self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10).isActive = true
         
-        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
-        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.0)
+        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.09)
+        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0)
 //        self.compileIngredientsBtnHeightCollapsed?.isActive = true
         self.compileIngredientsBtnPopped?.isActive = true
     }
     
     internal func setupCompileIngredientsBtn() {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
-                                                               width: self.view.frame.width * 0.1,
-                                                               height: self.view.frame.height * 0.1),
+                                                               width: (self.view.frame.height * 0.09) - 20,
+                                                               height: (self.view.frame.height * 0.09) - 20),
                                                  setTitle: "Create Shopping List!")
-        self.compileIngredientsBtn?.titleLabel?.font = UIFont.fontSunflower?.withSize(14)
-        self.compileIngredientsBtn?.titleLabel?.numberOfLines = 2
+        self.compileIngredientsBtn?.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
+        self.compileIngredientsBtn?.titleLabel?.numberOfLines = 3
         self.compileIngredientsBtn?.titleLabel?.textAlignment = .center
-        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
+//        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
+        self.compileIngredientsBtn?.addTarget(self, action: #selector(createNewMenuPrompt), for: .touchUpInside)
         
-        self.compileIngredientsBtn?.layer.cornerRadius = (self.compileIngredientsBtn?.frame.height ?? 0) / 2
+        self.compileIngredientsBtn?.layer.cornerRadius = ((self.compileIngredientsBtn?.frame.height ?? 0) / 2)
     }
     
     internal func addCompileIngredientsBtn() {
@@ -77,8 +78,8 @@ extension BrandDashboardController {
             finger.widthAnchor.constraint(equalTo: self.compileIngredientsView.widthAnchor, multiplier: 0.1)
         ])
         
-        fingerTrailingAnchorClose = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -5)
-        fingerTrailingAnchorFar = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -20)
+        fingerTrailingAnchorClose = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -15)
+        fingerTrailingAnchorFar = finger.trailingAnchor.constraint(equalTo: compileIngredientsBtn.leadingAnchor, constant: -30)
         fingerTrailingAnchorClose?.isActive = true
     }
 }

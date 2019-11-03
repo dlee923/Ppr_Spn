@@ -144,6 +144,8 @@ class BrandDashboardController: UIPageViewController {
     var recipeHeaderHeightConstant: CGFloat = 100
     var fingerTrailingAnchorClose: NSLayoutConstraint?
     var fingerTrailingAnchorFar: NSLayoutConstraint?
+    var newMenuPromptCollapsed: [NSLayoutConstraint]?
+    var newMenuPromptPopped: [NSLayoutConstraint]?
     
     fileprivate func setUp() {
         self.view.backgroundColor = UIColor.themeColor1
@@ -356,6 +358,44 @@ class BrandDashboardController: UIPageViewController {
                 })
             })
         }
+    }
+    
+    // prompt creating menu name
+    @objc internal func createNewMenuPrompt() {
+        let newMenuPrompt = NewMenuPrompt()
+        newMenuPrompt.translatesAutoresizingMaskIntoConstraints = false
+        newMenuPromptPopped = [
+            newMenuPrompt.topAnchor.constraint(equalTo: self.view.topAnchor),
+            newMenuPrompt.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            newMenuPrompt.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            newMenuPrompt.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ]
+        
+        newMenuPromptCollapsed = [
+            newMenuPrompt.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            newMenuPrompt.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            newMenuPrompt.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5),
+            newMenuPrompt.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.5)
+        ]
+        
+        self.view.addSubview(newMenuPrompt)
+        
+        guard let newMenuPromptCollapsed = self.newMenuPromptCollapsed else { return }
+        NSLayoutConstraint.activate(newMenuPromptCollapsed)
+        
+        self.view.layoutIfNeeded()
+        
+        guard let newMenuPromptPopped = self.newMenuPromptPopped else { return }
+        NSLayoutConstraint.deactivate(newMenuPromptCollapsed)
+        NSLayoutConstraint.activate(newMenuPromptPopped)
+        
+        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            newMenuPrompt.alpha = 1.0
+            
+            self.view.layoutIfNeeded()
+        }, completion: { (_) in
+            
+        })
     }
 
 }
