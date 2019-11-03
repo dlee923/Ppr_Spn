@@ -382,6 +382,7 @@ class BrandDashboardController: UIPageViewController {
         
         guard let newMenuPromptCollapsed = self.newMenuPromptCollapsed else { return }
         NSLayoutConstraint.activate(newMenuPromptCollapsed)
+        newMenuPrompt.alpha = 0.2
         
         self.view.layoutIfNeeded()
         
