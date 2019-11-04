@@ -16,33 +16,71 @@ class NewMenuPrompt: UIView {
     }
     
     private func setup() {
-        self.backgroundColor = .yellow
+        self.backgroundColor = UIColor.themeColor1
+        self.addBackgroundImageView()
         self.addMenuTitle()
         self.addMenuNameField()
+        self.addInstructionsTextView()
         self.addCreateBtn()
         self.addNoThanksBtn()
     }
     
     // MARK:  UI Elements
+    let backgroundImageView = UIImageView()
     let menuTitle = UILabel()
+    let instructionsTextView = UILabel()
     let menuNameField = UITextField()
     let noThanksBtn = UIButton()
     let createBtn = UIButton()
+    
+    // MARK:  Delegates
+    var brandDashboardControllerTransitionsDelegate: BrandDashboardControllerTransitionsDelegate?
+    
+    private func addBackgroundImageView() {
+        self.backgroundImageView.image = UIImage(named: "backgroundImg")
+        self.backgroundImageView.alpha = 0.25
+        self.backgroundImageView.contentMode = .scaleAspectFill
+        
+        self.addSubview(self.backgroundImageView)
+        self.backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+    }
     
     private func addMenuTitle() {
         self.menuTitle.font = UIFont.fontSunflower?.withSize(50)
         self.menuTitle.textColor = UIColor.color2
         self.menuTitle.connect(with: self.menuNameField)
-        self.menuTitle
         
         self.addSubview(self.menuTitle)
         self.menuTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.menuTitle.topAnchor.constraint(equalTo: self.topAnchor),
+            self.menuTitle.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             self.menuTitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             self.menuTitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
         ])
         self.menuTitle.sizeToFit()
+    }
+    
+    private func addInstructionsTextView() {
+        self.addSubview(self.instructionsTextView)
+        self.instructionsTextView.font = UIFont.fontCoolvetica?.withSize(15)
+        self.instructionsTextView.textAlignment = .center
+        self.instructionsTextView.numberOfLines = 4
+        self.instructionsTextView.text = "Let's create a menu that we can\nsave and use at a later date!\n\n(ie. Monday Dinners, etc.)"
+        
+        self.instructionsTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.instructionsTextView.topAnchor.constraint(equalTo: self.menuTitle.bottomAnchor),
+            self.instructionsTextView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            self.instructionsTextView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.instructionsTextView.bottomAnchor.constraint(equalTo: self.menuNameField.topAnchor)
+        ])
+        
     }
     
     private func addMenuNameField() {
@@ -50,7 +88,7 @@ class NewMenuPrompt: UIView {
         self.menuNameField.placeholder = "Enter name for menu"
         self.menuNameField.font = UIFont.fontBebas?.withSize(20)
         self.menuNameField.textAlignment = .center
-        self.menuNameField.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.menuNameField.backgroundColor = UIColor.black.withAlphaComponent(0.1)
         
         self.menuNameField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -67,6 +105,8 @@ class NewMenuPrompt: UIView {
         self.createBtn.layer.cornerRadius = 5
         self.createBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(15)
         self.createBtn.setTitle("Submit", for: .normal)
+        self.createBtn.addTarget(self, action: #selector(createBtnAction), for: .touchUpInside)
+        
         self.createBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.createBtn.topAnchor.constraint(equalTo: self.menuNameField.bottomAnchor, constant: 10),
@@ -79,9 +119,11 @@ class NewMenuPrompt: UIView {
     private func addNoThanksBtn() {
         self.addSubview(self.noThanksBtn)
         self.noThanksBtn.titleLabel?.font = UIFont.fontCoolvetica?.withSize(10)
-        self.noThanksBtn.setTitleColor(.themeColor1, for: .normal)
+        self.noThanksBtn.setTitleColor(.themeColor2, for: .normal)
         self.noThanksBtn.contentHorizontalAlignment = .right
         self.noThanksBtn.setTitle("No Thanks", for: .normal)
+        self.noThanksBtn.addTarget(self, action: #selector(noThanksBtnAction), for: .touchUpInside)
+        
         self.noThanksBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.noThanksBtn.topAnchor.constraint(equalTo: self.menuNameField.bottomAnchor, constant: 10),
@@ -89,6 +131,15 @@ class NewMenuPrompt: UIView {
             self.noThanksBtn.trailingAnchor.constraint(equalTo: self.menuNameField.trailingAnchor),
             self.noThanksBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    @objc private func noThanksBtnAction() {
+        self.removeFromSuperview()
+    }
+    
+    @objc private func createBtnAction() {
+        self.brandDashboardControllerTransitionsDelegate?.transitionCompileIngredientsViewDelegateMethod()
+        self.removeFromSuperview()
     }
     
     required init?(coder aDecoder: NSCoder) {

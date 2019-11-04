@@ -32,7 +32,7 @@ extension BrandDashboardController {
         self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10).isActive = true
         
-        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.09)
+        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
         self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0)
 //        self.compileIngredientsBtnHeightCollapsed?.isActive = true
         self.compileIngredientsBtnPopped?.isActive = true
@@ -40,11 +40,11 @@ extension BrandDashboardController {
     
     internal func setupCompileIngredientsBtn() {
         self.compileIngredientsBtn = NextStepBtn(frame: CGRect(x: 0, y: 0,
-                                                               width: (self.view.frame.height * 0.09) - 20,
-                                                               height: (self.view.frame.height * 0.09) - 20),
+                                                               width: (self.view.frame.height * 0.05) - 20,
+                                                               height: (self.view.frame.height * 0.05) - 20),
                                                  setTitle: "Create Shopping List!")
         self.compileIngredientsBtn?.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
-        self.compileIngredientsBtn?.titleLabel?.numberOfLines = 3
+        self.compileIngredientsBtn?.titleLabel?.numberOfLines = 2
         self.compileIngredientsBtn?.titleLabel?.textAlignment = .center
 //        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
         self.compileIngredientsBtn?.addTarget(self, action: #selector(createNewMenuPrompt), for: .touchUpInside)
@@ -59,9 +59,9 @@ extension BrandDashboardController {
         compileIngredientsBtn.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             compileIngredientsBtn.topAnchor.constraint(equalTo: self.compileIngredientsView.topAnchor),
-            compileIngredientsBtn.trailingAnchor.constraint(equalTo: self.compileIngredientsView.trailingAnchor),
+            compileIngredientsBtn.centerXAnchor.constraint(equalTo: self.compileIngredientsView.centerXAnchor),
             compileIngredientsBtn.bottomAnchor.constraint(equalTo: self.compileIngredientsView.bottomAnchor),
-            compileIngredientsBtn.widthAnchor.constraint(equalTo: self.compileIngredientsView.heightAnchor)
+            compileIngredientsBtn.widthAnchor.constraint(equalTo: self.compileIngredientsView.widthAnchor, multiplier: 0.5)
         ])
     }
     

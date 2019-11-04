@@ -363,6 +363,7 @@ class BrandDashboardController: UIPageViewController {
     // prompt creating menu name
     @objc internal func createNewMenuPrompt() {
         let newMenuPrompt = NewMenuPrompt()
+        newMenuPrompt.brandDashboardControllerTransitionsDelegate = self
         newMenuPrompt.translatesAutoresizingMaskIntoConstraints = false
         newMenuPromptPopped = [
             newMenuPrompt.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -390,7 +391,7 @@ class BrandDashboardController: UIPageViewController {
         NSLayoutConstraint.deactivate(newMenuPromptCollapsed)
         NSLayoutConstraint.activate(newMenuPromptPopped)
         
-        UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
             newMenuPrompt.alpha = 1.0
             
             self.view.layoutIfNeeded()
