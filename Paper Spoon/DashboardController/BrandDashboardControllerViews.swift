@@ -34,8 +34,8 @@ extension BrandDashboardController {
         
         self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
         self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0)
-//        self.compileIngredientsBtnHeightCollapsed?.isActive = true
-        self.compileIngredientsBtnPopped?.isActive = true
+        self.compileIngredientsBtnHeightCollapsed?.isActive = true
+//        self.compileIngredientsBtnPopped?.isActive = true
     }
     
     internal func setupCompileIngredientsBtn() {

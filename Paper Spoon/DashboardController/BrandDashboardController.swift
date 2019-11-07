@@ -40,11 +40,15 @@ class BrandDashboardController: UIPageViewController {
         recipeListHeader.brands = self.brands
         
         // Add activity indicator
-//        DispatchQueue.main.async {
-//            self.activityIndicator.activityInProgress()
-//        }
-//
-//        self.downloadData()
+        DispatchQueue.main.async {
+            self.activityIndicator.activityInProgress()
+        }
+
+        // must wrap in a background thread in order to avoid pausing the launch screen
+        DispatchQueue.global().async {
+            self.downloadData()
+        }
+        
     }
     
     fileprivate func downloadData() {
@@ -90,6 +94,7 @@ class BrandDashboardController: UIPageViewController {
     
     // MARK: UI Elements
     var compileIngredientsBtn: NextStepBtn?
+    let compileIngredientsBtnHeight: CGFloat = 0.05
     var compileIngredientsView = UIView()
     let activityIndicator = ActivityIndicator()
     
@@ -106,7 +111,7 @@ class BrandDashboardController: UIPageViewController {
         
         // pass to each view controller?
         if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            recipeListVC.menuOptionListExpandedConstant = compileIngredientsBtnHeight * CGFloat(0.1)
+            recipeListVC.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
         }
         return recipeListVC
     }()
