@@ -65,27 +65,22 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? MenuOptionListCell {
-            
-            
+
             // check if not maxed out
             if (self.brandDashboardControllerDelegate?.isMaxedOut() ?? true) == false {
-                
                 // mark cell as selected / unselected when tapped
                 cell.isSelect = cell.isSelect == false || cell.isSelect == nil ? true : false
-                
-                // UI change to cell based on selection
-                cell.setHighlightColors()
-                
+            } else {
+                // enable only deselecting if maxed out
+                if cell.isSelect == true { cell.isSelect = false }
             }
+            
+            // UI change to cell based on selection
+            cell.setHighlightColors()
             
             // add or remove menu option to selected array
             guard let menuOption = cell.menuOption else { return }
             self.brandDashboardControllerDelegate?.selectMenuOption(menuOption: menuOption)
-            
-            if (self.brandDashboardControllerDelegate?.isMaxedOut() ?? true) == false {
-                // UI change to cell based on selection
-                cell.setHighlightColors()
-            }
             
             // modify recipe header
             self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
