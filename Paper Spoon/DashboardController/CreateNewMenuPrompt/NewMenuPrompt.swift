@@ -21,6 +21,7 @@ class NewMenuPrompt: UIView {
         self.addMenuTitle()
         self.addMenuNameField()
         self.addInstructionsTextView()
+        self.addTapToDismiss()
         self.addCreateBtn()
         self.addNoThanksBtn()
     }
@@ -133,12 +134,31 @@ class NewMenuPrompt: UIView {
         ])
     }
     
+    private func addTapToDismiss() {
+        let tapView = UIView()
+        self.insertSubview(tapView, belowSubview: self.menuNameField)
+        tapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tapView.topAnchor.constraint(equalTo: self.topAnchor),
+            tapView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            tapView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            tapView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissPrompt))
+        tapView.addGestureRecognizer(tapGesture)
+    }
+    
     @objc private func noThanksBtnAction() {
+        self.brandDashboardControllerTransitionsDelegate?.transitionCompileIngredientsViewDelegateMethod()
         self.removeFromSuperview()
     }
     
     @objc private func createBtnAction() {
         self.brandDashboardControllerTransitionsDelegate?.transitionCompileIngredientsViewDelegateMethod()
+        self.removeFromSuperview()
+    }
+    
+    @objc private func dismissPrompt() {
         self.removeFromSuperview()
     }
     
