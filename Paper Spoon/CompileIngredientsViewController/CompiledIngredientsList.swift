@@ -86,6 +86,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
                 // section for ingredients list
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
                     cell.ingredient = self.compiledIngredients[indexPath.row]
+                    cell.setColors(isPurchased: false)
                     return cell
                 } else {
                 return UITableViewCell()
@@ -95,6 +96,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
             // section for shopping bag
             if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
                 cell.ingredient = self.purchasedIngredients[indexPath.row]
+                cell.setColors(isPurchased: true)
                 return cell
             } else {
                 return UITableViewCell()

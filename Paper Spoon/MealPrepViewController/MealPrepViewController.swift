@@ -81,15 +81,17 @@ class MealPrepViewController: UIViewController {
 
 extension MealPrepViewController: MealPrepFinishedDelegate {
     
-    func addToPreppedMeals() {
+    func addToPreppedMeals(menuOption: MenuOption) {
         // reload meal kits prep view controller
         self.parentViewControllerDelegate?.reloadMealPrep()
         // simply reload the meal kits selection view controller
         self.parentViewControllerDelegate?.reloadMealKitSelection()
+        // add menuOption to kittedMenuOptions and remove menuOption from selectedMenuOptions
+        self.menuOptionsObj?.menuOptionKittedComplete(for: menuOption)
     }
     
 }
 
 protocol MealPrepFinishedDelegate: AnyObject {
-    func addToPreppedMeals()
+    func addToPreppedMeals(menuOption: MenuOption)
 }

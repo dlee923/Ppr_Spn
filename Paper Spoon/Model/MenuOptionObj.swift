@@ -11,6 +11,15 @@ import UIKit
 class MenuOptionObj {
     var menuOptions: [MenuOption]?
     var selectedMenuOptions = [MenuOption]()
+    var kittedMenuOptions = [MenuOption]()
+    
+    func menuOptionKittedComplete(for menuOption: MenuOption) {
+        // add menuOption to kittedMenuOption
+        self.kittedMenuOptions.append(menuOption)
+        
+        // remove menuOption from selectedMenuOptions
+        self.selectedMenuOptions.removeAll(where: { $0.recipeName == menuOption.recipeName })
+    }
     
     init(menuOptions: [MenuOption]?) {
         self.menuOptions = menuOptions

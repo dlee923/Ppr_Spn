@@ -34,8 +34,6 @@ class MealsPrepCollectionView: UICollectionView {
         }
     }
     
-    lazy var needKittingMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete == false || $0.isMealKitComplete == nil })
-    
     // MARK:  Delegates
     weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
     weak var parentViewControllerDelegate: ParentViewControllerDelegate?
@@ -57,12 +55,12 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return max(self.needKittingMenuOptions?.count ?? 0, 1)
+        return max(self.menuOptionsObj?.selectedMenuOptions.count ?? 0, 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // empty cell if no meals to prep
-        if self.needKittingMenuOptions?.count == 0 || self.needKittingMenuOptions?.count == nil {
+        if self.menuOptionsObj?.selectedMenuOptions.count == 0 || self.menuOptionsObj?.selectedMenuOptions.count == nil {
             if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyMealsPrepCell", for: indexPath) as? EmptyMealsPrepCell {
                 return emptyCell
             } else {
@@ -72,7 +70,7 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
         } else {
         // normal meal prep cells
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealsPrepCollectionViewCell", for: indexPath) as? MealsPrepCollectionViewCell {
-                let menuOption = self.needKittingMenuOptions?[indexPath.item]
+                let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
                 cell.menuOption = menuOption
                 cell.mealPrepFinishedDelegate = self.mealPrepFinishedDelegate
                 return cell

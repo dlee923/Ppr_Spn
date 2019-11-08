@@ -20,7 +20,6 @@ class MealKitsCollectionView: UICollectionView {
     
     // MARK:  Variables
     var menuOptionsObj: MenuOptionObj?
-    lazy var preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
     
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
@@ -54,8 +53,7 @@ class MealKitsCollectionView: UICollectionView {
 
 extension MealKitsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let preppedMenuOptions = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.isMealKitComplete != nil })
-        return max(preppedMenuOptions?.count ?? 1, 1)
+        return max(self.menuOptionsObj?.kittedMenuOptions.count ?? 1, 1)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -65,7 +63,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let preppedMenuOptionsCount = preppedMenuOptions?.count
+        let preppedMenuOptionsCount = menuOptionsObj?.kittedMenuOptions.count
         
         if preppedMenuOptionsCount == 0 || preppedMenuOptionsCount == nil {
             if let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyMealKitsCell", for: indexPath) as? EmptyMealKitsCell {
@@ -83,7 +81,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
                 
                 cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
                 
-                let menuOption = preppedMenuOptions?[indexPath.item]
+                let menuOption = menuOptionsObj?.kittedMenuOptions[indexPath.item]
                 cell.menuOption = menuOption
                 
                 return cell
