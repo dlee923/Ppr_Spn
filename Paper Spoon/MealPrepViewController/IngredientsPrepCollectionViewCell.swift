@@ -8,10 +8,10 @@
 
 import UIKit
 
-class IngredientsPrepTableViewCell: UITableViewCell {
+class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.setup()
     }
     
@@ -36,7 +36,6 @@ class IngredientsPrepTableViewCell: UITableViewCell {
     
     private func setup() {
         self.backgroundColor = .yellow
-        self.selectionStyle = .none
         self.addMeasureAmount()
         self.addLabel()
         self.addCheckMarkView()
