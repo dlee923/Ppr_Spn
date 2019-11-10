@@ -18,11 +18,16 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     var ingredient: Ingredients? {
         didSet {
+            // set ingredient name
             self.label.text = self.ingredient?.name
             
+            // set measurement amount
             if let ingredientAmount = self.ingredient?.amount, let ingredientMeasure = self.ingredient?.measurementType {
                 self.measureAmountLbl.text = "\(ingredientAmount) \(ingredientMeasure)"
             }
+            
+            // set ingredient image
+            self.ingredientImg.image = self.ingredient?.image
             
             // enable visibility of 'packed' label
             self.checkMarkView.isHidden = self.ingredient?.isPacked == true ? false : true
@@ -35,9 +40,9 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     let ingredientImg = UIImageView()
     
     private func setup() {
-        self.backgroundColor = .yellow
-        self.addLabel()
+        self.backgroundColor = UIColor.themeColor1
         self.addIngredientImage()
+        self.addLabel()
         self.addMeasureAmount()
         self.addCheckMarkView()
     }
@@ -46,10 +51,10 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.ingredientImg)
         self.ingredientImg.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.ingredientImg.bottomAnchor.constraint(equalTo: self.label.topAnchor),
-            self.ingredientImg.topAnchor.constraint(equalTo: self.topAnchor),
+            self.ingredientImg.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            self.ingredientImg.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
             self.ingredientImg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.ingredientImg.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+            self.ingredientImg.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0, constant: -10)
         ])
     }
     
@@ -70,7 +75,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            self.label.leadingAnchor.constraint(equalTo: self.ingredientImg.trailingAnchor, constant: 5),
             self.label.heightAnchor.constraint(equalToConstant: 15),
             self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)

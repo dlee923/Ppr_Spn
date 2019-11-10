@@ -60,8 +60,12 @@ extension IngredientsPrepCollectionView: UICollectionViewDataSource {
 
 extension IngredientsPrepCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellDimension = (self.frame.width / 3) - 10
-        return CGSize(width: cellDimension, height: cellDimension)
+        let cellDimension = (self.frame.width / 2)
+        return CGSize(width: cellDimension, height: cellDimension * 0.35)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
