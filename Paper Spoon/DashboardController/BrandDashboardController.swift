@@ -304,12 +304,18 @@ class BrandDashboardController: UIPageViewController {
         }
     }
     
-    private func createIngredientImageDictionary(reducedCompiledIngredients: [Ingredients]) {
-        var ingredientImages = [String: UIImage]()
-        for ingredient in reducedCompiledIngredients {
-            ingredientImages[ingredient.name] = ingredient.image
+    
+    private func allocateIngredientImages() {
+        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
+        
+        for menuOption in selectedMenuOptions {
+            if let ingredients = menuOption.recipe?.ingredients {
+                for ingredient in ingredients {
+                    let ingredientImg = self.reducedCompiledIngredients.first(where: { $0.name == ingredient.name })
+                    ingredient.image = ingredientImg?.image
+                }
+            }
         }
-        self.menuOptionsObj?.ingredientImages = ingredientImages
     }
     
     
@@ -367,7 +373,7 @@ class BrandDashboardController: UIPageViewController {
             dispatchGroup.notify(queue: mainThread, execute: {
                 self.parentViewControllerDelegate?.sendReducedCompiledIngredients(reducedCompiledIngredients: self.reducedCompiledIngredients, completion: {
                     // attach ingredient images to MenuOption recipe ingredient images
-                    self.createIngredientImageDictionary(reducedCompiledIngredients: self.reducedCompiledIngredients)
+                    self.allocateIngredientImages()
                     
                     // present compiledIngredientsViewController
                     self.activityIndicator.activityEnded()
