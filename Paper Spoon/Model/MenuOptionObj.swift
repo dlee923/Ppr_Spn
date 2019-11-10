@@ -12,6 +12,7 @@ class MenuOptionObj {
     var menuOptions: [MenuOption]?
     var selectedMenuOptions = [MenuOption]()
     var kittedMenuOptions = [MenuOption]()
+    var ingredientImages: [String: UIImage]?
     
     func menuOptionKittedComplete(for menuOption: MenuOption) {
         // add menuOption to kittedMenuOption

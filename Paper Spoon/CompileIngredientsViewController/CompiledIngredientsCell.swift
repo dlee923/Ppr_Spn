@@ -40,7 +40,7 @@ class CompiledIngredientsCell: UITableViewCell {
     }
     
     func setFonts() {
-        self.measureAmount.font = UIFont.fontSunflower?.withSize(30)
+        self.measureAmount.font = UIFont.fontSunflower?.withSize(20)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

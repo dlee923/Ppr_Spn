@@ -67,7 +67,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         if self.compiledIngredients.count == 0 {
             return 50
         } else {
-            return 35
+            return 45
         }
     }
     
@@ -110,6 +110,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
         label.font = UIFont.fontSunflower?.withSize(20)
         label.backgroundColor = UIColor.themeColor1
+        label.textAlignment = .center
         
         switch section {
         case 0:
