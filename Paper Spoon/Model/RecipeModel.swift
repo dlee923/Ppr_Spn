@@ -42,7 +42,7 @@ class Recipe {
 }
 
 
-struct Ingredients: Equatable {
+class Ingredients: Equatable {
     var name: String
     var amount: Double?
     var measurementType: String?
@@ -54,6 +54,15 @@ struct Ingredients: Equatable {
     // confirm to Equatable protocol
     static func == (lhs: Ingredients, rhs: Ingredients) -> Bool {
         return lhs.name == rhs.name
+    }
+    
+    init (name: String, amount: Double?, measurementType: String?, isPacked: Bool?, imageLink: String?, image: UIImage?) {
+        self.name = name
+        self.amount = amount
+        self.measurementType = measurementType
+        self.isPacked = isPacked
+        self.imageLink = imageLink
+        self.image = image
     }
 }
 
