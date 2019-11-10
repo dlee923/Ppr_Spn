@@ -60,7 +60,8 @@ extension IngredientsPrepCollectionView: UICollectionViewDataSource {
 
 extension IngredientsPrepCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 50, height: 50)
+        let cellDimension = (self.frame.width / 3) - 10
+        return CGSize(width: cellDimension, height: cellDimension)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

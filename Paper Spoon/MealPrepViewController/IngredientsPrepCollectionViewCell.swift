@@ -36,32 +36,44 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         self.backgroundColor = .yellow
-        self.addMeasureAmount()
         self.addLabel()
+        self.addIngredientImage()
+        self.addMeasureAmount()
         self.addCheckMarkView()
     }
     
+    private func addIngredientImage() {
+        self.addSubview(self.ingredientImg)
+        self.ingredientImg.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.ingredientImg.bottomAnchor.constraint(equalTo: self.label.topAnchor),
+            self.ingredientImg.topAnchor.constraint(equalTo: self.topAnchor),
+            self.ingredientImg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            self.ingredientImg.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5)
+        ])
+    }
+    
     private func addMeasureAmount() {
-        self.measureAmountLbl.font = UIFont.fontCoolvetica?.withSize(10)
+        self.measureAmountLbl.font = UIFont.fontSunflower?.withSize(25)
         self.addSubview(self.measureAmountLbl)
         self.measureAmountLbl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.measureAmountLbl.heightAnchor.constraint(equalToConstant: 15),
+            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.ingredientImg.trailingAnchor, constant: 5),
+            self.measureAmountLbl.topAnchor.constraint(equalTo: self.topAnchor),
             self.measureAmountLbl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            self.measureAmountLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2)
+            self.measureAmountLbl.bottomAnchor.constraint(equalTo: self.label.topAnchor)
         ])
     }
     
     private func addLabel() {
-        self.label.font = UIFont.fontCoolvetica?.withSize(20)
+        self.label.font = UIFont.fontCoolvetica?.withSize(10)
         self.addSubview(self.label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.label.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
+            self.label.heightAnchor.constraint(equalToConstant: 15),
             self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            self.label.bottomAnchor.constraint(equalTo: self.measureAmountLbl.topAnchor, constant: -5)
+            self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
         ])
     }
     
