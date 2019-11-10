@@ -15,20 +15,18 @@ class CompiledIngredientsCell: UITableViewCell {
         // Initialization code
         self.selectionStyle = .none
         self.ingredientName.backgroundColor = UIColor.themeColor1
-        self.measureLbl.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1
+        self.setFonts()
     }
 
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var ingredientImg: UIImageView!
     @IBOutlet weak var measureAmount: UILabel!
-    @IBOutlet weak var measureLbl: UILabel!
     
     var ingredient: Ingredients? {
         didSet {
             self.ingredientName.text = self.ingredient?.name
-            self.measureAmount.text = String(describing: self.ingredient?.amount ?? 1)
-            self.measureLbl.text = self.ingredient?.measurementType
+            self.measureAmount.text = "\(self.ingredient?.amount ?? 1) \(self.ingredient?.measurementType ?? "")"
             self.ingredientImg.image = self.ingredient?.image
         }
     }
@@ -41,6 +39,10 @@ class CompiledIngredientsCell: UITableViewCell {
         }
     }
     
+    func setFonts() {
+        self.measureAmount.font = UIFont.fontSunflower?.withSize(30)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -49,7 +51,10 @@ class CompiledIngredientsCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.backgroundColor = UIColor.themeColor1
+        self.selectionStyle = .none
+        self.ingredientName.backgroundColor = UIColor.themeColor1
+        self.measureAmount.backgroundColor = UIColor.themeColor1
+        self.setFonts()
     }
     
 }

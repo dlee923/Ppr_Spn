@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CompiledIngredientsCell" customModule="Paper_Spoon" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="CompiledIngredientsCell" customModule="Paper_Spoon" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXv-KO-xjl">
-                        <rect key="frame" x="47" y="2" width="158" height="39.5"/>
+                        <rect key="frame" x="119" y="50" width="196" height="28"/>
                         <color key="backgroundColor" red="0.58823529409999997" green="0.88235294119999996" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
                             <fragment content="Label">
@@ -32,37 +30,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YY0-4v-nvT">
-                        <rect key="frame" x="2" y="5" width="40" height="36.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="4ss-UD-mJD"/>
-                        </constraints>
+                        <rect key="frame" x="2" y="2" width="112" height="76"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErJ-VA-OXD">
-                        <rect key="frame" x="210" y="2" width="35" height="39.5"/>
+                        <rect key="frame" x="119" y="2" width="196" height="45.5"/>
                         <color key="backgroundColor" red="0.38924536320000003" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="35" id="bjE-2n-R2e"/>
-                        </constraints>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
-                                    <font key="NSFont" size="10" name="CoolveticaRg-Regular"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCn-3r-v84">
-                        <rect key="frame" x="250" y="2" width="65" height="39.5"/>
-                        <color key="backgroundColor" red="0.70196078429999997" green="0.0" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="65" id="e8A-0N-X0v"/>
-                        </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="Label">
-                                <attributes>
-                                    <font key="NSFont" size="10" name="CoolveticaRg-Regular"/>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <font key="NSFont" size="36" name="CoolveticaRg-Regular"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
@@ -72,28 +49,28 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="YY0-4v-nvT" secondAttribute="bottom" constant="2" id="1Vr-t6-cbE"/>
-                    <constraint firstAttribute="bottom" secondItem="aCn-3r-v84" secondAttribute="bottom" constant="2" id="3y7-BW-6qI"/>
-                    <constraint firstItem="YY0-4v-nvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8D3-J7-cCq"/>
-                    <constraint firstItem="aCn-3r-v84" firstAttribute="leading" secondItem="ErJ-VA-OXD" secondAttribute="trailing" constant="5" id="8rS-7M-Xaz"/>
+                    <constraint firstAttribute="trailing" secondItem="ErJ-VA-OXD" secondAttribute="trailing" constant="5" id="4Tr-6w-KD2"/>
+                    <constraint firstItem="YY0-4v-nvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="8D3-J7-cCq"/>
                     <constraint firstItem="eXv-KO-xjl" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="M77-Cr-tEd"/>
-                    <constraint firstItem="eXv-KO-xjl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="W9g-Sa-vqj"/>
+                    <constraint firstItem="eXv-KO-xjl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.2" constant="2" id="W9g-Sa-vqj"/>
                     <constraint firstAttribute="bottom" secondItem="eXv-KO-xjl" secondAttribute="bottom" constant="2" id="kab-er-zCG"/>
                     <constraint firstItem="YY0-4v-nvT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="lH1-sh-Bn5"/>
-                    <constraint firstItem="aCn-3r-v84" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="nth-Tx-3BX"/>
-                    <constraint firstAttribute="bottom" secondItem="ErJ-VA-OXD" secondAttribute="bottom" constant="2" id="pTR-ZA-duc"/>
-                    <constraint firstItem="ErJ-VA-OXD" firstAttribute="leading" secondItem="eXv-KO-xjl" secondAttribute="trailing" constant="5" id="q9h-06-V6H"/>
-                    <constraint firstAttribute="trailing" secondItem="aCn-3r-v84" secondAttribute="trailing" constant="5" id="vc6-XJ-Icz"/>
+                    <constraint firstItem="ErJ-VA-OXD" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="oT2-Ew-Rlc"/>
+                    <constraint firstAttribute="centerY" secondItem="ErJ-VA-OXD" secondAttribute="bottom" multiplier="0.8" constant="2" id="pTR-ZA-duc"/>
+                    <constraint firstAttribute="trailing" secondItem="eXv-KO-xjl" secondAttribute="trailing" constant="5" id="q9h-06-V6H"/>
                     <constraint firstItem="ErJ-VA-OXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="wAQ-3L-4Yf"/>
                 </constraints>
             </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="YY0-4v-nvT" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.35" id="iEe-DD-DgK"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ingredientImg" destination="YY0-4v-nvT" id="BGQ-Jl-UIs"/>
                 <outlet property="ingredientName" destination="eXv-KO-xjl" id="SCe-xW-LSA"/>
                 <outlet property="measureAmount" destination="ErJ-VA-OXD" id="b3a-h6-aE0"/>
-                <outlet property="measureLbl" destination="aCn-3r-v84" id="MeZ-b2-9bS"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="104.46428571428571"/>
+            <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </tableViewCell>
     </objects>
 </document>
