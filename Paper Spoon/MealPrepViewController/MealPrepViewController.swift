@@ -17,12 +17,15 @@ class MealPrepViewController: UIViewController {
         self.setup()
     }
     
+    
     private func setup() {
         self.setColors()
         self.setupMealsToPrep()
         self.addMealsToPrep()
-        self.setupMealsPrepCount()
-        self.addMealsPrepCount()
+        
+        
+//        self.setupMealsPrepCount()
+//        self.addMealsPrepCount()
     }
     
     
@@ -31,7 +34,7 @@ class MealPrepViewController: UIViewController {
     
     // MARK:  UI Elements
     var mealsPrepCount = UIPageControl()
-    lazy var mealsPrepCollectionView = MealsPrepCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+    var mealsPrepCollectionView = MealsPrepCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var mealPrepFinishedBtn = UIButton()
     
     // MARK:  Delegates
@@ -45,6 +48,7 @@ class MealPrepViewController: UIViewController {
     }
 
     private func setupMealsToPrep() {
+        self.mealsPrepCollectionView.frame = self.view.frame
         self.mealsPrepCollectionView.menuOptionsObj = self.menuOptionsObj
         self.mealsPrepCollectionView.mealPrepFinishedDelegate = self
         self.mealsPrepCollectionView.parentViewControllerDelegate = self.parentViewControllerDelegate
@@ -84,8 +88,10 @@ extension MealPrepViewController: MealPrepFinishedDelegate {
     func addToPreppedMeals(menuOption: MenuOption) {
         // add menuOption to kittedMenuOptions and remove menuOption from selectedMenuOptions
         self.menuOptionsObj?.menuOptionKittedComplete(for: menuOption)
+        
         // reload meal kits prep view controller
         self.parentViewControllerDelegate?.reloadMealPrep()
+        
         // simply reload the meal kits selection view controller
         self.parentViewControllerDelegate?.reloadMealKitSelection()
     }

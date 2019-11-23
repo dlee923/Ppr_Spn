@@ -34,13 +34,16 @@ class CompiledIngredientsCell: UITableViewCell {
     func setColors(isPurchased: Bool) {
         if isPurchased {
             self.ingredientName.textColor = UIColor.color4
+            self.measureAmount.textColor = UIColor.color4
         } else {
             self.ingredientName.textColor = .black
+            self.measureAmount.textColor = .black
         }
     }
     
     func setFonts() {
         self.measureAmount.font = UIFont.fontSunflower?.withSize(20)
+        self.ingredientName.font = UIFont.fontCoolvetica?.withSize(10)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,7 +57,7 @@ class CompiledIngredientsCell: UITableViewCell {
         self.selectionStyle = .none
         self.ingredientName.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1
-        self.setFonts()
+        self.setColors(isPurchased: false)
     }
     
 }

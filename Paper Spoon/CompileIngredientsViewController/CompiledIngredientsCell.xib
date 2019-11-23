@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXv-KO-xjl">
-                        <rect key="frame" x="119" y="50" width="196" height="28"/>
+                        <rect key="frame" x="119" y="50" width="196" height="20"/>
                         <color key="backgroundColor" red="0.58823529409999997" green="0.88235294119999996" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
                             <fragment content="Label">
@@ -30,10 +30,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YY0-4v-nvT">
-                        <rect key="frame" x="2" y="2" width="112" height="76"/>
+                        <rect key="frame" x="2" y="5" width="112" height="70"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ErJ-VA-OXD">
-                        <rect key="frame" x="119" y="2" width="196" height="45.5"/>
+                        <rect key="frame" x="119" y="10" width="196" height="37.5"/>
                         <color key="backgroundColor" red="0.38924536320000003" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <attributedString key="attributedText">
                             <fragment content="Label">
@@ -48,17 +48,17 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="YY0-4v-nvT" secondAttribute="bottom" constant="2" id="1Vr-t6-cbE"/>
+                    <constraint firstAttribute="bottom" secondItem="YY0-4v-nvT" secondAttribute="bottom" constant="5" id="1Vr-t6-cbE"/>
                     <constraint firstAttribute="trailing" secondItem="ErJ-VA-OXD" secondAttribute="trailing" constant="5" id="4Tr-6w-KD2"/>
-                    <constraint firstItem="YY0-4v-nvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="8D3-J7-cCq"/>
+                    <constraint firstItem="YY0-4v-nvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8D3-J7-cCq"/>
                     <constraint firstItem="eXv-KO-xjl" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="M77-Cr-tEd"/>
                     <constraint firstItem="eXv-KO-xjl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.2" constant="2" id="W9g-Sa-vqj"/>
-                    <constraint firstAttribute="bottom" secondItem="eXv-KO-xjl" secondAttribute="bottom" constant="2" id="kab-er-zCG"/>
+                    <constraint firstAttribute="bottom" secondItem="eXv-KO-xjl" secondAttribute="bottom" constant="10" id="kab-er-zCG"/>
                     <constraint firstItem="YY0-4v-nvT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="lH1-sh-Bn5"/>
                     <constraint firstItem="ErJ-VA-OXD" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="oT2-Ew-Rlc"/>
                     <constraint firstAttribute="centerY" secondItem="ErJ-VA-OXD" secondAttribute="bottom" multiplier="0.8" constant="2" id="pTR-ZA-duc"/>
                     <constraint firstAttribute="trailing" secondItem="eXv-KO-xjl" secondAttribute="trailing" constant="5" id="q9h-06-V6H"/>
-                    <constraint firstItem="ErJ-VA-OXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="wAQ-3L-4Yf"/>
+                    <constraint firstItem="ErJ-VA-OXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wAQ-3L-4Yf"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>

@@ -67,7 +67,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         if self.compiledIngredients.count == 0 {
             return 50
         } else {
-            return 45
+            return 55
         }
     }
     

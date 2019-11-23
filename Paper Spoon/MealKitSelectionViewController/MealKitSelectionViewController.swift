@@ -24,11 +24,12 @@ class MealKitSelectionViewController: UIViewController {
     var menuOptionsObj: MenuOptionObj?
     var instructionsView = InstructionsViewController()
     
-    lazy var mealKitsCollectionView = MealKitsCollectionView(frame: self.view.frame)
+    var mealKitsCollectionView = MealKitsCollectionView(frame: .zero)
     
     var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     private func addMealKitsCollectionView() {
+        self.mealKitsCollectionView.frame = self.view.frame
         self.mealKitsCollectionView.menuOptionsObj = self.menuOptionsObj
         self.mealKitsCollectionView.mealKitSelectionViewControllerDelegate = self
         self.mealKitsCollectionView.parentViewControllerDelegate = self.parentViewControllerDelegate
