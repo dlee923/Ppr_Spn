@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,13 +17,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="411" height="346"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-GH-ZZ7">
-                        <rect key="frame" x="0.0" y="44" width="411" height="200"/>
-                        <color key="backgroundColor" red="0.0" green="0.17822062650000001" blue="0.35104432400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mza-Vj-JlH">
+                        <rect key="frame" x="5" y="44" width="401" height="100"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-GH-ZZ7">
+                                <rect key="frame" x="0.0" y="0.0" width="401" height="100"/>
+                                <color key="backgroundColor" red="0.0" green="0.17822062650000001" blue="0.35104432400000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="200" id="N23-C2-Dc9"/>
+                            <constraint firstAttribute="trailing" secondItem="QHB-GH-ZZ7" secondAttribute="trailing" id="VOD-oQ-HcH"/>
+                            <constraint firstItem="QHB-GH-ZZ7" firstAttribute="top" secondItem="mza-Vj-JlH" secondAttribute="top" id="ccJ-ke-mLg"/>
+                            <constraint firstItem="QHB-GH-ZZ7" firstAttribute="leading" secondItem="mza-Vj-JlH" secondAttribute="leading" id="k0B-H3-c0N"/>
+                            <constraint firstAttribute="height" constant="100" id="pGP-2X-niT"/>
+                            <constraint firstAttribute="bottom" secondItem="QHB-GH-ZZ7" secondAttribute="bottom" id="t1V-3T-aBq"/>
                         </constraints>
-                    </imageView>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-qt-apO">
                         <rect key="frame" x="5" y="281" width="401" height="60"/>
                         <color key="backgroundColor" red="0.0" green="0.70588235290000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -52,16 +62,16 @@
             </view>
             <color key="backgroundColor" red="0.70196078429999997" green="0.0039215686269999999" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="mza-Vj-JlH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="EQc-Ih-bvL"/>
                 <constraint firstAttribute="trailing" secondItem="6sj-qt-apO" secondAttribute="trailing" constant="5" id="O5u-p2-dbk"/>
-                <constraint firstAttribute="trailing" secondItem="QHB-GH-ZZ7" secondAttribute="trailing" id="O9k-fd-fvR"/>
-                <constraint firstItem="aXZ-OC-rax" firstAttribute="top" secondItem="QHB-GH-ZZ7" secondAttribute="top" id="PEe-cy-VzJ"/>
                 <constraint firstAttribute="trailing" secondItem="aXZ-OC-rax" secondAttribute="trailing" constant="5" id="SqP-q4-7Dd"/>
                 <constraint firstItem="6sj-qt-apO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="a6I-XJ-MI2"/>
+                <constraint firstItem="mza-Vj-JlH" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="jM9-ah-tvn"/>
+                <constraint firstItem="aXZ-OC-rax" firstAttribute="top" secondItem="mza-Vj-JlH" secondAttribute="top" id="mAL-9g-ft8"/>
                 <constraint firstItem="6sj-qt-apO" firstAttribute="top" secondItem="aXZ-OC-rax" secondAttribute="bottom" constant="5" id="o4R-RG-tUF"/>
                 <constraint firstItem="aXZ-OC-rax" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="ocN-lV-amd"/>
-                <constraint firstItem="QHB-GH-ZZ7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pnV-Oq-DlP"/>
+                <constraint firstAttribute="trailing" secondItem="mza-Vj-JlH" secondAttribute="trailing" constant="5" id="pM3-lR-4XR"/>
                 <constraint firstAttribute="bottom" secondItem="6sj-qt-apO" secondAttribute="bottom" constant="5" id="ubd-mX-PnB"/>
-                <constraint firstItem="QHB-GH-ZZ7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="topMargin" id="vMy-Kr-OR4"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="411" height="346"/>

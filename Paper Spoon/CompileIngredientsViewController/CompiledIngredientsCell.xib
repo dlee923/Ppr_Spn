@@ -46,18 +46,27 @@
                         </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="cHM-Hu-oFo">
+                        <rect key="frame" x="290" y="5" width="25" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="UcJ-io-nIg"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="cHM-Hu-oFo" secondAttribute="bottom" constant="5" id="1NY-re-tKj"/>
                     <constraint firstAttribute="bottom" secondItem="YY0-4v-nvT" secondAttribute="bottom" constant="5" id="1Vr-t6-cbE"/>
                     <constraint firstAttribute="trailing" secondItem="ErJ-VA-OXD" secondAttribute="trailing" constant="5" id="4Tr-6w-KD2"/>
                     <constraint firstItem="YY0-4v-nvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="8D3-J7-cCq"/>
                     <constraint firstItem="eXv-KO-xjl" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="M77-Cr-tEd"/>
                     <constraint firstItem="eXv-KO-xjl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.2" constant="2" id="W9g-Sa-vqj"/>
+                    <constraint firstItem="cHM-Hu-oFo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="iZZ-L4-ydC"/>
                     <constraint firstAttribute="bottom" secondItem="eXv-KO-xjl" secondAttribute="bottom" constant="10" id="kab-er-zCG"/>
                     <constraint firstItem="YY0-4v-nvT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="lH1-sh-Bn5"/>
                     <constraint firstItem="ErJ-VA-OXD" firstAttribute="leading" secondItem="YY0-4v-nvT" secondAttribute="trailing" constant="5" id="oT2-Ew-Rlc"/>
                     <constraint firstAttribute="centerY" secondItem="ErJ-VA-OXD" secondAttribute="bottom" multiplier="0.8" constant="2" id="pTR-ZA-duc"/>
                     <constraint firstAttribute="trailing" secondItem="eXv-KO-xjl" secondAttribute="trailing" constant="5" id="q9h-06-V6H"/>
+                    <constraint firstAttribute="trailing" secondItem="cHM-Hu-oFo" secondAttribute="trailing" constant="5" id="sQZ-cU-oEI"/>
                     <constraint firstItem="ErJ-VA-OXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wAQ-3L-4Yf"/>
                 </constraints>
             </tableViewCellContentView>
@@ -69,8 +78,12 @@
                 <outlet property="ingredientImg" destination="YY0-4v-nvT" id="BGQ-Jl-UIs"/>
                 <outlet property="ingredientName" destination="eXv-KO-xjl" id="SCe-xW-LSA"/>
                 <outlet property="measureAmount" destination="ErJ-VA-OXD" id="b3a-h6-aE0"/>
+                <outlet property="shoppingIcon" destination="cHM-Hu-oFo" id="dSb-Ci-RqA"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="checkmark" width="150" height="150"/>
+    </resources>
 </document>

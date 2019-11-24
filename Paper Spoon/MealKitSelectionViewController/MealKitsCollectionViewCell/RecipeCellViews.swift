@@ -15,7 +15,6 @@ extension MealKitsCollectionViewCell {
         self.backgroundSplash.backgroundColor = self.splashColor ?? UIColor.blue
         self.ingredientsButton.backgroundColor = self.splashColor ?? UIColor.blue
         self.likeButton.tintColor = self.splashColor ?? UIColor.blue
-        self.getCookingBtn.titleLabel?.textColor = self.splashColor ?? UIColor.blue
         
         // modify nutrition colors
         self.proteinLbl.backgroundColor = self.splashColor ?? UIColor.blue
@@ -111,7 +110,7 @@ extension MealKitsCollectionViewCell {
             for view in stackView.arrangedSubviews {
                 if let label = view as? UILabel {
                     label.font = UIFont.fontCoolvetica?.withSize(nutritionFontSize)
-                    label.textColor = UIColor.black.withAlphaComponent(0.9)
+                    label.textColor = UIColor.white
                 }
             }
         }
@@ -152,6 +151,7 @@ extension MealKitsCollectionViewCell {
     internal func modifyGetCookingButton() {
         self.getCookingBtn.setTitle("Show Instructions", for: .normal)
         self.getCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(15)
+        self.getCookingBtn.titleLabel?.textColor = UIColor.white
         self.getCookingBtn.backgroundColor = UIColor.themeColor3
         self.getCookingBtn.layer.cornerRadius = 15
         

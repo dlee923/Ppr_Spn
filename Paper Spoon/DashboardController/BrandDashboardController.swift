@@ -252,6 +252,9 @@ class BrandDashboardController: UIPageViewController {
         // aggregate all ingredients from selected recipes
         guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
         
+        // reset compiledIngredients
+        self.compiledIngredients.removeAll()
+        
         for menuOption in selectedMenuOptions {
             if let recipeIngredients = menuOption.recipe?.ingredients {
                 self.compiledIngredients += recipeIngredients
@@ -261,6 +264,8 @@ class BrandDashboardController: UIPageViewController {
         // standardize ingredient measurements
         
         // standardize ingredient names
+        
+        
         
         // reduce ingredients list to just unique values based on name only
         reducedCompiledIngredients = compiledIngredients.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
@@ -362,6 +367,8 @@ class BrandDashboardController: UIPageViewController {
             let reducedCompiledIngredientsCount = self.reducedCompiledIngredients.filter({ $0.imageLink != nil }).count
             let selectedMenuOptionsCount = self.menuOptionsObj?.selectedMenuOptions.filter({ $0.recipe?.recipeImageLink != nil }).count ?? 0
             
+            // reset work item completions:
+            self.workItemCompletionCount = 0
             self.workItemCompletionLimit = reducedCompiledIngredientsCount + selectedMenuOptionsCount
             
             // download ingredients images

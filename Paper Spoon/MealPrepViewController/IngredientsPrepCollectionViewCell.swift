@@ -41,7 +41,8 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     let shadowView = UIView()
     
     private func setup() {
-        self.backgroundColor = UIColor.themeColor1
+//        self.backgroundColor = UIColor.themeColor1
+        self.backgroundColor = UIColor.blue
         self.addShadowView()
         self.addIngredientImage()
         self.addLabel()

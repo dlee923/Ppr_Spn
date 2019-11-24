@@ -22,6 +22,7 @@ class CompiledIngredientsCell: UITableViewCell {
     @IBOutlet weak var ingredientName: UILabel!
     @IBOutlet weak var ingredientImg: UIImageView!
     @IBOutlet weak var measureAmount: UILabel!
+    @IBOutlet weak var shoppingIcon: UIImageView!
     
     var ingredient: Ingredients? {
         didSet {
@@ -58,6 +59,7 @@ class CompiledIngredientsCell: UITableViewCell {
         self.ingredientName.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1
         self.setColors(isPurchased: false)
+        self.shoppingIcon.isHidden = true
     }
     
 }
