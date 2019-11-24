@@ -41,12 +41,11 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     let shadowView = UIView()
     
     private func setup() {
-//        self.backgroundColor = UIColor.themeColor1
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.themeColor1
         self.addShadowView()
         self.addIngredientImage()
-        self.addLabel()
         self.addMeasureAmount()
+        self.addLabel()
         self.addCheckMarkView()
     }
     
@@ -60,29 +59,30 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
             self.shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
         
-        self.shadowView.addShadow(path: UIBezierPath(rect: self.shadowView.frame), color: .black, offset: CGSize(width: 3.0, height: 3.0), radius: 10, opacity: 0.7)
+        self.shadowView.addShadow(path: UIBezierPath(rect: self.frame), color: .black, offset: CGSize(width: 3.0, height: 3.0), radius: 10, opacity: 0.7)
     }
     
     private func addIngredientImage() {
         self.shadowView.addSubview(self.ingredientImg)
+        self.ingredientImg.contentMode = .scaleAspectFit
         self.ingredientImg.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.ingredientImg.bottomAnchor.constraint(equalTo: self.shadowView.bottomAnchor, constant: -5),
+            self.ingredientImg.heightAnchor.constraint(equalTo: self.shadowView.heightAnchor, multiplier: 0.35),
             self.ingredientImg.topAnchor.constraint(equalTo: self.shadowView.topAnchor, constant: 5),
             self.ingredientImg.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
-            self.ingredientImg.widthAnchor.constraint(equalTo: self.shadowView.heightAnchor, multiplier: 1.0, constant: -10)
+            self.ingredientImg.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5)
         ])
     }
     
     private func addMeasureAmount() {
-        self.measureAmountLbl.font = UIFont.fontSunflower?.withSize(20)
+        self.measureAmountLbl.font = UIFont.fontSunflower?.withSize(15)
         self.shadowView.addSubview(self.measureAmountLbl)
         self.measureAmountLbl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.ingredientImg.trailingAnchor, constant: 5),
-            self.measureAmountLbl.topAnchor.constraint(equalTo: self.shadowView.topAnchor),
+            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
+            self.measureAmountLbl.topAnchor.constraint(equalTo: self.ingredientImg.bottomAnchor),
             self.measureAmountLbl.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5),
-            self.measureAmountLbl.bottomAnchor.constraint(equalTo: self.label.topAnchor)
+            self.measureAmountLbl.heightAnchor.constraint(equalTo: self.shadowView.heightAnchor, multiplier: 0.35)
         ])
     }
     
@@ -91,8 +91,8 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
         self.shadowView.addSubview(self.label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.label.leadingAnchor.constraint(equalTo: self.ingredientImg.trailingAnchor, constant: 5),
-            self.label.heightAnchor.constraint(equalToConstant: 15),
+            self.label.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
+            self.label.topAnchor.constraint(equalTo: self.measureAmountLbl.bottomAnchor),
             self.label.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5),
             self.label.bottomAnchor.constraint(equalTo: self.shadowView.bottomAnchor, constant: -5)
         ])
@@ -117,6 +117,11 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
             self.checkMarkView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             self.checkMarkView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
             ])
+    }
+    
+    func isPackedFunction() {
+        // enable visibility of 'packed' label
+        self.checkMarkView.isHidden = self.ingredient?.isPacked == true ? false : true
     }
     
     override func prepareForReuse() {

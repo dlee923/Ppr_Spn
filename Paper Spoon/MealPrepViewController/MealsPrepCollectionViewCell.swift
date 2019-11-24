@@ -16,17 +16,21 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     @IBAction func mealPreppedBtnPressed(_ sender: Any) {
         self.mealPreppedAction()
     }
+    @IBOutlet weak var mealsPrepHeaderView: UIView!
+    @IBOutlet weak var mealsPrepLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.themeColor1
         self.setup()
+        self.customMealPrepButtonDimensions()
     }
     
     var menuOption: MenuOption? {
         didSet {
             self.ingredientsPrepCollectionView.recipe = self.menuOption?.recipe
             self.mealsPrepImage.image = self.menuOption?.recipe?.recipeImage
+            self.mealsPrepLabel.text = self.menuOption?.recipeName
             self.ingredientsPrepCollectionView.reloadData()
         }
     }
@@ -36,6 +40,20 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     private func setup() {
         self.mealPreppedBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
         self.mealPreppedBtn.layer.cornerRadius = 5
+        self.mealsPrepHeaderView.layer.cornerRadius = 50
+        self.mealsPrepImage.layer.cornerRadius = 40
+        self.mealsPrepImage.clipsToBounds = true
+        self.mealsPrepLabel.font = UIFont.fontBebas?.withSize(20)
+    }
+    
+    private func customMealPrepButtonDimensions() {
+        self.mealPreppedBtn.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.mealPreppedBtn.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5),
+            self.mealPreppedBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.mealPreppedBtn.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            self.mealPreppedBtn.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.05)
+        ])
     }
     
     private func mealPreppedAction() {

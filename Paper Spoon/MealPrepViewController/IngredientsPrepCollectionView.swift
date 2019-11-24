@@ -17,7 +17,7 @@ class IngredientsPrepCollectionView: UICollectionView {
     
     var recipe: Recipe? {
         didSet {
-            self.contentInset = UIEdgeInsets(top: 180, left: 0, bottom: 0, right: 0)
+            self.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -60,17 +60,18 @@ extension IngredientsPrepCollectionView: UICollectionViewDataSource {
 
 extension IngredientsPrepCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellDimension = (self.frame.width / 2) - 7.5
-        return CGSize(width: cellDimension, height: cellDimension * 0.35)
+        let cellDimension = (self.frame.width / 3) - 5
+        return CGSize(width: cellDimension, height: cellDimension)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? IngredientsPrepCollectionViewCell {
             cell.ingredient?.isPacked = cell.ingredient?.isPacked == true ? false : true
+            cell.isPackedFunction()
         }
     }
 }
