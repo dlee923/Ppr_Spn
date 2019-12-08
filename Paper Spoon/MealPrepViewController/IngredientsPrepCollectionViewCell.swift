@@ -38,63 +38,48 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     let checkMarkView = UILabel()
     let measureAmountLbl = UILabel()
     let ingredientImg = UIImageView()
-    let shadowView = UIView()
     
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
-        self.addShadowView()
         self.addIngredientImage()
         self.addMeasureAmount()
         self.addLabel()
         self.addCheckMarkView()
     }
     
-    private func addShadowView() {
-        self.addSubview(self.shadowView)
-        self.shadowView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.shadowView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.shadowView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.shadowView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.shadowView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
-        
-        self.shadowView.addShadow(path: UIBezierPath(rect: self.frame), color: .black, offset: CGSize(width: 3.0, height: 3.0), radius: 10, opacity: 0.7)
-    }
-    
     private func addIngredientImage() {
-        self.shadowView.addSubview(self.ingredientImg)
+        self.addSubview(self.ingredientImg)
         self.ingredientImg.contentMode = .scaleAspectFit
         self.ingredientImg.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.ingredientImg.heightAnchor.constraint(equalTo: self.shadowView.heightAnchor, multiplier: 0.35),
-            self.ingredientImg.topAnchor.constraint(equalTo: self.shadowView.topAnchor, constant: 5),
-            self.ingredientImg.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
-            self.ingredientImg.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5)
+            self.ingredientImg.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35),
+            self.ingredientImg.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            self.ingredientImg.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            self.ingredientImg.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
         ])
     }
     
     private func addMeasureAmount() {
         self.measureAmountLbl.font = UIFont.fontSunflower?.withSize(15)
-        self.shadowView.addSubview(self.measureAmountLbl)
+        self.addSubview(self.measureAmountLbl)
         self.measureAmountLbl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
+            self.measureAmountLbl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             self.measureAmountLbl.topAnchor.constraint(equalTo: self.ingredientImg.bottomAnchor),
-            self.measureAmountLbl.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5),
-            self.measureAmountLbl.heightAnchor.constraint(equalTo: self.shadowView.heightAnchor, multiplier: 0.35)
+            self.measureAmountLbl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.measureAmountLbl.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35)
         ])
     }
     
     private func addLabel() {
         self.label.font = UIFont.fontCoolvetica?.withSize(10)
-        self.shadowView.addSubview(self.label)
+        self.addSubview(self.label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.label.leadingAnchor.constraint(equalTo: self.shadowView.leadingAnchor, constant: 5),
+            self.label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
             self.label.topAnchor.constraint(equalTo: self.measureAmountLbl.bottomAnchor),
-            self.label.trailingAnchor.constraint(equalTo: self.shadowView.trailingAnchor, constant: -5),
-            self.label.bottomAnchor.constraint(equalTo: self.shadowView.bottomAnchor, constant: -5)
+            self.label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
         ])
     }
     

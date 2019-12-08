@@ -17,7 +17,7 @@ class IngredientsPrepCollectionView: UICollectionView {
     
     var recipe: Recipe? {
         didSet {
-            self.contentInset = UIEdgeInsets(top: 110, left: 0, bottom: 0, right: 0)
+            self.contentInset = UIEdgeInsets(top: 210, left: 0, bottom: 0, right: 0)
         }
     }
     
@@ -49,6 +49,7 @@ extension IngredientsPrepCollectionView: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ingredientsPrepTableViewCell", for: indexPath) as? IngredientsPrepCollectionViewCell {
             let ingredient = self.recipe?.ingredients?[indexPath.row]
             cell.ingredient = ingredient
+
             return cell
         } else {
             return UICollectionViewCell()

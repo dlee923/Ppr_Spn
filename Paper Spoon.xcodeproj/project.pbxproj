@@ -71,6 +71,7 @@
 		70E6F4992198DE1D005C08EE /* Paper_SpoonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4982198DE1D005C08EE /* Paper_SpoonTests.swift */; };
 		70E6F4A42198DE1D005C08EE /* Paper_SpoonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4A32198DE1D005C08EE /* Paper_SpoonUITests.swift */; };
 		70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */; };
+		70FCDD80239D4DB200DC7BA2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -161,6 +162,7 @@
 		70E6F4A32198DE1D005C08EE /* Paper_SpoonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paper_SpoonUITests.swift; sourceTree = "<group>"; };
 		70E6F4A52198DE1D005C08EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloFreshAPI.swift; sourceTree = "<group>"; };
+		70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -287,6 +289,7 @@
 				70D532CA22F5EFAA00C8F866 /* Device.swift */,
 				70D46CBB235C117900AB3488 /* DeviceViews.swift */,
 				701058E722FF61FA00D4D9FD /* Colors.swift */,
+				70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 			files = (
 				70E049A2235397B6005A1B71 /* BrandsSelectorView.swift in Sources */,
 				70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */,
+				70FCDD80239D4DB200DC7BA2 /* GradientView.swift in Sources */,
 				7077B5AA23244C8700359035 /* InstructionsViewController.swift in Sources */,
 				70E3A587232DA59400F9A5A7 /* BrandsCollectionView.swift in Sources */,
 				70D46CBE235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift in Sources */,
