@@ -37,12 +37,16 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     weak var mealPrepFinishedDelegate: MealPrepFinishedDelegate?
     
     private func setup() {
+        self.mealsPrepHeaderView.backgroundColor = UIColor.themeColor1
         self.mealPreppedBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
         self.mealPreppedBtn.layer.cornerRadius = self.mealPreppedBtn.frame.height / 2
         
         self.mealsPrepImage.clipsToBounds = true
         self.mealsPrepLabel.font = UIFont.fontBebas?.withSize(30)
         self.mealsPrepLabel.textColor = UIColor.themeColor2
+        self.mealsPrepLabel.backgroundColor = UIColor.themeColor1
+        
+        self.ingredientsPrepCollectionView.mealsPrepCollectionViewCellDelegate = self
     }
     
     private func mealPreppedAction() {
@@ -60,4 +64,14 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     }
     
 
+}
+
+protocol MealsPrepCollectionViewCellDelegate: AnyObject {
+    func setHeaderViewAlpha(newAlphaValue: CGFloat)
+}
+
+extension MealsPrepCollectionViewCell: MealsPrepCollectionViewCellDelegate {
+    func setHeaderViewAlpha(newAlphaValue: CGFloat) {
+        self.mealsPrepHeaderView.alpha = newAlphaValue
+    }
 }

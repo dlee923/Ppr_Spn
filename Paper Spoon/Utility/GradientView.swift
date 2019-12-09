@@ -20,12 +20,12 @@ class GradientView: UIView {
     var gradient = CAGradientLayer()
     
     func setup() {
-        print("add gradient")
         self.backgroundColor = .clear
         let colorTop = UIColor.clear.cgColor
         let colorBottom = UIColor.themeColor1.cgColor
-        self.gradient.colors = [colorTop, colorBottom]
-        self.gradient.locations = [0.0, 1.0]
+        let color0 = UIColor.themeColor1.cgColor
+        self.gradient.colors = [colorTop, colorBottom, color0]
+        self.gradient.locations = [0.0, 0.95, 1.0]
         
         self.layer.addSublayer(gradient)
         gradient.frame.size = self.frame.size

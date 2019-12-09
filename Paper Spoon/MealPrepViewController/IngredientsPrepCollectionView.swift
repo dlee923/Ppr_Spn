@@ -17,9 +17,11 @@ class IngredientsPrepCollectionView: UICollectionView {
     
     var recipe: Recipe? {
         didSet {
-            self.contentInset = UIEdgeInsets(top: 210, left: 0, bottom: 0, right: 0)
+            self.contentInset = UIEdgeInsets(top: 260, left: 0, bottom: 0, right: 0)
         }
     }
+    
+    var mealsPrepCollectionViewCellDelegate: MealsPrepCollectionViewCellDelegate?
     
     private func setup() {
         self.backgroundColor = .clear
@@ -74,5 +76,11 @@ extension IngredientsPrepCollectionView: UICollectionViewDelegateFlowLayout {
             cell.ingredient?.isPacked = cell.ingredient?.isPacked == true ? false : true
             cell.isPackedFunction()
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let alphaValue = scrollView.contentOffset.y < 0 ? (-scrollView.contentOffset.y) / 260 : 0
+        print(alphaValue > 1 ? 1 : alphaValue)
+        self.mealsPrepCollectionViewCellDelegate?.setHeaderViewAlpha(newAlphaValue: alphaValue)
     }
 }
