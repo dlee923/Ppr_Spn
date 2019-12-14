@@ -74,6 +74,7 @@
 		70FCDD80239D4DB200DC7BA2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */; };
 		70FCDD82239FC2C800DC7BA2 /* OptionsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD81239FC2C700DC7BA2 /* OptionsCountView.swift */; };
 		70FCDD8523A555FB00DC7BA2 /* InstructionsImgCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8423A555FB00DC7BA2 /* InstructionsImgCollectionView.swift */; };
+		70FCDD8723A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8623A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +168,7 @@
 		70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		70FCDD81239FC2C700DC7BA2 /* OptionsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCountView.swift; sourceTree = "<group>"; };
 		70FCDD8423A555FB00DC7BA2 /* InstructionsImgCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsImgCollectionView.swift; sourceTree = "<group>"; };
+		70FCDD8623A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsImgCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +415,7 @@
 				7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */,
 				7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */,
 				70FCDD8423A555FB00DC7BA2 /* InstructionsImgCollectionView.swift */,
+				70FCDD8623A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift */,
 			);
 			path = InstructionsViewController;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
 				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,
+				70FCDD8723A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift in Sources */,
 				70D46CAC235C109900AB3488 /* IngredientsListCollectionView.swift in Sources */,
 				70E6F4812198DE1A005C08EE /* AppDelegate.swift in Sources */,
 				70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */,

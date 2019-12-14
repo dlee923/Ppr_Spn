@@ -75,7 +75,18 @@ class InstructionsViewController: UIViewController {
     }
     
     private func addInstructionsImgCollectionView() {
+        self.instructionsImgCollectionView = InstructionsImgCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        self.instructionsImgCollectionView?.menuOption = self.menuOption
+        self.instructionsImgCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+        guard let instructionsImgCollectionView = self.instructionsImgCollectionView else { return }
+        self.view.addSubview(instructionsImgCollectionView)
         
+        NSLayoutConstraint.activate([
+            instructionsImgCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            instructionsImgCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            instructionsImgCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
+            instructionsImgCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2)
+        ])
     }
     
 }

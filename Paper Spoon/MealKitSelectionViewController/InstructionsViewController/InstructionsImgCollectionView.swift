@@ -20,7 +20,7 @@ class InstructionsImgCollectionView: UICollectionView {
     }
     
     private func registerCells() {
-        self.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "UICollectionViewCell")
+        self.register(InstructionsImgCollectionViewCell.self, forCellWithReuseIdentifier: "InstructionsImgCollectionViewCell")
     }
     
     var menuOption: MenuOption?
@@ -48,7 +48,9 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath) as? UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstructionsImgCollectionViewCell", for: indexPath) as? InstructionsImgCollectionViewCell {
+            cell.instructionImage.image = self.menuOption?.recipe?.instructionImages?[indexPath.item]
+            cell.stepLabelNumber.text = "\(indexPath.item)"
             return cell
         } else {
             return UICollectionViewCell()
