@@ -24,6 +24,7 @@ class InstructionsImgCollectionView: UICollectionView {
     }
     
     var menuOption: MenuOption?
+    var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -55,5 +56,9 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
         } else {
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.instructionsViewControllerDelegate?.selectInstrutionsPane(number: indexPath.item)
     }
 }

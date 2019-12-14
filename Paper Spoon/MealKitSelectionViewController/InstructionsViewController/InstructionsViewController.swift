@@ -76,6 +76,7 @@ class InstructionsViewController: UIViewController {
     
     private func addInstructionsImgCollectionView() {
         self.instructionsImgCollectionView = InstructionsImgCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        self.instructionsImgCollectionView?.instructionsViewControllerDelegate = self
         self.instructionsImgCollectionView?.menuOption = self.menuOption
         self.instructionsImgCollectionView?.translatesAutoresizingMaskIntoConstraints = false
         guard let instructionsImgCollectionView = self.instructionsImgCollectionView else { return }
@@ -89,4 +90,16 @@ class InstructionsViewController: UIViewController {
         ])
     }
     
+}
+
+
+protocol InstructionsViewControllerDelegate: AnyObject {
+    func selectInstrutionsPane(number: Int)
+}
+
+
+extension InstructionsViewController: InstructionsViewControllerDelegate {
+    func selectInstrutionsPane(number: Int) {
+        self.instructionsCollectionView?.scrollToItem(at: IndexPath(item: number, section: 0), at: .top, animated: true)
+    }
 }
