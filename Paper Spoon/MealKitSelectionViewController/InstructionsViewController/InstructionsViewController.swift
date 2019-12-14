@@ -20,6 +20,7 @@ class InstructionsViewController: UIViewController {
     }
     
     var instructionsCollectionView: InstructionsCollectionView?
+    var instructionsImgCollectionView: InstructionsImgCollectionView?
     var finishedCookingBtn = UIButton()
     var menuOption: MenuOption? {
         didSet {
@@ -33,6 +34,7 @@ class InstructionsViewController: UIViewController {
         self.view.backgroundColor = UIColor.themeColor1
         self.addFinishedCookingBtn()
         self.addInstructionsCollectionView()
+        self.addInstructionsImgCollectionView()
     }
     
     private func addFinishedCookingBtn() {
@@ -70,6 +72,10 @@ class InstructionsViewController: UIViewController {
             instructionsCV.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             instructionsCV.bottomAnchor.constraint(equalTo: self.finishedCookingBtn.topAnchor, constant: -5)
         ])
+    }
+    
+    private func addInstructionsImgCollectionView() {
+        
     }
     
 }
