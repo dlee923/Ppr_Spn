@@ -80,7 +80,6 @@ extension IngredientsPrepCollectionView: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let alphaValue = scrollView.contentOffset.y < 0 ? (-scrollView.contentOffset.y) / 260 : 0
-        print(alphaValue > 1 ? 1 : alphaValue)
         self.mealsPrepCollectionViewCellDelegate?.setHeaderViewAlpha(newAlphaValue: alphaValue)
     }
 }

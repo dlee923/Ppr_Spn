@@ -72,6 +72,7 @@
 		70E6F4A42198DE1D005C08EE /* Paper_SpoonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4A32198DE1D005C08EE /* Paper_SpoonUITests.swift */; };
 		70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */; };
 		70FCDD80239D4DB200DC7BA2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */; };
+		70FCDD82239FC2C800DC7BA2 /* OptionsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD81239FC2C700DC7BA2 /* OptionsCountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		70E6F4A52198DE1D005C08EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloFreshAPI.swift; sourceTree = "<group>"; };
 		70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		70FCDD81239FC2C700DC7BA2 /* OptionsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsCountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				70261D9823116B9E004AC40E /* MealPrepViewController.swift */,
+				70FCDD81239FC2C700DC7BA2 /* OptionsCountView.swift */,
 				70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */,
 				70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */,
 				70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */,
@@ -235,9 +238,7 @@
 				70118600231B291D00F4D047 /* MealKitsCollectionView.swift */,
 				707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */,
 				70D46CA8235C107700AB3488 /* MealKitsCollectionViewCell */,
-				7077B5A923244C8700359035 /* InstructionsViewController.swift */,
-				7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */,
-				7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */,
+				70FCDD8323A519C800DC7BA2 /* InstructionsViewController */,
 			);
 			path = MealKitSelectionViewController;
 			sourceTree = "<group>";
@@ -401,6 +402,16 @@
 				70E6F4A52198DE1D005C08EE /* Info.plist */,
 			);
 			path = "Paper SpoonUITests";
+			sourceTree = "<group>";
+		};
+		70FCDD8323A519C800DC7BA2 /* InstructionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7077B5A923244C8700359035 /* InstructionsViewController.swift */,
+				7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */,
+				7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */,
+			);
+			path = InstructionsViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -591,6 +602,7 @@
 				70E6F4B22198EE93005C08EE /* HelloFreshAPI.swift in Sources */,
 				70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */,
 				701058F42308EE8300D4D9FD /* CompiledIngredientsCell.swift in Sources */,
+				70FCDD82239FC2C800DC7BA2 /* OptionsCountView.swift in Sources */,
 				70E0499923528DB0005A1B71 /* ParentViewController.swift in Sources */,
 				70E3A581232B393200F9A5A7 /* IngredientsPrepCollectionViewCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,

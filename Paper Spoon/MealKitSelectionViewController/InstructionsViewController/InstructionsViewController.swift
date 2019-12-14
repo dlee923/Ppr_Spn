@@ -37,6 +37,7 @@ class InstructionsViewController: UIViewController {
     
     private func addFinishedCookingBtn() {
         self.finishedCookingBtn.setTitle("Finished Cooking!", for: .normal)
+        self.finishedCookingBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
         self.finishedCookingBtn.backgroundColor = UIColor.color2
         self.finishedCookingBtn.layer.cornerRadius = 5
         self.view.addSubview(self.finishedCookingBtn)

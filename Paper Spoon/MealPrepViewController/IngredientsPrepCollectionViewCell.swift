@@ -35,7 +35,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     }
     
     let label = UILabel()
-    let checkMarkView = UILabel()
+    let checkMarkView = UIView()
     let measureAmountLbl = UILabel()
     let ingredientImg = UIImageView()
     
@@ -84,24 +84,31 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     }
     
     private func addCheckMarkView() {
-        self.checkMarkView.font = UIFont.fontCoolvetica?.withSize(15)
         self.checkMarkView.isHidden = true
-        self.checkMarkView.backgroundColor = UIColor.black
-        self.checkMarkView.alpha = 0.7
-        self.checkMarkView.textColor = .white
-        self.checkMarkView.text = "Ingredient Packed!"
-        self.checkMarkView.textAlignment = .center
-        self.checkMarkView.layer.cornerRadius = 5
+        self.checkMarkView.backgroundColor = UIColor.themeColor3.withAlphaComponent(0.8)
+        self.checkMarkView.layer.cornerRadius = 20
         self.checkMarkView.clipsToBounds = true
         self.addSubview(self.checkMarkView)
         
         self.checkMarkView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.checkMarkView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            self.checkMarkView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            self.checkMarkView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            self.checkMarkView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
-            ])
+            self.checkMarkView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.checkMarkView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            self.checkMarkView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
+            self.checkMarkView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)
+        ])
+        
+        let checkMarkImage = UIImageView(image: UIImage(named: "checkmark")?.withRenderingMode(.alwaysTemplate))
+        checkMarkImage.tintColor = UIColor.themeColor1
+        self.checkMarkView.addSubview(checkMarkImage)
+        
+        checkMarkImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            checkMarkImage.centerXAnchor.constraint(equalTo: self.checkMarkView.centerXAnchor),
+            checkMarkImage.centerYAnchor.constraint(equalTo: self.checkMarkView.centerYAnchor),
+            checkMarkImage.widthAnchor.constraint(equalTo: self.checkMarkView.widthAnchor, multiplier: 0.5),
+            checkMarkImage.heightAnchor.constraint(equalTo: self.checkMarkView.heightAnchor, multiplier: 0.5)
+        ])
     }
     
     func isPackedFunction() {
