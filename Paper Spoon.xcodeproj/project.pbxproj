@@ -76,6 +76,8 @@
 		70FCDD8523A555FB00DC7BA2 /* InstructionsImgCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8423A555FB00DC7BA2 /* InstructionsImgCollectionView.swift */; };
 		70FCDD8723A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8623A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift */; };
 		70FCDD8923A6D59B00DC7BA2 /* BlueApronAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */; };
+		70FCDD8B23A7111200DC7BA2 /* BrandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8A23A7111200DC7BA2 /* BrandData.swift */; };
+		70FCDD8D23A7314300DC7BA2 /* BrandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,8 @@
 		70FCDD8423A555FB00DC7BA2 /* InstructionsImgCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsImgCollectionView.swift; sourceTree = "<group>"; };
 		70FCDD8623A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsImgCollectionViewCell.swift; sourceTree = "<group>"; };
 		70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueApronAPI.swift; sourceTree = "<group>"; };
+		70FCDD8A23A7111200DC7BA2 /* BrandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandData.swift; sourceTree = "<group>"; };
+		70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -307,6 +311,7 @@
 				70D532C822F44DCA00C8F866 /* RecipeModel.swift */,
 				708735E22310E3750079CCA5 /* IngredientsCategorization.swift */,
 				701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */,
+				70FCDD8A23A7111200DC7BA2 /* BrandData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 		70D532D422F77A0A00C8F866 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */,
 				70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */,
 				70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */,
 				701058D922FF0CCB00D4D9FD /* ImageAPI.swift */,
@@ -577,6 +583,7 @@
 				70D532D822F780E100C8F866 /* MenuOptionListCell.swift in Sources */,
 				70D46CB0235C110900AB3488 /* IngredientsHeader.swift in Sources */,
 				701058E622FF61D400D4D9FD /* Fonts.swift in Sources */,
+				70FCDD8B23A7111200DC7BA2 /* BrandData.swift in Sources */,
 				7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */,
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
 				70E3A585232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift in Sources */,
@@ -619,6 +626,7 @@
 				70E3A581232B393200F9A5A7 /* IngredientsPrepCollectionViewCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,
 				70E0499B235387EB005A1B71 /* EmptyCollectionViewCell.swift in Sources */,
+				70FCDD8D23A7314300DC7BA2 /* BrandAPI.swift in Sources */,
 				70D46CA2235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift in Sources */,
 				701185FA231B137500F4D047 /* IngredientsPrepCollectionView.swift in Sources */,
 			);

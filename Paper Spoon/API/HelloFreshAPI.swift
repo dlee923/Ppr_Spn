@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK:  HTML Calls
-class HelloFreshAPI: NSObject {
+class HelloFreshAPI: BrandAPI {
     
     static let shared = HelloFreshAPI()
     
@@ -28,7 +28,7 @@ class HelloFreshAPI: NSObject {
         }.resume()
     }
     
-    func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
+    override func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
         guard let url = URL(string: urlString) else { return }
         print(url)
 

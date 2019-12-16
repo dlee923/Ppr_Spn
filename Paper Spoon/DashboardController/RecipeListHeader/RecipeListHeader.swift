@@ -137,18 +137,3 @@ class RecipeListHeader: UIView {
     }
     
 }
-
-
-struct Brand {
-    var name: BrandType
-    var image: UIImage
-}
-
-enum BrandType {
-    case HelloFresh
-    case BlueApron
-    case HomeChef
-    case EveryPlate
-    case Plated
-    case PurpleCarrot
-}

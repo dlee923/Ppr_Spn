@@ -46,7 +46,8 @@ class BrandDashboardController: UIPageViewController {
 
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
-            self.downloadDataBlueApron()
+//            self.downloadDataBlueApron()
+            self.downloadData()
         }
         
     }
@@ -56,7 +57,7 @@ class BrandDashboardController: UIPageViewController {
         self.retrieveHelloFreshMenu()
         
         // download recipes after downloading menu
-        self.retrieveRecipeData()
+        self.retrieveRecipeData(brand: .HelloFresh)
         
         // download thumbnail after retrieving recipe data
         self.retrieveThumbnail()
@@ -75,7 +76,7 @@ class BrandDashboardController: UIPageViewController {
         self.retrieveBlueApronMenu()
         
         // download recipes after downloading menu
-        self.retrieveRecipeData()
+        self.retrieveRecipeData(brand: .BlueApron)
         
         // download thumbnail after retrieving recipe data
         self.retrieveThumbnail()
@@ -214,9 +215,17 @@ class BrandDashboardController: UIPageViewController {
     }
     
     
-    fileprivate func retrieveRecipeData() {
+    fileprivate func retrieveRecipeData(brand: BrandType) {
         guard let menuOptions = self.recipeListViewController.menuOptionsObj?.menuOptions else { return }
         var menuOptionsCount = 0
+        var brandAPI: BrandAPI?
+        
+        switch brand {
+        case .HelloFresh : brandAPI = HelloFreshAPI.shared
+        case .BlueApron : brandAPI = BlueApronAPI.shared
+        default: return
+        }
+        
         // download recipe details for each menu option
         for menuOption in menuOptions {
             let retrieveRecipeData = DispatchWorkItem {

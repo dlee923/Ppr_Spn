@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BlueApronAPI: NSObject {
+class BlueApronAPI: BrandAPI {
 
     static let shared = BlueApronAPI()
     
@@ -27,7 +27,7 @@ class BlueApronAPI: NSObject {
         }.resume()
     }
     
-    func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
+    override func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {
         guard let url = URL(string: urlString) else { return }
         print(url)
 
@@ -77,19 +77,20 @@ extension BlueApronAPI {
             let maxRecipeCount = recipeLinks.count > 11 ? 11 : recipeLinks.count
             
             for x in 1..<(maxRecipeCount) {
-                let link = recipeLinks[x].components(separatedBy: "\"><div class").first
+                let link = recipeLinks[x].components(separatedBy: "\"><div class").first ?? ""
+                let recipeLink = "https://www.blueapron.com" + link
     
                 // parse recipe name
                 let recipeNameSection0 = recipeLinks[x].components(separatedBy: "<div class='recipe-content__title'>").last
-                let recipeName = recipeNameSection0?.components(separatedBy: "</div>").first
+                let recipeName = recipeNameSection0?.components(separatedBy: "</div>").first ?? ""
 
                 // parse recipe subtitle
                 let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "<div class='recipe-content__subtitle'>").last
-                let recipeSubtitle = recipeSubtitleSection0?.components(separatedBy: "</div>").first
+                let recipeSubtitle = recipeSubtitleSection0?.components(separatedBy: "</div>").first ?? ""
                 
                 print(recipeName)
                 print(recipeSubtitle)
-                print(link)
+                print(recipeLink)
                 print()
                 
                 // create menu option
