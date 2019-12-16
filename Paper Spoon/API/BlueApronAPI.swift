@@ -40,24 +40,24 @@ class BlueApronAPI: BrandAPI {
                 
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
-                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
-                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
-                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
-                let title = self.parseRecipeTitle(htmlCode: htmlCode)
+//                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
+//                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+//                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
+//                let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
-                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
-                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
-                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
-                
-                // assign ingredient image links to each ingredient
-                for x in 0..<ingredients.count {
-                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
-                }
-                
-                // create recipe object
-                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
-                
-                completion(recipe)
+//                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+//                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
+//                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
+//                
+//                // assign ingredient image links to each ingredient
+//                for x in 0..<ingredients.count {
+//                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
+//                }
+//                
+//                // create recipe object
+//                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+//                
+//                completion(recipe)
             }
         }.resume()
     }
@@ -88,11 +88,6 @@ extension BlueApronAPI {
                 let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "<div class='recipe-content__subtitle'>").last
                 let recipeSubtitle = recipeSubtitleSection0?.components(separatedBy: "</div>").first ?? ""
                 
-                print(recipeName)
-                print(recipeSubtitle)
-                print(recipeLink)
-                print()
-                
                 // create menu option
                 let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle)
                 menuOptions.append(menuOption)
@@ -104,20 +99,13 @@ extension BlueApronAPI {
         
         // Retrieve recipe INGREDIENTS
         private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
+            print(htmlCode)
+            print("new recipe!")
             // create container to store ingredients
             var ingredients = [Ingredients]()
             
             // parse html code here
-            let ingredientSection0 = htmlCode.components(separatedBy: "recipeIngredient").last
-            let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
-            let ingredientSection2 = ingredientSection1?.components(separatedBy: ":[").last
-            var ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
-            
-            // remove '\' characters from ingredients
-            ingredientSection3?.removeAll(where: { $0 == "\"" })
-            
-            // separate all ingredients via ','
-            let ingredientList = ingredientSection3?.components(separatedBy: ",") ?? [String]()
+            let ingredientList = htmlCode.components(separatedBy: "itemprop='recipeIngredient'")
             
             // separate measurement from ingredient name
             for ingredient in ingredientList {
@@ -228,8 +216,8 @@ extension BlueApronAPI {
         // Retrieve recipe DESCRIPTION
         private func parseRecipeDescription(htmlCode: String) -> String {
             // parse html code here
-            let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
-            let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+            let descriptionSection0 = htmlCode.components(separatedBy: "<p itemprop='description'>").last
+            let description = descriptionSection0?.components(separatedBy: "</p>").first
             
             return description ?? ""
         }

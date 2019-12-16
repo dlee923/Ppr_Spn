@@ -46,8 +46,8 @@ class BrandDashboardController: UIPageViewController {
 
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
-//            self.downloadDataBlueApron()
-            self.downloadData()
+            self.downloadDataBlueApron()
+//            self.downloadData()
         }
         
     }
@@ -79,7 +79,7 @@ class BrandDashboardController: UIPageViewController {
         self.retrieveRecipeData(brand: .BlueApron)
         
         // download thumbnail after retrieving recipe data
-        self.retrieveThumbnail()
+//        self.retrieveThumbnail()
         
         self.dispatchGroup.notify(queue: self.mainThread) {
             // update UI
@@ -229,7 +229,7 @@ class BrandDashboardController: UIPageViewController {
         // download recipe details for each menu option
         for menuOption in menuOptions {
             let retrieveRecipeData = DispatchWorkItem {
-                HelloFreshAPI.shared.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
+                brandAPI?.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
                     
                     // find index for recipe in menu options and attach recipe object
                     if let menuIndex = self.recipeListViewController.menuOptionsObj?.menuOptions?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
