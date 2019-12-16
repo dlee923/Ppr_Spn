@@ -43,7 +43,7 @@ class BlueApronAPI: BrandAPI {
 //                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
 //                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
 //                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
-//                let title = self.parseRecipeTitle(htmlCode: htmlCode)
+                let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
 //                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
 //                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
@@ -208,8 +208,8 @@ extension BlueApronAPI {
         // Retrieve recipe TITLE
         private func parseRecipeTitle(htmlCode: String) -> String {
             // parse html code here
-            let titleSection0 = htmlCode.components(separatedBy: "og:title\" content=\"").last
-            let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
+            let titleSection0 = htmlCode.components(separatedBy: "<h1 class='ba-recipe-title__main'>\n").last
+            let title = titleSection0?.components(separatedBy: "\n</h1>").first
             
             return title ?? ""
         }
