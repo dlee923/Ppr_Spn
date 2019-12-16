@@ -99,7 +99,6 @@ extension BlueApronAPI {
         
         // Retrieve recipe INGREDIENTS
         private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
-            print(htmlCode)
             print("new recipe!")
             // create container to store ingredients
             var ingredients = [Ingredients]()
@@ -108,19 +107,22 @@ extension BlueApronAPI {
             let ingredientList = htmlCode.components(separatedBy: "itemprop='recipeIngredient'")
             
             // separate measurement from ingredient name
-            for ingredient in ingredientList {
-                let ingredientDetails = ingredient.components(separatedBy: " ")
+            for x in 1..<ingredientList.count - 1 {
+                let ingredientDetails = ingredientList[x].components(separatedBy: "<span>")
                 
-                if ingredientDetails.count > 1 {
-                    let ingredientAmount = Double(ingredientDetails.first ?? "0")
-                    let unitMeasure = ingredientDetails[1]
-                    let ingredientName = ingredientDetails[2...].joined(separator: " ")
-                    let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil, imageLink: nil, image: nil)
-                    ingredients.append(ingredientData)
-                } else {
-                    let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil, isPacked: nil, imageLink: nil, image: nil)
-                    ingredients.append(ingredientData)
-                }
+                let ingredientNameSection0 = ingredientDetails[1].components(separatedBy: "</span>\n").last
+                let ingredientName = ingredientNameSection0?.components(separatedBy: "\n</div>").first ?? ""
+                
+                let ingredientAmountData = ingredientDetails[1].components(separatedBy: "\n")
+                let ingredientAmount = Double(ingredientAmountData[1])
+                var unitMeasure = ingredientAmountData.count > 1 ? ingredientAmountData[2] : nil
+                
+                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil, imageLink: nil, image: nil)
+                ingredients.append(ingredientData)
+            }
+            
+            for ingredient in ingredients {
+                print("\(ingredient.name), \(ingredient.amount), \(ingredient.measurementType)")
             }
             
             return ingredients
