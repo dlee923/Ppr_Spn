@@ -20,6 +20,7 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
     
     private func addStepNumberLabel() {
         self.addSubview(self.stepLabelNumber)
+        self.stepLabelNumber.font = UIFont.fontSunflower?.withSize(10)
         self.stepLabelNumber.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.instructionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),

@@ -46,7 +46,7 @@ class BrandDashboardController: UIPageViewController {
 
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
-            self.downloadData()
+            self.downloadDataBlueApron()
         }
         
     }
@@ -54,6 +54,25 @@ class BrandDashboardController: UIPageViewController {
     fileprivate func downloadData() {
         // download recipe options
         self.retrieveHelloFreshMenu()
+        
+        // download recipes after downloading menu
+        self.retrieveRecipeData()
+        
+        // download thumbnail after retrieving recipe data
+        self.retrieveThumbnail()
+        
+        self.dispatchGroup.notify(queue: self.mainThread) {
+            // update UI
+            print("Updating UI")
+            self.recipeListViewController.menuOptionList.reloadData()
+            // Stop activity indicator
+            self.activityIndicator.activityEnded()
+        }
+    }
+    
+    fileprivate func downloadDataBlueApron() {
+        // download recipe options
+        self.retrieveBlueApronMenu()
         
         // download recipes after downloading menu
         self.retrieveRecipeData()
@@ -166,6 +185,22 @@ class BrandDashboardController: UIPageViewController {
     fileprivate func retrieveHelloFreshMenu() {
         let retrieveMenuOptions = DispatchWorkItem {
             HelloFreshAPI.shared.retrieveMenuOptions(completion: { (data) in
+                if let menuOptions = data as? [MenuOption] {
+                    self.recipeListViewController.menuOptionsObj?.menuOptions = menuOptions
+                    self.dispatchGroup.leave()
+                }
+            })
+        }
+        self.dispatchGroup.enter()
+        
+        backgroundThread.async(group: dispatchGroup, execute: retrieveMenuOptions)
+        self.dispatchGroup.wait()
+    }
+    
+    
+    fileprivate func retrieveBlueApronMenu() {
+        let retrieveMenuOptions = DispatchWorkItem {
+            BlueApronAPI.shared.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
                     self.recipeListViewController.menuOptionsObj?.menuOptions = menuOptions
                     self.dispatchGroup.leave()
