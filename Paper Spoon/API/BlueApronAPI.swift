@@ -41,7 +41,7 @@ class BlueApronAPI: BrandAPI {
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
                 let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
-//                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
                 let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
                 let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
@@ -140,7 +140,6 @@ extension BlueApronAPI {
             
             for instructionBlock in instructionsSection0 {
                 let instruction = instructionBlock.components(separatedBy: "</p>").first ?? ""
-                print(instruction)
                 instructions.append(instruction)
             }
             
@@ -155,11 +154,12 @@ extension BlueApronAPI {
             var instructionImgLinks = [String]()
             
             // parse html code here
-            let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image")
+            let instructionsImgSection0 = htmlCode.components(separatedBy: "<div class='p-15' itemprop='recipeInstructions'>")
             
             for x in 0..<(instructionsImgSection0.count - 1) {
-                let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
-                let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" alt=").first ?? ""
+                let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "src=\"").last
+                let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" />").first ?? ""
+                print(instructionsImgLink)
                 instructionImgLinks.append(instructionsImgLink)
             }
             
