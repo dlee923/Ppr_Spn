@@ -40,7 +40,7 @@ class BlueApronAPI: BrandAPI {
                 
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
-//                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
+                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
 //                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
                 let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
                 let title = self.parseRecipeTitle(htmlCode: htmlCode)
@@ -135,16 +135,15 @@ extension BlueApronAPI {
             var instructions = [String]()
             
             // parse html code here
-            let instructionsSection0 = htmlCode.components(separatedBy: "recipeInstructions").last
+            var instructionsSection0 = htmlCode.components(separatedBy: "<div class='step-txt'>\n<p>")
+            instructionsSection0.removeFirst()
             
-            let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
-            let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
-            for instructionBlock in instructionsSection2 {
-                let instruction = instructionBlock.components(separatedBy: "\"}").first ?? ""
+            for instructionBlock in instructionsSection0 {
+                let instruction = instructionBlock.components(separatedBy: "</p>").first ?? ""
+                print(instruction)
                 instructions.append(instruction)
             }
             
-            instructions.removeFirst()
             
             return instructions
         }
