@@ -42,10 +42,10 @@ class BlueApronAPI: BrandAPI {
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
 //                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
 //                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
-//                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
+                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
                 let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
-//                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
 //                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
 //                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
 //                
@@ -115,15 +115,15 @@ extension BlueApronAPI {
                 
                 let ingredientAmountData = ingredientDetails[1].components(separatedBy: "\n")
                 let ingredientAmount = Double(ingredientAmountData[1])
-                var unitMeasure = ingredientAmountData.count > 1 ? ingredientAmountData[2] : nil
+                let unitMeasure = ingredientAmountData.count > 1 ? ingredientAmountData[2] : nil
                 
                 let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil, imageLink: nil, image: nil)
                 ingredients.append(ingredientData)
             }
             
-            for ingredient in ingredients {
-                print("\(ingredient.name), \(ingredient.amount), \(ingredient.measurementType)")
-            }
+//            for ingredient in ingredients {
+//                print("\(ingredient.name), \(ingredient.amount), \(ingredient.measurementType)")
+//            }
             
             return ingredients
         }
@@ -170,36 +170,13 @@ extension BlueApronAPI {
         
         // Retrieve recipe NUTRITION
         private func parseRecipeNutrition(htmlCode: String) -> Nutrition {
-            // create temp container to store nutrition values for creating Nutrition object
-            var nutritionValues = [String: NutritionValue]()
             
             // parse html code here
-            let nutritionSection0 = htmlCode.components(separatedBy: "NutritionInformation\",").last
-            var nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
-            nutritionSection1?.removeAll(where: { $0 == "\"" })
-            let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
+            let nutritionSection0 = htmlCode.components(separatedBy: "<span itemprop='calories'>").last
+            let calorieCount = Double(nutritionSection0?.components(separatedBy: "</span>").first ?? "0.0")
+            let calorie = NutritionValue(amount: Double(calorieCount ?? 0.0), measurementType: "Calories")
             
-            for nutritionBlock in nutritionSection2 {
-                let nutritionDetails = nutritionBlock.components(separatedBy: ":")
-                let nutritionData = nutritionDetails.last?.components(separatedBy: " ")
-                
-                let nutritionAmount = Double(String(nutritionData?.first ?? "")) ?? 0.0
-                let nutritionType = nutritionData?.last ?? ""
-                let nutritionValue = NutritionValue(amount: nutritionAmount, measurementType: nutritionType)
-                if let nutritionName = nutritionDetails.first {
-                    nutritionValues[nutritionName] = nutritionValue
-                }
-            }
-            
-            let nutrition = Nutrition(calories: nutritionValues["calories"],
-                                      fatContent: nutritionValues["fatContent"],
-                                      saturatedFatContent: nutritionValues["saturatedFatContent"],
-                                      carbohydrateContent: nutritionValues["carbohydrateContent"],
-                                      sugarContent: nutritionValues["sugarContent"],
-                                      proteinContent: nutritionValues["proteinContent"],
-                                      fiberContent: nutritionValues["fiberContent"],
-                                      cholesterolContent: nutritionValues["cholesterolContent"],
-                                      sodiumContent: nutritionValues["sodiumContent"])
+            let nutrition = Nutrition(calories: calorie, fatContent: nil, saturatedFatContent: nil, carbohydrateContent: nil, sugarContent: nil, proteinContent: nil, fiberContent: nil, cholesterolContent: nil, sodiumContent: nil)
             
             return nutrition
         }
@@ -228,8 +205,9 @@ extension BlueApronAPI {
         // Retrieve recipe THUMBNAIL IMG LINK
         private func parseRecipeThumbnail(htmlCode: String) -> String {
             // parse html code here
-            let thumbnailSection0 = htmlCode.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
-            let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+            let thumbnailSection0 = htmlCode.components(separatedBy: "<div class='ba-hero-image__hldr'>\n<img class=\"img-max\"").last
+            let thumbnailSection1 = thumbnailSection0?.components(separatedBy: "src=\"")[1]
+            var thumbnailLink = thumbnailSection1?.components(separatedBy: "\" />").first
             
             return thumbnailLink ?? ""
         }
