@@ -23,6 +23,7 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     let instructionsTextView = UITextView()
     let instructionsImage = UIImageView()
     var instructions: String? { didSet { self.instructionsTextView.text = instructions } }
+    var instructionsHTML: NSAttributedString? { didSet { self.instructionsTextView.attributedText = instructionsHTML } }
     
     private func addInstructionsImage() {
         self.instructionsImage.backgroundColor = .purple

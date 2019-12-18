@@ -23,7 +23,8 @@ class InstructionsCollectionView: UICollectionView {
         self.register(InstructionsCollectionViewCell.self, forCellWithReuseIdentifier: "instructionsCollectionViewCell")
     }
     
-    var recipe: Recipe? { didSet { self.reloadData() } }
+    var menuOption: MenuOption? { didSet { self.reloadData() } }
+//    var recipe: Recipe? { didSet { self.reloadData() } }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,7 +34,7 @@ class InstructionsCollectionView: UICollectionView {
 
 extension InstructionsCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.recipe?.instructions?.count ?? 0
+        return self.menuOption?.recipe?.instructions?.count ?? 0
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -42,9 +43,18 @@ extension InstructionsCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instructionsCollectionViewCell", for: indexPath) as? InstructionsCollectionViewCell {
-            let instructions = self.recipe?.instructions?[indexPath.item]
-            cell.instructions = instructions
-            if let instructionImage = self.recipe?.instructionImages?[indexPath.item] {
+            
+            switch self.menuOption?.brandType {
+            case .HelloFresh:
+                let instructions = self.menuOption?.recipe?.instructions?[indexPath.item]
+                cell.instructions = instructions
+            case .BlueApron :
+                let instructionsHTML = self.menuOption?.recipe?.instructions?[indexPath.item].convertHtml()
+                cell.instructionsHTML = instructionsHTML
+            default : break
+            }
+            
+            if let instructionImage = self.menuOption?.recipe?.instructionImages?[indexPath.item] {
                 cell.instructionsImage.image = instructionImage
             }
             return cell

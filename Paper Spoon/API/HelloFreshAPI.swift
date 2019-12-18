@@ -97,7 +97,7 @@ extension HelloFreshAPI {
                 let recipeLink = recipeLink0?.components(separatedBy: "\"").first ?? ""
                 
                 // create menu option
-                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle)
+                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
                 menuOptions.append(menuOption)
             }
         }

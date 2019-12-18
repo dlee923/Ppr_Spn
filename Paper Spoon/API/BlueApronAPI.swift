@@ -6,7 +6,22 @@
 //  Copyright © 2019 DLEE. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension String {
+    
+    func convertHtml() -> NSAttributedString{
+        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        
+        if let attributedString = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+            attributedString.addAttribute(.font, value: UIFont.fontCoolvetica?.withSize(15), range: NSMakeRange(0, self.count) ))
+            return attributedString
+        } else {
+            return NSAttributedString()
+        }
+    }
+    
+}
 
 class BlueApronAPI: BrandAPI {
 
@@ -91,7 +106,7 @@ extension BlueApronAPI {
                 let recipeSubtitle = recipeSubtitleSection1.components(separatedBy: "amp; ").joined(separator: " ")
                 
                 // create menu option
-                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle)
+                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .BlueApron)
                 menuOptions.append(menuOption)
             }
             
@@ -207,7 +222,7 @@ extension BlueApronAPI {
             
             return description ?? ""
         }
-        
+    
         
         // Retrieve recipe THUMBNAIL IMG LINK
         private func parseRecipeThumbnail(htmlCode: String) -> String {

@@ -24,7 +24,7 @@ class InstructionsViewController: UIViewController {
     var finishedCookingBtn = UIButton()
     var menuOption: MenuOption? {
         didSet {
-            self.instructionsCollectionView?.recipe = self.menuOption?.recipe
+            self.instructionsCollectionView?.menuOption = self.menuOption
         }
     }
     
@@ -61,7 +61,7 @@ class InstructionsViewController: UIViewController {
     
     private func addInstructionsCollectionView() {
         self.instructionsCollectionView = InstructionsCollectionView(frame: self.view.frame)
-        self.instructionsCollectionView?.recipe = self.menuOption?.recipe
+        self.instructionsCollectionView?.menuOption = self.menuOption
         guard let instructionsCV = self.instructionsCollectionView else { return }
         self.view.addSubview(instructionsCV)
         

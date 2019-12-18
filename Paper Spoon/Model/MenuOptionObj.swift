@@ -34,16 +34,18 @@ class MenuOption {
     var recipeSubtitle: String
     var isSelected: Bool?
     var isMealKitComplete: Bool?
+    var brandType: BrandType
     
     var isLiked: Bool?
     var userRating: Int?
     
-    init(recipeName: String, recipeLink: String, recipe: Recipe?, recipeSubtitle: String) {
+    init(recipeName: String, recipeLink: String, recipe: Recipe?, recipeSubtitle: String, brandType: BrandType) {
         self.recipeName = recipeName
         self.recipeLink = recipeLink
         if let recipe0 = recipe {
             self.recipe = recipe0
         }
         self.recipeSubtitle = recipeSubtitle
+        self.brandType = brandType
     }
 }
