@@ -54,10 +54,10 @@ class BlueApronAPI: BrandAPI {
 //                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
 //                }
 //                
-//                // create recipe object
-//                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
-//                
-//                completion(recipe)
+                // create recipe object
+                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: nil, recipeImageLink: thumbnailLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+                
+                completion(recipe)
             }
         }.resume()
     }
@@ -82,11 +82,13 @@ extension BlueApronAPI {
     
                 // parse recipe name
                 let recipeNameSection0 = recipeLinks[x].components(separatedBy: "<div class='recipe-content__title'>").last
-                let recipeName = recipeNameSection0?.components(separatedBy: "</div>").first ?? ""
+                let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "</div>").first ?? ""
+                let recipeName = recipeNameSection1.components(separatedBy: "amp; ").joined(separator: " ")
 
                 // parse recipe subtitle
                 let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "<div class='recipe-content__subtitle'>").last
-                let recipeSubtitle = recipeSubtitleSection0?.components(separatedBy: "</div>").first ?? ""
+                let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "</div>").first ?? ""
+                let recipeSubtitle = recipeSubtitleSection1.components(separatedBy: "amp; ").joined(separator: " ")
                 
                 // create menu option
                 let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle)
@@ -185,7 +187,13 @@ extension BlueApronAPI {
         private func parseRecipeTitle(htmlCode: String) -> String {
             // parse html code here
             let titleSection0 = htmlCode.components(separatedBy: "<h1 class='ba-recipe-title__main'>\n").last
-            let title = titleSection0?.components(separatedBy: "\n</h1>").first
+            let titleSection1 = titleSection0?.components(separatedBy: "\n</h1>").first
+            let titleComponents = titleSection1?.components(separatedBy: "amp;")
+            for x in titleComponents! {
+                print(x)
+            }
+            let title = titleComponents?.joined(separator: " ")
+            
             
             return title ?? ""
         }
@@ -206,7 +214,7 @@ extension BlueApronAPI {
             // parse html code here
             let thumbnailSection0 = htmlCode.components(separatedBy: "<div class='ba-hero-image__hldr'>\n<img class=\"img-max\"").last
             let thumbnailSection1 = thumbnailSection0?.components(separatedBy: "src=\"")[1]
-            var thumbnailLink = thumbnailSection1?.components(separatedBy: "\" />").first
+            let thumbnailLink = thumbnailSection1?.components(separatedBy: "\" />").first
             
             return thumbnailLink ?? ""
         }

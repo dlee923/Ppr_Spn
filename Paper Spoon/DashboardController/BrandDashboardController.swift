@@ -79,7 +79,7 @@ class BrandDashboardController: UIPageViewController {
         self.retrieveRecipeData(brand: .BlueApron)
         
         // download thumbnail after retrieving recipe data
-//        self.retrieveThumbnail()
+        self.retrieveThumbnail()
         
         self.dispatchGroup.notify(queue: self.mainThread) {
             // update UI
