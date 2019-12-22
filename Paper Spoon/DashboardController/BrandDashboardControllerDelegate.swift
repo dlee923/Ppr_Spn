@@ -27,16 +27,16 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 self.compileIngredientsBtnHeightCollapsed?.isActive = false
                 self.compileIngredientsBtnPopped?.isActive = true
                 
-                self.recipeListViewController.menuOptionListCollapsed?.isActive = false
-                self.recipeListViewController.menuOptionListExpanded?.isActive = true
+                self.helloFreshViewController.menuOptionListCollapsed?.isActive = false
+                self.helloFreshViewController.menuOptionListExpanded?.isActive = true
             }
         } else if self.tempSelectedMenuOptions?.count == 0 {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
                 self.compileIngredientsBtnPopped?.isActive = false
                 self.compileIngredientsBtnHeightCollapsed?.isActive = true
                 
-                self.recipeListViewController.menuOptionListExpanded?.isActive = false
-                self.recipeListViewController.menuOptionListCollapsed?.isActive = true
+                self.helloFreshViewController.menuOptionListExpanded?.isActive = false
+                self.helloFreshViewController.menuOptionListCollapsed?.isActive = true
             }
         }
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
@@ -60,7 +60,12 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         }
         
         // remove highlighting
-        self.recipeListViewController.menuOptionList.reloadData()
+        for brandViewController in self.controllers {
+            if let brandVC = brandViewController as? BrandViewController {
+                brandVC.menuOptionList.reloadData()
+            }
+        }
+//        self.helloFreshViewController.menuOptionList.reloadData()
         
         // remove button
         self.showHideCompileButton()

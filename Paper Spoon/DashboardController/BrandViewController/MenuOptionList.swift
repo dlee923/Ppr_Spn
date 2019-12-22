@@ -23,6 +23,9 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.setColors()
     }
     
+    // MARK:  Variables
+    var brandView: BrandType?
+    
     // MARK:  Object Variables
     var menuOptionsObj: MenuOptionObj?
     
@@ -43,7 +46,8 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
-            cell.menuOption = menuOptionsObj?.menuOptions?[indexPath.item]
+            guard let brandView = self.brandView else { return UICollectionViewCell() }
+            cell.menuOption = menuOptionsObj?.menuOptions?[brandView]?[indexPath.item]
             return cell
         } else {
             return UICollectionViewCell()

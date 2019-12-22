@@ -14,7 +14,7 @@ extension String {
         guard let data = data(using: .utf8) else { return NSAttributedString() }
         
         if let attributedString = try? NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-            attributedString.addAttribute(.font, value: UIFont.fontCoolvetica?.withSize(15), range: NSMakeRange(0, self.count) ))
+            attributedString.addAttribute(.font, value: UIFont.fontCoolvetica?.withSize(15), range: NSMakeRange(0, self.count))
             return attributedString
         } else {
             return NSAttributedString()

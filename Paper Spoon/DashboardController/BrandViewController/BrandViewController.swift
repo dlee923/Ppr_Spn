@@ -13,20 +13,16 @@ class BrandViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setup()
         // Do any additional setup after loading the view.
+        self.setColors()
         
         // add menu option list to view
         self.setupMenuOptionsList()
         self.addViewMenuOptionList()
     }
     
-    private func setup() {
-        self.setColors()
-    }
-    
-    
     // MARK:  Variables
+    var brandView: BrandType?
     var menuOptionList: MenuOptionList!
     var menuOptionsObj: MenuOptionObj?
     
@@ -49,6 +45,7 @@ class BrandViewController: UIViewController {
     private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
+        self.menuOptionList.brandView = self.brandView
         self.menuOptionList.brandDashboardControllerDelegate = self.brandDashboardControllerDelegate
     }
     

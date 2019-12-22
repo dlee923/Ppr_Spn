@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuOptionObj {
-    var menuOptions: [MenuOption]?
+    var menuOptions: [BrandType: [MenuOption]]?
     var selectedMenuOptions = [MenuOption]()
     var kittedMenuOptions = [MenuOption]()
     
@@ -21,7 +21,7 @@ class MenuOptionObj {
         self.selectedMenuOptions.removeAll(where: { $0.recipeName == menuOption.recipeName })
     }
     
-    init(menuOptions: [MenuOption]?) {
+    init(menuOptions: [BrandType: [MenuOption]]?) {
         self.menuOptions = menuOptions
     }
 }
