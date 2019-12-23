@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuOptionObj {
-    var menuOptions: [BrandType: [MenuOption]]?
+    var menuOptions = [BrandType: [MenuOption]]()
     var selectedMenuOptions = [MenuOption]()
     var kittedMenuOptions = [MenuOption]()
     
@@ -22,7 +22,9 @@ class MenuOptionObj {
     }
     
     init(menuOptions: [BrandType: [MenuOption]]?) {
-        self.menuOptions = menuOptions
+        if let menuOptions_ = menuOptions {
+            self.menuOptions = menuOptions_
+        }
     }
 }
 

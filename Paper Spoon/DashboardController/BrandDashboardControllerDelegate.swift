@@ -54,8 +54,12 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         self.tempSelectedMenuOptions?.removeAll()
         // clear selection
         if let menuOptions = self.menuOptionsObj?.menuOptions {
-            for menuOption in menuOptions {
-                menuOption.isSelected = false
+            for (key, value) in menuOptions {
+                if let brandMenuOptions = menuOptions[key] {
+                    for menuOption in brandMenuOptions {
+                        menuOption.isSelected = false
+                    }
+                }
             }
         }
         

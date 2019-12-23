@@ -48,12 +48,12 @@ class BrandDashboardController: UIPageViewController {
         DispatchQueue.global().async {
             self.downloadDataHelloFresh()
             self.downloadDataBlueApron()
-            
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI
-                print("Updating UI")
+                print("Updating HF UI")
                 self.helloFreshViewController.menuOptionList.reloadData()
-                self.blueApronViewController.menuOptionList.reloadData()
+//                print("Updating BA UI")
+//                self.blueApronViewController.menuOptionList.reloadData()
                 // Stop activity indicator
                 self.activityIndicator.activityEnded()
             }
@@ -67,9 +67,10 @@ class BrandDashboardController: UIPageViewController {
         
         // download recipes after downloading menu
         self.retrieveRecipeData(brand: .HelloFresh)
-        
+
         // download thumbnail after retrieving recipe data
         self.retrieveThumbnail(brand: .HelloFresh)
+
     }
     
     fileprivate func downloadDataBlueApron() {
@@ -81,6 +82,7 @@ class BrandDashboardController: UIPageViewController {
         
         // download thumbnail after retrieving recipe data
         self.retrieveThumbnail(brand: .BlueApron)
+    
     }
     
     // MARK: App Settings
@@ -120,8 +122,8 @@ class BrandDashboardController: UIPageViewController {
     lazy var helloFreshViewController: BrandViewController = {
         let helloFreshViewController = BrandViewController()
         helloFreshViewController.brandDashboardControllerDelegate = self
-        helloFreshViewController.menuOptionsObj = self.menuOptionsObj
         helloFreshViewController.brandView = .HelloFresh
+        helloFreshViewController.menuOptionsObj = self.menuOptionsObj
         
         // pass to each view controller?
         if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
@@ -134,8 +136,8 @@ class BrandDashboardController: UIPageViewController {
     lazy var blueApronViewController: BrandViewController = {
         let blueApronViewController = BrandViewController()
         blueApronViewController.brandDashboardControllerDelegate = self
-        blueApronViewController.menuOptionsObj = self.menuOptionsObj
         blueApronViewController.brandView = .BlueApron
+        blueApronViewController.menuOptionsObj = self.menuOptionsObj
         
         // pass to each view controller?
         if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
@@ -190,7 +192,7 @@ class BrandDashboardController: UIPageViewController {
         let retrieveMenuOptions = DispatchWorkItem {
             HelloFreshAPI.shared.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
-                    self.menuOptionsObj?.menuOptions?[.HelloFresh] = menuOptions
+                    self.menuOptionsObj?.menuOptions[.HelloFresh] = menuOptions
                     self.dispatchGroup.leave()
                 }
             })
@@ -206,7 +208,7 @@ class BrandDashboardController: UIPageViewController {
         let retrieveMenuOptions = DispatchWorkItem {
             BlueApronAPI.shared.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
-                    self.menuOptionsObj?.menuOptions?[.BlueApron] = menuOptions
+                    self.menuOptionsObj?.menuOptions[.BlueApron] = menuOptions
                     self.dispatchGroup.leave()
                 }
             })
@@ -219,7 +221,7 @@ class BrandDashboardController: UIPageViewController {
     
     
     fileprivate func retrieveRecipeData(brand: BrandType) {
-        guard let menuOptions = self.menuOptionsObj?.menuOptions?[brand] else { return }
+        guard let menuOptions = self.menuOptionsObj?.menuOptions[brand] else { return }
         var menuOptionsCount = 0
         var brandAPI: BrandAPI?
         
@@ -235,8 +237,8 @@ class BrandDashboardController: UIPageViewController {
                 brandAPI?.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
                     
                     // find index for recipe in menu options and attach recipe object
-                    if let menuIndex = self.menuOptionsObj?.menuOptions?[brand]?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
-                        self.menuOptionsObj?.menuOptions?[brand]?[menuIndex].recipe = recipe
+                    if let menuIndex = self.menuOptionsObj?.menuOptions[brand]?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                        self.menuOptionsObj?.menuOptions[brand]?[menuIndex].recipe = recipe
                         
                         // increment count through menu options
                         menuOptionsCount += 1
@@ -257,7 +259,7 @@ class BrandDashboardController: UIPageViewController {
     
     
     fileprivate func retrieveThumbnail(brand: BrandType) {
-        guard let menuOptions = self.menuOptionsObj?.menuOptions?[brand] else { return }
+        guard let menuOptions = self.menuOptionsObj?.menuOptions[brand] else { return }
         
         // download thumbnail for each menu option
         for menuOption in menuOptions {
@@ -265,8 +267,8 @@ class BrandDashboardController: UIPageViewController {
                 
                 if let thumbnailLink = menuOption.recipe?.thumbnailLink {
                     ImageAPI.shared.downloadImage(urlLink: thumbnailLink, completion: { (thumbnailData) in
-                        if let menuIndex = self.menuOptionsObj?.menuOptions?[brand]?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
-                            self.menuOptionsObj?.menuOptions?[brand]?[menuIndex].recipe?.thumbnail = UIImage(data: thumbnailData)
+                        if let menuIndex = self.menuOptionsObj?.menuOptions[brand]?.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                            self.menuOptionsObj?.menuOptions[brand]?[menuIndex].recipe?.thumbnail = UIImage(data: thumbnailData)
 
                             self.dispatchGroup.leave()
                         }
