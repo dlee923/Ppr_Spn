@@ -52,8 +52,6 @@ class BrandDashboardController: UIPageViewController {
                 // update UI
                 print("Updating HF UI")
                 self.helloFreshViewController.menuOptionList.reloadData()
-//                print("Updating BA UI")
-//                self.blueApronViewController.menuOptionList.reloadData()
                 // Stop activity indicator
                 self.activityIndicator.activityEnded()
             }
@@ -141,7 +139,7 @@ class BrandDashboardController: UIPageViewController {
         
         // pass to each view controller?
         if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            helloFreshViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
+            blueApronViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
         }
         
         return blueApronViewController
