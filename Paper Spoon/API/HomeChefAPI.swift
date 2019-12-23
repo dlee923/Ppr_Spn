@@ -12,7 +12,7 @@ class HomeChefAPI: BrandAPI {
     
     static let shared = HomeChefAPI()
     
-    func retrieveMenuOptions(completion: ((Any) -> ())? ) {
+    override func retrieveMenuOptions(completion: ((Any) -> ())? ) {
         let urlString = "https://www.homechef.com/our-menu"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -70,6 +70,7 @@ extension HomeChefAPI {
     
     // Retrieve recipe MENU OPTIONS
     fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {
+        print(htmlCode)
         // create container to store menu options
         var menuOptions = [MenuOption]()
         

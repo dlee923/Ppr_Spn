@@ -143,10 +143,18 @@ class BrandDashboardController: UIPageViewController {
         return labVC
     }()
     
-    var homeChefViewController: UIViewController = {
-        let homeChefVC = UIViewController()
-        homeChefVC.view.backgroundColor = UIColor.themeColor1
-        return homeChefVC
+    lazy var homeChefViewController: UIViewController = {
+        let homeChefViewController = BrandViewController()
+        homeChefViewController.brandDashboardControllerDelegate = self
+        homeChefViewController.brandView = .HomeChef
+        homeChefViewController.menuOptionsObj = self.menuOptionsObj
+        
+        // pass to each view controller?
+        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
+            homeChefViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
+        }
+        
+        return homeChefViewController
     }()
     
     // MARK: Multi-threading
@@ -183,6 +191,7 @@ class BrandDashboardController: UIPageViewController {
         switch brand {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
         case .BlueApron : brandAPI = BlueApronAPI.shared
+        case .HomeChef :  brandAPI = HomeChefAPI.shared
         default: return
         }
         
@@ -209,6 +218,7 @@ class BrandDashboardController: UIPageViewController {
         switch brand {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
         case .BlueApron : brandAPI = BlueApronAPI.shared
+        case .HomeChef :  brandAPI = HomeChefAPI.shared
         default: return
         }
         
