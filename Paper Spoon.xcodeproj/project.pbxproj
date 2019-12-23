@@ -78,6 +78,7 @@
 		70FCDD8923A6D59B00DC7BA2 /* BlueApronAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */; };
 		70FCDD8B23A7111200DC7BA2 /* BrandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8A23A7111200DC7BA2 /* BrandData.swift */; };
 		70FCDD8D23A7314300DC7BA2 /* BrandAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */; };
+		70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FCDD8E23B0739A00DC7BA2 /* HomeChefAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,7 @@
 		70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueApronAPI.swift; sourceTree = "<group>"; };
 		70FCDD8A23A7111200DC7BA2 /* BrandData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandData.swift; sourceTree = "<group>"; };
 		70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandAPI.swift; sourceTree = "<group>"; };
+		70FCDD8E23B0739A00DC7BA2 /* HomeChefAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChefAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +324,7 @@
 				70FCDD8C23A7314300DC7BA2 /* BrandAPI.swift */,
 				70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */,
 				70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */,
+				70FCDD8E23B0739A00DC7BA2 /* HomeChefAPI.swift */,
 				701058D922FF0CCB00D4D9FD /* ImageAPI.swift */,
 			);
 			path = API;
@@ -605,6 +608,7 @@
 				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
 				70D46CB9235C114A00AB3488 /* RecipeCellViews.swift in Sources */,
 				701058EA22FF620600D4D9FD /* Extensions.swift in Sources */,
+				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,
 				70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */,
 				70AD620723137EFD00ABE458 /* MealsPrepCollectionViewCell.swift in Sources */,

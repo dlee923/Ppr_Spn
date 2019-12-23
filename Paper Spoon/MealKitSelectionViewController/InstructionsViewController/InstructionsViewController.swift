@@ -25,6 +25,7 @@ class InstructionsViewController: UIViewController {
     var menuOption: MenuOption? {
         didSet {
             self.instructionsCollectionView?.menuOption = self.menuOption
+            self.instructionsImgCollectionView?.menuOption = self.menuOption
         }
     }
     
@@ -75,7 +76,7 @@ class InstructionsViewController: UIViewController {
     }
     
     private func addInstructionsImgCollectionView() {
-        self.instructionsImgCollectionView = InstructionsImgCollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        self.instructionsImgCollectionView = InstructionsImgCollectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width * 0.2, height: (self.view.frame.height * 0.35) - 10), collectionViewLayout: UICollectionViewFlowLayout())
         self.instructionsImgCollectionView?.instructionsViewControllerDelegate = self
         self.instructionsImgCollectionView?.menuOption = self.menuOption
         self.instructionsImgCollectionView?.translatesAutoresizingMaskIntoConstraints = false
@@ -83,10 +84,10 @@ class InstructionsViewController: UIViewController {
         self.view.addSubview(instructionsImgCollectionView)
         
         NSLayoutConstraint.activate([
-            instructionsImgCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            instructionsImgCollectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            instructionsImgCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 5),
+            instructionsImgCollectionView.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.35 * 0.9                                                                          ),
             instructionsImgCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
-            instructionsImgCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.2)
+            instructionsImgCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.15)
         ])
     }
     

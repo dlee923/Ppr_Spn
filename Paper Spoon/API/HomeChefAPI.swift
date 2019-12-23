@@ -1,20 +1,19 @@
 //
-//  HelloFreshScrape.swift
+//  HomeChefAPI.swift
 //  Paper Spoon
 //
-//  Created by Daniel Lee on 11/11/18.
-//  Copyright © 2018 DLEE. All rights reserved.
+//  Created by Daniel Lee on 12/22/19.
+//  Copyright © 2019 DLEE. All rights reserved.
 //
 
 import Foundation
 
-// MARK:  HTML Calls
-class HelloFreshAPI: BrandAPI {
+class HomeChefAPI: BrandAPI {
     
-    static let shared = HelloFreshAPI()
+    static let shared = HomeChefAPI()
     
-    override func retrieveMenuOptions(completion: ((Any) -> ())? ) {
-        let urlString = "https://www.hellofresh.com/menus/"
+    func retrieveMenuOptions(completion: ((Any) -> ())? ) {
+        let urlString = "https://www.homechef.com/our-menu"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -67,7 +66,7 @@ class HelloFreshAPI: BrandAPI {
 
 
 // MARK:  All parsing of html functions
-extension HelloFreshAPI {
+extension HomeChefAPI {
     
     // Retrieve recipe MENU OPTIONS
     fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {

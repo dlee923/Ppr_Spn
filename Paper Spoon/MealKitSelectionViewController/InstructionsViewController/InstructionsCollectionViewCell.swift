@@ -32,7 +32,7 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             self.instructionsImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.instructionsImage.topAnchor.constraint(equalTo: self.topAnchor),
-            self.instructionsImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.instructionsImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.85, constant: -5),
             self.instructionsImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35)
         ])
     }

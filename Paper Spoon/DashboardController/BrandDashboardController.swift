@@ -46,8 +46,11 @@ class BrandDashboardController: UIPageViewController {
 
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
-            self.downloadDataHelloFresh()
-            self.downloadDataBlueApron()
+            
+//            self.downloadData(brand: .HelloFresh)
+//            self.downloadData(brand: .BlueApron)
+            self.downloadData(brand: .HomeChef)
+            
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI
                 print("Updating HF UI")
@@ -59,29 +62,18 @@ class BrandDashboardController: UIPageViewController {
         
     }
     
-    fileprivate func downloadDataHelloFresh() {
+    
+    fileprivate func downloadData(brand: BrandType) {
         // download recipe options
-        self.retrieveHelloFreshMenu()
+        self.retrieveBrandMenu(brand: brand)
         
         // download recipes after downloading menu
-        self.retrieveRecipeData(brand: .HelloFresh)
+        self.retrieveRecipeData(brand: brand)
 
         // download thumbnail after retrieving recipe data
-        self.retrieveThumbnail(brand: .HelloFresh)
-
+        self.retrieveThumbnail(brand: brand)
     }
     
-    fileprivate func downloadDataBlueApron() {
-        // download recipe options
-        self.retrieveBlueApronMenu()
-        
-        // download recipes after downloading menu
-        self.retrieveRecipeData(brand: .BlueApron)
-        
-        // download thumbnail after retrieving recipe data
-        self.retrieveThumbnail(brand: .BlueApron)
-    
-    }
     
     // MARK: App Settings
     let recipeMaxCount = 5
@@ -185,28 +177,19 @@ class BrandDashboardController: UIPageViewController {
         }
     }
     
-    
-    fileprivate func retrieveHelloFreshMenu() {
-        let retrieveMenuOptions = DispatchWorkItem {
-            HelloFreshAPI.shared.retrieveMenuOptions(completion: { (data) in
-                if let menuOptions = data as? [MenuOption] {
-                    self.menuOptionsObj?.menuOptions[.HelloFresh] = menuOptions
-                    self.dispatchGroup.leave()
-                }
-            })
-        }
-        self.dispatchGroup.enter()
+    fileprivate func retrieveBrandMenu(brand: BrandType) {
+        var brandAPI: BrandAPI?
         
-        backgroundThread.async(group: dispatchGroup, execute: retrieveMenuOptions)
-        self.dispatchGroup.wait()
-    }
-    
-    
-    fileprivate func retrieveBlueApronMenu() {
+        switch brand {
+        case .HelloFresh : brandAPI = HelloFreshAPI.shared
+        case .BlueApron : brandAPI = BlueApronAPI.shared
+        default: return
+        }
+        
         let retrieveMenuOptions = DispatchWorkItem {
-            BlueApronAPI.shared.retrieveMenuOptions(completion: { (data) in
+            brandAPI?.retrieveMenuOptions(completion: { (data) in
                 if let menuOptions = data as? [MenuOption] {
-                    self.menuOptionsObj?.menuOptions[.BlueApron] = menuOptions
+                    self.menuOptionsObj?.menuOptions[brand] = menuOptions
                     self.dispatchGroup.leave()
                 }
             })

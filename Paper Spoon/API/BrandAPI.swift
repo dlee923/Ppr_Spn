@@ -11,5 +11,6 @@ import Foundation
 class BrandAPI: NSObject {
     
     func retrieveRecipeInfo(urlString: String, completion: @escaping ((Recipe) -> ()) ) {}
+    func retrieveMenuOptions(completion: ((Any) -> ())? ) {}
     
 }

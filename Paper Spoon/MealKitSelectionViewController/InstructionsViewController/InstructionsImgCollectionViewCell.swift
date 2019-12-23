@@ -13,6 +13,9 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+
+        self.addInstructionImage()
+        self.addStepNumberLabel()
     }
     
     var stepLabelNumber = UILabel()
@@ -22,11 +25,12 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.stepLabelNumber)
         self.stepLabelNumber.font = UIFont.fontSunflower?.withSize(10)
         self.stepLabelNumber.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            self.instructionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
-            self.instructionImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            self.instructionImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
-            self.instructionImage.trailingAnchor.constraint(equalTo: self.instructionImage.leadingAnchor, constant: 5)
+            self.stepLabelNumber.topAnchor.constraint(equalTo: self.topAnchor, constant: 5),
+            self.stepLabelNumber.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            self.stepLabelNumber.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5),
+            self.stepLabelNumber.trailingAnchor.constraint(equalTo: self.instructionImage.leadingAnchor, constant: 5)
         ])
     }
     

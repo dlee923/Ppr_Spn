@@ -12,11 +12,13 @@ class InstructionsImgCollectionView: UICollectionView {
 
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        self.setup()
     }
     
     private func setup() {
         self.delegate = self
         self.dataSource = self
+        self.registerCells()
     }
     
     private func registerCells() {
@@ -33,9 +35,17 @@ class InstructionsImgCollectionView: UICollectionView {
 
 extension InstructionsImgCollectionView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let height = collectionView.frame.height / (self.menuOption?.recipe?.instructionImages?.count ?? 0)
-        let size = CGSize(width: collectionView.frame.width, height: collectionView.frame.width)
+        let heightMultiplier = CGFloat(self.frame.height) / CGFloat(self.menuOption?.recipe?.instructionImages?.count ?? 0)
+        let size = CGSize(width: collectionView.frame.width, height: heightMultiplier)
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
@@ -51,7 +61,7 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstructionsImgCollectionViewCell", for: indexPath) as? InstructionsImgCollectionViewCell {
             cell.instructionImage.image = self.menuOption?.recipe?.instructionImages?[indexPath.item]
-            cell.stepLabelNumber.text = "\(indexPath.item)"
+            cell.stepLabelNumber.text = "\(indexPath.item + 1)"
             return cell
         } else {
             return UICollectionViewCell()
@@ -60,5 +70,8 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.instructionsViewControllerDelegate?.selectInstrutionsPane(number: indexPath.item)
+        if let cell = collectionView.cellForItem(at: indexPath) as? InstructionsImgCollectionViewCell {
+            cell.stepLabelNumber.backgroundColor = UIColor.color5
+        }
     }
 }

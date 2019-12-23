@@ -27,7 +27,7 @@ class BlueApronAPI: BrandAPI {
 
     static let shared = BlueApronAPI()
     
-    func retrieveMenuOptions(completion: ((Any) -> ())? ) {
+    override func retrieveMenuOptions(completion: ((Any) -> ())? ) {
         let urlString = "https://www.blueapron.com/pages/sample-recipes"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -116,7 +116,6 @@ extension BlueApronAPI {
         
         // Retrieve recipe INGREDIENTS
         private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
-            print("new recipe!")
             // create container to store ingredients
             var ingredients = [Ingredients]()
             
@@ -176,7 +175,6 @@ extension BlueApronAPI {
             for x in 0..<(instructionsImgSection0.count - 1) {
                 let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "src=\"").last
                 let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" />").first ?? ""
-                print(instructionsImgLink)
                 instructionImgLinks.append(instructionsImgLink)
             }
             
@@ -204,9 +202,6 @@ extension BlueApronAPI {
             let titleSection0 = htmlCode.components(separatedBy: "<h1 class='ba-recipe-title__main'>\n").last
             let titleSection1 = titleSection0?.components(separatedBy: "\n</h1>").first
             let titleComponents = titleSection1?.components(separatedBy: "amp;")
-            for x in titleComponents! {
-                print(x)
-            }
             let title = titleComponents?.joined(separator: " ")
             
             

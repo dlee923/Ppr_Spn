@@ -16,7 +16,7 @@ class InstructionsCollectionView: UICollectionView {
     }
     
     private func setup() {
-        self.backgroundColor = UIColor.color7
+        self.backgroundColor = UIColor.themeColor1
         self.isPagingEnabled = true
         self.delegate = self
         self.dataSource = self
