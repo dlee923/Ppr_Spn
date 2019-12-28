@@ -40,24 +40,24 @@ class HomeChefAPI: BrandAPI {
                 
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
-                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
-                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
-                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
-                let title = self.parseRecipeTitle(htmlCode: htmlCode)
-                let description = self.parseRecipeDescription(htmlCode: htmlCode)
-                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
-                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
-                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
-                
-                // assign ingredient image links to each ingredient
-                for x in 0..<ingredients.count {
-                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
-                }
-                
-                // create recipe object
-                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
-                
-                completion(recipe)
+//                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
+//                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+//                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
+//                let title = self.parseRecipeTitle(htmlCode: htmlCode)
+//                let description = self.parseRecipeDescription(htmlCode: htmlCode)
+//                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+//                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
+//                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
+//
+//                // assign ingredient image links to each ingredient
+//                for x in 0..<ingredients.count {
+//                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
+//                }
+//
+//                // create recipe object
+//                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
+//
+//                completion(recipe)
             }
         }.resume()
     }
@@ -81,7 +81,7 @@ extension HomeChefAPI {
         
         for x in 1..<(recipeLinks.count) {
                 
-            // parse recipe subtitle
+            // parse recipe titles
             let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "data-pin-description=\"").last
             let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "\" data-pin-media").first ?? ""
             let recipeSubtitleSection2 = recipeSubtitleSection1.components(separatedBy: "&amp; ").joined()
@@ -90,6 +90,7 @@ extension HomeChefAPI {
             let recipeName = recipeSubtitleSection2.components(separatedBy: " with").first ?? ""
             print(recipeName)
             
+            // parse subtitle
             var recipeSubtitleSection3 = recipeSubtitleSection2.components(separatedBy: "with ")
             recipeSubtitleSection3.removeFirst()
             let recipeSubtitle = "with " + recipeSubtitleSection3.joined(separator: "with ")
@@ -100,7 +101,6 @@ extension HomeChefAPI {
             let recipeLink = recipeLinkSection0?.components(separatedBy: "\" data-pin-description").first ?? ""
             print(recipeLink)
             print()
-            print("new recipe")
             
             // create menu option
             let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
@@ -113,35 +113,34 @@ extension HomeChefAPI {
     
     // Retrieve recipe INGREDIENTS
     private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
+        print("new recipe\n")
         // create container to store ingredients
         var ingredients = [Ingredients]()
         
         // parse html code here
-        let ingredientSection0 = htmlCode.components(separatedBy: "recipeIngredient").last
-        let ingredientSection1 = ingredientSection0?.components(separatedBy: "recipeYield").first
-        let ingredientSection2 = ingredientSection1?.components(separatedBy: ":[").last
-        var ingredientSection3 = ingredientSection2?.components(separatedBy: "]").first
-        
-        // remove '\' characters from ingredients
-        ingredientSection3?.removeAll(where: { $0 == "\"" })
-        
-        // separate all ingredients via ','
-        let ingredientList = ingredientSection3?.components(separatedBy: ",") ?? [String]()
+        let ingredientSection0 = htmlCode.components(separatedBy: "download recipe</a>").last
+        var ingredientList = ingredientSection0?.components(separatedBy: "itemprop='recipeIngredient'>\n") ?? [""]
+        ingredientList.removeFirst()
         
         // separate measurement from ingredient name
         for ingredient in ingredientList {
-            let ingredientDetails = ingredient.components(separatedBy: " ")
+            let ingredientDetails0 = ingredient.components(separatedBy: "</div>\n").last
+            let ingredientDetails1 = ingredientDetails0?.components(separatedBy: "</li>").first
+            let ingredientDetails = ingredientDetails1?.components(separatedBy: "\n")
             
-            if ingredientDetails.count > 1 {
-                let ingredientAmount = Double(ingredientDetails.first ?? "0")
-                let unitMeasure = ingredientDetails[1]
-                let ingredientName = ingredientDetails[2...].joined(separator: " ")
-                let ingredientData = Ingredients(name: ingredientName, amount: ingredientAmount, measurementType: unitMeasure, isPacked: nil, imageLink: nil, image: nil)
-                ingredients.append(ingredientData)
-            } else {
-                let ingredientData = Ingredients(name: ingredientDetails[0], amount: nil, measurementType: nil, isPacked: nil, imageLink: nil, image: nil)
-                ingredients.append(ingredientData)
-            }
+            let ingredientAmount = Double(ingredientDetails?.first ?? "0")
+            let unitMeasure = ingredientDetails?[1] ?? ""
+            let ingredientName = ingredientDetails?[2] ?? ""
+            
+            let ingredientData = Ingredients(name: ingredientName,
+                                             amount: ingredientAmount,
+                                             measurementType: unitMeasure,
+                                             isPacked: nil,
+                                             imageLink: nil,
+                                             image: nil)
+            
+            ingredients.append(ingredientData)
+            
         }
         
         return ingredients

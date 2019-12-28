@@ -67,9 +67,9 @@ class BrandDashboardController: UIPageViewController {
         // download recipe options
         self.retrieveBrandMenu(brand: brand)
         
-//        // download recipes after downloading menu
-//        self.retrieveRecipeData(brand: brand)
-//
+        // download recipes after downloading menu
+        self.retrieveRecipeData(brand: brand)
+
 //        // download thumbnail after retrieving recipe data
 //        self.retrieveThumbnail(brand: brand)
     }
@@ -214,8 +214,8 @@ class BrandDashboardController: UIPageViewController {
         
         switch brand {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
-        case .BlueApron : brandAPI = BlueApronAPI.shared
-        case .HomeChef :  brandAPI = HomeChefAPI.shared
+        case .BlueApron  : brandAPI = BlueApronAPI.shared
+        case .HomeChef   : brandAPI = HomeChefAPI.shared
         default: return
         }
         
