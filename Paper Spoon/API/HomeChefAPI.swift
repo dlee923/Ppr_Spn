@@ -40,7 +40,7 @@ class HomeChefAPI: BrandAPI {
                 
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
-//                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
+                let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
 //                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
 //                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
 //                let title = self.parseRecipeTitle(htmlCode: htmlCode)
@@ -113,7 +113,6 @@ extension HomeChefAPI {
     
     // Retrieve recipe INGREDIENTS
     private func parseMenuIngredients(htmlCode: String) -> [Ingredients] {
-        print("new recipe\n")
         // create container to store ingredients
         var ingredients = [Ingredients]()
         
@@ -153,16 +152,15 @@ extension HomeChefAPI {
         var instructions = [String]()
         
         // parse html code here
-        let instructionsSection0 = htmlCode.components(separatedBy: "recipeInstructions").last
+        var instructionsSection0 = htmlCode.components(separatedBy: "</figcaption>\n</figure>")
+        instructionsSection0.removeFirst()
         
-        let instructionsSection1 = instructionsSection0?.components(separatedBy: "recipeIngredient").first
-        let instructionsSection2 = instructionsSection1?.components(separatedBy: "text\":\"") ?? [String]()
-        for instructionBlock in instructionsSection2 {
-            let instruction = instructionBlock.components(separatedBy: "\"}").first ?? ""
+        for x in 1..<instructionsSection0.count {
+            let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
+            let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
+
             instructions.append(instruction)
         }
-        
-        instructions.removeFirst()
         
         return instructions
     }
