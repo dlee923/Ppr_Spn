@@ -12,6 +12,7 @@ class ParentViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addGradientBackground()
         
         // send delegate to viewControllers
         self.setupViewControllers()
@@ -62,8 +63,10 @@ class ParentViewController: UITabBarController {
     private func setTabBarProperties() {
         // set tabbar color properties
         self.tabBar.tintColor = UIColor.themeColor2
-        self.tabBar.isTranslucent = false
-        self.tabBar.barTintColor = UIColor.themeColor1
+        self.tabBar.isTranslucent = true
+        self.tabBar.barTintColor = UIColor.clear
+        self.tabBar.backgroundImage = UIImage()
+        self.tabBar.shadowImage = UIImage()
         // Remove tab bar line
         self.tabBar.layer.borderWidth = 0.0
         self.tabBar.clipsToBounds = true
@@ -81,6 +84,21 @@ class ParentViewController: UITabBarController {
         
         self.mealKitSelectionViewController.parentViewControllerDelegate = self
         self.mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
+    }
+    
+    internal func addGradientBackground() {
+        let colorBottom = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
+        let background = GradientView(frame: self.view.frame, colorTop: UIColor.themeColor1.cgColor, colorBottom: colorBottom.cgColor)
+        self.view.insertSubview(background, at: 0)
+        background.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            background.topAnchor.constraint(equalTo: self.view.topAnchor),
+            background.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            background.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            background.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        ])
+        
     }
 
 }

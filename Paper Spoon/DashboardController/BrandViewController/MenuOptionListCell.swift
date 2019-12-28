@@ -60,7 +60,7 @@ class MenuOptionListCell: UICollectionViewCell {
     }
     
     private func setColors() {
-        self.backgroundColor = UIColor.themeColor1
+        self.backgroundColor = UIColor.clear
         self.subtitleView.textColor = UIColor.black.withAlphaComponent(0.7)
         self.subtitleView.backgroundColor = UIColor.clear
         self.caloriesLabel.textColor = UIColor.themeColor2

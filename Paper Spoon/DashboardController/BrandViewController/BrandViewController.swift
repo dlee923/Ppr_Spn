@@ -14,7 +14,6 @@ class BrandViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.setColors()
         
         // add menu option list to view
         self.setupMenuOptionsList()
@@ -37,10 +36,6 @@ class BrandViewController: UIViewController {
     var menuOptionListCollapsed: NSLayoutConstraint?
     var menuOptionListExpanded: NSLayoutConstraint?
     var menuOptionListExpandedConstant: CGFloat?
-    
-    private func setColors() {
-        self.view.backgroundColor = UIColor.themeColor1
-    }
     
     private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())

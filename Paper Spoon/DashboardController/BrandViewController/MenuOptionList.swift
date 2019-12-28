@@ -33,7 +33,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
     
     private func setColors() {
-        self.backgroundColor = UIColor.themeColor1
+        self.backgroundColor = .clear
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

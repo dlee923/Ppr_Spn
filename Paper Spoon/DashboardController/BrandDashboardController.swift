@@ -28,8 +28,8 @@ class BrandDashboardController: UIPageViewController {
         self.createBrands()
         
         // add ui views
-        
         self.addRecipeListHeader()
+        
         // add compile ingredients View + Button
         self.addCompileIngredientsView()
         self.setupCompileIngredientsBtn()
@@ -67,11 +67,11 @@ class BrandDashboardController: UIPageViewController {
         // download recipe options
         self.retrieveBrandMenu(brand: brand)
         
-        // download recipes after downloading menu
-        self.retrieveRecipeData(brand: brand)
-
-        // download thumbnail after retrieving recipe data
-        self.retrieveThumbnail(brand: brand)
+//        // download recipes after downloading menu
+//        self.retrieveRecipeData(brand: brand)
+//
+//        // download thumbnail after retrieving recipe data
+//        self.retrieveThumbnail(brand: brand)
     }
     
     
@@ -139,7 +139,6 @@ class BrandDashboardController: UIPageViewController {
     
     var platedViewController: UIViewController = {
         let labVC = UIViewController()
-        labVC.view.backgroundColor = UIColor.themeColor1
         return labVC
     }()
     
@@ -176,8 +175,6 @@ class BrandDashboardController: UIPageViewController {
     var newMenuPromptPopped: [NSLayoutConstraint]?
     
     fileprivate func setUp() {
-        self.view.backgroundColor = UIColor.themeColor1
-        
         controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
         
         if let recipeListVC1 = controllers.first {

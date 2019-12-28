@@ -23,6 +23,7 @@ class BrandsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout
     var brands: [Brand]?
     
     private func setup() {
+        self.backgroundColor = .clear
         self.delegate = self
         self.dataSource = self
         self.register(BrandsCollectionViewCell.self, forCellWithReuseIdentifier: "brandCollectionViewCell")

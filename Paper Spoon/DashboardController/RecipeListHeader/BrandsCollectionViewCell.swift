@@ -12,7 +12,6 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor.themeColor1
     }
     
     var brand: Brand? {

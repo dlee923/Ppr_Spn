@@ -70,36 +70,41 @@ extension HomeChefAPI {
     
     // Retrieve recipe MENU OPTIONS
     fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {
-        print(htmlCode)
         // create container to store menu options
         var menuOptions = [MenuOption]()
         
-        // parse html code here
-        let recipeLinks = htmlCode.components(separatedBy: ",category")
+        // cut html range
+        let htmlCodeLimit = htmlCode.components(separatedBy: "Protein Packs").first ?? ""
         
-        for x in 0..<(recipeLinks.count - 1) {
-            let link = recipeLinks[x].components(separatedBy: ",label")
-            if link.count > 1 {
-                let recipeInfo = link.first
+        // parse html code here
+        let recipeLinks = htmlCodeLimit.components(separatedBy: "meal_title\" data-amplitude-value=\"")
+        
+        for x in 1..<(recipeLinks.count) {
                 
-                // parse recipe name
-                let recipeNameSection0 = recipeInfo?.components(separatedBy: "author:").last
-                let recipeNameSection1 = recipeNameSection0?.components(separatedBy: "name:\"")[1]
-                let recipeName = recipeNameSection1?.components(separatedBy: "\",slug:").first ?? ""
-                
-                // parse recipe subtitle
-                let recipeSubtitleSection0 = recipeInfo?.components(separatedBy: "headline:\"").last
-                let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "\",websiteUrl:").first
-                let recipeSubtitle = recipeSubtitleSection1 ?? ""
-                
-                // parse recipe link
-                let recipeLink0 = recipeInfo?.components(separatedBy: "websiteUrl:\"").last
-                let recipeLink = recipeLink0?.components(separatedBy: "\"").first ?? ""
-                
-                // create menu option
-                let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
-                menuOptions.append(menuOption)
-            }
+            // parse recipe subtitle
+            let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "data-pin-description=\"").last
+            let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "\" data-pin-media").first ?? ""
+            let recipeSubtitleSection2 = recipeSubtitleSection1.components(separatedBy: "&amp; ").joined()
+            
+            // parse recipe name
+            let recipeName = recipeSubtitleSection2.components(separatedBy: " with").first ?? ""
+            print(recipeName)
+            
+            var recipeSubtitleSection3 = recipeSubtitleSection2.components(separatedBy: "with ")
+            recipeSubtitleSection3.removeFirst()
+            let recipeSubtitle = "with " + recipeSubtitleSection3.joined(separator: "with ")
+            print(recipeSubtitle)
+            
+            // parse recipe link
+            let recipeLinkSection0 = recipeLinks[x].components(separatedBy: "data-pin-url=\"").last
+            let recipeLink = recipeLinkSection0?.components(separatedBy: "\" data-pin-description").first ?? ""
+            print(recipeLink)
+            print()
+            print("new recipe")
+            
+            // create menu option
+            let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
+            menuOptions.append(menuOption)
         }
         
         return menuOptions
