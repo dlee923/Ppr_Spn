@@ -44,10 +44,10 @@ class HomeChefAPI: BrandAPI {
                 let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
 //                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
 //                let title = self.parseRecipeTitle(htmlCode: htmlCode)
-//                let description = self.parseRecipeDescription(htmlCode: htmlCode)
+                let description = self.parseRecipeDescription(htmlCode: htmlCode)
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
                 let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
-//                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
+                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
 //
 //                // assign ingredient image links to each ingredient
 //                for x in 0..<ingredients.count {
@@ -172,11 +172,13 @@ extension HomeChefAPI {
         var instructionImgLinks = [String]()
         
         // parse html code here
-        let instructionsImgSection0 = htmlCode.components(separatedBy: "recipeDetailFragment.instructions.step-image")
+        let instructionsImgSection0 = htmlCode.components(separatedBy: "itemListElement")
         
-        for x in 0..<(instructionsImgSection0.count - 1) {
-            let instructionsImgLink1 = instructionsImgSection0[x].components(separatedBy: "img src=\"").last
-            let instructionsImgLink = instructionsImgLink1?.components(separatedBy: "\" alt=").first ?? ""
+        for x in 1..<(instructionsImgSection0.count + 1) {
+            let instructionsImgLink0 = instructionsImgSection0[x].components(separatedBy: "750w, ").last
+            let instructionsImgLink1 = instructionsImgLink0?.components(separatedBy: " 800w").first
+            let instructionsImgLink = instructionsImgLink1?.replacingOccurrences(of: "&amp;", with: "&") ?? ""
+
             instructionImgLinks.append(instructionsImgLink)
         }
         
@@ -234,8 +236,10 @@ extension HomeChefAPI {
     // Retrieve recipe DESCRIPTION
     private func parseRecipeDescription(htmlCode: String) -> String {
         // parse html code here
-        let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
-        let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+        var descriptionSection0 = htmlCode.components(separatedBy: "</figcaption>\n</figure>")
+        descriptionSection0.removeFirst()
+        let descriptionsSection1 = descriptionSection0[0].components(separatedBy: "itemprop='description'>\n<p>").last
+        let description = descriptionsSection1?.components(separatedBy: "</p>").first
         
         return description ?? ""
     }
@@ -244,9 +248,10 @@ extension HomeChefAPI {
     // Retrieve recipe THUMBNAIL IMG LINK
     private func parseRecipeThumbnail(htmlCode: String) -> String {
         // parse html code here
-        let thumbnailSection0 = htmlCode.components(separatedBy: "425w, ").last
-        let thumbnailSection1 = thumbnailSection0?.components(separatedBy: " 850w").first
-        let thumbnailLink = thumbnailSection1?.replacingOccurrences(of: "&amp;", with: "&")
+        let thumbnailSection0 = htmlCode.components(separatedBy: "meal__imageCarousel").last
+        let thumbnailSection1 = thumbnailSection0?.components(separatedBy: "425w, ").last
+        let thumbnailSection2 = thumbnailSection1?.components(separatedBy: " 850w").first
+        let thumbnailLink = thumbnailSection2?.replacingOccurrences(of: "&amp;", with: "&")
         
         return thumbnailLink ?? ""
     }
@@ -255,9 +260,10 @@ extension HomeChefAPI {
     // Retrieve recipe RECIPE IMG LINKS
     private func parseImageLinks(htmlCode: String) -> String? {
         // parse html code here
-        let imagesSection0 = htmlCode.components(separatedBy: "850w, ").last
-        let imagesSection1 = imagesSection0?.components(separatedBy: " 1700w").first
-        let imageLink = imagesSection1?.replacingOccurrences(of: "&amp;", with: "&")
+        let imagesSection0 = htmlCode.components(separatedBy: "meal__imageCarousel").last
+        let imagesSection1 = imagesSection0?.components(separatedBy: "850w, ").last
+        let imagesSection2 = imagesSection1?.components(separatedBy: " 1700w").first
+        let imageLink = imagesSection2?.replacingOccurrences(of: "&amp;", with: "&")
         
         return imageLink ?? ""
     }
