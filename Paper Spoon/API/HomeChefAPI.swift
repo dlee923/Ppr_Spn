@@ -41,12 +41,12 @@ class HomeChefAPI: BrandAPI {
                 // parse recipe for recipe details
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
                 let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
-//                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
+                let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
 //                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
 //                let title = self.parseRecipeTitle(htmlCode: htmlCode)
 //                let description = self.parseRecipeDescription(htmlCode: htmlCode)
-//                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
-//                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
+                let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
+                let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
 //                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
 //
 //                // assign ingredient image links to each ingredient
@@ -244,8 +244,9 @@ extension HomeChefAPI {
     // Retrieve recipe THUMBNAIL IMG LINK
     private func parseRecipeThumbnail(htmlCode: String) -> String {
         // parse html code here
-        let thumbnailSection0 = htmlCode.components(separatedBy: "\"true\" name=\"thumbnail\" content=\"").last
-        let thumbnailLink = thumbnailSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+        let thumbnailSection0 = htmlCode.components(separatedBy: "425w, ").last
+        let thumbnailSection1 = thumbnailSection0?.components(separatedBy: " 850w").first
+        let thumbnailLink = thumbnailSection1?.replacingOccurrences(of: "&amp;", with: "&")
         
         return thumbnailLink ?? ""
     }
@@ -253,34 +254,12 @@ extension HomeChefAPI {
     
     // Retrieve recipe RECIPE IMG LINKS
     private func parseImageLinks(htmlCode: String) -> String? {
-        var imageLinks = [String:String]()
-        
         // parse html code here
-        let imagesSection0 = htmlCode.components(separatedBy: "fela-_1b1idjb\" src=\"").last
-        let imagesSection1 = imagesSection0?.components(separatedBy: "srcSet=\\").last
-        let imagesSection2 = imagesSection1?.components(separatedBy: "\" sizes=").first
-        guard let imagesSection3 = imagesSection2?.components(separatedBy: ", ") else { return nil }
-        for imagesSection4 in imagesSection3 {
-            // parse each image set
-            let imagesSection5 = imagesSection4.components(separatedBy: " ")
-            // parse image size and image link
-            let imageType: String = imagesSection5.last ?? ""
-            var imageLink0: String = imagesSection5.first ?? ""
-            imageLink0.removeAll(where: { $0 == "\"" })
-            // add parsed strings to dict
-            imageLinks[imageType] = imageLink0
-        }
+        let imagesSection0 = htmlCode.components(separatedBy: "850w, ").last
+        let imagesSection1 = imagesSection0?.components(separatedBy: " 1700w").first
+        let imageLink = imagesSection1?.replacingOccurrences(of: "&amp;", with: "&")
         
-        /*
-         OPTIONS
-         ----------
-         320w   1024w
-         380w   1260w
-         420w   1900w
-         800w   2600w
-        */
-        
-        return imageLinks["800w"]
+        return imageLink ?? ""
     }
     
     
