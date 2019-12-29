@@ -42,8 +42,8 @@ class HomeChefAPI: BrandAPI {
                 var ingredients = self.parseMenuIngredients(htmlCode: htmlCode)
                 let instructions = self.parseRecipeInstructions(htmlCode: htmlCode)
                 let instructionImgs = self.parseRecipeInstructionsImage(htmlCode: htmlCode)
-//                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
-//                let title = self.parseRecipeTitle(htmlCode: htmlCode)
+                let nutrition = self.parseRecipeNutrition(htmlCode: htmlCode)
+                let title = self.parseRecipeTitle(htmlCode: htmlCode)
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
                 let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
@@ -192,31 +192,31 @@ extension HomeChefAPI {
         var nutritionValues = [String: NutritionValue]()
         
         // parse html code here
-        let nutritionSection0 = htmlCode.components(separatedBy: "NutritionInformation\",").last
-        var nutritionSection1 = nutritionSection0?.components(separatedBy: "}").first
-        nutritionSection1?.removeAll(where: { $0 == "\"" })
-        let nutritionSection2 = nutritionSection1?.components(separatedBy: ",") ?? [String]()
+        let nutritionSection0 = htmlCode.components(separatedBy: "meal__nutrition").last
         
-        for nutritionBlock in nutritionSection2 {
-            let nutritionDetails = nutritionBlock.components(separatedBy: ":")
-            let nutritionData = nutritionDetails.last?.components(separatedBy: " ")
-            
-            let nutritionAmount = Double(String(nutritionData?.first ?? "")) ?? 0.0
-            let nutritionType = nutritionData?.last ?? ""
-            let nutritionValue = NutritionValue(amount: nutritionAmount, measurementType: nutritionType)
-            if let nutritionName = nutritionDetails.first {
-                nutritionValues[nutritionName] = nutritionValue
-            }
+        let nutritionTypes = [
+            "calories"              :   "itemprop='calories'>",
+            "carbohydrateContent"   :   "itemprop='carbohydrateContent'>",
+            "fatContent"            :   "itemprop='fatContent'>",
+            "proteinContent"        :   "itemprop='proteinContent'>",
+            "sodiumContent"         :   "itemprop='sodiumContent'>"
+        ]
+        
+        for (nutritionType, indicator) in nutritionTypes {
+            let nutritionSection1 = nutritionSection0?.components(separatedBy: indicator).last
+            let nutritionAmount = nutritionSection1?.components(separatedBy: "</strong>").first ?? ""
+            let nutritionValue = NutritionValue(amount: Double(String(nutritionAmount)) ?? 0.0, measurementType: nutritionType)
+            nutritionValues[nutritionType] = nutritionValue
         }
         
         let nutrition = Nutrition(calories: nutritionValues["calories"],
                                   fatContent: nutritionValues["fatContent"],
-                                  saturatedFatContent: nutritionValues["saturatedFatContent"],
+                                  saturatedFatContent: nil,
                                   carbohydrateContent: nutritionValues["carbohydrateContent"],
-                                  sugarContent: nutritionValues["sugarContent"],
+                                  sugarContent: nil,
                                   proteinContent: nutritionValues["proteinContent"],
-                                  fiberContent: nutritionValues["fiberContent"],
-                                  cholesterolContent: nutritionValues["cholesterolContent"],
+                                  fiberContent: nil,
+                                  cholesterolContent: nil,
                                   sodiumContent: nutritionValues["sodiumContent"])
         
         return nutrition
@@ -226,8 +226,9 @@ extension HomeChefAPI {
     // Retrieve recipe TITLE
     private func parseRecipeTitle(htmlCode: String) -> String {
         // parse html code here
-        let titleSection0 = htmlCode.components(separatedBy: "og:title\" content=\"").last
-        let title = titleSection0?.components(separatedBy: " | HelloFresh\"/><meta data-react-helmet").first
+        let titleSection0 = htmlCode.components(separatedBy: "id='mainContent'").last
+        let titleSection1 = titleSection0?.components(separatedBy: "<h1 class='h--serif size--lg size--m--bpDown2 no--margin'>").last
+        let title = titleSection0?.components(separatedBy: "</h1>").first
         
         return title ?? ""
     }
