@@ -97,19 +97,15 @@ extension HomeChefAPI {
             
             // parse recipe name
             let recipeName = recipeSubtitleSection2.components(separatedBy: " with").first ?? ""
-            print(recipeName)
             
             // parse subtitle
             var recipeSubtitleSection3 = recipeSubtitleSection2.components(separatedBy: "with ")
             recipeSubtitleSection3.removeFirst()
             let recipeSubtitle = "with " + recipeSubtitleSection3.joined(separator: "with ")
-            print(recipeSubtitle)
             
             // parse recipe link
             let recipeLinkSection0 = recipeLinks[x].components(separatedBy: "data-pin-url=\"").last
             let recipeLink = recipeLinkSection0?.components(separatedBy: "\" data-pin-description").first ?? ""
-            print(recipeLink)
-            print()
             
             // create menu option
             let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
@@ -167,7 +163,8 @@ extension HomeChefAPI {
         for x in 1..<instructionsSection0.count {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
-
+            print(instruction)
+            print()
             instructions.append(instruction)
         }
         
@@ -182,12 +179,14 @@ extension HomeChefAPI {
         
         // parse html code here
         let instructionsImgSection0 = htmlCode.components(separatedBy: "itemListElement")
-        
+        print()
+        print("INSTRUCTION IMAGE LINKS")
         for x in 1..<(instructionsImgSection0.count) {
-            let instructionsImgLink0 = instructionsImgSection0[x].components(separatedBy: "750w, ").last
+            let instructionsImgLink0 = instructionsImgSection0[x].components(separatedBy: "750w,\n").last
             let instructionsImgLink1 = instructionsImgLink0?.components(separatedBy: " 800w").first
-            let instructionsImgLink = instructionsImgLink1?.replacingOccurrences(of: "&amp;", with: "&") ?? ""
-
+            let instructionsImgLink2 = instructionsImgLink1?.replacingOccurrences(of: "&amp;", with: "&")
+            let instructionsImgLink = instructionsImgLink2?.replacingOccurrences(of: " ", with: "") ?? ""
+            print(instructionsImgLink)
             instructionImgLinks.append(instructionsImgLink)
         }
         
