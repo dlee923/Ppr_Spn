@@ -163,8 +163,6 @@ extension HomeChefAPI {
         for x in 1..<instructionsSection0.count {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
-            print(instruction)
-            print()
             instructions.append(instruction)
         }
         
@@ -179,14 +177,12 @@ extension HomeChefAPI {
         
         // parse html code here
         let instructionsImgSection0 = htmlCode.components(separatedBy: "itemListElement")
-        print()
-        print("INSTRUCTION IMAGE LINKS")
+
         for x in 1..<(instructionsImgSection0.count) {
             let instructionsImgLink0 = instructionsImgSection0[x].components(separatedBy: "750w,\n").last
             let instructionsImgLink1 = instructionsImgLink0?.components(separatedBy: " 800w").first
             let instructionsImgLink2 = instructionsImgLink1?.replacingOccurrences(of: "&amp;", with: "&")
             let instructionsImgLink = instructionsImgLink2?.replacingOccurrences(of: " ", with: "") ?? ""
-            print(instructionsImgLink)
             instructionImgLinks.append(instructionsImgLink)
         }
         
@@ -211,9 +207,12 @@ extension HomeChefAPI {
         ]
         
         for (nutritionType, indicator) in nutritionTypes {
-            let nutritionSection1 = nutritionSection0?.components(separatedBy: indicator).last
-            let nutritionAmount = nutritionSection1?.components(separatedBy: "</strong>").first ?? ""
-            let nutritionValue = NutritionValue(amount: Double(String(nutritionAmount)) ?? 0.0, measurementType: nutritionType)
+            let nutritionComponents0 = nutritionSection0?.components(separatedBy: indicator).last
+            let nutritionComponents1 = nutritionComponents0?.components(separatedBy: "</strong>").first
+            let nutritionComponents2 = nutritionComponents1?.components(separatedBy: CharacterSet.letters)
+            let nutritionAmount = nutritionComponents2?.first ?? ""
+            let measurementType = nutritionComponents2?[1...].joined()
+            let nutritionValue = NutritionValue(amount: Double(String(nutritionAmount)) ?? 0.0, measurementType: measurementType)
             nutritionValues[nutritionType] = nutritionValue
         }
         
