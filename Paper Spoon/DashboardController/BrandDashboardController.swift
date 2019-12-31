@@ -70,8 +70,8 @@ class BrandDashboardController: UIPageViewController {
         // download recipes after downloading menu
         self.retrieveRecipeData(brand: brand)
 
-//        // download thumbnail after retrieving recipe data
-//        self.retrieveThumbnail(brand: brand)
+        // download thumbnail after retrieving recipe data
+        self.retrieveThumbnail(brand: brand)
     }
     
     

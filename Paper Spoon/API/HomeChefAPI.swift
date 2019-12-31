@@ -47,17 +47,26 @@ class HomeChefAPI: BrandAPI {
                 let description = self.parseRecipeDescription(htmlCode: htmlCode)
                 let thumbnailLink = self.parseRecipeThumbnail(htmlCode: htmlCode)
                 let recipeImageLink = self.parseImageLinks(htmlCode: htmlCode)
-                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
-//
+//                let ingredientImageLinks = self.parseIngredientImgLinks(htmlCode: htmlCode)
+
 //                // assign ingredient image links to each ingredient
 //                for x in 0..<ingredients.count {
 //                    ingredients[x].imageLink = ingredientImageLinks?[ingredients[x].name]
 //                }
-//
-//                // create recipe object
-//                let recipe = Recipe(name: title, recipeLink: nil, ingredients: ingredients, instructions: instructions, instructionImageLinks: instructionImgs, ingredientImageLinks: ingredientImageLinks, recipeImageLink: recipeImageLink, thumbnailLink: thumbnailLink, nutrition: nutrition, description: description)
-//
-//                completion(recipe)
+
+                // create recipe object
+                let recipe = Recipe(name: title,
+                                    recipeLink: nil,
+                                    ingredients: ingredients,
+                                    instructions: instructions,
+                                    instructionImageLinks: instructionImgs,
+                                    ingredientImageLinks: nil,
+                                    recipeImageLink: recipeImageLink,
+                                    thumbnailLink: thumbnailLink,
+                                    nutrition: nutrition,
+                                    description: description)
+
+                completion(recipe)
             }
         }.resume()
     }
@@ -174,7 +183,7 @@ extension HomeChefAPI {
         // parse html code here
         let instructionsImgSection0 = htmlCode.components(separatedBy: "itemListElement")
         
-        for x in 1..<(instructionsImgSection0.count + 1) {
+        for x in 1..<(instructionsImgSection0.count) {
             let instructionsImgLink0 = instructionsImgSection0[x].components(separatedBy: "750w, ").last
             let instructionsImgLink1 = instructionsImgLink0?.components(separatedBy: " 800w").first
             let instructionsImgLink = instructionsImgLink1?.replacingOccurrences(of: "&amp;", with: "&") ?? ""
@@ -250,7 +259,7 @@ extension HomeChefAPI {
     private func parseRecipeThumbnail(htmlCode: String) -> String {
         // parse html code here
         let thumbnailSection0 = htmlCode.components(separatedBy: "meal__imageCarousel").last
-        let thumbnailSection1 = thumbnailSection0?.components(separatedBy: "425w, ").last
+        let thumbnailSection1 = thumbnailSection0?.components(separatedBy: "425w, ")[1]
         let thumbnailSection2 = thumbnailSection1?.components(separatedBy: " 850w").first
         let thumbnailLink = thumbnailSection2?.replacingOccurrences(of: "&amp;", with: "&")
         
@@ -262,7 +271,7 @@ extension HomeChefAPI {
     private func parseImageLinks(htmlCode: String) -> String? {
         // parse html code here
         let imagesSection0 = htmlCode.components(separatedBy: "meal__imageCarousel").last
-        let imagesSection1 = imagesSection0?.components(separatedBy: "850w, ").last
+        let imagesSection1 = imagesSection0?.components(separatedBy: "850w, ")[1]
         let imagesSection2 = imagesSection1?.components(separatedBy: " 1700w").first
         let imageLink = imagesSection2?.replacingOccurrences(of: "&amp;", with: "&")
         
