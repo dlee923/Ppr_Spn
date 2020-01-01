@@ -109,6 +109,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func reloadCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
+    func showHideTabBar(isHidden: Bool)
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -133,5 +134,11 @@ extension ParentViewController: ParentViewControllerDelegate {
     
     func reloadMealKitSelection() {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
+    }
+    
+    func showHideTabBar(isHidden: Bool) {   
+        if isHidden {
+            self.tabBar.isHidden = true
+        }
     }
 }

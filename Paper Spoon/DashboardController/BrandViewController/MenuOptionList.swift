@@ -31,6 +31,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK:  Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     private func setColors() {
         self.backgroundColor = .clear
@@ -69,6 +70,16 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
+            print("scrolling up")
+            self.parentViewControllerDelegate?.showHideTabBar(isHidden: true)
+        } else {
+            print("scrolling down")
+            self.parentViewControllerDelegate?.showHideTabBar(isHidden: false)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

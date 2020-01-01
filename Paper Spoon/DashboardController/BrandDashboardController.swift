@@ -49,7 +49,7 @@ class BrandDashboardController: UIPageViewController {
             
 //            self.downloadData(brand: .HelloFresh)
 //            self.downloadData(brand: .BlueApron)
-            self.downloadData(brand: .HomeChef)
+//            self.downloadData(brand: .HomeChef)
             
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI
@@ -112,6 +112,7 @@ class BrandDashboardController: UIPageViewController {
     lazy var helloFreshViewController: BrandViewController = {
         let helloFreshViewController = BrandViewController()
         helloFreshViewController.brandDashboardControllerDelegate = self
+        helloFreshViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         helloFreshViewController.brandView = .HelloFresh
         helloFreshViewController.menuOptionsObj = self.menuOptionsObj
         
@@ -126,6 +127,7 @@ class BrandDashboardController: UIPageViewController {
     lazy var blueApronViewController: BrandViewController = {
         let blueApronViewController = BrandViewController()
         blueApronViewController.brandDashboardControllerDelegate = self
+        blueApronViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         blueApronViewController.brandView = .BlueApron
         blueApronViewController.menuOptionsObj = self.menuOptionsObj
         
@@ -145,6 +147,7 @@ class BrandDashboardController: UIPageViewController {
     lazy var homeChefViewController: UIViewController = {
         let homeChefViewController = BrandViewController()
         homeChefViewController.brandDashboardControllerDelegate = self
+        homeChefViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         homeChefViewController.brandView = .HomeChef
         homeChefViewController.menuOptionsObj = self.menuOptionsObj
         
@@ -187,8 +190,8 @@ class BrandDashboardController: UIPageViewController {
         
         switch brand {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
-        case .BlueApron : brandAPI = BlueApronAPI.shared
-        case .HomeChef :  brandAPI = HomeChefAPI.shared
+        case .BlueApron  : brandAPI = BlueApronAPI.shared
+        case .HomeChef   :  brandAPI = HomeChefAPI.shared
         default: return
         }
         

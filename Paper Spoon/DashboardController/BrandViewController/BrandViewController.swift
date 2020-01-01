@@ -31,6 +31,7 @@ class BrandViewController: UIViewController {
     
     // MARK:  Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
+    var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     // MARK:  Animatable constraints
     var menuOptionListCollapsed: NSLayoutConstraint?
@@ -42,6 +43,7 @@ class BrandViewController: UIViewController {
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
         self.menuOptionList.brandView = self.brandView
         self.menuOptionList.brandDashboardControllerDelegate = self.brandDashboardControllerDelegate
+        self.menuOptionList.parentViewControllerDelegate = self.parentViewControllerDelegate
     }
     
     private func addViewMenuOptionList(){

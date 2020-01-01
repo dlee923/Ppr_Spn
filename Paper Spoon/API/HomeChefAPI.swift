@@ -211,7 +211,7 @@ extension HomeChefAPI {
             let nutritionComponents1 = nutritionComponents0?.components(separatedBy: "</strong>").first
             let nutritionComponents2 = nutritionComponents1?.components(separatedBy: CharacterSet.letters)
             let nutritionAmount = nutritionComponents2?.first ?? ""
-            let measurementType = nutritionComponents2?[1...].joined()
+            let measurementType = nutritionComponents2?[1...].joined() ?? ""
             let nutritionValue = NutritionValue(amount: Double(String(nutritionAmount)) ?? 0.0, measurementType: measurementType)
             nutritionValues[nutritionType] = nutritionValue
         }
