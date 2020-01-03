@@ -31,6 +31,7 @@ class ParentViewController: UITabBarController {
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
     // MARK:  UI Elements
+    let splashImageView = SplashImageView()
     let brandDashboardController = BrandDashboardController()
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
@@ -63,7 +64,7 @@ class ParentViewController: UITabBarController {
     private func setTabBarProperties() {
         // set tabbar color properties
         self.tabBar.tintColor = UIColor.themeColor2
-        self.tabBar.isTranslucent = true
+        self.tabBar.unselectedItemTintColor = UIColor.color6
         self.tabBar.barTintColor = UIColor.clear
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.shadowImage = UIImage()
@@ -87,7 +88,7 @@ class ParentViewController: UITabBarController {
     }
     
     internal func addGradientBackground() {
-        let colorBottom = UIColor(red: 120/255, green: 120/255, blue: 120/255, alpha: 1.0)
+        let colorBottom = UIColor(red: 190/255, green: 190/255, blue: 190/255, alpha: 1.0)
         let background = GradientView(frame: self.view.frame, colorTop: UIColor.themeColor1.cgColor, colorBottom: colorBottom.cgColor)
         self.view.insertSubview(background, at: 0)
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +110,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func reloadCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
-    func showHideTabBar(isHidden: Bool)
+    func minimizeBrandsCollectionView(isHidden: Bool)
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -136,9 +137,31 @@ extension ParentViewController: ParentViewControllerDelegate {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }
     
-    func showHideTabBar(isHidden: Bool) {   
-        if isHidden {
-            self.tabBar.isHidden = true
-        }
+    func minimizeBrandsCollectionView(isHidden: Bool) {
+//         ignore function if tabbar is already set to the preferred status
+//        if self.tabBar.isHidden == isHidden { return }
+//        let offset = isHidden ? self.tabBar.frame.height : -self.tabBar.frame.height
+//        print(offset)
+//        
+//        // pass height to each brandDashboardController
+//        for brandViewController in self.brandDashboardController.controllers {
+//            // access menuexpanded constant here:
+//            if let brandViewControllr = brandViewController as? BrandViewController {
+////                print(expandedValue)
+////                brandViewControllr.menuOptionListExpandedConstant = offset
+////                brandViewControllr.menuOptionListCollapsed?.isActive = false
+////                brandViewControllr.menuOptionListExpanded?.isActive = true
+//            }
+//        }
+//        
+//        if isHidden {
+//            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offset)
+//            self.tabBar.isHidden = true
+//            self.view.layoutIfNeeded()
+//        } else {
+//            self.tabBar.isHidden = false
+//            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offset)
+//            self.view.layoutIfNeeded()
+//        }
     }
 }

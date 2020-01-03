@@ -20,11 +20,13 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.delegate = self
         self.dataSource = self
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
+        self.register(MenuOptionListHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeader")
         self.setColors()
     }
     
     // MARK:  Variables
     var brandView: BrandType?
+    var brand: Brand?
     
     // MARK:  Object Variables
     var menuOptionsObj: MenuOptionObj?
@@ -64,6 +66,19 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         return CGSize(width: (self.frame.width * 0.5) - 5, height: self.frame.width * 0.6)
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeader", for: indexPath) as? MenuOptionListHeader {
+            header.brand = self.brand
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.frame.width - 10, height: self.frame.height * 0.2)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
@@ -72,13 +87,12 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         return 10
     }
     
+    // MARK:  Scrolling delegate method.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
-            print("scrolling up")
-            self.parentViewControllerDelegate?.showHideTabBar(isHidden: true)
+            self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: true)
         } else {
-            print("scrolling down")
-            self.parentViewControllerDelegate?.showHideTabBar(isHidden: false)
+            self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: false)
         }
     }
     

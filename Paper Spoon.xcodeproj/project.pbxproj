@@ -33,6 +33,8 @@
 		707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */; };
 		708735E32310E3750079CCA5 /* IngredientsCategorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708735E22310E3750079CCA5 /* IngredientsCategorization.swift */; };
 		708A6757235CF00800C53011 /* BrandDashboardControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */; };
+		709B105623BD483E00E0785A /* MenuOptionListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709B105523BD483E00E0785A /* MenuOptionListHeader.swift */; };
+		709B105923BFC6F900E0785A /* SplashImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709B105823BFC6F900E0785A /* SplashImageView.swift */; };
 		70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */; };
 		70AD620723137EFD00ABE458 /* MealsPrepCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */; };
 		70AD620823137EFD00ABE458 /* MealsPrepCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */; };
@@ -125,6 +127,8 @@
 		707EE0A12365F3660038592A /* EmptyMealKitsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMealKitsCell.swift; sourceTree = "<group>"; };
 		708735E22310E3750079CCA5 /* IngredientsCategorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsCategorization.swift; sourceTree = "<group>"; };
 		708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerDelegate.swift; sourceTree = "<group>"; };
+		709B105523BD483E00E0785A /* MenuOptionListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListHeader.swift; sourceTree = "<group>"; };
+		709B105823BFC6F900E0785A /* SplashImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashImageView.swift; sourceTree = "<group>"; };
 		70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionView.swift; sourceTree = "<group>"; };
 		70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionViewCell.swift; sourceTree = "<group>"; };
 		70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealsPrepCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -276,6 +280,14 @@
 			path = DashboardController;
 			sourceTree = "<group>";
 		};
+		709B105723BD499E00E0785A /* MenuOptionListCells */ = {
+			isa = PBXGroup;
+			children = (
+				70D532D722F780E100C8F866 /* MenuOptionListCell.swift */,
+			);
+			path = MenuOptionListCells;
+			sourceTree = "<group>";
+		};
 		70D46CA8235C107700AB3488 /* MealKitsCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,7 +347,8 @@
 			children = (
 				70D532D522F77C4D00C8F866 /* BrandViewController.swift */,
 				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
-				70D532D722F780E100C8F866 /* MenuOptionListCell.swift */,
+				709B105523BD483E00E0785A /* MenuOptionListHeader.swift */,
+				709B105723BD499E00E0785A /* MenuOptionListCells */,
 				701058EB2308BE0100D4D9FD /* NextStepBtn.swift */,
 			);
 			path = BrandViewController;
@@ -345,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				70E0499823528DB0005A1B71 /* ParentViewController.swift */,
+				709B105823BFC6F900E0785A /* SplashImageView.swift */,
 			);
 			path = ParentViewController;
 			sourceTree = "<group>";
@@ -596,6 +610,7 @@
 				703B9579235559D500F17F33 /* BrandDashboardControllerViews.swift in Sources */,
 				7077B5A62323F82E00359035 /* InstructionsCollectionView.swift in Sources */,
 				70D46CB4235C112E00AB3488 /* RecipeCellInteraction.swift in Sources */,
+				709B105923BFC6F900E0785A /* SplashImageView.swift in Sources */,
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* BrandViewController.swift in Sources */,
 				70D46CB5235C112E00AB3488 /* RecipeCellButton.swift in Sources */,
@@ -616,6 +631,7 @@
 				7077B5A82323F9C100359035 /* InstructionsCollectionViewCell.swift in Sources */,
 				70D46CAD235C109900AB3488 /* RatingView.swift in Sources */,
 				70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */,
+				709B105623BD483E00E0785A /* MenuOptionListHeader.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
 				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,

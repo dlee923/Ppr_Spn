@@ -24,8 +24,8 @@ class BrandDashboardController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         
-        self.setUp()
         self.createBrands()
+        self.setUp()
         
         // add ui views
         self.addRecipeListHeader()
@@ -114,6 +114,7 @@ class BrandDashboardController: UIPageViewController {
         helloFreshViewController.brandDashboardControllerDelegate = self
         helloFreshViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         helloFreshViewController.brandView = .HelloFresh
+        helloFreshViewController.brand = self.brands?.first(where: { $0.name == .HelloFresh })
         helloFreshViewController.menuOptionsObj = self.menuOptionsObj
         
         // pass to each view controller?
@@ -129,6 +130,7 @@ class BrandDashboardController: UIPageViewController {
         blueApronViewController.brandDashboardControllerDelegate = self
         blueApronViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         blueApronViewController.brandView = .BlueApron
+        blueApronViewController.brand = self.brands?.first(where: { $0.name == .BlueApron })
         blueApronViewController.menuOptionsObj = self.menuOptionsObj
         
         // pass to each view controller?
@@ -144,11 +146,12 @@ class BrandDashboardController: UIPageViewController {
         return labVC
     }()
     
-    lazy var homeChefViewController: UIViewController = {
+    lazy var homeChefViewController: BrandViewController = {
         let homeChefViewController = BrandViewController()
         homeChefViewController.brandDashboardControllerDelegate = self
         homeChefViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         homeChefViewController.brandView = .HomeChef
+        homeChefViewController.brand = self.brands?.first(where: { $0.name == .HomeChef })
         homeChefViewController.menuOptionsObj = self.menuOptionsObj
         
         // pass to each view controller?

@@ -12,7 +12,6 @@ class BrandViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         
         // add menu option list to view
@@ -22,6 +21,7 @@ class BrandViewController: UIViewController {
     
     // MARK:  Variables
     var brandView: BrandType?
+    var brand: Brand?
     var menuOptionList: MenuOptionList!
     var menuOptionsObj: MenuOptionObj?
     
@@ -36,12 +36,22 @@ class BrandViewController: UIViewController {
     // MARK:  Animatable constraints
     var menuOptionListCollapsed: NSLayoutConstraint?
     var menuOptionListExpanded: NSLayoutConstraint?
-    var menuOptionListExpandedConstant: CGFloat?
+    var menuOptionListCollapsedConstant: CGFloat? {
+        didSet {
+            self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
+        }
+    }
+    var menuOptionListExpandedConstant: CGFloat? {
+        didSet {
+            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -(self.menuOptionListExpandedConstant ?? 0.0) - 5)
+        }
+    }
     
     private func setupMenuOptionsList() {
         self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
         self.menuOptionList.brandView = self.brandView
+        self.menuOptionList.brand = self.brand
         self.menuOptionList.brandDashboardControllerDelegate = self.brandDashboardControllerDelegate
         self.menuOptionList.parentViewControllerDelegate = self.parentViewControllerDelegate
     }
@@ -54,11 +64,11 @@ class BrandViewController: UIViewController {
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         
-        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
+        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
         
-        if let menuOptionListExpandedConstant = self.menuOptionListExpandedConstant {
-            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -menuOptionListExpandedConstant)
-        }
+//        if let menuOptionListExpandedConstant = self.menuOptionListExpandedConstant {
+//            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -menuOptionListExpandedConstant - 5)
+//        }
         
         self.menuOptionListCollapsed?.isActive = true
     }

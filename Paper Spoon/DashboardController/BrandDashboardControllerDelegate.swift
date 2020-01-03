@@ -32,6 +32,9 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 
                 self.blueApronViewController.menuOptionListCollapsed?.isActive = false
                 self.blueApronViewController.menuOptionListExpanded?.isActive = true
+                
+                self.homeChefViewController.menuOptionListCollapsed?.isActive = false
+                self.homeChefViewController.menuOptionListExpanded?.isActive = true
             }
         } else if self.tempSelectedMenuOptions?.count == 0 {
             if compileIngredientsButtonHeightCollapsed.isActive == false {
@@ -43,6 +46,9 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 
                 self.blueApronViewController.menuOptionListExpanded?.isActive = false
                 self.blueApronViewController.menuOptionListCollapsed?.isActive = true
+                
+                self.homeChefViewController.menuOptionListExpanded?.isActive = false
+                self.homeChefViewController.menuOptionListCollapsed?.isActive = true
             }
         }
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
