@@ -128,7 +128,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func reloadCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
-    func minimizeBrandsCollectionView(isHidden: Bool)
+    func fadeTabBar(fadeOut: Bool)
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -155,31 +155,22 @@ extension ParentViewController: ParentViewControllerDelegate {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }
     
-    func minimizeBrandsCollectionView(isHidden: Bool) {
-//         ignore function if tabbar is already set to the preferred status
-//        if self.tabBar.isHidden == isHidden { return }
-//        let offset = isHidden ? self.tabBar.frame.height : -self.tabBar.frame.height
-//        print(offset)
-//        
-//        // pass height to each brandDashboardController
-//        for brandViewController in self.brandDashboardController.controllers {
-//            // access menuexpanded constant here:
-//            if let brandViewControllr = brandViewController as? BrandViewController {
-////                print(expandedValue)
-////                brandViewControllr.menuOptionListExpandedConstant = offset
-////                brandViewControllr.menuOptionListCollapsed?.isActive = false
-////                brandViewControllr.menuOptionListExpanded?.isActive = true
-//            }
-//        }
-//        
-//        if isHidden {
-//            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offset)
-//            self.tabBar.isHidden = true
-//            self.view.layoutIfNeeded()
-//        } else {
-//            self.tabBar.isHidden = false
-//            self.tabBar.frame = self.tabBar.frame.offsetBy(dx: 0, dy: offset)
-//            self.view.layoutIfNeeded()
-//        }
+    func fadeTabBar(fadeOut: Bool) {
+        // ignore function if tabbar is already set to the preferred status
+        if self.tabBar.isHidden == fadeOut { return }
+        
+        // calculate alpha
+        
+        // hide
+
+        if fadeOut {
+            // calculate alpha
+            
+            // hide
+        } else {
+            // unhide
+            
+            // calculate alpha
+        }
     }
 }

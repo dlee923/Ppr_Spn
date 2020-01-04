@@ -15,6 +15,7 @@ protocol BrandDashboardControllerDelegate: AnyObject {
     func clearSelections()
     func selectMenuOption(menuOption: MenuOption)
     func isMaxedOut() -> Bool
+    func minimizeBrandsCollectionView(scrollPositionY: CGFloat)
 }
 
 
@@ -116,6 +117,21 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         // return if max selection is hit
         let response = self.tempSelectedMenuOptions?.count ?? 0 >= self.recipeMaxCount ? true : false
         return response
+    }
+    
+    func minimizeBrandsCollectionView(scrollPositionY: CGFloat) {
+        // THIS SHOULD NOT CHANGE - buffer to add for nav bar height
+        let headerBuffer: CGFloat = 34
+        // vertical flex before a value is calculated to push recipeHeader up
+        let verticalSpacer: CGFloat = 25
+        let moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
+        
+        
+        if moveRecipeHeaderTrigger > 0 {
+            self.recipeListHeader.frame.origin.y = 44 - moveRecipeHeaderTrigger
+        } else {
+            self.recipeListHeader.frame.origin.y = 44
+        }
     }
     
 }

@@ -47,7 +47,7 @@ class BrandDashboardController: UIPageViewController {
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
             
-//            self.downloadData(brand: .HelloFresh)
+            self.downloadData(brand: .HelloFresh)
 //            self.downloadData(brand: .BlueApron)
 //            self.downloadData(brand: .HomeChef)
             
@@ -104,7 +104,10 @@ class BrandDashboardController: UIPageViewController {
     let activityIndicator = ActivityIndicator()
     
     lazy var recipeListHeader: RecipeListHeader = {
-        let recipeListHeader = RecipeListHeader(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+        let recipeListHeader = RecipeListHeader(frame: CGRect(x: 0,
+                                                              y: 0,
+                                                              width: self.view.frame.width,
+                                                              height: recipeHeaderHeightConstant))
         recipeListHeader.brandDashboardControllerDelegate = self
         return recipeListHeader
     }()

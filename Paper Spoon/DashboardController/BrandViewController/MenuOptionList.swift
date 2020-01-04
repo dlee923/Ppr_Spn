@@ -93,13 +93,23 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK:  Scrolling delegate method.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+//        print(scrollView.contentOffset)
+        self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
+//        self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: true)
+//        self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: false)
+        
         if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
-            self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: true)
+            
+            // reduce tab bar alpha and hide
         } else {
-            self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: false)
+            
+            // unhide tab bar and increase alpha
         }
     }
     
+    
+    // MARK:  Select option delegate method.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? MenuOptionListCell {
 
