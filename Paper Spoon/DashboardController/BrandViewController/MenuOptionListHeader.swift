@@ -32,8 +32,8 @@ class MenuOptionListHeader: UICollectionViewCell {
         NSLayoutConstraint.activate([
             self.brandImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.brandImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.brandImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            self.brandImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
+            self.brandImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.4),
+            self.brandImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
         ])
     }
     

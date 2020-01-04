@@ -124,11 +124,16 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         let headerBuffer: CGFloat = 34
         // vertical flex before a value is calculated to push recipeHeader up
         let verticalSpacer: CGFloat = 25
+        // max push
+        let maxVerticalSpacer: CGFloat = 65
+        
         let moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
         
         
-        if moveRecipeHeaderTrigger > 0 {
+        if moveRecipeHeaderTrigger > 0 && moveRecipeHeaderTrigger < maxVerticalSpacer {
             self.recipeListHeader.frame.origin.y = 44 - moveRecipeHeaderTrigger
+        } else if moveRecipeHeaderTrigger >= maxVerticalSpacer {
+            self.recipeListHeader.frame.origin.y = 44 - maxVerticalSpacer
         } else {
             self.recipeListHeader.frame.origin.y = 44
         }
