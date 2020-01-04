@@ -106,7 +106,7 @@ class ParentViewController: UITabBarController {
     
     private func addSplashImageView() {
         // control depth of splash image
-        let splashRange: CGFloat = 0.25
+        let splashRange: CGFloat = 0.3
         
         self.splashImageView = SplashImageView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: (self.view.bounds.height) * splashRange + 10))
         guard let splashImageView = self.splashImageView else { return }

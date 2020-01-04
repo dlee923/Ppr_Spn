@@ -16,7 +16,8 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.delegate = self
         self.dataSource = self
         
-        self.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        self.contentInset = UIEdgeInsets(top: 100 - 10, left: 0, bottom: 0, right: 0)
+        self.showsVerticalScrollIndicator = false
         
         self.registerCells()
         self.setColors()

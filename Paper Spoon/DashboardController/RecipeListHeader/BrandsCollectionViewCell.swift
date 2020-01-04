@@ -26,6 +26,7 @@ class BrandsCollectionViewCell: UICollectionViewCell {
         self.brandImage.image = brand?.image.withRenderingMode(.alwaysTemplate)
         self.brandImage.tintColor = UIColor.themeColor1
         self.brandImage.contentMode = .scaleAspectFit
+        self.brandImage.addShadow(path: nil, color: UIColor.black, offset: CGSize(width: 2, height: 2), radius: 2.0, opacity: 1.0)
         self.addSubview(self.brandImage)
         
         self.brandImage.translatesAutoresizingMaskIntoConstraints = false

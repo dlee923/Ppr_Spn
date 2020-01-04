@@ -28,7 +28,7 @@ class GradientView: UIView {
     
     func setupDefault() {
         self.gradient.colors = [colorTop, colorBottom, color0]
-        self.gradient.locations = [0.0, 0.95, 1.0]
+        self.gradient.locations = [0.4, 0.95, 1.0]
         
         self.setGradientLayer()
     }
