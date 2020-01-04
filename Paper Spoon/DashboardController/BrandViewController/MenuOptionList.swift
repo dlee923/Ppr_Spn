@@ -13,15 +13,18 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
-        self.setup()
-    }
-    
-    private func setup() {
         self.delegate = self
         self.dataSource = self
+        
+        self.contentInset = UIEdgeInsets(top: 100, left: 0, bottom: 0, right: 0)
+        
+        self.registerCells()
+        self.setColors()
+    }
+    
+    private func registerCells() {
         self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
         self.register(MenuOptionListHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeader")
-        self.setColors()
     }
     
     // MARK:  Variables
@@ -63,7 +66,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (self.frame.width * 0.5) - 5, height: self.frame.width * 0.6)
+        return CGSize(width: (self.frame.width * 0.5) - 5, height: self.frame.width * 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -76,7 +79,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.frame.width - 10, height: self.frame.height * 0.2)
+        return CGSize(width: self.frame.width - 10, height: self.frame.height * 0.3)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

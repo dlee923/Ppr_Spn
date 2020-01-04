@@ -60,7 +60,7 @@ class BrandViewController: UIViewController {
         self.view.addSubview(self.menuOptionList)
         
         self.menuOptionList?.translatesAutoresizingMaskIntoConstraints = false
-        self.menuOptionList?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 100).isActive = true
+        self.menuOptionList?.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         

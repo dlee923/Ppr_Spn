@@ -11,6 +11,7 @@ import UIKit
 struct Brand {
     var name: BrandType
     var image: UIImage
+    var largeImage: UIImage
 }
 
 enum BrandType {

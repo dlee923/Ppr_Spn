@@ -20,7 +20,7 @@ class MenuOptionListHeader: UICollectionViewCell {
     var headerLabel = UILabel()
     var brand: Brand? {
         didSet {
-            self.brandImage.image = brand?.image
+            self.brandImage.image = brand?.largeImage
         }
     }
     
@@ -30,10 +30,10 @@ class MenuOptionListHeader: UICollectionViewCell {
         
         self.brandImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.brandImage.topAnchor.constraint(equalTo: self.topAnchor),
+            self.brandImage.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             self.brandImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.brandImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5),
-            self.brandImage.heightAnchor.constraint(equalTo: self.heightAnchor, constant: -10),
+            self.brandImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
         ])
     }
     

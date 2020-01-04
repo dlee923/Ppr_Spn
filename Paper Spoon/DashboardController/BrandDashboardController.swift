@@ -276,10 +276,22 @@ class BrandDashboardController: UIPageViewController {
     }
     
     private func createBrands() {
-        let helloFresh = Brand(name: .HelloFresh, image: UIImage(named: "hellofresh_x1.png")!)
-        let blueApron = Brand(name: .BlueApron, image: UIImage(named: "blueapron_x1.png")!)
-        let everyPlate = Brand(name: .EveryPlate, image: UIImage(named: "plated_x1.png")!)
-        let homeChef = Brand(name: .HomeChef, image: UIImage(named: "homechef_x1.png")!)
+        let helloFresh = Brand(name:        .HelloFresh,
+                               image:       UIImage(named: "hellofresh_x1.png")!,
+                               largeImage:  UIImage(named: "hellofresh_x2.png")!)
+        
+        let blueApron =  Brand(name:        .BlueApron,
+                               image:       UIImage(named: "blueapron_x1.png")!,
+                               largeImage:  UIImage(named: "blueapron_x2.png")!)
+        
+        let everyPlate = Brand(name:        .EveryPlate,
+                               image:       UIImage(named: "plated_x1.png")!,
+                               largeImage:  UIImage(named: "hellofresh_x2.png")!)
+        
+        let homeChef =   Brand(name:        .HomeChef,
+                               image:       UIImage(named: "homechef_x1.png")!,
+                               largeImage:  UIImage(named: "homechef_x2.png")!)
+        
 //        let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
 //        let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
         

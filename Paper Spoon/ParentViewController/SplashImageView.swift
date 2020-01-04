@@ -21,7 +21,7 @@ class SplashImageView: UIView {
     
     private func addSplashImage() {
         self.splashImage.image = UIImage(named: "splash0")
-        self.splashImage.contentMode = .scaleAspectFit
+        self.splashImage.contentMode = .scaleAspectFill
         self.addSubview(self.splashImage)
         self.splashImage.translatesAutoresizingMaskIntoConstraints = false
         

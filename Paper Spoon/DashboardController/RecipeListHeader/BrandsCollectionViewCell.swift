@@ -23,7 +23,8 @@ class BrandsCollectionViewCell: UICollectionViewCell {
     var brandImage = UIImageView()
     
     private func addBrandImage() {
-        self.brandImage.image = brand?.image
+        self.brandImage.image = brand?.image.withRenderingMode(.alwaysTemplate)
+        self.brandImage.tintColor = UIColor.themeColor1
         self.brandImage.contentMode = .scaleAspectFit
         self.addSubview(self.brandImage)
         

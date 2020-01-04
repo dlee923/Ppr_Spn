@@ -12,7 +12,9 @@ class ParentViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.themeColor1
         self.addGradientBackground()
+        self.addSplashImageView()
         
         // send delegate to viewControllers
         self.setupViewControllers()
@@ -31,7 +33,7 @@ class ParentViewController: UITabBarController {
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
     // MARK:  UI Elements
-    let splashImageView = SplashImageView()
+    var splashImageView: SplashImageView?
     let brandDashboardController = BrandDashboardController()
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
@@ -63,11 +65,11 @@ class ParentViewController: UITabBarController {
     
     private func setTabBarProperties() {
         // set tabbar color properties
-        self.tabBar.tintColor = UIColor.themeColor2
-        self.tabBar.unselectedItemTintColor = UIColor.color6
-        self.tabBar.barTintColor = UIColor.clear
-        self.tabBar.backgroundImage = UIImage()
-        self.tabBar.shadowImage = UIImage()
+        self.tabBar.tintColor = UIColor.themeColor1
+//        self.tabBar.unselectedItemTintColor = UIColor.color6
+        self.tabBar.barTintColor = UIColor.themeColor2
+//        self.tabBar.backgroundImage = UIImage()
+//        self.tabBar.shadowImage = UIImage()
         // Remove tab bar line
         self.tabBar.layer.borderWidth = 0.0
         self.tabBar.clipsToBounds = true
@@ -87,9 +89,9 @@ class ParentViewController: UITabBarController {
         self.mealKitSelectionViewController.menuOptionsObj = self.menuOptionsObj
     }
     
-    internal func addGradientBackground() {
+    private func addGradientBackground() {
         let colorBottom = UIColor(red: 190/255, green: 190/255, blue: 190/255, alpha: 1.0)
-        let background = GradientView(frame: self.view.frame, colorTop: UIColor.themeColor1.cgColor, colorBottom: colorBottom.cgColor)
+        let background = GradientView(frame: self.view.frame, colorTop: UIColor.clear.cgColor, colorBottom: colorBottom.cgColor)
         self.view.insertSubview(background, at: 0)
         background.translatesAutoresizingMaskIntoConstraints = false
         
@@ -100,6 +102,22 @@ class ParentViewController: UITabBarController {
             background.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
         ])
         
+    }
+    
+    private func addSplashImageView() {
+        // control depth of splash image
+        let splashRange: CGFloat = 0.25
+        
+        self.splashImageView = SplashImageView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: (self.view.bounds.height) * splashRange + 10))
+        guard let splashImageView = self.splashImageView else { return }
+        self.view.insertSubview(splashImageView, at: 0)
+        splashImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            splashImageView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            splashImageView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            splashImageView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: splashRange),
+            splashImageView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor)
+        ])
     }
 
 }
