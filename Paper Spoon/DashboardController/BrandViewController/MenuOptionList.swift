@@ -16,7 +16,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.delegate = self
         self.dataSource = self
         
-        self.contentInset = UIEdgeInsets(top: 100 - 10, left: 0, bottom: 0, right: 0)
+        self.contentInset = UIEdgeInsets(top: self.setContentInset - 10, left: 0, bottom: 0, right: 0)
         self.showsVerticalScrollIndicator = false
         
         self.registerCells()
@@ -31,6 +31,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     // MARK:  Variables
     var brandView: BrandType?
     var brand: Brand?
+    let setContentInset: CGFloat = 100
     
     // MARK:  Object Variables
     var menuOptionsObj: MenuOptionObj?
@@ -91,25 +92,37 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         return 10
     }
     
+    var fadeOut: Bool?
+    var fadePct: CGFloat?
+    var fadePctSplashImg: CGFloat?
+    
     // MARK:  Scrolling delegate method.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
         
-        let fadeOutBounds: CGFloat = 100
-        
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y > fadeOutBounds {
-            let fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y - fadeOutBounds) / 100
-            
-            // reduce tab bar alpha and hide
-            parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: fadePct)
-            
-        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -fadeOutBounds {
-            let fadePct = 1 - ((0 - scrollView.panGestureRecognizer.translation(in: scrollView).y - fadeOutBounds) / 100)
-            
-            // unhide tab bar and increase alpha
-            parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: fadePct)
-            
+        // set fadeOut based on last direction that user is scrolling
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > self.setContentInset {
+            fadeOut = true
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -self.setContentInset {
+            fadeOut = false
         }
+        
+        if fadeOut ?? true {
+            fadePct = 1 - ((0 - scrollView.panGestureRecognizer.translation(in: scrollView).y - self.setContentInset) / 100)
+            
+        } else {
+            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y - self.setContentInset) / 100
+        }
+        
+        parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: fadePct ?? 0.0)
+        
+        
+        // fade out splash image logic
+        if scrollView.contentOffset.y > 0 {
+            fadePctSplashImg = 1 - (scrollView.contentOffset.y / 100)
+        }
+        
+        parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
     }
     
     

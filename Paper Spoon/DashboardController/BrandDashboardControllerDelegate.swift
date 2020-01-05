@@ -123,7 +123,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         // THIS SHOULD NOT CHANGE - buffer to add for nav bar height
         let headerBuffer: CGFloat = 34
         // vertical flex before a value is calculated to push recipeHeader up
-        let verticalSpacer: CGFloat = 25
+        let verticalSpacer: CGFloat = 20
         // max push
         let maxVerticalSpacer: CGFloat = 65
         // calculate point at which push should occur
