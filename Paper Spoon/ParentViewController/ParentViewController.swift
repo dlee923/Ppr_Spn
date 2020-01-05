@@ -29,6 +29,12 @@ class ParentViewController: UITabBarController {
         self.setTabBarProperties()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // set initial item to be selected
+        let brandsCollectionView = self.brandDashboardController.recipeListHeader.brandsPickerView
+        brandsCollectionView.collectionView(brandsCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+    }
+    
     // MARK:  Variables
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
     
