@@ -129,13 +129,20 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         // calculate point at which push should occur
         let moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
         
+        
         if moveRecipeHeaderTrigger > 0 && moveRecipeHeaderTrigger < maxVerticalSpacer {
             self.recipeListHeader.frame.origin.y = 44 - moveRecipeHeaderTrigger
         } else if moveRecipeHeaderTrigger >= maxVerticalSpacer {
             self.recipeListHeader.frame.origin.y = 44 - maxVerticalSpacer
+            
+            // adjust size of text label
+            let newFontSize = 30 - (moveRecipeHeaderTrigger - maxVerticalSpacer)
+            print("font size:  \(newFontSize)")
+            self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(newFontSize)
         } else {
             self.recipeListHeader.frame.origin.y = 44
         }
+        
     }
     
 }

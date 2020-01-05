@@ -100,22 +100,39 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
         
-        // set fadeOut based on last direction that user is scrolling
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y > self.setContentInset {
-            fadeOut = true
-        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -self.setContentInset {
-            fadeOut = false
-        }
         
-        if fadeOut ?? true {
-            fadePct = 1 - ((0 - scrollView.panGestureRecognizer.translation(in: scrollView).y - self.setContentInset) / 100)
+        // set fadeOut based on last direction that user is scrolling
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
+            print("fade in")
+            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100
+            print(String(format: "%.2f", fadePct ?? 0.0))
+            
+            fadeOut = false
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            fadeOut = true
+            print("fade out")
+            fadePct = 1 + ((scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100)
+            print(String(format: "%.2f", fadePct ?? 0.0))
             
         } else {
-            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y - self.setContentInset) / 100
+//            fadeOut = nil
         }
         
-        parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: fadePct ?? 0.0)
         
+//        if fadeOut == true {
+//            
+//            
+//            
+//        } else if fadeOut == false{
+//            
+//        
+//            
+//        } else {
+//            print("no fade")
+//            return
+//        }
+        
+        parentViewControllerDelegate?.fadeTabBar(fadePct: fadePct ?? 0.0)
         
         // fade out splash image logic
         if scrollView.contentOffset.y > 0 {
@@ -123,6 +140,30 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         }
         
         parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if fadeOut == true {
+            // animate alpha 0
+            print("animate fade out")
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 0.0) })
+        } else if fadeOut == false {
+            // animate alpha 1
+            print("animate fade in")
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0) })
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if fadeOut == true {
+            // animate alpha 0
+            print("animate fade out")
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 0.0) })
+        } else if fadeOut == false {
+            // animate alpha 1
+            print("animate fade in")
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0) })
+        }
     }
     
     
