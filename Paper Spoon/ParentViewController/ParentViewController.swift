@@ -128,7 +128,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func reloadCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
-    func fadeTabBar(fadeOut: Bool)
+    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat)
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -155,22 +155,25 @@ extension ParentViewController: ParentViewControllerDelegate {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }
     
-    func fadeTabBar(fadeOut: Bool) {
-        // ignore function if tabbar is already set to the preferred status
-        if self.tabBar.isHidden == fadeOut { return }
+    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat) {
+//        // ignore function if tabbar is already set to the preferred status
+        if self.tabBar.isHidden == true { return }
         
-        // calculate alpha
         
-        // hide
-
+        
         if fadeOut {
             // calculate alpha
-            
+            self.tabBar.alpha = fadePct
+            print("Fade Out")
             // hide
+//            if fadePct <= 0 { self.tabBar.isHidden = true } else { self.tabBar.isHidden = false }
         } else {
             // unhide
-            
+//            if fadePct >= 0 { self.tabBar.isHidden = false } else { self.tabBar.isHidden = true }
             // calculate alpha
+            self.tabBar.alpha = fadePct
+            print("Fade In")
         }
+//        print(String(format: "%.2f", fadePct))
     }
 }

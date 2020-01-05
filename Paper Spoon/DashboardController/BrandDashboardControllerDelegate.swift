@@ -126,9 +126,8 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         let verticalSpacer: CGFloat = 25
         // max push
         let maxVerticalSpacer: CGFloat = 65
-        
+        // calculate point at which push should occur
         let moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
-        
         
         if moveRecipeHeaderTrigger > 0 && moveRecipeHeaderTrigger < maxVerticalSpacer {
             self.recipeListHeader.frame.origin.y = 44 - moveRecipeHeaderTrigger

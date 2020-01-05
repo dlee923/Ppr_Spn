@@ -88,6 +88,8 @@ class BrandDashboardController: UIPageViewController {
     var pageIndex: Int? {
         didSet {
             self.recipeListHeader.moveBrandsSelectorView(index: self.pageIndex!)
+            self.recipeListHeader.brandsPickerView.collectionView(self.recipeListHeader.brandsPickerView, didSelectItemAt: IndexPath(item: self.pageIndex!, section: 0))
+            
             UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
                 self.recipeListHeader.layoutIfNeeded()
             }, completion: nil)

@@ -55,6 +55,19 @@ class BrandsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout
         return CGSize(width: self.frame.width / CGFloat(self.brands?.count ?? 0), height: self.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? BrandsCollectionViewCell {
+            cell.brandImage.layer.shadowColor = UIColor.color2.cgColor
+        }
+        
+        for x in 0..<collectionView.visibleCells.count {
+            if x != indexPath.item {
+                guard let otherCell = collectionView.visibleCells[x] as? BrandsCollectionViewCell else { return }
+                otherCell.brandImage.layer.shadowColor = UIColor.black.cgColor
+            }
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

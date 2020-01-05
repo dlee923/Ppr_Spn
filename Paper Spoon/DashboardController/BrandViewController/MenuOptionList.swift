@@ -93,18 +93,22 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK:  Scrolling delegate method.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-//        print(scrollView.contentOffset)
         self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
-//        self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: true)
-//        self.parentViewControllerDelegate?.minimizeBrandsCollectionView(isHidden: false)
         
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
+        let fadeOutBounds: CGFloat = 100
+        
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > fadeOutBounds {
+            let fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y - fadeOutBounds) / 100
             
             // reduce tab bar alpha and hide
-        } else {
+            parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: fadePct)
+            
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -fadeOutBounds {
+            let fadePct = 1 - ((0 - scrollView.panGestureRecognizer.translation(in: scrollView).y - fadeOutBounds) / 100)
             
             // unhide tab bar and increase alpha
+            parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: fadePct)
+            
         }
     }
     

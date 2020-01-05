@@ -64,11 +64,7 @@ class BrandViewController: UIViewController {
         self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         
-        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
-        
-//        if let menuOptionListExpandedConstant = self.menuOptionListExpandedConstant {
-//            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -menuOptionListExpandedConstant - 5)
-//        }
+        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
         
         self.menuOptionListCollapsed?.isActive = true
     }
