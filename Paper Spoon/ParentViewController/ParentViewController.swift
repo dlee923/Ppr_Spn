@@ -134,7 +134,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func reloadCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
-    func fadeTabBar(fadePct: CGFloat)
+    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat)
     func fadeOutSplashImg(fadePct: CGFloat)
 }
 
@@ -162,9 +162,10 @@ extension ParentViewController: ParentViewControllerDelegate {
         self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
     }
     
-    func fadeTabBar(fadePct: CGFloat) {
+    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat) {
         // return if already faded out
-//        if tabBar.alpha <= 0 || tabBar.alpha >= 1 { return }
+        if fadeOut == true && (fadePct ?? 0.0) < 0 { return }
+        if fadeOut != true && (fadePct ?? 0.0) > 1 { return }
         
         // calculate alpha
         self.tabBar.alpha = fadePct

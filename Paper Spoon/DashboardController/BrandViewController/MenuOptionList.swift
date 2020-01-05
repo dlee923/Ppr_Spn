@@ -98,7 +98,16 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     // MARK:  Scrolling delegate method.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // resize recipe header
         self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
+        
+        
+        // fade out splash image logic
+        if scrollView.contentOffset.y > 0 {
+            fadePctSplashImg = 1 - (scrollView.contentOffset.y / 100)
+        }
+        
+        parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
         
         
         // set fadeOut based on last direction that user is scrolling
@@ -115,42 +124,23 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             print(String(format: "%.2f", fadePct ?? 0.0))
             
         } else {
-//            fadeOut = nil
+            // do nothing
         }
         
-        
-//        if fadeOut == true {
-//            
-//            
-//            
-//        } else if fadeOut == false{
-//            
-//        
-//            
-//        } else {
-//            print("no fade")
-//            return
-//        }
-        
-        parentViewControllerDelegate?.fadeTabBar(fadePct: fadePct ?? 0.0)
-        
-        // fade out splash image logic
-        if scrollView.contentOffset.y > 0 {
-            fadePctSplashImg = 1 - (scrollView.contentOffset.y / 100)
+        if let fadeOut_ = fadeOut {
+            parentViewControllerDelegate?.fadeTabBar(fadeOut: fadeOut_, fadePct: fadePct ?? 0.0)
         }
-        
-        parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if fadeOut == true {
             // animate alpha 0
             print("animate fade out")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 0.0) })
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
         } else if fadeOut == false {
             // animate alpha 1
             print("animate fade in")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0) })
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
         }
     }
     
@@ -158,11 +148,11 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         if fadeOut == true {
             // animate alpha 0
             print("animate fade out")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 0.0) })
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
         } else if fadeOut == false {
             // animate alpha 1
             print("animate fade in")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0) })
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
         }
     }
     
