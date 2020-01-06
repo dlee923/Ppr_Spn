@@ -15,12 +15,14 @@ extension BrandDashboardController {
         self.view.addSubview(self.recipeListHeader)
         self.recipeListHeader.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.recipeListHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.recipeListHeader.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5),
-            self.recipeListHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5)
+            self.recipeListHeader.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5),
+            self.recipeListHeader.heightAnchor.constraint(equalToConstant: self.recipeHeaderHeightConstant)
         ])
-        self.recipeHeaderHeight = self.recipeListHeader.heightAnchor.constraint(equalToConstant: self.recipeHeaderHeightConstant)
-        self.recipeHeaderHeight?.isActive = true
+        
+        self.recipeListHeaderTopConstraint = self.recipeListHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
+        
+        self.recipeListHeaderTopConstraint?.isActive = true
     }
     
     internal func addCompileIngredientsView() {

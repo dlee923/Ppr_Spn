@@ -178,12 +178,23 @@ class BrandDashboardController: UIPageViewController {
     // MARK:  Animatable constraints
     var compileIngredientsBtnHeightCollapsed: NSLayoutConstraint?
     var compileIngredientsBtnPopped: NSLayoutConstraint?
-    var recipeHeaderHeight: NSLayoutConstraint?
     var recipeHeaderHeightConstant: CGFloat = 100
+    var recipeListHeaderTopConstraint: NSLayoutConstraint?
     var fingerTrailingAnchorClose: NSLayoutConstraint?
     var fingerTrailingAnchorFar: NSLayoutConstraint?
     var newMenuPromptCollapsed: [NSLayoutConstraint]?
     var newMenuPromptPopped: [NSLayoutConstraint]?
+    
+    // MARK: ScrollView variables
+    // THIS SHOULD NOT CHANGE - buffer to add for nav bar height
+    let headerBuffer: CGFloat = 34
+    // vertical flex before a value is calculated to push recipeHeader up
+    let verticalSpacer: CGFloat = 20
+    // max push
+    let maxVerticalSpacer: CGFloat = 65
+    // calculate point at which push should occur
+    var moveRecipeHeaderTrigger: CGFloat?
+    var newFontSize: CGFloat?
     
     fileprivate func setUp() {
         controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]

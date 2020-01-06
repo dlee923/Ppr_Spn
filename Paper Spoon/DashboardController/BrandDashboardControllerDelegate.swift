@@ -120,29 +120,44 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     }
     
     func minimizeBrandsCollectionView(scrollPositionY: CGFloat) {
-        // THIS SHOULD NOT CHANGE - buffer to add for nav bar height
-        let headerBuffer: CGFloat = 34
-        // vertical flex before a value is calculated to push recipeHeader up
-        let verticalSpacer: CGFloat = 20
-        // max push
-        let maxVerticalSpacer: CGFloat = 65
         // calculate point at which push should occur
-        let moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
+        self.moveRecipeHeaderTrigger = scrollPositionY + self.recipeHeaderHeightConstant + headerBuffer - verticalSpacer
         
+        guard let moveRecipeHeaderTrigger = self.moveRecipeHeaderTrigger else { return }
         
         if moveRecipeHeaderTrigger > 0 && moveRecipeHeaderTrigger < maxVerticalSpacer {
-            self.recipeListHeader.frame.origin.y = 44 - moveRecipeHeaderTrigger
+            recipeListHeaderTopConstraint?.constant = -moveRecipeHeaderTrigger
+            // set properties back to default
+            self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(30)
+            self.recipeListHeader.brandsPickerView.alpha = 1.0
+            self.view.layoutIfNeeded()
+            
         } else if moveRecipeHeaderTrigger >= maxVerticalSpacer {
-            self.recipeListHeader.frame.origin.y = 44 - maxVerticalSpacer
+            recipeListHeaderTopConstraint?.constant = -maxVerticalSpacer
+            self.view.layoutIfNeeded()
             
             // adjust size of text label
-            let newFontSize = 30 - (moveRecipeHeaderTrigger - maxVerticalSpacer)
-            print("font size:  \(newFontSize)")
-            self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(newFontSize)
+            self.newFontSize = 30 - (moveRecipeHeaderTrigger - maxVerticalSpacer)
+            guard let newFontSize = self.newFontSize else { return }
+            
+            if newFontSize < 20 {
+                self.newFontSize = 20
+            } else if newFontSize > 30 {
+                self.newFontSize = 30
+            }
+            
+            self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(self.newFontSize ?? 30)
+            
+            let brandsPickerViewAlpha = 1 - ((30 - newFontSize) / (30 - 20))
+            self.recipeListHeader.brandsPickerView.alpha = brandsPickerViewAlpha
+            
         } else {
-            self.recipeListHeader.frame.origin.y = 44
+            recipeListHeaderTopConstraint?.constant = 0
+            // set properties back to default
+            self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(30)
+            self.recipeListHeader.brandsPickerView.alpha = 1.0
+            self.view.layoutIfNeeded()
         }
-        
     }
     
 }
