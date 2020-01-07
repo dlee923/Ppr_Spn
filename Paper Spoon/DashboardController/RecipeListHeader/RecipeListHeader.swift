@@ -20,6 +20,7 @@ class RecipeListHeader: UIView {
         self.addClearSelectionOption()
         self.addHeaderLabel()
         self.addBrandsSelectorArrow()
+        self.addBlurView()
     }
     
     // MARK:  UI Elements
@@ -27,6 +28,8 @@ class RecipeListHeader: UIView {
     lazy var brandsPickerView = BrandsCollectionView(frame: self.frame, collectionViewLayout: UICollectionViewFlowLayout())
     let headerLabel = UILabel()
     var clearSelectionView = UIStackView()
+    let blurView = UIVisualEffectView()
+    let blurEffect = UIBlurEffect(style: .prominent)
     
     // MARK:  Data Variables
     var brands: [Brand]? {
@@ -79,6 +82,19 @@ class RecipeListHeader: UIView {
             self.brandsSelectorArrow.centerYAnchor.constraint(equalTo: self.topAnchor),
             self.brandsSelectorArrow.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4),
             brandsSelectorLeadingConstraint
+        ])
+    }
+    
+    private func addBlurView() {
+        self.blurView.effect = self.blurEffect
+        self.insertSubview(self.blurView, at: 0)
+        self.blurView.alpha = 0
+        self.blurView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.blurView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.blurView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.blurView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: -5),
+            self.blurView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 5)
         ])
     }
     

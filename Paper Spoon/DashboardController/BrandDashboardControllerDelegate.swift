@@ -126,13 +126,19 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         guard let moveRecipeHeaderTrigger = self.moveRecipeHeaderTrigger else { return }
         
         if moveRecipeHeaderTrigger > 0 && moveRecipeHeaderTrigger < maxVerticalSpacer {
+            // move recipeheader up or down
             recipeListHeaderTopConstraint?.constant = -moveRecipeHeaderTrigger
+            
             // set properties back to default
             self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(30)
             self.recipeListHeader.brandsPickerView.alpha = 1.0
+            self.recipeListHeader.blurView.alpha = 0
+            self.recipeListHeader.headerLabel.textColor = UIColor.themeColor1
+            self.recipeListHeader.headerLabel.layer.shadowColor = UIColor.black.cgColor
             self.view.layoutIfNeeded()
             
         } else if moveRecipeHeaderTrigger >= maxVerticalSpacer {
+            // stop recipeHeader movement up
             recipeListHeaderTopConstraint?.constant = -maxVerticalSpacer
             self.view.layoutIfNeeded()
             
@@ -146,16 +152,30 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 self.newFontSize = 30
             }
             
+            // change recipeHeader font size
             self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(self.newFontSize ?? 30)
             
+            // fade out brandsPickerView
             let brandsPickerViewAlpha = 1 - ((30 - newFontSize) / (30 - 20))
             self.recipeListHeader.brandsPickerView.alpha = brandsPickerViewAlpha
             
+            if moveRecipeHeaderTrigger >= maxVerticalSpacer + blurStartPoint {
+                let blurViewDistance = moveRecipeHeaderTrigger - (maxVerticalSpacer + blurStartPoint) >= 50 ? 50 : moveRecipeHeaderTrigger - (maxVerticalSpacer + blurStartPoint)
+                let blurViewAlpha = (blurViewDistance / 50) * 0.75
+                self.recipeListHeader.blurView.alpha = blurViewAlpha
+                self.recipeListHeader.headerLabel.textColor = blurViewAlpha >= 0.75 ? UIColor.themeColor2 : UIColor.themeColor1
+                self.recipeListHeader.headerLabel.layer.shadowColor = blurViewAlpha >= 0.75 ? UIColor.clear.cgColor : UIColor.black.cgColor
+            }
+            
         } else {
+            // stop recipeHeader movement down
             recipeListHeaderTopConstraint?.constant = 0
             // set properties back to default
             self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(30)
             self.recipeListHeader.brandsPickerView.alpha = 1.0
+            self.recipeListHeader.blurView.alpha = 0
+            self.recipeListHeader.headerLabel.textColor = UIColor.themeColor1
+            self.recipeListHeader.headerLabel.layer.shadowColor = UIColor.black.cgColor
             self.view.layoutIfNeeded()
         }
     }

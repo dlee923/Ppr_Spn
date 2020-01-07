@@ -112,16 +112,12 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         
         // set fadeOut based on last direction that user is scrolling
         if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
-            print("fade in")
-            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100
-            print(String(format: "%.2f", fadePct ?? 0.0))
-            
             fadeOut = false
+            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100
+            
         } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             fadeOut = true
-            print("fade out")
             fadePct = 1 + ((scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100)
-            print(String(format: "%.2f", fadePct ?? 0.0))
             
         } else {
             // do nothing

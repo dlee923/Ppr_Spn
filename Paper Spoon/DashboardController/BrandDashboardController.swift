@@ -195,6 +195,8 @@ class BrandDashboardController: UIPageViewController {
     // calculate point at which push should occur
     var moveRecipeHeaderTrigger: CGFloat?
     var newFontSize: CGFloat?
+    // point past maxVerticalSpacer to bring in blurView
+    let blurStartPoint: CGFloat = 40
     
     fileprivate func setUp() {
         controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
