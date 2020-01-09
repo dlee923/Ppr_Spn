@@ -71,9 +71,9 @@ class ParentViewController: UITabBarController {
     
     private func setTabBarProperties() {
         // set tabbar color properties
-        self.tabBar.tintColor = UIColor.themeColor1
+        self.tabBar.tintColor = UIColor.themeColor2
 //        self.tabBar.unselectedItemTintColor = UIColor.color6
-        self.tabBar.barTintColor = UIColor.themeColor2
+        self.tabBar.barTintColor = UIColor.themeColor1
 //        self.tabBar.backgroundImage = UIImage()
 //        self.tabBar.shadowImage = UIImage()
         // Remove tab bar line

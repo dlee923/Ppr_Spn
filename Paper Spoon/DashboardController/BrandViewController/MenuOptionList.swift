@@ -109,13 +109,20 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         
         parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
         
+        // set fadeOut status
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
+            fadeOut = false
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -0 {
+            fadeOut = true
+        }
         
-        // set fadeOut based on last direction that user is scrolling
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 100 {
+        
+        // fadeOut based on last direction that user is scrolling past a threshhold
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 75 {
             fadeOut = false
             UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
             
-        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -100 {
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -75 {
             fadeOut = true
             UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
             
@@ -146,6 +153,11 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         } else if fadeOut == false {
             // animate alpha 1
             print("animate fade in")
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
+        }
+        
+        if scrollView.contentOffset.y <= (-self.setContentInset - 44 + 10) {
+            fadeOut = false
             UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
         }
     }
