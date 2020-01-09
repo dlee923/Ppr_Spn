@@ -164,11 +164,18 @@ extension ParentViewController: ParentViewControllerDelegate {
     
     func fadeTabBar(fadeOut: Bool, fadePct: CGFloat) {
         // return if already faded out
-        if fadeOut == true && (fadePct ?? 0.0) < 0 { return }
-        if fadeOut != true && (fadePct ?? 0.0) > 1 { return }
+        if fadeOut == true && (self.tabBar.alpha) <= 0.0 { return }
+        if fadeOut != true && (self.tabBar.alpha) >= 1.0 { return }
         
         // calculate alpha
         self.tabBar.alpha = fadePct
+        
+        if fadeOut {
+            print("animate fade out")
+        } else if !fadeOut {
+            print("animate fade in")
+        }
+        
     }
     
     func fadeOutSplashImg(fadePct: CGFloat) {

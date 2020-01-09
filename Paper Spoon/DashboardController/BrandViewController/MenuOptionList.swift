@@ -111,13 +111,13 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         
         
         // set fadeOut based on last direction that user is scrolling
-        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 0 {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y > 100 {
             fadeOut = false
-            fadePct = (scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
             
-        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+        } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -100 {
             fadeOut = true
-            fadePct = 1 + ((scrollView.panGestureRecognizer.translation(in: scrollView).y) / 100)
+            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
             
         } else {
             // do nothing
@@ -131,11 +131,9 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if fadeOut == true {
             // animate alpha 0
-            print("animate fade out")
             UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
         } else if fadeOut == false {
             // animate alpha 1
-            print("animate fade in")
             UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
         }
     }

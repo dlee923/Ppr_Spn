@@ -82,7 +82,6 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 brandVC.menuOptionList.reloadData()
             }
         }
-//        self.helloFreshViewController.menuOptionList.reloadData()
         
         // remove button
         self.showHideCompileButton()
