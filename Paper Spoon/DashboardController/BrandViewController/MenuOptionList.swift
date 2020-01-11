@@ -120,45 +120,40 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         // fadeOut based on last direction that user is scrolling past a threshhold
         if scrollView.panGestureRecognizer.translation(in: scrollView).y > 75 {
             fadeOut = false
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0)
             
         } else if scrollView.panGestureRecognizer.translation(in: scrollView).y < -75 {
             fadeOut = true
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0)
             
         } else {
             // do nothing
-        }
-        
-        if let fadeOut_ = fadeOut {
-            parentViewControllerDelegate?.fadeTabBar(fadeOut: fadeOut_, fadePct: fadePct ?? 0.0)
         }
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if fadeOut == true {
             // animate alpha 0
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0)
         } else if fadeOut == false {
             // animate alpha 1
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0)
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if fadeOut == true {
             // animate alpha 0
-            print("animate fade out")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: true, fadePct: 0.0)
         } else if fadeOut == false {
             // animate alpha 1
-            print("animate fade in")
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0)
         }
         
         if scrollView.contentOffset.y <= (-self.setContentInset - 44 + 10) {
+            print("default fade")
             fadeOut = false
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in self?.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0) })
+            self.parentViewControllerDelegate?.fadeTabBar(fadeOut: false, fadePct: 1.0)
         }
     }
     
@@ -188,6 +183,9 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             
             // show / hide compile button
             self.brandDashboardControllerDelegate?.showHideCompileButton()
+            
+            // lock / unlock scrolling
+            self.brandDashboardControllerDelegate?.lockUnlockScrollView()
         }
     }
     

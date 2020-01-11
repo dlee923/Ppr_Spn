@@ -44,7 +44,7 @@ class ParentViewController: UITabBarController {
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
     let mealKitSelectionViewController = MealKitSelectionViewController()
-    let savedMenuListViewController = UIViewController()
+    let favoritesViewController = UIViewController()
     
     private func addViewControllers() {
         self.viewControllers = [
@@ -52,7 +52,7 @@ class ParentViewController: UITabBarController {
             self.compiledIngredientsViewController,
             self.mealPrepViewController,
             self.mealKitSelectionViewController,
-            self.savedMenuListViewController
+            self.favoritesViewController
         ]
     }
     
@@ -66,7 +66,7 @@ class ParentViewController: UITabBarController {
         self.tabBar.items?[3].image = UIImage(named: "chef_75")
         self.tabBar.items?[3].title = "Meals"
         self.tabBar.items?[4].image = UIImage(named: "folder_75")
-        self.tabBar.items?[4].title = "Saved Menus"
+        self.tabBar.items?[4].title = "Favorites"
     }
     
     private func setTabBarProperties() {
@@ -165,17 +165,12 @@ extension ParentViewController: ParentViewControllerDelegate {
     func fadeTabBar(fadeOut: Bool, fadePct: CGFloat) {
         // return if already faded out
         if fadeOut == true && (self.tabBar.alpha) <= 0.0 { return }
-        if fadeOut != true && (self.tabBar.alpha) >= 1.0 { return }
+        if fadeOut == false && (self.tabBar.alpha) >= 1.0 { return }
         
         // calculate alpha
-        self.tabBar.alpha = fadePct
-        
-        if fadeOut {
-            print("animate fade out")
-        } else if !fadeOut {
-            print("animate fade in")
+        UIView.animate(withDuration: 0.25) {
+            self.tabBar.alpha = fadePct
         }
-        
     }
     
     func fadeOutSplashImg(fadePct: CGFloat) {

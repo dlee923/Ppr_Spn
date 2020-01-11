@@ -16,6 +16,7 @@ protocol BrandDashboardControllerDelegate: AnyObject {
     func selectMenuOption(menuOption: MenuOption)
     func isMaxedOut() -> Bool
     func minimizeBrandsCollectionView(scrollPositionY: CGFloat)
+    func lockUnlockScrollView()
 }
 
 
@@ -179,6 +180,16 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         }
     }
     
+    func lockUnlockScrollView() {
+        if self.tempSelectedMenuOptions?.count == 1 {
+            // by removing data source
+            self.dataSource = nil
+        } else if self.tempSelectedMenuOptions?.count == 0 {
+            // by removing data source
+            self.dataSource = self
+        }
+    }
+    
 }
 
 
@@ -190,5 +201,6 @@ extension BrandDashboardController: BrandDashboardControllerTransitionsDelegate 
     func transitionCompileIngredientsViewDelegateMethod() {
         self.transitionCompileIngredientsView()
     }
+    
 }
 

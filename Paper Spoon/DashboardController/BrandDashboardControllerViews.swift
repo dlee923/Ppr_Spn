@@ -47,7 +47,7 @@ extension BrandDashboardController {
         self.compileIngredientsBtn?.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
         self.compileIngredientsBtn?.titleLabel?.numberOfLines = 2
         self.compileIngredientsBtn?.titleLabel?.textAlignment = .center
-        self.compileIngredientsBtn?.addTarget(self, action: #selector(createNewMenuPrompt), for: .touchUpInside)
+        self.compileIngredientsBtn?.addTarget(self, action: #selector(transitionCompileIngredientsView), for: .touchUpInside)
         
         self.compileIngredientsBtn?.layer.cornerRadius = ((self.compileIngredientsBtn?.frame.height ?? 0) / 2)
     }
