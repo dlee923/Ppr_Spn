@@ -24,7 +24,6 @@ class InstructionsCollectionView: UICollectionView {
     }
     
     var menuOption: MenuOption? { didSet { self.reloadData() } }
-//    var recipe: Recipe? { didSet { self.reloadData() } }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

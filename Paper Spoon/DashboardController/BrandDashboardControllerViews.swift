@@ -29,14 +29,38 @@ extension BrandDashboardController {
         self.view.addSubview(self.compileIngredientsView)
         
         self.compileIngredientsView.translatesAutoresizingMaskIntoConstraints = false
-        self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-
-        self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10).isActive = true
         
-        self.compileIngredientsBtnPopped = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05)
-        self.compileIngredientsBtnHeightCollapsed = self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0)
-        self.compileIngredientsBtnHeightCollapsed?.isActive = true
+        self.compileIngredientsBtnPopped = [
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),
+            self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+        ]
+        
+        self.compileIngredientsBtnPoppedNoMenu = [
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),
+            self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+        ]
+        
+        self.compileIngredientsBtnCollapsed = [
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0),
+            self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+        ]
+        
+        self.compileIngredientsBtnCollapsedNoMenu = [
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0),
+            self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+        ]
+        
+        if let compileIngredientsBtnHeightCollapsedConstraints = self.compileIngredientsBtnCollapsed {
+            NSLayoutConstraint.activate(compileIngredientsBtnHeightCollapsedConstraints)
+        }
     }
     
     internal func setupCompileIngredientsBtn() {

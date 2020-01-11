@@ -27,6 +27,8 @@
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		7034C3B9231DF48500C88106 /* MealKitsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */; };
 		703B9579235559D500F17F33 /* BrandDashboardControllerViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */; };
+		7069802223C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069802123C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift */; };
+		7069802423C99C230064D5D0 /* ParentViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7069802323C99C230064D5D0 /* ParentViewControllerDelegate.swift */; };
 		7077B5A62323F82E00359035 /* InstructionsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */; };
 		7077B5A82323F9C100359035 /* InstructionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */; };
 		7077B5AA23244C8700359035 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7077B5A923244C8700359035 /* InstructionsViewController.swift */; };
@@ -121,6 +123,8 @@
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewCell.swift; sourceTree = "<group>"; };
 		703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerViews.swift; sourceTree = "<group>"; };
+		7069802123C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerSetUpAndData.swift; sourceTree = "<group>"; };
+		7069802323C99C230064D5D0 /* ParentViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewControllerDelegate.swift; sourceTree = "<group>"; };
 		7077B5A52323F82E00359035 /* InstructionsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsCollectionView.swift; sourceTree = "<group>"; };
 		7077B5A72323F9C100359035 /* InstructionsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7077B5A923244C8700359035 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				70E6F4822198DE1A005C08EE /* BrandDashboardController.swift */,
+				7069802123C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift */,
 				703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */,
 				708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */,
 				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
@@ -358,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				70E0499823528DB0005A1B71 /* ParentViewController.swift */,
+				7069802323C99C230064D5D0 /* ParentViewControllerDelegate.swift */,
 				709B105823BFC6F900E0785A /* SplashImageView.swift */,
 			);
 			path = ParentViewController;
@@ -614,6 +620,7 @@
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* BrandViewController.swift in Sources */,
 				70D46CB5235C112E00AB3488 /* RecipeCellButton.swift in Sources */,
+				7069802423C99C230064D5D0 /* ParentViewControllerDelegate.swift in Sources */,
 				70D46CB6235C112E00AB3488 /* RecipeCellConstraints.swift in Sources */,
 				70E3A583232D981A00F9A5A7 /* RecipeListHeader.swift in Sources */,
 				70E049A02353977C005A1B71 /* CompiledIngredientsEmptyCollectionViewCell.swift in Sources */,
@@ -630,6 +637,7 @@
 				70FCDD8923A6D59B00DC7BA2 /* BlueApronAPI.swift in Sources */,
 				7077B5A82323F9C100359035 /* InstructionsCollectionViewCell.swift in Sources */,
 				70D46CAD235C109900AB3488 /* RatingView.swift in Sources */,
+				7069802223C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift in Sources */,
 				70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */,
 				709B105623BD483E00E0785A /* MenuOptionListHeader.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,

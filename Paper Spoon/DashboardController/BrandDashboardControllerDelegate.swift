@@ -23,11 +23,22 @@ protocol BrandDashboardControllerDelegate: AnyObject {
 extension BrandDashboardController: BrandDashboardControllerDelegate {
     
     func showHideCompileButton() {
-        guard let compileIngredientsButtonHeightCollapsed = self.compileIngredientsBtnHeightCollapsed else { return }
+        guard let compileIngredientsButtonCollapsed = self.compileIngredientsBtnCollapsed else { return }
+        guard let compileIngredientsButtonPopped = self.compileIngredientsBtnPopped else { return }
+        guard let compileIngredientsButtonCollapsedNoMenu = self.compileIngredientsBtnCollapsedNoMenu else { return }
+        guard let compileIngredientsButtonPoppedNoMenu = self.compileIngredientsBtnPoppedNoMenu else { return }
+        
         if self.tempSelectedMenuOptions?.count == 1 {
-            if compileIngredientsButtonHeightCollapsed.isActive == true {
-                self.compileIngredientsBtnHeightCollapsed?.isActive = false
-                self.compileIngredientsBtnPopped?.isActive = true
+            
+            // only activate Popped if not already activated
+            if compileIngredientsButtonCollapsed.first?.isActive == true {
+                if self.parentViewControllerDelegate?.returnFadeOut() == true {
+                    NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsedNoMenu)
+                    NSLayoutConstraint.activate(compileIngredientsButtonPoppedNoMenu)
+                } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
+                    NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsed)
+                    NSLayoutConstraint.activate(compileIngredientsButtonPopped)
+                }
                 
                 self.helloFreshViewController.menuOptionListCollapsed?.isActive = false
                 self.helloFreshViewController.menuOptionListExpanded?.isActive = true
@@ -38,10 +49,18 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 self.homeChefViewController.menuOptionListCollapsed?.isActive = false
                 self.homeChefViewController.menuOptionListExpanded?.isActive = true
             }
+            
         } else if self.tempSelectedMenuOptions?.count == 0 {
-            if compileIngredientsButtonHeightCollapsed.isActive == false {
-                self.compileIngredientsBtnPopped?.isActive = false
-                self.compileIngredientsBtnHeightCollapsed?.isActive = true
+            
+            // only activate Collasped if not already activated
+            if compileIngredientsButtonCollapsed.first?.isActive == false {
+                if self.parentViewControllerDelegate?.returnFadeOut() == true {
+                    NSLayoutConstraint.deactivate(compileIngredientsButtonPoppedNoMenu)
+                    NSLayoutConstraint.activate(compileIngredientsButtonCollapsedNoMenu)
+                } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
+                    NSLayoutConstraint.deactivate(compileIngredientsButtonPopped)
+                    NSLayoutConstraint.activate(compileIngredientsButtonCollapsed)
+                }
                 
                 self.helloFreshViewController.menuOptionListExpanded?.isActive = false
                 self.helloFreshViewController.menuOptionListCollapsed?.isActive = true

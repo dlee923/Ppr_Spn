@@ -37,6 +37,7 @@ class ParentViewController: UITabBarController {
     
     // MARK:  Variables
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
+    var fadeOut: Bool?
     
     // MARK:  UI Elements
     var splashImageView: SplashImageView?
@@ -128,55 +129,3 @@ class ParentViewController: UITabBarController {
 
 }
 
-protocol ParentViewControllerDelegate: AnyObject {
-    func changeViewController(index position: Int)
-    func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients], completion: (() -> Void))
-    func reloadCompiledIngredients()
-    func reloadMealPrep()
-    func reloadMealKitSelection()
-    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat)
-    func fadeOutSplashImg(fadePct: CGFloat)
-}
-
-extension ParentViewController: ParentViewControllerDelegate {
-    func changeViewController(index position: Int) {
-        self.selectedIndex = position
-    }
-    
-    func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients], completion: (() -> Void)) {
-        self.compiledIngredientsViewController.reducedCompiledIngredients = reducedCompiledIngredients
-        self.reloadCompiledIngredients()
-        self.reloadMealPrep()
-        completion()
-    }
-    
-    func reloadCompiledIngredients() {
-        self.compiledIngredientsViewController.compiledIngredientsList.reloadData()
-    }
-    
-    func reloadMealPrep() {
-        self.mealPrepViewController.mealsPrepCollectionView.reloadData()
-    }
-    
-    func reloadMealKitSelection() {
-        self.mealKitSelectionViewController.mealKitsCollectionView.reloadData()
-    }
-    
-    func fadeTabBar(fadeOut: Bool, fadePct: CGFloat) {
-        // return if already faded out
-        if fadeOut == true && (self.tabBar.alpha) <= 0.0 { return }
-        if fadeOut == false && (self.tabBar.alpha) >= 1.0 { return }
-        
-        // calculate alpha
-        UIView.animate(withDuration: 0.25) {
-            self.tabBar.alpha = fadePct
-        }
-    }
-    
-    func fadeOutSplashImg(fadePct: CGFloat) {
-        // return if already faded out
-        if fadePct <= 0 || fadePct >= 1 { return }
-        
-        self.splashImageView?.alpha = fadePct
-    }
-}
