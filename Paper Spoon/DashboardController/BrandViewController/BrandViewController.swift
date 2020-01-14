@@ -19,6 +19,14 @@ class BrandViewController: UIViewController {
         self.addViewMenuOptionList()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // reset scroll to top
+        self.menuOptionList.setContentOffset(CGPoint(x: 0, y: -(self.menuOptionList?.contentInsetValue)! - 44 + 10), animated: true)
+        // reset fadeOut to false
+        self.parentViewControllerDelegate?.setFadeOut(fadeOut: false)
+    }
+    
+    
     // MARK:  Variables
     var brandView: BrandType?
     var brand: Brand?
