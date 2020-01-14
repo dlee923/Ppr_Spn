@@ -31,11 +31,13 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         if self.tempSelectedMenuOptions?.count == 1 {
             
             // only activate Popped if not already activated
-            if compileIngredientsButtonCollapsed.first?.isActive == true {
+            if compileIngredientsButtonCollapsed.first?.isActive == true || compileIngredientsButtonCollapsedNoMenu.first?.isActive == true {
                 if self.parentViewControllerDelegate?.returnFadeOut() == true {
+                    print("REMOVE collapsed no tabBar.  ADD popped no tabBar")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsedNoMenu)
                     NSLayoutConstraint.activate(compileIngredientsButtonPoppedNoMenu)
                 } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
+                    print("REMOVE collapsed.  ADD popped")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsed)
                     NSLayoutConstraint.activate(compileIngredientsButtonPopped)
                 }
@@ -52,12 +54,14 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             
         } else if self.tempSelectedMenuOptions?.count == 0 {
             
-            // only activate Collasped if not already activated
-            if compileIngredientsButtonCollapsed.first?.isActive == false {
+            // only activate Collapsed if Popped is active
+            if compileIngredientsButtonPopped.first?.isActive == true || compileIngredientsButtonPoppedNoMenu.first?.isActive == true {
                 if self.parentViewControllerDelegate?.returnFadeOut() == true {
+                    print("REMOVE popped no tabBar.  ADD collapsed no tabBar")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonPoppedNoMenu)
                     NSLayoutConstraint.activate(compileIngredientsButtonCollapsedNoMenu)
                 } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
+                    print("REMOVE popped.  ADD collapsed")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonPopped)
                     NSLayoutConstraint.activate(compileIngredientsButtonCollapsed)
                 }
