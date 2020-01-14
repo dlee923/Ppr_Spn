@@ -16,7 +16,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
         self.delegate = self
         self.dataSource = self
         
-        self.contentInset = UIEdgeInsets(top: self.setContentInset - 10, left: 0, bottom: 0, right: 0)
+        self.contentInset = UIEdgeInsets(top: self.contentInsetValue - 10, left: 0, bottom: 0, right: 0)
         self.showsVerticalScrollIndicator = false
         
         self.registerCells()
@@ -31,7 +31,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     // MARK:  Variables
     var brandView: BrandType?
     var brand: Brand?
-    let setContentInset: CGFloat = 100
+    let contentInsetValue: CGFloat = 100
     
     // MARK:  Object Variables
     var menuOptionsObj: MenuOptionObj?
@@ -154,7 +154,7 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
             self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)
         }
         
-        if scrollView.contentOffset.y <= (-self.setContentInset - 44 + 10) {
+        if scrollView.contentOffset.y <= (-self.contentInsetValue - 44 + 10) {
             print("default fade")
             fadeOut = false
             self.parentViewControllerDelegate?.setFadeOut(fadeOut: false)
