@@ -24,6 +24,7 @@ class BrandViewController: UIViewController {
         self.menuOptionList.setContentOffset(CGPoint(x: 0, y: -(self.menuOptionList?.contentInsetValue)! - 44 + 10), animated: true)
         // reset fadeOut to false
         self.parentViewControllerDelegate?.setFadeOut(fadeOut: false)
+        self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)
     }
     
     

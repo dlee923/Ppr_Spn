@@ -28,6 +28,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         guard let compileIngredientsButtonCollapsedNoMenu = self.compileIngredientsBtnCollapsedNoMenu else { return }
         guard let compileIngredientsButtonPoppedNoMenu = self.compileIngredientsBtnPoppedNoMenu else { return }
         
+        // only evaluate when count is at 1
         if self.tempSelectedMenuOptions?.count == 1 {
             
             // only activate Popped if not already activated

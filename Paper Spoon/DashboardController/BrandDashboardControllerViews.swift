@@ -41,7 +41,7 @@ extension BrandDashboardController {
             self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),
             self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -20)
         ]
         
         self.compileIngredientsBtnCollapsed = [
@@ -55,11 +55,12 @@ extension BrandDashboardController {
             self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0),
             self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
+            self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -20)
         ]
         
-        if let compileIngredientsBtnHeightCollapsedConstraints = self.compileIngredientsBtnCollapsed {
-            NSLayoutConstraint.activate(compileIngredientsBtnHeightCollapsedConstraints)
+        if let compileIngredientsBtnCollapsedConstraints = self.compileIngredientsBtnCollapsed {
+            NSLayoutConstraint.activate(compileIngredientsBtnCollapsedConstraints)
+            print("ADD collapsed.")
         }
     }
     
