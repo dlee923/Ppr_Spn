@@ -11,10 +11,61 @@ import UIKit
 extension BrandDashboardController {
     
     internal func setUp() {
+        passDelegates()
+        passBrand()
+        passMenuOptionsObj()
+        passMenuBtnHeight()
+        
         controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
         
         if let recipeListVC1 = controllers.first {
             self.setViewControllers([recipeListVC1], direction: .forward, animated: false, completion: nil)
+        }
+    }
+    
+    internal func passDelegates() {
+        helloFreshViewController.brandDashboardControllerDelegate = self
+        helloFreshViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
+        
+        blueApronViewController.brandDashboardControllerDelegate = self
+        blueApronViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
+        
+        platedViewController.brandDashboardControllerDelegate = self
+        platedViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
+        
+        homeChefViewController.brandDashboardControllerDelegate = self
+        homeChefViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
+    }
+    
+    internal func passBrand() {
+        helloFreshViewController.brandView = .HelloFresh
+        helloFreshViewController.brand = self.brands?.first(where: { $0.name == .HelloFresh })
+        
+        blueApronViewController.brandView = .BlueApron
+        blueApronViewController.brand = self.brands?.first(where: { $0.name == .BlueApron })
+        
+        platedViewController.brandView = .BlueApron
+        platedViewController.brand = self.brands?.first(where: { $0.name == .BlueApron })
+        
+        homeChefViewController.brandView = .HomeChef
+        homeChefViewController.brand = self.brands?.first(where: { $0.name == .HomeChef })
+    }
+    
+    internal func passMenuOptionsObj() {
+        helloFreshViewController.menuOptionsObj = self.menuOptionsObj
+        blueApronViewController.menuOptionsObj = self.menuOptionsObj
+        platedViewController.menuOptionsObj = self.menuOptionsObj
+        homeChefViewController.menuOptionsObj = self.menuOptionsObj
+    }
+    
+    internal func passMenuBtnHeight() {
+        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
+            let buttonHeight = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
+            
+            helloFreshViewController.menuOptionListExpandedConstant = buttonHeight
+            blueApronViewController.menuOptionListExpandedConstant = buttonHeight
+            platedViewController.menuOptionListExpandedConstant = buttonHeight
+            homeChefViewController.menuOptionListExpandedConstant = buttonHeight
         }
     }
     

@@ -115,58 +115,11 @@ class BrandDashboardController: UIPageViewController {
         return recipeListHeader
     }()
     
-    lazy var helloFreshViewController: BrandViewController = {
-        let helloFreshViewController = BrandViewController()
-        helloFreshViewController.brandDashboardControllerDelegate = self
-        helloFreshViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
-        helloFreshViewController.brandView = .HelloFresh
-        helloFreshViewController.brand = self.brands?.first(where: { $0.name == .HelloFresh })
-        helloFreshViewController.menuOptionsObj = self.menuOptionsObj
-        
-        // pass to each view controller?
-        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            helloFreshViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
-        }
-        
-        return helloFreshViewController
-    }()
-    
-    lazy var blueApronViewController: BrandViewController = {
-        let blueApronViewController = BrandViewController()
-        blueApronViewController.brandDashboardControllerDelegate = self
-        blueApronViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
-        blueApronViewController.brandView = .BlueApron
-        blueApronViewController.brand = self.brands?.first(where: { $0.name == .BlueApron })
-        blueApronViewController.menuOptionsObj = self.menuOptionsObj
-        
-        // pass to each view controller?
-        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            blueApronViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
-        }
-        
-        return blueApronViewController
-    }()
-    
-    var platedViewController: UIViewController = {
-        let labVC = UIViewController()
-        return labVC
-    }()
-    
-    lazy var homeChefViewController: BrandViewController = {
-        let homeChefViewController = BrandViewController()
-        homeChefViewController.brandDashboardControllerDelegate = self
-        homeChefViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
-        homeChefViewController.brandView = .HomeChef
-        homeChefViewController.brand = self.brands?.first(where: { $0.name == .HomeChef })
-        homeChefViewController.menuOptionsObj = self.menuOptionsObj
-        
-        // pass to each view controller?
-        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            homeChefViewController.menuOptionListExpandedConstant = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
-        }
-        
-        return homeChefViewController
-    }()
+    var helloFreshViewController = BrandViewController()
+    var blueApronViewController = BrandViewController()
+    var platedViewController = BrandViewController()
+    var homeChefViewController = BrandViewController()
+
     
     // MARK: Multi-threading
     let dispatchGroup = DispatchGroup()
