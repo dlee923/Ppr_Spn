@@ -21,7 +21,7 @@ class BrandViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         // reset scroll to top
-        self.menuOptionList.setContentOffset(CGPoint(x: 0, y: -(self.menuOptionList?.contentInsetValue)! - 44 + 10), animated: true)
+        self.menuOptionList.setContentOffset(CGPoint(x: 0, y: -self.menuOptionList.contentInsetValue - 44 + 10), animated: true)
         // reset fadeOut to false
         self.parentViewControllerDelegate?.setFadeOut(fadeOut: false)
         self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)
@@ -31,7 +31,7 @@ class BrandViewController: UIViewController {
     // MARK:  Variables
     var brandView: BrandType?
     var brand: Brand?
-    var menuOptionList: MenuOptionList!
+    var menuOptionList = MenuOptionList(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var menuOptionsObj: MenuOptionObj?
     
     let dispatchGroup = DispatchGroup()
@@ -47,17 +47,17 @@ class BrandViewController: UIViewController {
     var menuOptionListExpanded: NSLayoutConstraint?
     var menuOptionListCollapsedConstant: CGFloat? {
         didSet {
-            self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
+            self.menuOptionListCollapsed = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
         }
     }
     var menuOptionListExpandedConstant: CGFloat? {
         didSet {
-            self.menuOptionListExpanded = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -(self.menuOptionListExpandedConstant ?? 0.0) - 5)
+            self.menuOptionListExpanded = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -(self.menuOptionListExpandedConstant ?? 0.0) - 5)
         }
     }
     
     private func setupMenuOptionsList() {
-        self.menuOptionList = MenuOptionList(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
+        self.menuOptionList.frame = self.view.frame
         self.menuOptionList.menuOptionsObj = self.menuOptionsObj
         self.menuOptionList.brandView = self.brandView
         self.menuOptionList.brand = self.brand
@@ -68,12 +68,12 @@ class BrandViewController: UIViewController {
     private func addViewMenuOptionList(){
         self.view.addSubview(self.menuOptionList)
         
-        self.menuOptionList?.translatesAutoresizingMaskIntoConstraints = false
-        self.menuOptionList?.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.menuOptionList?.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
-        self.menuOptionList?.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
+        self.menuOptionList.translatesAutoresizingMaskIntoConstraints = false
+        self.menuOptionList.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.menuOptionList.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
+        self.menuOptionList.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         
-        self.menuOptionListCollapsed = self.menuOptionList?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
+        self.menuOptionListCollapsed = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
         
         self.menuOptionListCollapsed?.isActive = true
     }

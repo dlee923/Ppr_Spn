@@ -156,6 +156,12 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
 
         if scrollView.contentOffset.y <= (-self.contentInsetValue - 44 + 10) {
             print("default fade")
+            
+            // fade out splash image logic
+            if scrollView.contentOffset.y > 0 {
+                fadePctSplashImg = 1 - (scrollView.contentOffset.y / 100)
+            }
+            
             fadeOut = false
             self.parentViewControllerDelegate?.setFadeOut(fadeOut: false)
             self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)

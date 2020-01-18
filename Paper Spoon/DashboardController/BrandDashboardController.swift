@@ -119,7 +119,6 @@ class BrandDashboardController: UIPageViewController {
     var blueApronViewController = BrandViewController()
     var platedViewController = BrandViewController()
     var homeChefViewController = BrandViewController()
-
     
     // MARK: Multi-threading
     let dispatchGroup = DispatchGroup()

@@ -61,6 +61,7 @@ extension ParentViewController: ParentViewControllerDelegate {
         UIView.animate(withDuration: 0.25) {
             self.tabBar.alpha = fadePct
         }
+        print("fade tab bar")
         
         guard let compileIngredientsButtonCollapsed = self.brandDashboardController.compileIngredientsBtnCollapsed else { return }
         guard let compileIngredientsButtonPopped = self.brandDashboardController.compileIngredientsBtnPopped else { return }
