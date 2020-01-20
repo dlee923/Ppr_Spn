@@ -47,7 +47,7 @@ class BrandDashboardController: UIPageViewController {
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
             
-            self.downloadData(brand: .HelloFresh)
+//            self.downloadData(brand: .HelloFresh)
 //            self.downloadData(brand: .BlueApron)
 //            self.downloadData(brand: .HomeChef)
             
@@ -102,14 +102,14 @@ class BrandDashboardController: UIPageViewController {
     
     // MARK: UI Elements
     var compileIngredientsBtn: NextStepBtn?
-    let compileIngredientsBtnHeight: CGFloat = 0.05
+    let compileIngredientsBtnHeight: CGFloat = 0.06
     var compileIngredientsView = UIView()
     let activityIndicator = ActivityIndicator()
     
     lazy var recipeListHeader: RecipeListHeader = {
         let recipeListHeader = RecipeListHeader(frame: CGRect(x: 0,
                                                               y: 0,
-                                                              width: self.view.frame.width,
+                                                              width: self.view.frame.width - 10,
                                                               height: recipeHeaderHeightConstant))
         recipeListHeader.brandDashboardControllerDelegate = self
         return recipeListHeader
@@ -129,12 +129,15 @@ class BrandDashboardController: UIPageViewController {
     var parentViewControllerDelegate: ParentViewControllerDelegate?
     
     // MARK:  Animatable constraints
+    // for use in animating button location in relation to tab bar
     var compileIngredientsBtnCollapsed: [NSLayoutConstraint]?
     var compileIngredientsBtnCollapsedNoMenu: [NSLayoutConstraint]?
     var compileIngredientsBtnPopped: [NSLayoutConstraint]?
     var compileIngredientsBtnPoppedNoMenu: [NSLayoutConstraint]?
+    // for use in recipe header
     var recipeHeaderHeightConstant: CGFloat = 100
     var recipeListHeaderTopConstraint: NSLayoutConstraint?
+    // for use in animating finger movement
     var fingerTrailingAnchorClose: NSLayoutConstraint?
     var fingerTrailingAnchorFar: NSLayoutConstraint?
     var newMenuPromptCollapsed: [NSLayoutConstraint]?
@@ -149,7 +152,7 @@ class BrandDashboardController: UIPageViewController {
     let maxVerticalSpacer: CGFloat = 65
     // calculate point at which push should occur
     var moveRecipeHeaderTrigger: CGFloat?
-    var newFontSize: CGFloat?
+    var newRecipeListHeaderSize: CGFloat?
     // point past maxVerticalSpacer to bring in blurView
     let blurStartPoint: CGFloat = 40
     

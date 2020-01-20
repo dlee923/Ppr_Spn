@@ -46,7 +46,7 @@ class RecipeListHeader: UIView {
     
     private func addHeaderLabel() {
         self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
-        self.headerLabel.text = "Choose Recipes:"
+        self.headerLabel.text = "Choose Recipes"
         self.headerLabel.textColor = UIColor.themeColor1
         self.headerLabel.addShadow(path: nil, color: UIColor.black, offset: CGSize(width: 4, height: 4), radius: 3.0, opacity: 1.0)
         

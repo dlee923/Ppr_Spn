@@ -58,25 +58,23 @@ class ParentViewController: UITabBarController {
     }
     
     private func setTabBarItems() {
-        self.tabBar.items?[0].image = UIImage(named: "list_75")
+        self.tabBar.items?[0].image = UIImage(named: "card2_75")
         self.tabBar.items?[0].title = "Recipes"
-        self.tabBar.items?[1].image = UIImage(named: "cart_75")
+        self.tabBar.items?[1].image = UIImage(named: "cart2_75")
         self.tabBar.items?[1].title = "Ingredients"
-        self.tabBar.items?[2].image = UIImage(named: "box_75")
+        self.tabBar.items?[2].image = UIImage(named: "box2_75")
         self.tabBar.items?[2].title = "Assemble"
-        self.tabBar.items?[3].image = UIImage(named: "chef_75")
+        self.tabBar.items?[3].image = UIImage(named: "cookbook2_75")
         self.tabBar.items?[3].title = "Meals"
-        self.tabBar.items?[4].image = UIImage(named: "folder_75")
+        self.tabBar.items?[4].image = UIImage(named: "heart2_75")
         self.tabBar.items?[4].title = "Favorites"
     }
     
     private func setTabBarProperties() {
         // set tabbar color properties
         self.tabBar.tintColor = UIColor.themeColor2
-//        self.tabBar.unselectedItemTintColor = UIColor.color6
         self.tabBar.barTintColor = UIColor.themeColor1
-//        self.tabBar.backgroundImage = UIImage()
-//        self.tabBar.shadowImage = UIImage()
+
         // Remove tab bar line
         self.tabBar.layer.borderWidth = 0.0
         self.tabBar.clipsToBounds = true

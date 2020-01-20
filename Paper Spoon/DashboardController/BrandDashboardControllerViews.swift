@@ -28,18 +28,18 @@ extension BrandDashboardController {
     internal func addCompileIngredientsView() {
         self.view.addSubview(self.compileIngredientsView)
         
-        self.compileIngredientsView.backgroundColor = UIColor.themeColor1.withAlphaComponent(0.7)
+        self.compileIngredientsView.backgroundColor = UIColor.themeColor1
         self.compileIngredientsView.translatesAutoresizingMaskIntoConstraints = false
         
         self.compileIngredientsBtnPopped = [
-            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: self.compileIngredientsBtnHeight),
             self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
             self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
         ]
         
         self.compileIngredientsBtnPoppedNoMenu = [
-            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.05),
+            self.compileIngredientsView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: self.compileIngredientsBtnHeight),
             self.compileIngredientsView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -30),
             self.compileIngredientsView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.compileIngredientsView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0, constant: -10)
@@ -81,12 +81,12 @@ extension BrandDashboardController {
     internal func addCompileIngredientsBtn() {
         guard let compileIngredientsBtn = self.compileIngredientsBtn else { return }
         self.compileIngredientsView.addSubview(compileIngredientsBtn)
-        
         compileIngredientsBtn.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            compileIngredientsBtn.topAnchor.constraint(equalTo: self.compileIngredientsView.topAnchor),
+            compileIngredientsBtn.centerYAnchor.constraint(equalTo: self.compileIngredientsView.centerYAnchor),
             compileIngredientsBtn.centerXAnchor.constraint(equalTo: self.compileIngredientsView.centerXAnchor),
-            compileIngredientsBtn.bottomAnchor.constraint(equalTo: self.compileIngredientsView.bottomAnchor, constant: -5),
+            compileIngredientsBtn.heightAnchor.constraint(equalTo: self.compileIngredientsView.heightAnchor, multiplier: 0.85),
             compileIngredientsBtn.widthAnchor.constraint(equalTo: self.compileIngredientsView.widthAnchor, multiplier: 0.5)
         ])
     }
