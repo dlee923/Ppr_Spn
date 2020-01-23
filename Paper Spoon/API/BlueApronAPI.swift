@@ -85,6 +85,7 @@ extension BlueApronAPI {
             // create container to store menu options
             var menuOptions = [MenuOption]()
             // parse html code here
+            print(htmlCode)
             let weeklyRecipes = htmlCode.components(separatedBy: "Week of")[1]
             
             let recipeLinks = htmlCode.components(separatedBy: "class=\"recipe-card recipe-product-card\" href=\"")

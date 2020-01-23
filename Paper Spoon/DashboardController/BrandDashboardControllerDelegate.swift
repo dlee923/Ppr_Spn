@@ -10,13 +10,14 @@ import UIKit
 
 protocol BrandDashboardControllerDelegate: AnyObject {
     func showHideCompileButton()
-    func movePickerPosition(position: Int)
     func changeRecipeHeadertext()
     func clearSelections()
     func selectMenuOption(menuOption: MenuOption)
     func isMaxedOut() -> Bool
     func minimizeBrandsCollectionView(scrollPositionY: CGFloat)
     func lockUnlockScrollView()
+    func collapseMenuList()
+    func expandMenuList()
 }
 
 
@@ -37,20 +38,14 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                     print("REMOVE collapsed no tabBar.  ADD popped no tabBar")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsedNoMenu)
                     NSLayoutConstraint.activate(compileIngredientsButtonPoppedNoMenu)
+
                 } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
                     print("REMOVE collapsed.  ADD popped")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsed)
                     NSLayoutConstraint.activate(compileIngredientsButtonPopped)
                 }
                 
-                self.helloFreshViewController.menuOptionListCollapsed?.isActive = false
-                self.helloFreshViewController.menuOptionListExpanded?.isActive = true
-                
-                self.blueApronViewController.menuOptionListCollapsed?.isActive = false
-                self.blueApronViewController.menuOptionListExpanded?.isActive = true
-                
-                self.homeChefViewController.menuOptionListCollapsed?.isActive = false
-                self.homeChefViewController.menuOptionListExpanded?.isActive = true
+                expandMenuList()
             }
             
         } else if self.tempSelectedMenuOptions?.count == 0 {
@@ -61,20 +56,15 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                     print("REMOVE popped no tabBar.  ADD collapsed no tabBar")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonPoppedNoMenu)
                     NSLayoutConstraint.activate(compileIngredientsButtonCollapsedNoMenu)
+                
                 } else if self.parentViewControllerDelegate?.returnFadeOut() == false {
                     print("REMOVE popped.  ADD collapsed")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonPopped)
                     NSLayoutConstraint.activate(compileIngredientsButtonCollapsed)
+                
                 }
                 
-                self.helloFreshViewController.menuOptionListExpanded?.isActive = false
-                self.helloFreshViewController.menuOptionListCollapsed?.isActive = true
-                
-                self.blueApronViewController.menuOptionListExpanded?.isActive = false
-                self.blueApronViewController.menuOptionListCollapsed?.isActive = true
-                
-                self.homeChefViewController.menuOptionListExpanded?.isActive = false
-                self.homeChefViewController.menuOptionListCollapsed?.isActive = true
+                collapseMenuList()
             }
         }
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {
@@ -82,7 +72,27 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         }, completion: nil)
     }
     
-    func movePickerPosition(position: Int) { }
+    func collapseMenuList() {
+        self.helloFreshViewController.menuOptionListExpanded?.isActive = false
+        self.helloFreshViewController.menuOptionListCollapsed?.isActive = true
+        
+        self.blueApronViewController.menuOptionListExpanded?.isActive = false
+        self.blueApronViewController.menuOptionListCollapsed?.isActive = true
+        
+        self.homeChefViewController.menuOptionListExpanded?.isActive = false
+        self.homeChefViewController.menuOptionListCollapsed?.isActive = true
+    }
+    
+    func expandMenuList() {
+        self.helloFreshViewController.menuOptionListCollapsed?.isActive = false
+        self.helloFreshViewController.menuOptionListExpanded?.isActive = true
+        
+        self.blueApronViewController.menuOptionListCollapsed?.isActive = false
+        self.blueApronViewController.menuOptionListExpanded?.isActive = true
+        
+        self.homeChefViewController.menuOptionListCollapsed?.isActive = false
+        self.homeChefViewController.menuOptionListExpanded?.isActive = true
+    }
     
     func changeRecipeHeadertext() {
         self.recipeListHeader.changeRecipeListHeader(numberOfRecipesSelected: self.tempSelectedMenuOptions?.count ?? 0, maxRecipes: self.recipeMaxCount)
@@ -92,7 +102,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
         self.tempSelectedMenuOptions?.removeAll()
         // clear selection
         if let menuOptions = self.menuOptionsObj?.menuOptions {
-            for (key, value) in menuOptions {
+            for (key, _) in menuOptions {
                 if let brandMenuOptions = menuOptions[key] {
                     for menuOption in brandMenuOptions {
                         menuOption.isSelected = false
@@ -204,6 +214,8 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             }
             
         } else {
+            // return if already at constant 0
+            if recipeListHeaderTopConstraint?.constant == 0 { return }
             // stop recipeHeader movement down
             recipeListHeaderTopConstraint?.constant = 0
             // set properties back to default
@@ -212,7 +224,6 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             self.recipeListHeader.blurView.alpha = 0
             self.recipeListHeader.headerLabel.textColor = UIColor.themeColor1
             self.recipeListHeader.headerLabel.layer.shadowColor = UIColor.black.cgColor
-            self.view.layoutIfNeeded()
         }
     }
     

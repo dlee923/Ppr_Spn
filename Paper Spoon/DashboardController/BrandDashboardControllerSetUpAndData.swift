@@ -14,7 +14,6 @@ extension BrandDashboardController {
         passDelegates()
         passBrand()
         passMenuOptionsObj()
-        passMenuBtnHeight()
         
         controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
         
@@ -58,16 +57,6 @@ extension BrandDashboardController {
         homeChefViewController.menuOptionsObj = self.menuOptionsObj
     }
     
-    internal func passMenuBtnHeight() {
-        if let compileIngredientsBtnHeight = UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.size.height {
-            let buttonHeight = self.compileIngredientsBtnHeight * CGFloat(compileIngredientsBtnHeight) + 5
-            
-            helloFreshViewController.menuOptionListExpandedConstant = buttonHeight
-            blueApronViewController.menuOptionListExpandedConstant = buttonHeight
-            platedViewController.menuOptionListExpandedConstant = buttonHeight
-            homeChefViewController.menuOptionListExpandedConstant = buttonHeight
-        }
-    }
     
     internal func retrieveBrandMenu(brand: BrandType) {
         var brandAPI: BrandAPI?

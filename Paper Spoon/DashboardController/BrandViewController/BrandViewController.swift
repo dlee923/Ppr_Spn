@@ -45,16 +45,6 @@ class BrandViewController: UIViewController {
     // MARK:  Animatable constraints
     var menuOptionListCollapsed: NSLayoutConstraint?
     var menuOptionListExpanded: NSLayoutConstraint?
-    var menuOptionListCollapsedConstant: CGFloat? {
-        didSet {
-            self.menuOptionListCollapsed = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: menuOptionListCollapsedConstant ?? 0.0)
-        }
-    }
-    var menuOptionListExpandedConstant: CGFloat? {
-        didSet {
-            self.menuOptionListExpanded = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -(self.menuOptionListExpandedConstant ?? 0.0) - 5)
-        }
-    }
     
     private func setupMenuOptionsList() {
         self.menuOptionList.frame = self.view.frame
@@ -73,9 +63,12 @@ class BrandViewController: UIViewController {
         self.menuOptionList.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -5).isActive = true
         self.menuOptionList.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 5).isActive = true
         
-        self.menuOptionListCollapsed = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40)
+        self.menuOptionListCollapsed = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -35)
         
         self.menuOptionListCollapsed?.isActive = true
+        
+        // set up additional menuOptionListExpand/Collapse
+        self.menuOptionListExpanded = self.menuOptionList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5)
     }
     
 

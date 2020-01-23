@@ -24,7 +24,7 @@ class MenuOptionListCell: UICollectionViewCell {
     var subtitleView = UILabel()
     var caloriesLabel = UILabel()
     let titleViewColor = UIColor.themeColor2
-    let titleViewColorSelected = UIColor.color5
+    let titleViewColorSelected = UIColor.themeColor4
     var selectionCheckMarkView = UIView()
     
     // MARK:  Data Variables
@@ -104,7 +104,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.selectionCheckMarkView.isHidden = true
         self.selectionCheckMarkView.layer.borderWidth = 3
         self.selectionCheckMarkView.layer.borderColor = self.titleViewColorSelected.cgColor
-        self.selectionCheckMarkView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        self.selectionCheckMarkView.backgroundColor = UIColor.themeColor1.withAlphaComponent(0.6)
         
         self.selectionCheckMarkView.contentMode = .scaleAspectFill
         self.selectionCheckMarkView.layer.cornerRadius = 5

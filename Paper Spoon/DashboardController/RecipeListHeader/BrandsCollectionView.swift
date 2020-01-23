@@ -57,7 +57,7 @@ class BrandsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? BrandsCollectionViewCell {
-            cell.brandImage.layer.shadowColor = UIColor.color2.cgColor
+            cell.brandImage.layer.shadowColor = UIColor.themeColor4.cgColor
         }
         
         for x in 0..<collectionView.visibleCells.count {
