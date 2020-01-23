@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		700D4EEA23D9483F003E6503 /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -104,6 +105,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				701058E522FF61D400D4D9FD /* Fonts.swift */,
 				701058E022FF618E00D4D9FD /* BebasNeue-Regular.otf */,
 				701185FC231B22EA00F4D047 /* Sunflower_personal.otf */,
+				700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */,
 				701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */,
 			);
 			path = Fonts;
@@ -569,6 +572,7 @@
 				70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */,
 				701185FD231B22EB00F4D047 /* Sunflower_personal.otf in Resources */,
 				701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */,
+				700D4EEA23D9483F003E6503 /* MavenPro-Regular.ttf in Resources */,
 				701058E322FF618E00D4D9FD /* BebasNeue-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

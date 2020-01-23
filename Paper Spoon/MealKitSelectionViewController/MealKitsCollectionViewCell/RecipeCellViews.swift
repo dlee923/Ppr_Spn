@@ -47,9 +47,9 @@ extension MealKitsCollectionViewCell {
         self.recipeDescription.backgroundColor = .white
         self.recipeDescription.textAlignment = .left
         self.recipeDescription.isEditable = false
-        self.recipeDescription.textColor = UIColor.black.withAlphaComponent(0.8)
+        self.recipeDescription.textColor = UIColor.themeColor1
         let descripFontSize = DeviceViews.recipeDescriptionFontSize[Device.current.deviceType] ?? 15
-        self.recipeDescription.font = UIFont.fontCoolvetica?.withSize(descripFontSize)
+        self.recipeDescription.font = UIFont.fontMaven?.withSize(descripFontSize)
     }
     
     internal func modifyIngredientsBtn() {
