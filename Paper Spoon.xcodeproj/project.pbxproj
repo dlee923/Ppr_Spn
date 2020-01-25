@@ -17,6 +17,7 @@
 		700D4EF823DBFA2F003E6503 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */; };
 		700D4EFA23DCF55F003E6503 /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF923DCF55F003E6503 /* IngredientsModel.swift */; };
 		700D4EFC23DCF569003E6503 /* NutritionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFB23DCF569003E6503 /* NutritionModel.swift */; };
+		700D4EFE23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -124,6 +125,7 @@
 		700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		700D4EF923DCF55F003E6503 /* IngredientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
 		700D4EFB23DCF569003E6503 /* NutritionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionModel.swift; sourceTree = "<group>"; };
+		700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListScrollingDelegate.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 			children = (
 				70D532D522F77C4D00C8F866 /* BrandViewController.swift */,
 				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
+				700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */,
 				709B105523BD483E00E0785A /* MenuOptionListHeader.swift */,
 				709B105723BD499E00E0785A /* MenuOptionListCells */,
 				701058EB2308BE0100D4D9FD /* NextStepBtn.swift */,
@@ -628,6 +631,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				700D4EFE23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift in Sources */,
 				70E049A2235397B6005A1B71 /* BrandsSelectorView.swift in Sources */,
 				70FCDD8523A555FB00DC7BA2 /* InstructionsImgCollectionView.swift in Sources */,
 				70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */,

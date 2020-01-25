@@ -8,7 +8,8 @@
 
 import UIKit
 
-class Ingredients: Equatable {
+class Ingredients: Equatable, NSCopying {
+    
     var name: String
     var amount: Double?
     var measurementType: String?
@@ -29,5 +30,10 @@ class Ingredients: Equatable {
         self.isPacked = isPacked
         self.imageLink = imageLink
         self.image = image
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        let ingredientCopy = Ingredients(name: self.name, amount: self.amount, measurementType: self.measurementType, isPacked: self.isPacked, imageLink: self.imageLink, image: self.image)
+        return ingredientCopy
     }
 }

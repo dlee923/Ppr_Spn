@@ -20,8 +20,12 @@ extension BrandDashboardController {
         // add each individual ingredient from each recipe to a container
         for menuOption in selectedMenuOptions {
             if let recipeIngredients = menuOption.recipe?.ingredients {
-                let ingredientsToAdd = recipeIngredients
-                self.compiledIngredients += ingredientsToAdd
+                for ingredient in recipeIngredients {
+                    // copy ingredient as its a class object
+                    if let ingredientCopy = ingredient.copy() as? Ingredients {
+                        self.compiledIngredients.append(ingredientCopy)
+                    }
+                }
             }
         }
         
