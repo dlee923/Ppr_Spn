@@ -49,7 +49,7 @@ extension MealKitsCollectionViewCell {
         self.recipeDescription.isEditable = false
         self.recipeDescription.textColor = UIColor.themeColor1
         let descripFontSize = DeviceViews.recipeDescriptionFontSize[Device.current.deviceType] ?? 15
-        self.recipeDescription.font = UIFont.fontMaven?.withSize(descripFontSize)
+        self.recipeDescription.font = UIFont.fontOldSansBlack?.withSize(descripFontSize)
     }
     
     internal func modifyIngredientsBtn() {

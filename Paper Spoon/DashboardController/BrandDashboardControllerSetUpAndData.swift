@@ -173,35 +173,6 @@ extension BrandDashboardController {
         ]
     }
     
-    internal func calculateIngredients(completion: () -> ()) {
-        // aggregate all ingredients from selected recipes
-        guard let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
-        
-        // reset compiledIngredients
-        self.compiledIngredients.removeAll()
-        
-        for menuOption in selectedMenuOptions {
-            if let recipeIngredients = menuOption.recipe?.ingredients {
-                self.compiledIngredients += recipeIngredients
-            }
-        }
-        
-        // standardize ingredient measurements
-        
-        // standardize ingredient names
-        
-        
-        
-        // reduce ingredients list to just unique values based on name only
-        reducedCompiledIngredients = compiledIngredients.reduce([], { $0.contains($1) ? $0 : $0 + [$1] })
-        for ingredient in reducedCompiledIngredients {
-            print(ingredient.name)
-        }
-        
-        // modify ingredients list amounts based on original compiledIngredients list
-        
-        completion()
-    }
     
     internal func downloadIngredientImages() {
         self.mainThread.async {

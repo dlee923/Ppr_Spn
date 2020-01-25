@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		700D4EEA23D9483F003E6503 /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */; };
+		700D4EEC23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EEB23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift */; };
+		700D4EEE23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EED23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift */; };
+		700D4EF023DAA57B003E6503 /* MeasureConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EEF23DAA57B003E6503 /* MeasureConversion.swift */; };
+		700D4EF223DBF769003E6503 /* Cosima-DemoBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EF123DBF769003E6503 /* Cosima-DemoBold.otf */; };
+		700D4EF423DBF7A8003E6503 /* OldSansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EF323DBF7A8003E6503 /* OldSansBlack.ttf */; };
+		700D4EF623DBF7C0003E6503 /* Renogare-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EF523DBF7C0003E6503 /* Renogare-Regular.otf */; };
+		700D4EF823DBFA2F003E6503 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -106,6 +113,13 @@
 
 /* Begin PBXFileReference section */
 		700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
+		700D4EEB23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerLogic.swift; sourceTree = "<group>"; };
+		700D4EED23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerTransitions.swift; sourceTree = "<group>"; };
+		700D4EEF23DAA57B003E6503 /* MeasureConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureConversion.swift; sourceTree = "<group>"; };
+		700D4EF123DBF769003E6503 /* Cosima-DemoBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cosima-DemoBold.otf"; sourceTree = "<group>"; };
+		700D4EF323DBF7A8003E6503 /* OldSansBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OldSansBlack.ttf; sourceTree = "<group>"; };
+		700D4EF523DBF7C0003E6503 /* Renogare-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Renogare-Regular.otf"; sourceTree = "<group>"; };
+		700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -238,6 +252,9 @@
 				701058E022FF618E00D4D9FD /* BebasNeue-Regular.otf */,
 				701185FC231B22EA00F4D047 /* Sunflower_personal.otf */,
 				700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */,
+				700D4EF323DBF7A8003E6503 /* OldSansBlack.ttf */,
+				700D4EF523DBF7C0003E6503 /* Renogare-Regular.otf */,
+				700D4EF123DBF769003E6503 /* Cosima-DemoBold.otf */,
 				701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */,
 			);
 			path = Fonts;
@@ -281,6 +298,8 @@
 			children = (
 				70E6F4822198DE1A005C08EE /* BrandDashboardController.swift */,
 				7069802123C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift */,
+				700D4EED23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift */,
+				700D4EEB23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift */,
 				703B9578235559D500F17F33 /* BrandDashboardControllerViews.swift */,
 				708A6756235CF00800C53011 /* BrandDashboardControllerDelegate.swift */,
 				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
@@ -325,6 +344,8 @@
 				70D46CBB235C117900AB3488 /* DeviceViews.swift */,
 				701058E722FF61FA00D4D9FD /* Colors.swift */,
 				70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */,
+				700D4EEF23DAA57B003E6503 /* MeasureConversion.swift */,
+				700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -566,10 +587,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				70E6F48E2198DE1D005C08EE /* LaunchScreen.storyboard in Resources */,
+				700D4EF623DBF7C0003E6503 /* Renogare-Regular.otf in Resources */,
+				700D4EF223DBF769003E6503 /* Cosima-DemoBold.otf in Resources */,
 				701058F52308EE8300D4D9FD /* CompiledIngredientsCell.xib in Resources */,
 				70E6F48B2198DE1D005C08EE /* Assets.xcassets in Resources */,
 				70AD620823137EFD00ABE458 /* MealsPrepCollectionViewCell.xib in Resources */,
 				70E6F4862198DE1A005C08EE /* Main.storyboard in Resources */,
+				700D4EF423DBF7A8003E6503 /* OldSansBlack.ttf in Resources */,
 				701185FD231B22EB00F4D047 /* Sunflower_personal.otf in Resources */,
 				701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */,
 				700D4EEA23D9483F003E6503 /* MavenPro-Regular.ttf in Resources */,
@@ -638,16 +662,19 @@
 				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
 				70D46CB9235C114A00AB3488 /* RecipeCellViews.swift in Sources */,
 				701058EA22FF620600D4D9FD /* Extensions.swift in Sources */,
+				700D4EF023DAA57B003E6503 /* MeasureConversion.swift in Sources */,
 				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,
 				70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */,
 				70AD620723137EFD00ABE458 /* MealsPrepCollectionViewCell.swift in Sources */,
+				700D4EF823DBFA2F003E6503 /* NumberFormatter.swift in Sources */,
 				70FCDD8923A6D59B00DC7BA2 /* BlueApronAPI.swift in Sources */,
 				7077B5A82323F9C100359035 /* InstructionsCollectionViewCell.swift in Sources */,
 				70D46CAD235C109900AB3488 /* RatingView.swift in Sources */,
 				7069802223C999AD0064D5D0 /* BrandDashboardControllerSetUpAndData.swift in Sources */,
 				70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */,
 				709B105623BD483E00E0785A /* MenuOptionListHeader.swift in Sources */,
+				700D4EEE23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
 				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,
@@ -661,6 +688,7 @@
 				70E0499923528DB0005A1B71 /* ParentViewController.swift in Sources */,
 				70E3A581232B393200F9A5A7 /* IngredientsPrepCollectionViewCell.swift in Sources */,
 				701058EC2308BE0100D4D9FD /* NextStepBtn.swift in Sources */,
+				700D4EEC23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift in Sources */,
 				70E0499B235387EB005A1B71 /* EmptyCollectionViewCell.swift in Sources */,
 				70FCDD8D23A7314300DC7BA2 /* BrandAPI.swift in Sources */,
 				70D46CA2235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift in Sources */,

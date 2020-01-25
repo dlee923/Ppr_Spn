@@ -14,4 +14,7 @@ extension UIFont {
     static let fontCoolvetica = UIFont(name: "Coolvetica", size: 5)
     static let fontSunflower = UIFont(name: "MADE Sunflower", size: 5)
     static let fontMaven = UIFont(name: "Maven Pro", size: 5)
+    static let fontRenogare = UIFont(name: "Renogare", size: 5)
+    static let fontCosima = UIFont(name: "Cosima", size: 5)
+    static let fontOldSansBlack = UIFont(name: "OldSansBlack", size: 5)
 }

@@ -35,8 +35,8 @@ class GradientView: UIView {
     
     func setup(colorTop: CGColor, colorBottom: CGColor) {
         self.gradient.colors = [colorTop, colorBottom]
-        self.gradient.startPoint = CGPoint(x: 0.75, y: 0.75)
-        self.gradient.endPoint = CGPoint(x: 1.5, y: 1.5)
+        self.gradient.startPoint = CGPoint(x: 0.5, y: 0.5)
+        self.gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
     }
     
     func setGradientLayer() {

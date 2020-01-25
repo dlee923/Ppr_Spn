@@ -110,7 +110,7 @@ class EmptyTableViewCell: UITableViewCell {
         self.message.alpha = 0.75
         self.message.textAlignment = .center
         self.message.textColor = UIColor.themeColor2
-        self.message.font = UIFont.fontMaven?.withSize(15)
+        self.message.font = UIFont.fontCosima?.withSize(15)
         self.message.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.message.bottomAnchor.constraint(equalTo: self.emptyContainer.bottomAnchor),

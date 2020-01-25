@@ -13,7 +13,7 @@ class ParentViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.themeColor1
-        self.addGradientBackground()
+//        self.addGradientBackground()
         self.addSplashImageView()
         
         // send delegate to viewControllers

@@ -27,7 +27,7 @@ class CompiledIngredientsCell: UITableViewCell {
     var ingredient: Ingredients? {
         didSet {
             self.ingredientName.text = self.ingredient?.name
-            self.measureAmount.text = "\(self.ingredient?.amount ?? 1) \(self.ingredient?.measurementType ?? "")"
+            self.measureAmount.text = "\(self.ingredient?.amount?.clean ?? "1") \(self.ingredient?.measurementType ?? "")"
             self.ingredientImg.image = self.ingredient?.image
         }
     }

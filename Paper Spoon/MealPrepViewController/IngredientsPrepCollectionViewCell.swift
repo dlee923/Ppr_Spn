@@ -23,7 +23,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
             
             // set measurement amount
             if let ingredientAmount = self.ingredient?.amount, let ingredientMeasure = self.ingredient?.measurementType {
-                self.measureAmountLbl.text = "\(ingredientAmount) \(ingredientMeasure)"
+                self.measureAmountLbl.text = "\(ingredientAmount.clean) \(ingredientMeasure)"
             }
             
             // set ingredient image
