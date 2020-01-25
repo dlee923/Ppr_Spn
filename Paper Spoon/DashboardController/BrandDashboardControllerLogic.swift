@@ -39,14 +39,12 @@ extension BrandDashboardController {
         
         // modify ingredients list amounts based on original compiledIngredients list
         for ingredient in self.reducedCompiledIngredients {
+            // grab all unique ingredients of the same type
             let ingredientToReduce = self.compiledIngredients.filter({ $0.name == ingredient.name })
-            if let startingIngredientAmount = ingredientToReduce.first?.amount {
-                let totalIngredientAmount = ingredientToReduce.reduce(startingIngredientAmount, { $0 + ($1.amount ?? 0) })
-                ingredient.amount = totalIngredientAmount
-                
-                print(ingredient.name)
-            }
             
+            // calculate sum of total amount of all ingredients
+            let totalIngredientAmount = ingredientToReduce.reduce(0, { $0 + ($1.amount ?? 0) })
+            ingredient.amount = totalIngredientAmount
         }
         
         completion()
