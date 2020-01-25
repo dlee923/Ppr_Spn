@@ -20,7 +20,8 @@ extension BrandDashboardController {
         // add each individual ingredient from each recipe to a container
         for menuOption in selectedMenuOptions {
             if let recipeIngredients = menuOption.recipe?.ingredients {
-                self.compiledIngredients += recipeIngredients
+                let ingredientsToAdd = recipeIngredients
+                self.compiledIngredients += ingredientsToAdd
             }
         }
         

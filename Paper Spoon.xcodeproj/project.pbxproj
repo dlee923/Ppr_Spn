@@ -15,6 +15,8 @@
 		700D4EF423DBF7A8003E6503 /* OldSansBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EF323DBF7A8003E6503 /* OldSansBlack.ttf */; };
 		700D4EF623DBF7C0003E6503 /* Renogare-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EF523DBF7C0003E6503 /* Renogare-Regular.otf */; };
 		700D4EF823DBFA2F003E6503 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */; };
+		700D4EFA23DCF55F003E6503 /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF923DCF55F003E6503 /* IngredientsModel.swift */; };
+		700D4EFC23DCF569003E6503 /* NutritionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFB23DCF569003E6503 /* NutritionModel.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -120,6 +122,8 @@
 		700D4EF323DBF7A8003E6503 /* OldSansBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OldSansBlack.ttf; sourceTree = "<group>"; };
 		700D4EF523DBF7C0003E6503 /* Renogare-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Renogare-Regular.otf"; sourceTree = "<group>"; };
 		700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		700D4EF923DCF55F003E6503 /* IngredientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
+		700D4EFB23DCF569003E6503 /* NutritionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionModel.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 			isa = PBXGroup;
 			children = (
 				70D532C822F44DCA00C8F866 /* RecipeModel.swift */,
+				700D4EF923DCF55F003E6503 /* IngredientsModel.swift */,
+				700D4EFB23DCF569003E6503 /* NutritionModel.swift */,
 				708735E22310E3750079CCA5 /* IngredientsCategorization.swift */,
 				701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */,
 				70FCDD8A23A7111200DC7BA2 /* BrandData.swift */,
@@ -645,6 +651,7 @@
 				70E0499E235396D6005A1B71 /* EmptyMealsPrepCell.swift in Sources */,
 				701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */,
 				703B9579235559D500F17F33 /* BrandDashboardControllerViews.swift in Sources */,
+				700D4EFC23DCF569003E6503 /* NutritionModel.swift in Sources */,
 				7077B5A62323F82E00359035 /* InstructionsCollectionView.swift in Sources */,
 				70D46CB4235C112E00AB3488 /* RecipeCellInteraction.swift in Sources */,
 				709B105923BFC6F900E0785A /* SplashImageView.swift in Sources */,
@@ -676,6 +683,7 @@
 				709B105623BD483E00E0785A /* MenuOptionListHeader.swift in Sources */,
 				700D4EEE23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
+				700D4EFA23DCF55F003E6503 /* IngredientsModel.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
 				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,
 				70FCDD8723A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift in Sources */,

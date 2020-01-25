@@ -25,6 +25,9 @@ class InstructionsCollectionView: UICollectionView {
     
     var menuOption: MenuOption? { didSet { self.reloadData() } }
     
+    // MARK:  Delegate
+    var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -70,5 +73,10 @@ extension InstructionsCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // select InstructionsImgCollectionViewCell
+        self.instructionsViewControllerDelegate?.selectInstructionsMiniPane(number: indexPath.item)
     }
 }

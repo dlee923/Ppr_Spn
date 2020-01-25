@@ -46,7 +46,6 @@ class ActivityIndicator: UIActivityIndicatorView {
             self.stopAnimating()
             self.isHidden = true
             self.removeFromSuperview()
-            print("finished")
         }
     }
     

@@ -68,10 +68,30 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
         }
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // scroll to big view item
         self.instructionsViewControllerDelegate?.selectInstrutionsPane(number: indexPath.item)
+        
+        // deselect mini pane item
+        if let selectedItems = collectionView.indexPathsForSelectedItems {
+            for selectedIndexPath in selectedItems {
+                if selectedIndexPath != indexPath {
+                    collectionView.deselectItem(at: indexPath, animated: false)
+                }
+            }
+        }
+        
+        // color selected mini pane item
         if let cell = collectionView.cellForItem(at: indexPath) as? InstructionsImgCollectionViewCell {
             cell.stepLabelNumber.backgroundColor = UIColor.color5
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? InstructionsImgCollectionViewCell {
+            cell.stepLabelNumber.backgroundColor = UIColor.clear
+        }
+    }
+    
 }

@@ -15,10 +15,15 @@ class InstructionsViewController: UIViewController {
         self.setup()
     }
     
+    deinit {
+        print("letting go of instructions view")
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         self.mealKitSelectionViewControllerDelegate?.unlockScrollView()
     }
     
+    // MARK: Variables
     var instructionsCollectionView: InstructionsCollectionView?
     var instructionsImgCollectionView: InstructionsImgCollectionView?
     var finishedCookingBtn = UIButton()
@@ -29,6 +34,7 @@ class InstructionsViewController: UIViewController {
         }
     }
     
+    // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
     private func setup() {
@@ -96,11 +102,16 @@ class InstructionsViewController: UIViewController {
 
 protocol InstructionsViewControllerDelegate: AnyObject {
     func selectInstrutionsPane(number: Int)
+    func selectInstructionsMiniPane(number: Int)
 }
 
 
 extension InstructionsViewController: InstructionsViewControllerDelegate {
     func selectInstrutionsPane(number: Int) {
         self.instructionsCollectionView?.scrollToItem(at: IndexPath(item: number, section: 0), at: .top, animated: true)
+    }
+    
+    func selectInstructionsMiniPane(number: Int) {
+        self.instructionsImgCollectionView?.selectItem(at: IndexPath(item: number, section: 0), animated: false, scrollPosition: .top)
     }
 }
