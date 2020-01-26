@@ -18,6 +18,7 @@
 		700D4EFA23DCF55F003E6503 /* IngredientsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EF923DCF55F003E6503 /* IngredientsModel.swift */; };
 		700D4EFC23DCF569003E6503 /* NutritionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFB23DCF569003E6503 /* NutritionModel.swift */; };
 		700D4EFE23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */; };
+		700D4F0023DDDE8A003E6503 /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -126,6 +127,7 @@
 		700D4EF923DCF55F003E6503 /* IngredientsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsModel.swift; sourceTree = "<group>"; };
 		700D4EFB23DCF569003E6503 /* NutritionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionModel.swift; sourceTree = "<group>"; };
 		700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListScrollingDelegate.swift; sourceTree = "<group>"; };
+		700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -236,7 +238,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		701058DD22FF614B00D4D9FD /* MealPrepViewController */ = {
+		700D4F0123DDDE92003E6503 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		701058DD22FF614B00D4D9FD /* MealPrep */ = {
 			isa = PBXGroup;
 			children = (
 				70261D9823116B9E004AC40E /* MealPrepViewController.swift */,
@@ -248,7 +258,7 @@
 				701185F9231B137500F4D047 /* IngredientsPrepCollectionView.swift */,
 				70E3A580232B393200F9A5A7 /* IngredientsPrepCollectionViewCell.swift */,
 			);
-			path = MealPrepViewController;
+			path = MealPrep;
 			sourceTree = "<group>";
 		};
 		701058E422FF61B900D4D9FD /* Fonts */ = {
@@ -266,7 +276,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		701058EF2308C34200D4D9FD /* CompileIngredientsViewController */ = {
+		701058EF2308C34200D4D9FD /* CompileIngredients */ = {
 			isa = PBXGroup;
 			children = (
 				701058ED2308C33B00D4D9FD /* CompiledIngredientsViewController.swift */,
@@ -276,10 +286,10 @@
 				70D46CA1235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift */,
 				70E0499F2353977C005A1B71 /* CompiledIngredientsEmptyCollectionViewCell.swift */,
 			);
-			path = CompileIngredientsViewController;
+			path = CompileIngredients;
 			sourceTree = "<group>";
 		};
-		701185FB231B14A100F4D047 /* MealKitSelectionViewController */ = {
+		701185FB231B14A100F4D047 /* MealKitSelection */ = {
 			isa = PBXGroup;
 			children = (
 				701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */,
@@ -288,7 +298,7 @@
 				70D46CA8235C107700AB3488 /* MealKitsCollectionViewCell */,
 				70FCDD8323A519C800DC7BA2 /* InstructionsViewController */,
 			);
-			path = MealKitSelectionViewController;
+			path = MealKitSelection;
 			sourceTree = "<group>";
 		};
 		7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */ = {
@@ -299,7 +309,7 @@
 			path = CreateNewMenuPrompt;
 			sourceTree = "<group>";
 		};
-		7073E2CA2349359D0041223D /* DashboardController */ = {
+		7073E2CA2349359D0041223D /* RecipeSelection */ = {
 			isa = PBXGroup;
 			children = (
 				70E6F4822198DE1A005C08EE /* BrandDashboardController.swift */,
@@ -312,7 +322,7 @@
 				70D532D922F98CB100C8F866 /* BrandViewController */,
 				7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */,
 			);
-			path = DashboardController;
+			path = RecipeSelection;
 			sourceTree = "<group>";
 		};
 		709B105723BD499E00E0785A /* MenuOptionListCells */ = {
@@ -443,10 +453,11 @@
 				701058E422FF61B900D4D9FD /* Fonts */,
 				70D532D422F77A0A00C8F866 /* API */,
 				70E0499C23538B9F005A1B71 /* ParentViewController */,
-				7073E2CA2349359D0041223D /* DashboardController */,
-				701058EF2308C34200D4D9FD /* CompileIngredientsViewController */,
-				701058DD22FF614B00D4D9FD /* MealPrepViewController */,
-				701185FB231B14A100F4D047 /* MealKitSelectionViewController */,
+				7073E2CA2349359D0041223D /* RecipeSelection */,
+				701058EF2308C34200D4D9FD /* CompileIngredients */,
+				701058DD22FF614B00D4D9FD /* MealPrep */,
+				701185FB231B14A100F4D047 /* MealKitSelection */,
+				700D4F0123DDDE92003E6503 /* Favorites */,
 				70D532CD22F5EFD200C8F866 /* Model */,
 				70D532CC22F5EFC900C8F866 /* Utility */,
 				70E6F4842198DE1A005C08EE /* Main.storyboard */,
@@ -661,6 +672,7 @@
 				709B105923BFC6F900E0785A /* SplashImageView.swift in Sources */,
 				70D532D322F7284000C8F866 /* MenuOptionList.swift in Sources */,
 				70D532D622F77C4D00C8F866 /* BrandViewController.swift in Sources */,
+				700D4F0023DDDE8A003E6503 /* FavCollectionViewController.swift in Sources */,
 				70D46CB5235C112E00AB3488 /* RecipeCellButton.swift in Sources */,
 				7069802423C99C230064D5D0 /* ParentViewControllerDelegate.swift in Sources */,
 				70D46CB6235C112E00AB3488 /* RecipeCellConstraints.swift in Sources */,
