@@ -13,7 +13,6 @@ class ParentViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.themeColor1
-//        self.addGradientBackground()
         self.addSplashImageView()
         
         // send delegate to viewControllers
@@ -33,7 +32,13 @@ class ParentViewController: UITabBarController {
         // set initial item to be selected
         let brandsCollectionView = self.brandDashboardController.recipeListHeader.brandsPickerView
         brandsCollectionView.collectionView(brandsCollectionView, didSelectItemAt: IndexPath(item: 0, section: 0))
+        
+        // set random splash image
+        let splashImageNumber = Int.random(in: 0 ..< 6)
+        print(splashImageNumber)
+        self.splashImageView?.splashImage.image = UIImage(named: "splash\(splashImageNumber)")
     }
+    
     
     // MARK:  Variables
     var menuOptionsObj = MenuOptionObj(menuOptions: nil)
@@ -45,7 +50,7 @@ class ParentViewController: UITabBarController {
     let compiledIngredientsViewController = CompiledIngredientsViewController()
     let mealPrepViewController = MealPrepViewController()
     let mealKitSelectionViewController = MealKitSelectionViewController()
-    let favoritesViewController = UIViewController()
+    let favoritesViewController = FavCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
     
     private func addViewControllers() {
         self.viewControllers = [

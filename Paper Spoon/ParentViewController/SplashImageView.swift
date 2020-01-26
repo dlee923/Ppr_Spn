@@ -20,7 +20,7 @@ class SplashImageView: UIView {
     lazy var gradientView = GradientView(frame: self.frame)
     
     private func addSplashImage() {
-        self.splashImage.image = UIImage(named: "splash1")
+//        self.splashImage.image = UIImage(named: "splash1")
         self.splashImage.contentMode = .scaleAspectFill
         self.addSubview(self.splashImage)
         self.splashImage.translatesAutoresizingMaskIntoConstraints = false
