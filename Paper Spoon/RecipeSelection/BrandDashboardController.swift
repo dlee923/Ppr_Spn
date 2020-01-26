@@ -160,7 +160,6 @@ class BrandDashboardController: UIPageViewController {
     var workItemCompletionCount: Int = 0
     var workItemCompletionLimit: Int = 0
 
-
 }
 
 

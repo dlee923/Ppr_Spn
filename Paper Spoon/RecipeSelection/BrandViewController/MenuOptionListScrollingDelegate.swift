@@ -21,10 +21,7 @@ extension MenuOptionList {
             fadePctSplashImg = 1 - (scrollView.contentOffset.y / 100)
         }
 
-        // fade out only if fade alpha is within range
-        if fadePctSplashImg ?? CGFloat(0) >= CGFloat(0) && fadePctSplashImg ?? CGFloat(1) <= CGFloat(1) {
-            parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
-        }
+        parentViewControllerDelegate?.fadeOutSplashImg(fadePct: fadePctSplashImg ?? 0.0)
         
 
         // set fadeOut status based on last direction user scrolled

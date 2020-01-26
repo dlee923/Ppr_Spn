@@ -13,7 +13,6 @@ class MenuOptionListHeader: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addBrandImage()
-//        self.addChooseRecipesText()
     }
     
     var brandImage = UIImageView()
@@ -37,19 +36,6 @@ class MenuOptionListHeader: UICollectionViewCell {
         ])
     }
     
-    private func addChooseRecipesText() {
-        self.headerLabel.font = UIFont.fontSunflower?.withSize(30)
-        self.headerLabel.text = "Choose Recipes:"
-        self.addSubview(self.headerLabel)
-        
-        self.headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.headerLabel.topAnchor.constraint(equalTo: self.brandImage.bottomAnchor),
-            self.headerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.headerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.headerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            ])
-    }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
