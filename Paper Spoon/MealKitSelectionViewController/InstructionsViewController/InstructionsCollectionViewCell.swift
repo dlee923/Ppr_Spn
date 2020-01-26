@@ -26,7 +26,6 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     var instructionsHTML: NSAttributedString? { didSet { self.instructionsTextView.attributedText = instructionsHTML } }
     
     private func addInstructionsImage() {
-        self.instructionsImage.backgroundColor = .purple
         self.addSubview(self.instructionsImage)
         self.instructionsImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -41,7 +40,7 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
         self.instructionsTextView.textColor = UIColor.themeColor2
         self.instructionsTextView.backgroundColor = UIColor.themeColor1
         self.instructionsTextView.isEditable = false
-        self.instructionsTextView.font = UIFont.fontRenogare?.withSize(20)
+        self.instructionsTextView.font = UIFont.fontOldSansBlack?.withSize(20)
         
         self.addSubview(self.instructionsTextView)
         self.instructionsTextView.translatesAutoresizingMaskIntoConstraints = false

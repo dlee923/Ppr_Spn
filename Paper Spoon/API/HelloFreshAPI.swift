@@ -232,10 +232,12 @@ extension HelloFreshAPI {
     // Retrieve recipe DESCRIPTION
     private func parseRecipeDescription(htmlCode: String) -> String {
         // parse html code here
-        let descriptionSection0 = htmlCode.components(separatedBy: "description\" content=\"").last
-        let description = descriptionSection0?.components(separatedBy: "\"/><meta data-react-helmet").first
+        let descriptionSection0 = htmlCode.components(separatedBy: "\"descriptionMarkdown\":").last
+        let description = descriptionSection0?.components(separatedBy: ",\"author\"").first
         
+        print(description)
         return description ?? ""
+        
     }
     
     

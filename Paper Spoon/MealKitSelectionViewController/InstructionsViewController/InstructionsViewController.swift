@@ -35,7 +35,7 @@ class InstructionsViewController: UIViewController {
     }
     
     // MARK:  Delegates
-    var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
+    weak var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     
     private func setup() {
         self.view.backgroundColor = UIColor.themeColor1

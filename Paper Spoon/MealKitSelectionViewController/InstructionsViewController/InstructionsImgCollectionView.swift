@@ -84,7 +84,7 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
         
         // color selected mini pane item
         if let cell = collectionView.cellForItem(at: indexPath) as? InstructionsImgCollectionViewCell {
-            cell.stepLabelNumber.backgroundColor = UIColor.color5
+            cell.stepLabelNumber.backgroundColor = UIColor.themeColor4
         }
     }
     
