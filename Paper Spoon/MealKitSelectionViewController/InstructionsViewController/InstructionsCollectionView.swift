@@ -77,6 +77,7 @@ extension InstructionsCollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         // select InstructionsImgCollectionViewCell
+        print(indexPath.item)
         self.instructionsViewControllerDelegate?.selectInstructionsMiniPane(number: indexPath.item)
     }
 }

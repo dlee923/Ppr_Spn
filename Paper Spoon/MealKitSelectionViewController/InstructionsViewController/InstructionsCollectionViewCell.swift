@@ -27,6 +27,7 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
     
     private func addInstructionsImage() {
         self.addSubview(self.instructionsImage)
+        self.instructionsImage.contentMode = .scaleAspectFill
         self.instructionsImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.instructionsImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),

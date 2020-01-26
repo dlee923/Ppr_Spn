@@ -22,28 +22,31 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
     var instructionImage = UIImageView()
     
     private func addStepNumberLabel() {
-        self.addSubview(self.stepLabelNumber)
-        self.stepLabelNumber.font = UIFont.fontSunflower?.withSize(10)
+        self.instructionImage.addSubview(self.stepLabelNumber)
+        self.stepLabelNumber.font = UIFont.fontSunflower?.withSize(20)
         self.stepLabelNumber.textColor = UIColor.themeColor1
         self.stepLabelNumber.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.stepLabelNumber.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
-            self.stepLabelNumber.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2),
-            self.stepLabelNumber.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-            self.stepLabelNumber.trailingAnchor.constraint(equalTo: self.instructionImage.leadingAnchor, constant: -2)
+            self.stepLabelNumber.centerXAnchor.constraint(equalTo: self.instructionImage.centerXAnchor),
+            self.stepLabelNumber.centerYAnchor.constraint(equalTo: self.instructionImage.centerYAnchor),
+            self.stepLabelNumber.heightAnchor.constraint(equalTo: self.instructionImage.heightAnchor),
+            self.stepLabelNumber.widthAnchor.constraint(equalTo: self.instructionImage.widthAnchor)
         ])
     }
     
     private func addInstructionImage() {
         self.addSubview(self.instructionImage)
+        self.instructionImage.contentMode = .scaleAspectFill
+        self.instructionImage.layer.cornerRadius = 5
+        self.instructionImage.layer.masksToBounds = true
         self.instructionImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             self.instructionImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
             self.instructionImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -2),
             self.instructionImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -2),
-            self.instructionImage.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7)
+            self.instructionImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 2)
         ])
     }
     

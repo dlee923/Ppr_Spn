@@ -61,7 +61,7 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InstructionsImgCollectionViewCell", for: indexPath) as? InstructionsImgCollectionViewCell {
             cell.instructionImage.image = self.menuOption?.recipe?.instructionImages?[indexPath.item]
-            cell.stepLabelNumber.text = "\(indexPath.item + 1)"
+            cell.stepLabelNumber.text = " \(indexPath.item + 1)"
             return cell
         } else {
             return UICollectionViewCell()
@@ -84,7 +84,7 @@ extension InstructionsImgCollectionView: UICollectionViewDataSource {
         
         // color selected mini pane item
         if let cell = collectionView.cellForItem(at: indexPath) as? InstructionsImgCollectionViewCell {
-            cell.stepLabelNumber.backgroundColor = UIColor.themeColor4
+            cell.stepLabelNumber.backgroundColor = UIColor.themeColor4.withAlphaComponent(0.5)
         }
     }
     

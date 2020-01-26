@@ -158,6 +158,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
             self.image.image = imageData
         }
         self.recipeDescription.text = "\(self.menuOption?.recipe?.description ?? "no description")\n\n\n"
+        print(self.recipeDescription.text)
         self.protein.text = "\(self.menuOption?.recipe?.nutrition?.proteinContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.proteinContent?.measurementType ?? "")"
         self.fats.text = "\(self.menuOption?.recipe?.nutrition?.fatContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.fatContent?.measurementType ?? "")"
         self.carbs.text = "\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.amount ?? 0)\(self.menuOption?.recipe?.nutrition?.carbohydrateContent?.measurementType ?? "")"

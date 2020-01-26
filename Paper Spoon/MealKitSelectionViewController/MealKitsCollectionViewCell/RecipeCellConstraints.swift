@@ -39,7 +39,7 @@ extension MealKitsCollectionViewCell {
         let inset = (DeviceViews.statusBarNavBarHeight[Device.current.deviceType] ?? 0.0)
         self.title.topAnchor.constraint(equalTo: self.topAnchor, constant: inset).isActive = true
         self.title.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
-        self.title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin * 0.8).isActive = true
+        self.title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
         self.title.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
@@ -47,7 +47,7 @@ extension MealKitsCollectionViewCell {
         self.subtitle.translatesAutoresizingMaskIntoConstraints = false
         self.subtitle.topAnchor.constraint(equalTo: self.title.bottomAnchor, constant: 0).isActive = true
         self.subtitle.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
-        self.subtitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -sideMargin * 0.8).isActive = true
+        self.subtitle.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5).isActive = true
         self.subtitle.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
     

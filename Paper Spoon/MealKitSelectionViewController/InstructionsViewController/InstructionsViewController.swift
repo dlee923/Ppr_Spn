@@ -69,6 +69,7 @@ class InstructionsViewController: UIViewController {
     private func addInstructionsCollectionView() {
         self.instructionsCollectionView = InstructionsCollectionView(frame: self.view.frame)
         self.instructionsCollectionView?.menuOption = self.menuOption
+        self.instructionsCollectionView?.instructionsViewControllerDelegate = self
         guard let instructionsCV = self.instructionsCollectionView else { return }
         self.view.addSubview(instructionsCV)
         

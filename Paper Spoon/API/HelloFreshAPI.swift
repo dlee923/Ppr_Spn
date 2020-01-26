@@ -235,9 +235,7 @@ extension HelloFreshAPI {
         let descriptionSection0 = htmlCode.components(separatedBy: "\"descriptionMarkdown\":").last
         let description = descriptionSection0?.components(separatedBy: ",\"author\"").first
         
-        print(description)
         return description ?? ""
-        
     }
     
     
