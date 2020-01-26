@@ -24,6 +24,7 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
     private func addStepNumberLabel() {
         self.instructionImage.addSubview(self.stepLabelNumber)
         self.stepLabelNumber.font = UIFont.fontSunflower?.withSize(20)
+        self.stepLabelNumber.textAlignment = .center
         self.stepLabelNumber.textColor = UIColor.themeColor1
         self.stepLabelNumber.translatesAutoresizingMaskIntoConstraints = false
         
