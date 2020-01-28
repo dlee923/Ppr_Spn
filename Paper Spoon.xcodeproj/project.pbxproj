@@ -20,6 +20,7 @@
 		700D4EFE23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */; };
 		700D4F0023DDDE8A003E6503 /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */; };
 		700D4F0323DE4E3A003E6503 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */; };
+		700D4F0523DFEE16003E6503 /* FavHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -130,6 +131,7 @@
 		700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListScrollingDelegate.swift; sourceTree = "<group>"; };
 		700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
 		700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
+		700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavHeaderCell.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			children = (
 				700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */,
 				700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */,
+				700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
 				70D46CB9235C114A00AB3488 /* RecipeCellViews.swift in Sources */,
 				701058EA22FF620600D4D9FD /* Extensions.swift in Sources */,
+				700D4F0523DFEE16003E6503 /* FavHeaderCell.swift in Sources */,
 				700D4EF023DAA57B003E6503 /* MeasureConversion.swift in Sources */,
 				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,

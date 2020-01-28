@@ -16,14 +16,19 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
         super.viewDidLoad()
         
         self.collectionView.backgroundColor = UIColor.themeColor1
+        self.collectionView.dataSource = self
         
         // Do any additional setup after loading the view.
         self.registerCells()
     }
     
+    var favoriteMenuOptions = [MenuOption]()
+    
     internal func registerCells() {
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(FavCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "default")
+        self.collectionView.register(FavHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader")
     }
 
 
@@ -31,6 +36,10 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 100)
     }
 
 
@@ -40,15 +49,26 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = UIColor.blue
-        // Configure the cell
-    
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavCollectionViewCell {
+            cell.backgroundColor = UIColor.blue
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.collectionView.frame.width - 10, height: 80)
+    }
+    
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader", for: indexPath) as? FavHeaderCell {
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

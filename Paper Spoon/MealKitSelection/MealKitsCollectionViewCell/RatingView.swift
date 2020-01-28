@@ -43,6 +43,7 @@ class RatingView: UIStackView {
     private func modifyStars(button: UIButton) {
         if button.buttonType == UIButton.ButtonType.custom {
             button.setImage(UIImage(named: "star_hf.png")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            button.imageView?.contentMode = .scaleAspectFit
             button.addTarget(self, action: #selector(didRateRecipe(button:)), for: .touchUpInside)
         }
     }

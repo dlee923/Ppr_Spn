@@ -12,7 +12,6 @@ class EmptyCompiledIngredientsCell: EmptyTableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        self.cellImageView.image = UIImage(named: "sad_chef")
         self.message.text = "Looks like you need to select some recipes first!"
         self.selectionStyle = .none
     }

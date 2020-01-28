@@ -11,7 +11,6 @@ import UIKit
 class CompiledIngredientsEmptyCollectionViewCell: EmptyCollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.image.image = UIImage(named: "sad_chef")
         self.message.text = "Looks like you need to select some recipes first!"
     }
     

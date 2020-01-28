@@ -12,6 +12,18 @@ class FavCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+        
+        self.addImageView()
+        self.addFavTitle()
+        self.addFavSubtitle()
+        self.addRatingView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK:  Object
@@ -44,6 +56,7 @@ class FavCollectionViewCell: UICollectionViewCell {
     private func addImageView() {
         self.addSubview(imageView)
         self.imageView.contentMode = .scaleAspectFill
+        self.imageView.backgroundColor = .purple
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -81,11 +94,16 @@ class FavCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    
-    override required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    private func addRatingView() {
+        self.addSubview(self.userRating)
+        self.userRating.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.userRating.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.2),
+            self.userRating.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.userRating.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.2),
+            self.userRating.bottomAnchor.constraint(equalTo: centerYAnchor, constant: -15)
+        ])
     }
-    
-    
     
 }
