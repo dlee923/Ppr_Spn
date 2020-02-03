@@ -28,11 +28,10 @@ class FavHeaderCell: UICollectionViewCell {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 2
         
-        let titleText = NSMutableAttributedString(string: "Favorite\nRecipes")
-        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 8))
+        let titleText = NSMutableAttributedString(string: "Favorite Recipes\nSelect from your favorites here!")
+        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
+        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 16))
         print(titleText.length)
-        
-//        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 10)], range: NSRange(location: 9, length: titleText.length-1))
         
         titleLabel.attributedText = titleText
         

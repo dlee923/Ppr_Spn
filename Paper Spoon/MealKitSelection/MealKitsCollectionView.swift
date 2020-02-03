@@ -24,6 +24,7 @@ class MealKitsCollectionView: UICollectionView {
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
     var parentViewControllerDelegate: ParentViewControllerDelegate?
+    var favCollectionViewControllerDelegate: FavCollectionViewControllerDelegate?
     
     // MARK: - Cell Colors
     let colors = [UIColor.color1,
@@ -80,6 +81,7 @@ extension MealKitsCollectionView: UICollectionViewDataSource {
                 cell.modifyColors()
                 
                 cell.mealKitSelectionViewControllerDelegate = self.mealKitSelectionViewControllerDelegate
+                cell.favCollectionViewControllerDelegate = self.favCollectionViewControllerDelegate
                 
                 let menuOption = menuOptionsObj?.kittedMenuOptions[indexPath.item]
                 cell.menuOption = menuOption

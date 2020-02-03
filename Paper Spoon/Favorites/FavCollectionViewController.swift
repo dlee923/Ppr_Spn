@@ -22,7 +22,11 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
         self.registerCells()
     }
     
-    var favoriteMenuOptions = [MenuOption]()
+    var favoriteMenuOptions = [MenuOption]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     internal func registerCells() {
         // Register cell classes
@@ -39,18 +43,27 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+//        return CGSize(width: collectionView.frame.width, height: 100)
+        
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width - 10, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        //here, be sure you set the font type and size that matches the one set in the storyboard label
+        label.font = UIFont.fontSunflower?.withSize(20)
+        label.text = "Favorite Recipes"
+        label.sizeToFit()
+        return CGSize(width: collectionView.frame.width, height: label.frame.height + 30)
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 5
+        return self.favoriteMenuOptions.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavCollectionViewCell {
-            cell.backgroundColor = UIColor.blue
+            cell.menuOption = self.favoriteMenuOptions[indexPath.item]
             return cell
         } else {
             return UICollectionViewCell()
@@ -70,6 +83,8 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
             return UICollectionReusableView()
         }
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5

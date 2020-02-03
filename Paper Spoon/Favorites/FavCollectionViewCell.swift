@@ -27,13 +27,13 @@ class FavCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK:  Object
-    var favoriteRecipe: MenuOption? {
+    var menuOption: MenuOption? {
         didSet {
-            self.imageView.image = self.favoriteRecipe?.recipe?.recipeImage
-            self.recipeTitle.text = self.favoriteRecipe?.recipeName
-            self.recipeSubtitle.text = self.favoriteRecipe?.recipeSubtitle
+            self.imageView.image = self.menuOption?.recipe?.recipeImage
+            self.recipeTitle.text = self.menuOption?.recipeName
+            self.recipeSubtitle.text = self.menuOption?.recipeSubtitle
             
-            guard let brandImage = UIImage(named: brandImages[self.favoriteRecipe!.brandType]!) else { return }
+            guard let brandImage = UIImage(named: brandImages[self.menuOption!.brandType]!) else { return }
             self.brandImage.image = brandImage
             
             self.recipeTitle.sizeToFit()

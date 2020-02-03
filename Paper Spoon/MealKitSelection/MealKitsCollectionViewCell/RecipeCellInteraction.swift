@@ -30,6 +30,9 @@ extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
             self.menuOption?.isLiked = true
             
             print("liked")
+            if let menuOption = self.menuOption {
+                self.favCollectionViewControllerDelegate?.addToFavorites(menuOption: menuOption)
+            }
             
         }
         // reload view based on recipe changes

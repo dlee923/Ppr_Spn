@@ -60,6 +60,7 @@ class MealKitsCollectionViewCell: UICollectionViewCell {
     
     // MARK:  Delegates
     var mealKitSelectionViewControllerDelegate: MealKitSelectionViewControllerDelegate?
+    var favCollectionViewControllerDelegate: FavCollectionViewControllerDelegate?
     
     // MARK:  Temp containers for instruction images
     var instructionImages = [Int: UIImage]()

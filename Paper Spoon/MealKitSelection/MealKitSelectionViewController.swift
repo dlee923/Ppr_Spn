@@ -26,13 +26,16 @@ class MealKitSelectionViewController: UIViewController {
     
     var mealKitsCollectionView = MealKitsCollectionView(frame: .zero)
     
+    // MARK:  Delegates
     var parentViewControllerDelegate: ParentViewControllerDelegate?
+    var favCollectionViewControllerDelegate: FavCollectionViewControllerDelegate?
     
     private func addMealKitsCollectionView() {
         self.mealKitsCollectionView.frame = self.view.frame
         self.mealKitsCollectionView.menuOptionsObj = self.menuOptionsObj
         self.mealKitsCollectionView.mealKitSelectionViewControllerDelegate = self
         self.mealKitsCollectionView.parentViewControllerDelegate = self.parentViewControllerDelegate
+        self.mealKitsCollectionView.favCollectionViewControllerDelegate = self.favCollectionViewControllerDelegate
         
         self.view.addSubview(self.mealKitsCollectionView)
         self.mealKitsCollectionView.translatesAutoresizingMaskIntoConstraints = false
