@@ -24,6 +24,9 @@ extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
             self.menuOption?.isLiked = isLiked ? false : true
             
             print("unliked")
+            if let menuOption = self.menuOption {
+                self.favCollectionViewControllerDelegate?.removeFromFavorites(menuOption: menuOption)
+            }
             
         } else {
             // If nil then assume false and switch to true

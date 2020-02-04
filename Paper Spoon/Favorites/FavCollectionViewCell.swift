@@ -30,8 +30,8 @@ class FavCollectionViewCell: UICollectionViewCell {
     var menuOption: MenuOption? {
         didSet {
             self.imageView.image = self.menuOption?.recipe?.recipeImage
-            self.recipeTitle.text = self.menuOption?.recipeName
-            self.recipeSubtitle.text = self.menuOption?.recipeSubtitle
+            self.recipeTitle.text = " \(self.menuOption?.recipeName ?? "") "
+            self.recipeSubtitle.text = " \(self.menuOption?.recipeSubtitle ?? "") "
             
             guard let brandImage = UIImage(named: brandImages[self.menuOption!.brandType]!) else { return }
             self.brandImage.image = brandImage
