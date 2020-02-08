@@ -40,7 +40,7 @@ class InstructionsImgCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.instructionImage)
         self.instructionImage.contentMode = .scaleAspectFill
         self.instructionImage.layer.cornerRadius = 5
-        self.instructionImage.layer.masksToBounds = true
+        self.instructionImage.clipsToBounds = true
         self.instructionImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

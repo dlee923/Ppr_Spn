@@ -21,36 +21,56 @@ class MenuOptionListCell: UICollectionViewCell {
     // MARK:  UI Elements
     var thumbnailView = UIImageView()
     var titleView = UILabel()
+    var titleName = String()
     var subtitleView = UILabel()
     var caloriesLabel = UILabel()
     let titleViewColor = UIColor.themeColor2
     let titleViewColorSelected = UIColor.themeColor4
     var selectionCheckMarkView = UIView()
+    let thumbnailShadow = UIView()
     
     // MARK:  Data Variables
     var menuOption: MenuOption? {
         didSet {
-            self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
-            self.subtitleView.text = self.menuOption?.recipeSubtitle
-            self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
-            self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
+            // properties to always set no matter
             self.isSelect = self.menuOption?.isSelected
-            
-            // set normal colors if data exists
-            if self.menuOption?.recipe != nil { self.setColors() }
             
             // set highlight colors if highlighted
             self.setHighlightColors()
             
-            // enable once given a menu option
-            self.isUserInteractionEnabled = true
+            // cell properties to set if not currently set
+            if self.menuOption?.recipeName == self.titleName {
+                return
+            } else {
+                // set normal colors if data exists
+                if self.menuOption?.recipe != nil { self.setColors() }
+                
+                self.titleName = self.menuOption?.recipeName ?? ""
+                self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
+                self.subtitleView.text = self.menuOption?.recipeSubtitle
+                self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
+                self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
+                
+                // enable once given a menu option
+                self.isUserInteractionEnabled = true
+            }
+            
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.isSelect = nil
+        self.titleView.textColor = self.titleViewColor
+        self.subtitleView.textColor = self.titleViewColor
+        self.selectionCheckMarkView.isHidden = true
     }
     
     private func setup() {
         // initialize with null colors until data is passed
         self.setNullColors()
         self.addViewThumbnail()
+//        self.addThumbnailShadow()
         self.addSelectionCheckmark()
         self.addViewTitle()
         self.addViewSubtitle()
@@ -78,16 +98,9 @@ class MenuOptionListCell: UICollectionViewCell {
         self.caloriesLabel.textColor = UIColor.themeColor1
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.isSelect = nil
-        self.titleView.textColor = self.titleViewColor
-        self.subtitleView.textColor = self.titleViewColor
-        self.selectionCheckMarkView.isHidden = true
-    }
-    
     private func addViewThumbnail() {
         self.addSubview(thumbnailView)
+        print("thumbnail corners")
         self.thumbnailView.contentMode = .scaleAspectFill
         self.thumbnailView.layer.cornerRadius = 5
         self.thumbnailView.clipsToBounds = true
@@ -97,6 +110,27 @@ class MenuOptionListCell: UICollectionViewCell {
         self.thumbnailView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         self.thumbnailView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         self.thumbnailView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+    }
+    
+    private func addThumbnailShadow() {
+        self.insertSubview(self.thumbnailShadow, belowSubview: self.thumbnailView)
+        self.thumbnailShadow.layer.cornerRadius = 5
+        
+        self.thumbnailShadow.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.thumbnailShadow.leadingAnchor.constraint(equalTo: self.thumbnailView.leadingAnchor),
+            self.thumbnailShadow.topAnchor.constraint(equalTo: self.thumbnailView.topAnchor),
+            self.thumbnailShadow.trailingAnchor.constraint(equalTo: self.thumbnailView.trailingAnchor),
+            self.thumbnailShadow.heightAnchor.constraint(equalTo: self.thumbnailView.heightAnchor)
+        ])
+        
+        self.thumbnailShadow.addShadow(path: UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.6),
+                                                          byRoundingCorners: UIRectCorner.allCorners,
+                                                          cornerRadii: CGSize(width: 5, height: 5)),
+                                       color: .black,
+                                       offset: CGSize(width: 2.0, height: 2.0),
+                                       radius: 2,
+                                       opacity: 0.2)
     }
     
     private func addSelectionCheckmark() {

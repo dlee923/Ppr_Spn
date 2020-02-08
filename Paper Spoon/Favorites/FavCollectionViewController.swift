@@ -31,6 +31,7 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
     internal func registerCells() {
         // Register cell classes
         self.collectionView.register(FavCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView.register(EmptyCollectionViewCell.self, forCellWithReuseIdentifier: "emptyCell")
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "default")
         self.collectionView.register(FavHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader")
     }
@@ -58,20 +59,31 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return self.favoriteMenuOptions.count
+        return max(self.favoriteMenuOptions.count, 1)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavCollectionViewCell {
-            cell.menuOption = self.favoriteMenuOptions[indexPath.item]
-            return cell
-        } else {
-            return UICollectionViewCell()
+        switch self.favoriteMenuOptions.count {
+        case 0 :
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyCollectionViewCell {
+                cell.message.text = "You don't have any favorite recipes to show here yet!"
+                return cell
+            } else {
+                return UICollectionViewCell()
+            }
+        default:
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FavCollectionViewCell {
+                cell.menuOption = self.favoriteMenuOptions[indexPath.item]
+                return cell
+            } else {
+                return UICollectionViewCell()
+            }
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frame.width - 10, height: 80)
+        return CGSize(width: self.collectionView.frame.width - 10, height: 100)
     }
     
     

@@ -58,11 +58,19 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "menuOptionListCell", for: indexPath) as? MenuOptionListCell {
-            guard let brandView = self.brandView else { return UICollectionViewCell() }
-            cell.menuOption = menuOptionsObj?.menuOptions[brandView]?[indexPath.item]
             return cell
         } else {
             return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if cell.reuseIdentifier == "menuOptionListCell" {
+            if let cell = cell as? MenuOptionListCell {
+                if let brandView = self.brandView {
+                    cell.menuOption = menuOptionsObj?.menuOptions[brandView]?[indexPath.item]
+                }
+            }
         }
     }
     

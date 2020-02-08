@@ -20,23 +20,27 @@ protocol RecipeUserInteractionDelegate: MealKitsCollectionViewCell {
 extension MealKitsCollectionViewCell: RecipeUserInteractionDelegate {
     
     @objc internal func userPressedLike() {
+        guard let menuOption = self.menuOption else { return }
+        
         if let isLiked = self.menuOption?.isLiked {
-            self.menuOption?.isLiked = isLiked ? false : true
-            
-            print("unliked")
-            if let menuOption = self.menuOption {
+            if isLiked {
+                print("unliked")
                 self.favCollectionViewControllerDelegate?.removeFromFavorites(menuOption: menuOption)
+                
+            } else {
+                print("liked")
+                self.favCollectionViewControllerDelegate?.addToFavorites(menuOption: menuOption)
             }
+            
+            // reverse isLiked
+            self.menuOption?.isLiked = isLiked ? false : true
             
         } else {
             // If nil then assume false and switch to true
             self.menuOption?.isLiked = true
             
             print("liked")
-            if let menuOption = self.menuOption {
-                self.favCollectionViewControllerDelegate?.addToFavorites(menuOption: menuOption)
-            }
-            
+            self.favCollectionViewControllerDelegate?.addToFavorites(menuOption: menuOption)
         }
         // reload view based on recipe changes
         loadRecipeData()
