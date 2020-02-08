@@ -14,13 +14,13 @@ class SplashImageView: UIView {
         super.init(frame: frame)
         addSplashImage()
         addGradientView()
+        self.layer.shouldRasterize = true
     }
     
     let splashImage = UIImageView()
     lazy var gradientView = GradientView(frame: self.frame)
     
     private func addSplashImage() {
-//        self.splashImage.image = UIImage(named: "splash1")
         self.splashImage.contentMode = .scaleAspectFill
         self.addSubview(self.splashImage)
         self.splashImage.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +43,8 @@ class SplashImageView: UIView {
             self.gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             self.gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
+        
+//        self.gradientView.layer.shouldRasterize = true
     }
     
     required init?(coder: NSCoder) {

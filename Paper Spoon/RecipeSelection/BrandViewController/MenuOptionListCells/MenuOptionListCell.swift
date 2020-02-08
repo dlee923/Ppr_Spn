@@ -30,33 +30,7 @@ class MenuOptionListCell: UICollectionViewCell {
     let thumbnailShadow = UIView()
     
     // MARK:  Data Variables
-    var menuOption: MenuOption? {
-        didSet {
-            // properties to always set no matter
-            self.isSelect = self.menuOption?.isSelected
-            
-            // set highlight colors if highlighted
-            self.setHighlightColors()
-            
-            // cell properties to set if not currently set
-            if self.menuOption?.recipeName == self.titleName {
-                return
-            } else {
-                // set normal colors if data exists
-                if self.menuOption?.recipe != nil { self.setColors() }
-                
-                self.titleName = self.menuOption?.recipeName ?? ""
-                self.setAttributedTitle(title: self.menuOption?.recipeName ?? "")
-                self.subtitleView.text = self.menuOption?.recipeSubtitle
-                self.thumbnailView.image = self.menuOption?.recipe?.thumbnail
-                self.caloriesLabel.text = "\(Int(self.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
-                
-                // enable once given a menu option
-                self.isUserInteractionEnabled = true
-            }
-            
-        }
-    }
+    var menuOption: MenuOption?
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -70,16 +44,16 @@ class MenuOptionListCell: UICollectionViewCell {
         // initialize with null colors until data is passed
         self.setNullColors()
         self.addViewThumbnail()
-//        self.addThumbnailShadow()
         self.addSelectionCheckmark()
         self.addViewTitle()
         self.addViewSubtitle()
 //        self.addCaloriesLabel()
+//        self.addThumbnailShadow()
         self.tintColor = self.titleViewColorSelected
         self.isUserInteractionEnabled = false
     }
     
-    private func setColors() {
+    func setColors() {
         self.backgroundColor = UIColor.clear
         self.subtitleView.textColor = UIColor.black.withAlphaComponent(0.7)
         self.subtitleView.backgroundColor = UIColor.clear
@@ -103,7 +77,6 @@ class MenuOptionListCell: UICollectionViewCell {
         print("thumbnail corners")
         self.thumbnailView.contentMode = .scaleAspectFill
         self.thumbnailView.layer.cornerRadius = 5
-        self.thumbnailView.clipsToBounds = true
         
         self.thumbnailView.translatesAutoresizingMaskIntoConstraints = false
         self.thumbnailView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
@@ -142,7 +115,6 @@ class MenuOptionListCell: UICollectionViewCell {
         
         self.selectionCheckMarkView.contentMode = .scaleAspectFill
         self.selectionCheckMarkView.layer.cornerRadius = 5
-        self.selectionCheckMarkView.clipsToBounds = true
         
         self.selectionCheckMarkView.translatesAutoresizingMaskIntoConstraints = false
         self.selectionCheckMarkView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
@@ -176,7 +148,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.titleView.sizeToFit()
     }
     
-    private func setAttributedTitle(title: String) {
+    func setAttributedTitle(title: String) {
         let attributedString = NSMutableAttributedString(string: title)
         
         // *** Create instance of `NSMutableParagraphStyle`

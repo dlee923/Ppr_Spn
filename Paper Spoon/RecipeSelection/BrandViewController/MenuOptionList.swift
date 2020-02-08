@@ -50,9 +50,9 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let brandView = self.brandView {
-            return menuOptionsObj?.menuOptions[brandView]?.count ?? 6
+            return menuOptionsObj?.menuOptions[brandView]?.count ?? 16
         } else {
-            return 6
+            return 16
         }
     }
     
@@ -65,10 +65,30 @@ class MenuOptionList: UICollectionView, UICollectionViewDelegateFlowLayout, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if cell.reuseIdentifier == "menuOptionListCell" {
-            if let cell = cell as? MenuOptionListCell {
-                if let brandView = self.brandView {
-                    cell.menuOption = menuOptionsObj?.menuOptions[brandView]?[indexPath.item]
+        if let cell = cell as? MenuOptionListCell {
+            if let brandView = self.brandView {
+                cell.menuOption = menuOptionsObj?.menuOptions[brandView]?[indexPath.item]
+                // properties to always set no matter
+                cell.isSelect = cell.menuOption?.isSelected
+
+                // set highlight colors if highlighted
+                cell.setHighlightColors()
+
+                // cell properties to set if not currently set
+                if cell.menuOption?.recipeName == cell.titleName {
+                    return
+                } else {
+                    // set normal colors if data exists
+                    if cell.menuOption?.recipe != nil { cell.setColors() }
+
+                    cell.titleName = cell.menuOption?.recipeName ?? ""
+                    cell.setAttributedTitle(title: cell.menuOption?.recipeName ?? "")
+                    cell.subtitleView.text = cell.menuOption?.recipeSubtitle
+                    cell.thumbnailView.image = cell.menuOption?.recipe?.thumbnail
+                    cell.caloriesLabel.text = "\(Int(cell.menuOption?.recipe?.nutrition?.calories?.amount ?? 0)) Calories"
+
+                    // enable once given a menu option
+                    cell.isUserInteractionEnabled = true
                 }
             }
         }

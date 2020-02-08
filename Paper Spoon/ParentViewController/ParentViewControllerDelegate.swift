@@ -103,7 +103,7 @@ extension ParentViewController: ParentViewControllerDelegate {
     
     func fadeOutSplashImg(fadePct: CGFloat) {
         // return if already faded out
-        if fadePct <= 0 || fadePct >= 1 { return }
+//        if fadePct <= 0 || fadePct >= 1 { return }
         
         self.splashImageView?.alpha = fadePct
     }

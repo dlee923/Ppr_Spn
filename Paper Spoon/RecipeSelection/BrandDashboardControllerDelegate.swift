@@ -189,18 +189,6 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             // change recipeHeader font size
             self.recipeListHeader.headerLabel.font = self.recipeListHeader.headerLabel.font.withSize(self.newRecipeListHeaderSize ?? 30)
             
-//            // change recipeHeader size using transform
-//            let recipeListHeaderPct = (self.newRecipeListHeaderSize ?? 30) / 30
-//            let maxRecipeListHeaderXValue = self.recipeListHeader.frame.width * (20 / 30)
-//            let recipeListHeaderXValue = -maxRecipeListHeaderXValue * (1 - recipeListHeaderPct)
-//            print("x value:  \(recipeListHeaderXValue)")
-//            print("y value:  \(self.recipeListHeader.headerLabel.frame.height * recipeListHeaderPct)")
-//
-//            var transform = CGAffineTransform.identity
-//            transform = transform.scaledBy(x: recipeListHeaderPct, y: recipeListHeaderPct)
-//            transform = transform.translatedBy(x: -recipeListHeaderXValue, y: 0)
-//            self.recipeListHeader.headerLabel.transform = transform
-            
             // fade out brandsPickerView
             let brandsPickerViewAlpha = 1 - ((30 - newRecipeListHeaderSize) / (30 - 20))
             self.recipeListHeader.brandsPickerView.alpha = brandsPickerViewAlpha
