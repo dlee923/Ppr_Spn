@@ -148,6 +148,7 @@ class RecipeListHeader: UIView {
     
     @objc func clearAll() {
         self.brandDashboardControllerDelegate?.clearSelections()
+        self.brandDashboardControllerDelegate?.lockUnlockScrollView()
     }
 
     required init?(coder aDecoder: NSCoder) {
