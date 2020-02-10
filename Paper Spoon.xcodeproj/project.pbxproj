@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70012C6E23F10CC200A839D5 /* SelectedMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70012C6D23F10CC200A839D5 /* SelectedMenuOptionView.swift */; };
 		700D4EEA23D9483F003E6503 /* MavenPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */; };
 		700D4EEC23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EEB23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift */; };
 		700D4EEE23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EED23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift */; };
@@ -20,7 +21,7 @@
 		700D4EFE23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */; };
 		700D4F0023DDDE8A003E6503 /* FavCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */; };
 		700D4F0323DE4E3A003E6503 /* FavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */; };
-		700D4F0523DFEE16003E6503 /* FavHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */; };
+		700D4F0523DFEE16003E6503 /* PlainHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700D4F0423DFEE16003E6503 /* PlainHeaderCell.swift */; };
 		701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058D922FF0CCB00D4D9FD /* ImageAPI.swift */; };
 		701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */; };
 		701058E222FF618E00D4D9FD /* coolvetica rg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */; };
@@ -39,6 +40,7 @@
 		70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70118600231B291D00F4D047 /* MealKitsCollectionView.swift */; };
 		7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011AF7A23666778007EF159 /* NewMenuPrompt.swift */; };
 		701209B023F0DAE40026A4B3 /* OptionListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701209AF23F0DAE40026A4B3 /* OptionListCollectionView.swift */; };
+		701209B323F0E32B0026A4B3 /* SelectedMenuOptionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701209B223F0E32B0026A4B3 /* SelectedMenuOptionList.swift */; };
 		701F9B3023E29B0B0038347D /* FavCollectionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F9B2F23E29B0B0038347D /* FavCollectionViewControllerDelegate.swift */; };
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		7034C3B9231DF48500C88106 /* MealKitsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */; };
@@ -120,6 +122,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		70012C6D23F10CC200A839D5 /* SelectedMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMenuOptionView.swift; sourceTree = "<group>"; };
 		700D4EE923D9483F003E6503 /* MavenPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MavenPro-Regular.ttf"; sourceTree = "<group>"; };
 		700D4EEB23DAA3A4003E6503 /* BrandDashboardControllerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerLogic.swift; sourceTree = "<group>"; };
 		700D4EED23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandDashboardControllerTransitions.swift; sourceTree = "<group>"; };
@@ -133,7 +136,7 @@
 		700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionListScrollingDelegate.swift; sourceTree = "<group>"; };
 		700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewController.swift; sourceTree = "<group>"; };
 		700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewCell.swift; sourceTree = "<group>"; };
-		700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavHeaderCell.swift; sourceTree = "<group>"; };
+		700D4F0423DFEE16003E6503 /* PlainHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainHeaderCell.swift; sourceTree = "<group>"; };
 		701058D922FF0CCB00D4D9FD /* ImageAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageAPI.swift; sourceTree = "<group>"; };
 		701058DB22FF0FBE00D4D9FD /* MenuOptionObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionObj.swift; sourceTree = "<group>"; };
 		701058DF22FF618E00D4D9FD /* coolvetica rg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "coolvetica rg.ttf"; sourceTree = "<group>"; };
@@ -152,6 +155,7 @@
 		70118600231B291D00F4D047 /* MealKitsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionView.swift; sourceTree = "<group>"; };
 		7011AF7A23666778007EF159 /* NewMenuPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuPrompt.swift; sourceTree = "<group>"; };
 		701209AF23F0DAE40026A4B3 /* OptionListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionListCollectionView.swift; sourceTree = "<group>"; };
+		701209B223F0E32B0026A4B3 /* SelectedMenuOptionList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedMenuOptionList.swift; sourceTree = "<group>"; };
 		701F9B2F23E29B0B0038347D /* FavCollectionViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewControllerDelegate.swift; sourceTree = "<group>"; };
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -252,7 +256,6 @@
 				700D4EFF23DDDE8A003E6503 /* FavCollectionViewController.swift */,
 				701F9B2F23E29B0B0038347D /* FavCollectionViewControllerDelegate.swift */,
 				700D4F0223DE4E3A003E6503 /* FavCollectionViewCell.swift */,
-				700D4F0423DFEE16003E6503 /* FavHeaderCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -330,6 +333,15 @@
 			path = MenuOptionList;
 			sourceTree = "<group>";
 		};
+		701209B423F0E3930026A4B3 /* SelectedMenuOptionList */ = {
+			isa = PBXGroup;
+			children = (
+				70012C6D23F10CC200A839D5 /* SelectedMenuOptionView.swift */,
+				701209B223F0E32B0026A4B3 /* SelectedMenuOptionList.swift */,
+			);
+			path = SelectedMenuOptionList;
+			sourceTree = "<group>";
+		};
 		7073E2CA2349359D0041223D /* RecipeSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +354,7 @@
 				70E3A588232DA5A100F9A5A7 /* RecipeListHeader */,
 				70D532D922F98CB100C8F866 /* BrandViewController */,
 				7011AF7C2366677D007EF159 /* CreateNewMenuPrompt */,
+				701209B423F0E3930026A4B3 /* SelectedMenuOptionList */,
 			);
 			path = RecipeSelection;
 			sourceTree = "<group>";
@@ -375,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				70E0499A235387EB005A1B71 /* EmptyCollectionViewCell.swift */,
+				700D4F0423DFEE16003E6503 /* PlainHeaderCell.swift */,
 				70D532D022F6264C00C8F866 /* ActivityIndicator.swift */,
 				701058E922FF620600D4D9FD /* Extensions.swift */,
 				70D532CA22F5EFAA00C8F866 /* Device.swift */,
@@ -683,6 +697,7 @@
 				7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */,
 				700D4F0323DE4E3A003E6503 /* FavCollectionViewCell.swift in Sources */,
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
+				70012C6E23F10CC200A839D5 /* SelectedMenuOptionView.swift in Sources */,
 				70E3A585232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift in Sources */,
 				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,
 				70E0499E235396D6005A1B71 /* EmptyMealsPrepCell.swift in Sources */,
@@ -704,10 +719,11 @@
 				70D46CBC235C117900AB3488 /* DeviceViews.swift in Sources */,
 				70E6F4892198DE1A005C08EE /* Paper_Spoon.xcdatamodeld in Sources */,
 				70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */,
+				701209B323F0E32B0026A4B3 /* SelectedMenuOptionList.swift in Sources */,
 				701058DC22FF0FBE00D4D9FD /* MenuOptionObj.swift in Sources */,
 				70D46CB9235C114A00AB3488 /* RecipeCellViews.swift in Sources */,
 				701058EA22FF620600D4D9FD /* Extensions.swift in Sources */,
-				700D4F0523DFEE16003E6503 /* FavHeaderCell.swift in Sources */,
+				700D4F0523DFEE16003E6503 /* PlainHeaderCell.swift in Sources */,
 				700D4EF023DAA57B003E6503 /* MeasureConversion.swift in Sources */,
 				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,

@@ -8,16 +8,17 @@
 
 import UIKit
 
-class MenuOptionList: OptionListCollectioView {
+class MenuOptionList: OptionListCollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         
         self.contentInset = UIEdgeInsets(top: self.contentInsetValue - 10, left: 0, bottom: 0, right: 0)
+        self.registerCells()
     }
     
-    override func registerCells() {
-        super.registerCells()
+    func registerCells() {
+        self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
         self.register(MenuOptionListHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "menuOptionListHeader")
     }
     
@@ -32,10 +33,6 @@ class MenuOptionList: OptionListCollectioView {
     // MARK:  Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
     var parentViewControllerDelegate: ParentViewControllerDelegate?
-    
-    private func setColors() {
-        self.backgroundColor = .clear
-    }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let brandView = self.brandView {

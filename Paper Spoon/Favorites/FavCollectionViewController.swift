@@ -33,7 +33,7 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
         self.collectionView.register(FavCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.collectionView.register(EmptyCollectionViewCell.self, forCellWithReuseIdentifier: "emptyCell")
         self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "default")
-        self.collectionView.register(FavHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader")
+        self.collectionView.register(PlainHeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader")
     }
 
 
@@ -89,7 +89,17 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
     
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader", for: indexPath) as? FavHeaderCell {
+        if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader", for: indexPath) as? PlainHeaderCell {
+            
+            header.titleLabel.numberOfLines = 2
+            
+            let titleText = NSMutableAttributedString(string: "Favorite Recipes\nSelect from your favorites here!")
+            titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
+            titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 16))
+            print(titleText.length)
+            
+            header.titleLabel.attributedText = titleText
+            
             return header
         } else {
             return UICollectionReusableView()

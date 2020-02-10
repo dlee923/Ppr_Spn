@@ -1,5 +1,5 @@
 //
-//  FavHeaderCell.swift
+//  PlainHeaderCell.swift
 //  Paper Spoon
 //
 //  Created by Daniel Lee on 1/27/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavHeaderCell: UICollectionViewCell {
+class PlainHeaderCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,14 +26,6 @@ class FavHeaderCell: UICollectionViewCell {
         self.addSubview(self.titleLabel)
         titleLabel.backgroundColor = UIColor.themeColor1
         titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 2
-        
-        let titleText = NSMutableAttributedString(string: "Favorite Recipes\nSelect from your favorites here!")
-        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
-        titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 16))
-        print(titleText.length)
-        
-        titleLabel.attributedText = titleText
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         

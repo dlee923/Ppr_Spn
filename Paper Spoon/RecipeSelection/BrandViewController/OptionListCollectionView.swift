@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OptionListCollectioView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class OptionListCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -18,12 +18,7 @@ class OptionListCollectioView: UICollectionView, UICollectionViewDelegateFlowLay
         
         self.showsVerticalScrollIndicator = false
         
-        self.registerCells()
         self.setColors()
-    }
-    
-    func registerCells() {
-        self.register(MenuOptionListCell.self, forCellWithReuseIdentifier: "menuOptionListCell")
     }
     
     // MARK:  Variables
