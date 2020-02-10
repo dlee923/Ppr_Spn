@@ -38,6 +38,7 @@
 		701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */; };
 		70118601231B291D00F4D047 /* MealKitsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70118600231B291D00F4D047 /* MealKitsCollectionView.swift */; };
 		7011AF7B23666778007EF159 /* NewMenuPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7011AF7A23666778007EF159 /* NewMenuPrompt.swift */; };
+		701209B023F0DAE40026A4B3 /* OptionListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701209AF23F0DAE40026A4B3 /* OptionListCollectionView.swift */; };
 		701F9B3023E29B0B0038347D /* FavCollectionViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F9B2F23E29B0B0038347D /* FavCollectionViewControllerDelegate.swift */; };
 		70261D9923116B9E004AC40E /* MealPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70261D9823116B9E004AC40E /* MealPrepViewController.swift */; };
 		7034C3B9231DF48500C88106 /* MealKitsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */; };
@@ -150,6 +151,7 @@
 		701185FE231B28C700F4D047 /* MealKitSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitSelectionViewController.swift; sourceTree = "<group>"; };
 		70118600231B291D00F4D047 /* MealKitsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionView.swift; sourceTree = "<group>"; };
 		7011AF7A23666778007EF159 /* NewMenuPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMenuPrompt.swift; sourceTree = "<group>"; };
+		701209AF23F0DAE40026A4B3 /* OptionListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionListCollectionView.swift; sourceTree = "<group>"; };
 		701F9B2F23E29B0B0038347D /* FavCollectionViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavCollectionViewControllerDelegate.swift; sourceTree = "<group>"; };
 		70261D9823116B9E004AC40E /* MealPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealPrepViewController.swift; sourceTree = "<group>"; };
 		7034C3B8231DF48400C88106 /* MealKitsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -318,6 +320,16 @@
 			path = CreateNewMenuPrompt;
 			sourceTree = "<group>";
 		};
+		701209B123F0E2900026A4B3 /* MenuOptionList */ = {
+			isa = PBXGroup;
+			children = (
+				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
+				700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */,
+				709B105523BD483E00E0785A /* MenuOptionListHeader.swift */,
+			);
+			path = MenuOptionList;
+			sourceTree = "<group>";
+		};
 		7073E2CA2349359D0041223D /* RecipeSelection */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,9 +416,8 @@
 			isa = PBXGroup;
 			children = (
 				70D532D522F77C4D00C8F866 /* BrandViewController.swift */,
-				70D532D222F7284000C8F866 /* MenuOptionList.swift */,
-				700D4EFD23DCFC81003E6503 /* MenuOptionListScrollingDelegate.swift */,
-				709B105523BD483E00E0785A /* MenuOptionListHeader.swift */,
+				701209AF23F0DAE40026A4B3 /* OptionListCollectionView.swift */,
+				701209B123F0E2900026A4B3 /* MenuOptionList */,
 				709B105723BD499E00E0785A /* MenuOptionListCells */,
 				701058EB2308BE0100D4D9FD /* NextStepBtn.swift */,
 			);
@@ -701,6 +712,7 @@
 				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,
 				70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */,
+				701209B023F0DAE40026A4B3 /* OptionListCollectionView.swift in Sources */,
 				70AD620723137EFD00ABE458 /* MealsPrepCollectionViewCell.swift in Sources */,
 				700D4EF823DBFA2F003E6503 /* NumberFormatter.swift in Sources */,
 				70FCDD8923A6D59B00DC7BA2 /* BlueApronAPI.swift in Sources */,
