@@ -74,6 +74,8 @@ extension BrandDashboardController {
     func setUpIngredientSelectionsView() {
         if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
             let selectedMenuOptionView = SelectedMenuOptionView(frame: .zero, selectedMenuOptions: selectedMenuOptions)
+            selectedMenuOptionView.alpha = 0
+            
             self.view.addSubview(selectedMenuOptionView)
             selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
@@ -83,6 +85,10 @@ extension BrandDashboardController {
                 selectedMenuOptionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
             ])
             selectedMenuOptionView.brandDashboardControllerDelegate = self
+            
+            UIView.animate(withDuration: 0.5) {
+                selectedMenuOptionView.alpha = 1
+            }
         }
     }
     

@@ -12,6 +12,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func changeViewController(index position: Int)
     func sendReducedCompiledIngredients(reducedCompiledIngredients: [Ingredients], completion: (() -> Void))
     func reloadCompiledIngredients()
+    func clearReducedCompiledIngredients()
     func reloadMealPrep()
     func reloadMealKitSelection()
     func setFadeOut(fadeOut: Bool)
@@ -30,6 +31,10 @@ extension ParentViewController: ParentViewControllerDelegate {
         self.reloadCompiledIngredients()
         self.reloadMealPrep()
         completion()
+    }
+    
+    func clearReducedCompiledIngredients() {
+        self.compiledIngredientsViewController.reducedCompiledIngredients.removeAll()
     }
     
     func reloadCompiledIngredients() {
