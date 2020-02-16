@@ -60,7 +60,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 55
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -109,21 +109,18 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = UITableViewHeaderFooterView(reuseIdentifier: "compiledIngredientsHeader")
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))
-//        label.font = UIFont.fontSunflower?.withSize(20)
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 55))
         label.backgroundColor = UIColor.themeColor1
         label.textAlignment = .center
         label.numberOfLines = 2
         
         switch section {
         case 0:
-//            label.text = "Ingredient List"
             let titleText = NSMutableAttributedString(string: "Ingredient List\nTap each ingredient to put them in your cart!")
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 15))
             label.attributedText = titleText
         case 1:
-//            label.text = "Shopping Cart"
             let titleText = NSMutableAttributedString(string: "Shopping Cart\nItems in your cart will appear here!")
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 13))

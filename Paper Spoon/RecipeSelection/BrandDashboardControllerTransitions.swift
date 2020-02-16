@@ -82,6 +82,7 @@ extension BrandDashboardController {
                 selectedMenuOptionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
                 selectedMenuOptionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
             ])
+            selectedMenuOptionView.brandDashboardControllerDelegate = self
         }
     }
     

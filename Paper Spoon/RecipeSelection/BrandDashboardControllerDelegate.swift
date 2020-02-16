@@ -18,6 +18,7 @@ protocol BrandDashboardControllerDelegate: AnyObject {
     func lockUnlockScrollView()
     func collapseMenuList()
     func expandMenuList()
+    func resetSelections()
 }
 
 
@@ -223,6 +224,13 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
             // by removing data source
             self.dataSource = self
         }
+    }
+    
+    func resetSelections() {
+        // clear each and every controller using parentViewControllerDelegate?
+        self.parentViewControllerDelegate?.reloadCompiledIngredients()
+        self.parentViewControllerDelegate?.reloadMealPrep()
+        self.parentViewControllerDelegate?.reloadMealKitSelection()
     }
     
 }

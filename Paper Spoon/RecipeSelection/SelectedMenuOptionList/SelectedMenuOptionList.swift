@@ -13,6 +13,7 @@ class SelectedMenuOptionList: OptionListCollectionView {
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
         self.registerCells()
+        self.backgroundColor = UIColor.themeColor1
     }
     
     // MARK:  Variables
@@ -71,7 +72,7 @@ class SelectedMenuOptionList: OptionListCollectionView {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.frame.width - 10, height: self.frame.height * 0.2)
+        return CGSize(width: self.frame.width, height: 55)
     }
     
     required init?(coder aDecoder: NSCoder) {
