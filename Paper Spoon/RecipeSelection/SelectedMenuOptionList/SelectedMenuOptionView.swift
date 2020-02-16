@@ -20,6 +20,7 @@ class SelectedMenuOptionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSelectedMenuOptionList()
+        self.addSelectNewMeals()
     }
     
     var selectedMenuOptionList = SelectedMenuOptionList(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -30,9 +31,9 @@ class SelectedMenuOptionView: UIView {
         self.selectedMenuOptionList.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.selectedMenuOptionList.topAnchor.constraint(equalTo: self.topAnchor),
-            self.selectedMenuOptionList.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            self.selectedMenuOptionList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
             self.selectedMenuOptionList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -100),
-            self.selectedMenuOptionList.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+            self.selectedMenuOptionList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
         ])
     }
     
