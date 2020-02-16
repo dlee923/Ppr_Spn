@@ -77,6 +77,7 @@ class MenuOptionListCell: UICollectionViewCell {
         print("thumbnail corners")
         self.thumbnailView.contentMode = .scaleAspectFill
         self.thumbnailView.layer.cornerRadius = 5
+        self.thumbnailView.clipsToBounds = true
         
         self.thumbnailView.translatesAutoresizingMaskIntoConstraints = false
         self.thumbnailView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true

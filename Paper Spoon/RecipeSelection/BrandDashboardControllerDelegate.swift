@@ -227,15 +227,3 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     
 }
 
-
-protocol BrandDashboardControllerTransitionsDelegate: AnyObject {
-    func transitionCompileIngredientsViewDelegateMethod()
-}
-
-extension BrandDashboardController: BrandDashboardControllerTransitionsDelegate {
-    func transitionCompileIngredientsViewDelegateMethod() {
-        self.transitionCompileIngredientsView()
-    }
-    
-}
-

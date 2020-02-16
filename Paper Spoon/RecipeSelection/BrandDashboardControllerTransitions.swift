@@ -8,6 +8,16 @@
 
 import UIKit
 
+protocol BrandDashboardControllerTransitionsDelegate: AnyObject {
+    func transitionCompileIngredientsViewDelegateMethod()
+}
+
+extension BrandDashboardController: BrandDashboardControllerTransitionsDelegate {
+    func transitionCompileIngredientsViewDelegateMethod() {
+        self.transitionCompileIngredientsView()
+    }
+}
+
 extension BrandDashboardController {
     
     // button action to proceed to shopping list screen
@@ -52,9 +62,29 @@ extension BrandDashboardController {
             })
         }
         
+        // setting up selected menu options
+        self.setUpIngredientSelectionsView()
+        
         // animate tab bar back into view
         self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)
     }
+    
+    
+    // setting up selected menu options
+    func setUpIngredientSelectionsView() {
+        if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
+            let selectedMenuOptionView = SelectedMenuOptionView(frame: .zero, selectedMenuOptions: selectedMenuOptions)
+            self.view.addSubview(selectedMenuOptionView)
+            selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+                selectedMenuOptionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+                selectedMenuOptionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+                selectedMenuOptionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        }
+    }
+    
     
     // prompt creating menu name
     @objc internal func createNewMenuPrompt() {
