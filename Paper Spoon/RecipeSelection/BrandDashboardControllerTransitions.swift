@@ -69,26 +69,36 @@ extension BrandDashboardController {
         self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)
     }
     
+    func showIngredientSelectionsView() {
+        self.selectedOptionsClosed?.isActive = false
+        self.selectedOptionsOpen?.isActive = true
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.view.layoutIfNeeded()
+        }) { (complete) in
+            //
+        }
+    }
+    
     
     // setting up selected menu options
     func setUpIngredientSelectionsView() {
         if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
-            let selectedMenuOptionView = SelectedMenuOptionView(frame: .zero, selectedMenuOptions: selectedMenuOptions)
-            selectedMenuOptionView.alpha = 0
+            let selectedMenuOptionView = SelectedMenuOptionView(frame: self.view.frame, selectedMenuOptions: selectedMenuOptions)
             
             self.view.addSubview(selectedMenuOptionView)
             selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
+            self.selectedOptionsClosed = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.selectedOptionsOpen = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor)
+            
             NSLayoutConstraint.activate([
-                selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor),
                 selectedMenuOptionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
                 selectedMenuOptionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                selectedMenuOptionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+                selectedMenuOptionView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
             ])
-            selectedMenuOptionView.brandDashboardControllerDelegate = self
+            self.selectedOptionsOpen?.isActive = true
             
-            UIView.animate(withDuration: 0.5) {
-                selectedMenuOptionView.alpha = 1
-            }
+            selectedMenuOptionView.brandDashboardControllerDelegate = self
         }
     }
     

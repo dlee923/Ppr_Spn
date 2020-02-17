@@ -228,6 +228,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
     
     func resetSelections() {
         self.menuOptionsObj?.selectedMenuOptions.removeAll()
+        self.parentViewControllerDelegate?.clearReducedCompiledIngredients()
         
         // clear each and every controller using parentViewControllerDelegate?
         self.parentViewControllerDelegate?.reloadCompiledIngredients()

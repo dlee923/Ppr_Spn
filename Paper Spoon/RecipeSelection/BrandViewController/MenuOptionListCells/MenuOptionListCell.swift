@@ -74,7 +74,6 @@ class MenuOptionListCell: UICollectionViewCell {
     
     private func addViewThumbnail() {
         self.addSubview(thumbnailView)
-        print("thumbnail corners")
         self.thumbnailView.contentMode = .scaleAspectFill
         self.thumbnailView.layer.cornerRadius = 5
         self.thumbnailView.clipsToBounds = true

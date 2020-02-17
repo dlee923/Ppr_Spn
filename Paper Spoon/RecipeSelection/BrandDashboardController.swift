@@ -142,6 +142,10 @@ class BrandDashboardController: UIPageViewController {
     var fingerTrailingAnchorFar: NSLayoutConstraint?
     var newMenuPromptCollapsed: [NSLayoutConstraint]?
     var newMenuPromptPopped: [NSLayoutConstraint]?
+    // for use in animating selected options view
+    var selectedOptionsOpen: NSLayoutConstraint?
+    var selectedOptionsClosed: NSLayoutConstraint?
+    
     
     // MARK: ScrollView variables
     // THIS SHOULD NOT CHANGE - buffer to add for nav bar height

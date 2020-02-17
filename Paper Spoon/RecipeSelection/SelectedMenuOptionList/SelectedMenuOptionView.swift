@@ -18,44 +18,68 @@ class SelectedMenuOptionView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addSelectNewMealsBtn()
         self.addSelectedMenuOptionList()
-        self.addSelectNewMeals()
+        self.layer.cornerRadius = 5
     }
     
     // MARK: Variables
     var selectedMenuOptionList = SelectedMenuOptionList(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     var selectNewMealsBtn = UIButton()
+    let selectNewMealsBtnView = UIView()
     var contentInsetValue: CGFloat = 100
     
     // MARK: Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
     
-    private func addSelectedMenuOptionList() {
-        self.addSubview(selectedMenuOptionList)
-        self.selectedMenuOptionList.translatesAutoresizingMaskIntoConstraints = false
+    private func addSelectNewMealsBtnView() {
+        self.selectNewMealsBtnView.backgroundColor = UIColor.themeColor1
+        self.addSubview(self.selectNewMealsBtnView)
+        
+        self.selectNewMealsBtnView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let headerSize = self.frame.height * 0.2
+        let menuOptionListInset = self.contentInsetValue - 10
+        let statusBar: CGFloat = 25
+        
         NSLayoutConstraint.activate([
-            self.selectedMenuOptionList.topAnchor.constraint(equalTo: self.topAnchor, constant: self.contentInsetValue - 10),
-            self.selectedMenuOptionList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            self.selectedMenuOptionList.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -40),
-            self.selectedMenuOptionList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
+            self.selectNewMealsBtnView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.06),
+            self.selectNewMealsBtnView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.selectNewMealsBtnView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            self.selectNewMealsBtnView.topAnchor.constraint(equalTo: self.topAnchor, constant: (headerSize + menuOptionListInset + statusBar))
         ])
     }
     
-    private func addSelectNewMeals() {
+    private func addSelectNewMealsBtn() {
         self.selectNewMealsBtn.setTitle("Select Different Meals", for: .normal)
-        self.selectNewMealsBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(20)
+        self.selectNewMealsBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
         self.selectNewMealsBtn.layer.cornerRadius = 5
         self.selectNewMealsBtn.backgroundColor = UIColor.themeColor4
-        self.addSubview(self.selectNewMealsBtn)
+        self.selectNewMealsBtnView.addSubview(self.selectNewMealsBtn)
+        
         self.selectNewMealsBtn.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            self.selectNewMealsBtn.topAnchor.constraint(equalTo: self.selectedMenuOptionList.bottomAnchor),
-            self.selectNewMealsBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.selectNewMealsBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.selectNewMealsBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.selectNewMealsBtn.heightAnchor.constraint(equalTo: self.selectNewMealsBtnView.heightAnchor, multiplier: 0.85),
+            self.selectNewMealsBtn.centerXAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerXAnchor),
+            self.selectNewMealsBtn.widthAnchor.constraint(equalTo: self.selectNewMealsBtnView.widthAnchor, multiplier: 0.5),
+            self.selectNewMealsBtn.centerYAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerYAnchor)
         ])
         
         self.selectNewMealsBtn.addTarget(self, action: #selector(self.resetMealSelection), for: .touchUpInside)
+    }
+    
+    private func addSelectedMenuOptionList() {
+        self.addSubview(selectedMenuOptionList)
+        
+        self.selectedMenuOptionList.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.selectedMenuOptionList.topAnchor.constraint(equalTo: self.selectNewMealsBtnView.bottomAnchor),
+            self.selectedMenuOptionList.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            self.selectedMenuOptionList.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            self.selectedMenuOptionList.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5)
+        ])
     }
     
     @objc func resetMealSelection() {
