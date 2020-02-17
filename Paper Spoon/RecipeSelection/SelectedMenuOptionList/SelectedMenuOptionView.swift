@@ -18,6 +18,7 @@ class SelectedMenuOptionView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.addSelectNewMealsBtnView()
         self.addSelectNewMealsBtn()
         self.addSelectedMenuOptionList()
         self.layer.cornerRadius = 5
@@ -86,6 +87,7 @@ class SelectedMenuOptionView: UIView {
         print("resetting meal selections")
         self.brandDashboardControllerDelegate?.clearSelections()
         self.brandDashboardControllerDelegate?.resetSelections()
+        self.brandDashboardControllerDelegate?.lockUnlockScrollView()
         self.removeSelectedMenuOptionView()
     }
     

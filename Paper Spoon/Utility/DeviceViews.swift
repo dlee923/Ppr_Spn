@@ -36,10 +36,10 @@ class DeviceViews {
     
     static let recipeDescriptionFontSize: [Device.DeviceTypes : CGFloat] = [
         Device.DeviceTypes.iPhone5      : 13,
-        Device.DeviceTypes.iPhone8      : 14,
-        Device.DeviceTypes.iPhone8Plus  : 15,
-        Device.DeviceTypes.iPhoneXs     : 15,
-        Device.DeviceTypes.iPhoneXsPlus : 15
+        Device.DeviceTypes.iPhone8      : 13,
+        Device.DeviceTypes.iPhone8Plus  : 13,
+        Device.DeviceTypes.iPhoneXs     : 13,
+        Device.DeviceTypes.iPhoneXsPlus : 13
     ]
 
     static let nutritionFontSize: [Device.DeviceTypes : CGFloat] = [

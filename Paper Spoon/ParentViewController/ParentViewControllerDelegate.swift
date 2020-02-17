@@ -36,6 +36,8 @@ extension ParentViewController: ParentViewControllerDelegate {
     
     func clearReducedCompiledIngredients() {
         self.compiledIngredientsViewController.reducedCompiledIngredients.removeAll()
+        self.compiledIngredientsViewController.compiledIngredientsList.compiledIngredients.removeAll()
+        self.compiledIngredientsViewController.compiledIngredientsList.purchasedIngredients.removeAll()
     }
     
     func reloadCompiledIngredients() {

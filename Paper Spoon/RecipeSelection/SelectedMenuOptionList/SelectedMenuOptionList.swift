@@ -63,7 +63,7 @@ class SelectedMenuOptionList: OptionListCollectionView {
         if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "selectedMenuOptionListHeader", for: indexPath) as? PlainHeaderCell {
             
             header.titleLabel.numberOfLines = 2
-            let titleText = NSMutableAttributedString(string: "Selected Options\nTap each ingredient to put them in your cart!")
+            let titleText = NSMutableAttributedString(string: "Selected Options\nTap the above button to select new recipes!")
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(20) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: 16))
             

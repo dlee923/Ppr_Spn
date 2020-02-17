@@ -48,8 +48,9 @@ class BrandDashboardController: UIPageViewController {
         DispatchQueue.global().async {
             
             self.downloadData(brand: .HelloFresh)
-//            self.downloadData(brand: .BlueApron)
             self.downloadData(brand: .HomeChef)
+//            self.downloadData(brand: .BlueApron)
+            
             
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI

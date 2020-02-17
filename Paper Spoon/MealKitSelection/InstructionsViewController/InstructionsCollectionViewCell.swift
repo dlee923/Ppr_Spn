@@ -41,7 +41,7 @@ class InstructionsCollectionViewCell: UICollectionViewCell {
         self.instructionsTextView.textColor = UIColor.themeColor2
         self.instructionsTextView.backgroundColor = UIColor.themeColor1
         self.instructionsTextView.isEditable = false
-        self.instructionsTextView.font = UIFont.fontOldSansBlack?.withSize(20)
+        self.instructionsTextView.font = UIFont.fontOldSansBlack?.withSize(16)
         
         self.addSubview(self.instructionsTextView)
         self.instructionsTextView.translatesAutoresizingMaskIntoConstraints = false
