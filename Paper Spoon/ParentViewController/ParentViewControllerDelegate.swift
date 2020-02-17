@@ -19,6 +19,7 @@ protocol ParentViewControllerDelegate: AnyObject {
     func returnFadeOut() -> Bool
     func fadeTabBar(fadePct: CGFloat)
     func fadeOutSplashImg(fadePct: CGFloat)
+    func clearFavoriteMenuOptions()
 }
 
 extension ParentViewController: ParentViewControllerDelegate {
@@ -111,5 +112,9 @@ extension ParentViewController: ParentViewControllerDelegate {
 //        if fadePct <= 0 || fadePct >= 1 { return }
         
         self.splashImageView?.alpha = fadePct
+    }
+    
+    func clearFavoriteMenuOptions() {
+        self.favoritesViewController.favoriteMenuOptions.removeAll()
     }
 }
