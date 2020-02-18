@@ -70,6 +70,7 @@
 		70D46CB9235C114A00AB3488 /* RecipeCellViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CB7235C114A00AB3488 /* RecipeCellViews.swift */; };
 		70D46CBC235C117900AB3488 /* DeviceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CBB235C117900AB3488 /* DeviceViews.swift */; };
 		70D46CBE235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CBD235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift */; };
+		70D48D2A23FC150B005FCED5 /* ButtonPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D48D2923FC150B005FCED5 /* ButtonPulse.swift */; };
 		70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532C822F44DCA00C8F866 /* RecipeModel.swift */; };
 		70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532CA22F5EFAA00C8F866 /* Device.swift */; };
 		70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D022F6264C00C8F866 /* ActivityIndicator.swift */; };
@@ -185,6 +186,7 @@
 		70D46CB7235C114A00AB3488 /* RecipeCellViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellViews.swift; sourceTree = "<group>"; };
 		70D46CBB235C117900AB3488 /* DeviceViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViews.swift; sourceTree = "<group>"; };
 		70D46CBD235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewInstructionsPrep.swift; sourceTree = "<group>"; };
+		70D48D2923FC150B005FCED5 /* ButtonPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPulse.swift; sourceTree = "<group>"; };
 		70D532C822F44DCA00C8F866 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		70D532CA22F5EFAA00C8F866 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		70D532D022F6264C00C8F866 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				70FCDD7F239D4DB200DC7BA2 /* GradientView.swift */,
 				700D4EEF23DAA57B003E6503 /* MeasureConversion.swift */,
 				700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */,
+				70D48D2923FC150B005FCED5 /* ButtonPulse.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				701058E822FF61FA00D4D9FD /* Colors.swift in Sources */,
 				70012C6E23F10CC200A839D5 /* SelectedMenuOptionView.swift in Sources */,
 				70E3A585232DA56F00F9A5A7 /* BrandsCollectionViewCell.swift in Sources */,
+				70D48D2A23FC150B005FCED5 /* ButtonPulse.swift in Sources */,
 				701058DA22FF0CCB00D4D9FD /* ImageAPI.swift in Sources */,
 				70E0499E235396D6005A1B71 /* EmptyMealsPrepCell.swift in Sources */,
 				701185FF231B28C700F4D047 /* MealKitSelectionViewController.swift in Sources */,
