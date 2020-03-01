@@ -44,9 +44,12 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                     print("REMOVE collapsed.  ADD popped")
                     NSLayoutConstraint.deactivate(compileIngredientsButtonCollapsed)
                     NSLayoutConstraint.activate(compileIngredientsButtonPopped)
+                    
                 }
                 
                 expandMenuList()
+                // hide
+                self.compileIngredientsView.isHidden = false
             }
             
         } else if self.tempSelectedMenuOptions?.count == 0 {
@@ -66,6 +69,8 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 }
                 
                 collapseMenuList()
+                // hide
+                self.compileIngredientsView.isHidden = true
             }
         }
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.9, options: .curveEaseOut, animations: {

@@ -66,6 +66,9 @@ extension BrandDashboardController {
             print("ADD collapsed.")
         }
         
+        // hide
+        self.compileIngredientsView.isHidden = true
+        
 //        if let compileIngredientsBtnCollapsedPopped = self.compileIngredientsBtnPopped {
 //            NSLayoutConstraint.activate(compileIngredientsBtnCollapsedPopped)
 //            print("ADD Popped.")
