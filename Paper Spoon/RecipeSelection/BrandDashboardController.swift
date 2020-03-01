@@ -32,9 +32,6 @@ class BrandDashboardController: UIPageViewController {
         
         // add compile ingredients View + Button
         self.addCompileIngredientsView()
-        self.setupCompileIngredientsBtn()
-        self.addCompileIngredientsBtn()
-        self.addFingerPointer()
         
         // pass brands data to header
         recipeListHeader.brands = self.brands
@@ -47,8 +44,8 @@ class BrandDashboardController: UIPageViewController {
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
             
-            self.downloadData(brand: .HelloFresh)
-            self.downloadData(brand: .HomeChef)
+//            self.downloadData(brand: .HelloFresh)
+//            self.downloadData(brand: .HomeChef)
 //            self.downloadData(brand: .BlueApron)
             
             
@@ -102,9 +99,7 @@ class BrandDashboardController: UIPageViewController {
     var tempSelectedMenuOptions: [MenuOption]?
     
     // MARK: UI Elements
-    var compileIngredientsBtn: NextStepBtn?
-    let compileIngredientsBtnHeight: CGFloat = 0.06
-    var compileIngredientsView = UIView()
+    lazy var compileIngredientsView = NextStepBtnView(frame: self.view.frame)
     let activityIndicator = ActivityIndicator()
     
     lazy var recipeListHeader: RecipeListHeader = {
@@ -138,9 +133,7 @@ class BrandDashboardController: UIPageViewController {
     // for use in recipe header
     var recipeHeaderHeightConstant: CGFloat = 100
     var recipeListHeaderTopConstraint: NSLayoutConstraint?
-    // for use in animating finger movement
-    var fingerTrailingAnchorClose: NSLayoutConstraint?
-    var fingerTrailingAnchorFar: NSLayoutConstraint?
+    
     var newMenuPromptCollapsed: [NSLayoutConstraint]?
     var newMenuPromptPopped: [NSLayoutConstraint]?
     // for use in animating selected options view

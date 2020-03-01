@@ -10,27 +10,31 @@ import UIKit
 
 extension UIView {
     
-    func addPulseLayer(frame: CGRect, pulseColor: UIColor) -> CAShapeLayer {
+    func addPulseLayer(frame: CGRect, pulseColor: UIColor) {
         
         // create shape of layer
-        let pulsePath = UIBezierPath(roundedRect: frame, cornerRadius: 5)
+        let pulsePath = UIBezierPath(roundedRect: frame, cornerRadius: 10)
         
         // create animatable layer
         let pulseLayer = CAShapeLayer()
+        // need to set bounds in order to pulse from center
+        pulseLayer.bounds = CGRect(x: 5, y: -3.5, width: frame.width, height: frame.height)
         
         // assign shape to layer + size and color properties
         pulseLayer.path = pulsePath.cgPath
         pulseLayer.fillColor = pulseColor.cgColor
         pulseLayer.position = self.center
-        return pulseLayer
         
+        startPulseAnimation(pulseLayer: pulseLayer)
+        
+        self.layer.insertSublayer(pulseLayer, at: 0)
     }
     
     func startPulseAnimation(pulseLayer: CAShapeLayer) {
         
-        let pulseAnimation = CABasicAnimation()
-        pulseAnimation.toValue = 1.2
-        pulseAnimation.duration = 0.8
+        let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
+        pulseAnimation.toValue = 1.05
+        pulseAnimation.duration = 0.9
         pulseAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         pulseAnimation.autoreverses = true
         pulseAnimation.repeatCount = Float.infinity

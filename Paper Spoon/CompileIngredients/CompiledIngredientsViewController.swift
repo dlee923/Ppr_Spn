@@ -18,10 +18,6 @@ class CompiledIngredientsViewController: UIViewController {
     
     private func setup() {
         self.setColors()
-
-//        self.setupFinishedShoppingBtn()
-//        self.addFinishedShoppingBtn()
-        
         self.setupCompiledIngredientsList()
         self.addCompiledIngredientsList()
     }
@@ -64,25 +60,6 @@ class CompiledIngredientsViewController: UIViewController {
         self.compiledIngredientsList.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.compiledIngredientsList.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         self.compiledIngredientsList.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-    }
-    
-    private func setupFinishedShoppingBtn() {
-        self.finishedShoppingBtn = NextStepBtn(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), setTitle: "Finished Shopping!")
-        self.finishedShoppingBtn?.addTarget(self, action: #selector(finishedShoppingAction), for: .touchUpInside)
-        self.finishedShoppingBtn?.layer.cornerRadius = 5
-    }
-    
-    private func addFinishedShoppingBtn() {
-        guard let finishedShoppingButton = self.finishedShoppingBtn else { return }
-        self.view.addSubview(finishedShoppingButton)
-        
-        finishedShoppingButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            finishedShoppingButton.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
-            finishedShoppingButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
-            finishedShoppingButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5),
-            finishedShoppingButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5)
-        ])
     }
     
     @objc private func finishedShoppingAction() {

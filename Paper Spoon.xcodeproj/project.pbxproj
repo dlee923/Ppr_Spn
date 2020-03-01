@@ -71,6 +71,7 @@
 		70D46CBC235C117900AB3488 /* DeviceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CBB235C117900AB3488 /* DeviceViews.swift */; };
 		70D46CBE235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CBD235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift */; };
 		70D48D2A23FC150B005FCED5 /* ButtonPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D48D2923FC150B005FCED5 /* ButtonPulse.swift */; };
+		70D48D2C2404E533005FCED5 /* NextStepBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D48D2B2404E533005FCED5 /* NextStepBtnView.swift */; };
 		70D532C922F44DCA00C8F866 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532C822F44DCA00C8F866 /* RecipeModel.swift */; };
 		70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532CA22F5EFAA00C8F866 /* Device.swift */; };
 		70D532D122F6264C00C8F866 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D532D022F6264C00C8F866 /* ActivityIndicator.swift */; };
@@ -187,6 +188,7 @@
 		70D46CBB235C117900AB3488 /* DeviceViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViews.swift; sourceTree = "<group>"; };
 		70D46CBD235C127700AB3488 /* MealKitsCollectionViewInstructionsPrep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealKitsCollectionViewInstructionsPrep.swift; sourceTree = "<group>"; };
 		70D48D2923FC150B005FCED5 /* ButtonPulse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPulse.swift; sourceTree = "<group>"; };
+		70D48D2B2404E533005FCED5 /* NextStepBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextStepBtnView.swift; sourceTree = "<group>"; };
 		70D532C822F44DCA00C8F866 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		70D532CA22F5EFAA00C8F866 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		70D532D022F6264C00C8F866 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				700D4EEF23DAA57B003E6503 /* MeasureConversion.swift */,
 				700D4EF723DBFA2F003E6503 /* NumberFormatter.swift */,
 				70D48D2923FC150B005FCED5 /* ButtonPulse.swift */,
+				70D48D2B2404E533005FCED5 /* NextStepBtnView.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -730,6 +733,7 @@
 				700D4F0523DFEE16003E6503 /* PlainHeaderCell.swift in Sources */,
 				700D4EF023DAA57B003E6503 /* MeasureConversion.swift in Sources */,
 				70FCDD8F23B0739A00DC7BA2 /* HomeChefAPI.swift in Sources */,
+				70D48D2C2404E533005FCED5 /* NextStepBtnView.swift in Sources */,
 				70D46CAE235C109900AB3488 /* IngredientsPillCell.swift in Sources */,
 				70D532CB22F5EFAA00C8F866 /* Device.swift in Sources */,
 				701209B023F0DAE40026A4B3 /* OptionListCollectionView.swift in Sources */,
