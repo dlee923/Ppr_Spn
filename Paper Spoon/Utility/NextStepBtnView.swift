@@ -28,6 +28,7 @@ class NextStepBtnView: UIView {
     
     var compileIngredientsBtn: NextStepBtn?
     let compileIngredientsBtnHeight: CGFloat = 0.06
+    let finger = UIImageView(image: UIImage(named: "hand"))
     
     // MARK:  Animatable constraints - for use in animating finger movement
     var fingerTrailingAnchorClose: NSLayoutConstraint?
@@ -66,7 +67,6 @@ class NextStepBtnView: UIView {
     
     internal func addFingerPointer() {
         guard let compileIngredientsBtn = self.compileIngredientsBtn else { return }
-        let finger = UIImageView(image: UIImage(named: "hand"))
         finger.contentMode = .scaleAspectFit
         self.addSubview(finger)
         

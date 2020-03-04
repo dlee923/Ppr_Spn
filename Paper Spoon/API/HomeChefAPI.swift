@@ -163,7 +163,8 @@ extension HomeChefAPI {
         for x in 1..<instructionsSection0.count {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
-            instructions.append(instruction)
+            let filteredInstruction = instruction.replacingOccurrences(of: "<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
+            instructions.append(filteredInstruction)
         }
         
         return instructions

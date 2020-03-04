@@ -48,7 +48,12 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     private func addMealPreppedBtnView() {
         print("self.frame mealsPrepCollectionViewCell")
         print(self.frame)
+        
         self.mealPreppedBtnView = NextStepBtnView(frame: self.frame)
+        self.mealPreppedBtnView?.compileIngredientsBtn?.titleLabel?.text = "Ingredients Packed"
+        
+        // remove finger
+        self.mealPreppedBtnView?.finger.removeFromSuperview()
         guard let mealPreppedBtnView = self.mealPreppedBtnView else { return }
         self.addSubview(mealPreppedBtnView)
         self.mealPreppedBtnView?.translatesAutoresizingMaskIntoConstraints = false

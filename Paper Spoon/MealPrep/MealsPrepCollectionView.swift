@@ -17,6 +17,9 @@ class MealsPrepCollectionView: UICollectionView {
         }
         
         self.setup()
+        
+        print("self.frame mealsPrepCollectionView")
+        print(self.frame)
     }
     
     private func setup() {
