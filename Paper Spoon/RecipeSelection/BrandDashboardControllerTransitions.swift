@@ -58,12 +58,12 @@ extension BrandDashboardController {
                     // present compiledIngredientsViewController
                     self.activityIndicator.activityEnded()
                     self.parentViewControllerDelegate?.changeViewController(index: 1)
+                    
+                    // setting up selected menu options
+                    self.setUpIngredientSelectionsView()
                 })
             })
         }
-        
-        // setting up selected menu options
-        self.setUpIngredientSelectionsView()
         
         // animate tab bar back into view
         self.parentViewControllerDelegate?.fadeTabBar(fadePct: 1.0)

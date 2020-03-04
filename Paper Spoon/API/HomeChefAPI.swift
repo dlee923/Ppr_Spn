@@ -248,8 +248,9 @@ extension HomeChefAPI {
         descriptionSection0.removeFirst()
         let descriptionsSection1 = descriptionSection0[0].components(separatedBy: "itemprop='description'>\n<p>").last
         let description = descriptionsSection1?.components(separatedBy: "</p>").first
+        let filteredDescription = description?.replacingOccurrences(of: "&#39;", with: "'")
         
-        return description ?? ""
+        return filteredDescription ?? ""
     }
     
     

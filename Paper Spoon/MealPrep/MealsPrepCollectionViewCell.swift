@@ -12,10 +12,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var mealsPrepImage: UIImageView!
     @IBOutlet weak var ingredientsPrepCollectionView: IngredientsPrepCollectionView!
-    @IBOutlet weak var mealPreppedBtn: UIButton!
-    @IBAction func mealPreppedBtnPressed(_ sender: Any) {
-        self.mealPreppedAction()
-    }
+    var mealPreppedBtnView: NextStepBtnView?
     @IBOutlet weak var mealsPrepHeaderView: UIView!
     @IBOutlet weak var mealsPrepLabel: UILabel!
     
@@ -23,6 +20,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = UIColor.themeColor1
         self.setup()
+        self.addMealPreppedBtnView()
     }
     
     var menuOption: MenuOption? {
@@ -38,8 +36,6 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         self.mealsPrepHeaderView.backgroundColor = UIColor.themeColor1
-        self.mealPreppedBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
-        self.mealPreppedBtn.layer.cornerRadius = self.mealPreppedBtn.frame.height / 2
         
         self.mealsPrepImage.clipsToBounds = true
         self.mealsPrepLabel.font = UIFont.fontBebas?.withSize(30)
@@ -49,7 +45,26 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
         self.ingredientsPrepCollectionView.mealsPrepCollectionViewCellDelegate = self
     }
     
-    private func mealPreppedAction() {
+    private func addMealPreppedBtnView() {
+        print("self.frame mealsPrepCollectionViewCell")
+        print(self.frame)
+        self.mealPreppedBtnView = NextStepBtnView(frame: self.frame)
+        guard let mealPreppedBtnView = self.mealPreppedBtnView else { return }
+        self.addSubview(mealPreppedBtnView)
+        self.mealPreppedBtnView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            mealPreppedBtnView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
+            mealPreppedBtnView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            mealPreppedBtnView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
+            mealPreppedBtnView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.06)
+        ])
+        
+        // add button function to mealPreppedBtnView
+        self.mealPreppedBtnView?.compileIngredientsBtn?.addTarget(self, action: #selector(self.mealPreppedAction), for: .touchUpInside)
+    }
+    
+    @objc private func mealPreppedAction() {
         guard let menuOption = self.menuOption else { return }
         print("meal kit prepped")
         // mark menu option as being meal kit complete

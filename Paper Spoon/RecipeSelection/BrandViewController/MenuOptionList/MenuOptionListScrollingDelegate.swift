@@ -17,8 +17,6 @@ extension MenuOptionList {
         if scrollView.contentOffset.y < 100 {
             // resize recipe header
             self.brandDashboardControllerDelegate?.minimizeBrandsCollectionView(scrollPositionY: scrollView.contentOffset.y)
-
-            
         }
         
         if scrollView.contentOffset.y < 150 {

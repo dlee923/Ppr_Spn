@@ -12,6 +12,10 @@ class NextStepBtnView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.setupCompileIngredientsBtn()
+        self.addCompileIngredientsBtn()
+        self.addFingerPointer()
+        self.addBtnPulse()
     }
     
     override init(frame: CGRect) {

@@ -50,6 +50,9 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 expandMenuList()
                 // hide
                 self.compileIngredientsView.isHidden = false
+                
+                // restart button pulse
+                self.compileIngredientsView.startPulseAnimation()
             }
             
         } else if self.tempSelectedMenuOptions?.count == 0 {

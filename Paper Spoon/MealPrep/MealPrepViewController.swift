@@ -18,11 +18,19 @@ class MealPrepViewController: UIViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        for cell in self.mealsPrepCollectionView.visibleCells {
+            if let mealsPrepCollectionViewCell = cell as? MealsPrepCollectionViewCell {
+                mealsPrepCollectionViewCell.mealPreppedBtnView?.compileIngredientsBtn?.startPulseAnimation()
+            }
+        }
+    }
+    
+    
     private func setup() {
         self.setColors()
         self.setupMealsToPrep()
         self.addMealsToPrep()
-        
         
 //        self.setupMealsPrepCount()
 //        self.addMealsPrepCount()
