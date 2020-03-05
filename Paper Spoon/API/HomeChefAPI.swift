@@ -126,8 +126,6 @@ extension HomeChefAPI {
         var ingredientList = ingredientSection0?.components(separatedBy: "itemprop='recipeIngredient'>\n") ?? [""]
         ingredientList.removeFirst()
         
-        print(ingredientList.first)
-        
         // separate measurement from ingredient name
         for ingredient in ingredientList {
             var ingredientDetails0: String?
@@ -141,12 +139,20 @@ extension HomeChefAPI {
             let ingredientDetails1 = ingredientDetails0?.components(separatedBy: "\n</li>").first
             let ingredientDetails = ingredientDetails1?.components(separatedBy: "\n")
             
-            let ingredientAmount = Double(ingredientDetails?.first ?? "0")
+            // if amount is a fraction
+            var ingredientAmount: Double?
+            let ingredientAmount0 = ingredientDetails?.first?.components(separatedBy: "&frac")
+            
+            if ingredientAmount0?.count ?? 0 > 1 {
+                let ingredientAmount1 = ingredientAmount0?.last?.prefix(2)
+                ingredientAmount = Double("\(ingredientAmount1?.prefix(1) ?? "0")/\(ingredientAmount1?.suffix(1) ?? "0")")
+            } else {
+                ingredientAmount = Double(ingredientDetails?.first ?? "0")
+            }
+            
             let unitMeasure = ingredientDetails?[1] ?? ""
             let ingredientName = ingredientDetails?[2] ?? ""
             let ingredientName0 = ingredientName.replacingOccurrences(of: "amp;", with: "")
-            
-            print("\(ingredientAmount) \(unitMeasure) \(ingredientName0)")
             
             let ingredientData = Ingredients(name: ingredientName0,
                                              amount: ingredientAmount,
