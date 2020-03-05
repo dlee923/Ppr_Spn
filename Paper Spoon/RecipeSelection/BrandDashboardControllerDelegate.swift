@@ -52,6 +52,7 @@ extension BrandDashboardController: BrandDashboardControllerDelegate {
                 self.compileIngredientsView.isHidden = false
                 
                 // restart button pulse
+                if pulseLayer != nil {}
                 self.compileIngredientsView.startPulseAnimation()
             }
             

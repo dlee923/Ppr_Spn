@@ -147,6 +147,9 @@ extension HomeChefAPI {
             
         }
         
+        // remove where ingredient is <script>
+        ingredients.removeAll(where: { $0.name == "<script>" })
+        
         return ingredients
     }
     
@@ -163,7 +166,7 @@ extension HomeChefAPI {
         for x in 1..<instructionsSection0.count {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
-            let filteredInstruction = instruction.replacingOccurrences(of: "<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
+            let filteredInstruction = instruction.replacingOccurrences(of: "&#39;|<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
             instructions.append(filteredInstruction)
         }
         
@@ -249,7 +252,7 @@ extension HomeChefAPI {
         descriptionSection0.removeFirst()
         let descriptionsSection1 = descriptionSection0[0].components(separatedBy: "itemprop='description'>\n<p>").last
         let description = descriptionsSection1?.components(separatedBy: "</p>").first
-        let filteredDescription = description?.replacingOccurrences(of: "&#39;", with: "'")
+        let filteredDescription = description?.replacingOccurrences(of: "&#39;|<strong>|</strong>|<em>|</em>", with: "'")
         
         return filteredDescription ?? ""
     }

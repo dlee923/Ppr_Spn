@@ -20,7 +20,7 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.backgroundColor = UIColor.themeColor1
         self.setup()
-        self.addMealPreppedBtnView()
+//        self.addMealPreppedBtnView()
     }
     
     var menuOption: MenuOption? {
@@ -45,12 +45,9 @@ class MealsPrepCollectionViewCell: UICollectionViewCell {
         self.ingredientsPrepCollectionView.mealsPrepCollectionViewCellDelegate = self
     }
     
-    private func addMealPreppedBtnView() {
-        print("self.frame mealsPrepCollectionViewCell")
-        print(self.frame)
-        
+    func addMealPreppedBtnView() {
         self.mealPreppedBtnView = NextStepBtnView(frame: self.frame)
-        self.mealPreppedBtnView?.compileIngredientsBtn?.titleLabel?.text = "Ingredients Packed"
+        self.mealPreppedBtnView?.compileIngredientsBtn?.setTitle("Ingredients Packed", for: .normal)
         
         // remove finger
         self.mealPreppedBtnView?.finger.removeFromSuperview()

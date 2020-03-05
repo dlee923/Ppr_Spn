@@ -86,6 +86,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
                 // section for ingredients list
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "compiledIngredients", for: indexPath) as? CompiledIngredientsCell {
                     cell.ingredient = self.compiledIngredients[indexPath.row]
+                    print(self.compiledIngredients[indexPath.row].name)
                     cell.setColors(isPurchased: false)
                     cell.shoppingIcon.isHidden = true
                     return cell

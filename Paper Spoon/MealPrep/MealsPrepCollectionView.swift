@@ -17,9 +17,6 @@ class MealsPrepCollectionView: UICollectionView {
         }
         
         self.setup()
-        
-        print("self.frame mealsPrepCollectionView")
-        print(self.frame)
     }
     
     private func setup() {
@@ -76,6 +73,7 @@ extension MealsPrepCollectionView: UICollectionViewDataSource {
                 let menuOption = self.menuOptionsObj?.selectedMenuOptions[indexPath.item]
                 cell.menuOption = menuOption
                 cell.mealPrepFinishedDelegate = self.mealPrepFinishedDelegate
+                cell.addMealPreppedBtnView()
                 return cell
             } else {
                 return UICollectionViewCell()
