@@ -126,17 +126,29 @@ extension HomeChefAPI {
         var ingredientList = ingredientSection0?.components(separatedBy: "itemprop='recipeIngredient'>\n") ?? [""]
         ingredientList.removeFirst()
         
+        print(ingredientList.first)
+        
         // separate measurement from ingredient name
         for ingredient in ingredientList {
-            let ingredientDetails0 = ingredient.components(separatedBy: "</div>\n").last
-            let ingredientDetails1 = ingredientDetails0?.components(separatedBy: "</li>").first
+            var ingredientDetails0: String?
+            // if there exists a </div>\n
+            if let ingredientDetails_ = ingredient.components(separatedBy: "</path>\n</svg>\n</div>\n").last {
+                ingredientDetails0 = ingredientDetails_
+            // if there does not exist a </div>\n
+            } else {
+                ingredientDetails0 = ingredient
+            }
+            let ingredientDetails1 = ingredientDetails0?.components(separatedBy: "\n</li>").first
             let ingredientDetails = ingredientDetails1?.components(separatedBy: "\n")
             
             let ingredientAmount = Double(ingredientDetails?.first ?? "0")
             let unitMeasure = ingredientDetails?[1] ?? ""
             let ingredientName = ingredientDetails?[2] ?? ""
+            let ingredientName0 = ingredientName.replacingOccurrences(of: "amp;", with: "")
             
-            let ingredientData = Ingredients(name: ingredientName,
+            print("\(ingredientAmount) \(unitMeasure) \(ingredientName0)")
+            
+            let ingredientData = Ingredients(name: ingredientName0,
                                              amount: ingredientAmount,
                                              measurementType: unitMeasure,
                                              isPacked: nil,
@@ -167,6 +179,7 @@ extension HomeChefAPI {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
             let filteredInstruction = instruction.replacingOccurrences(of: "&#39;|<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
+            let filteredInstruction0 = filteredInstruction.replacingOccurrences(of: "&frac12;&quot;", with: "1/2")
             instructions.append(filteredInstruction)
         }
         

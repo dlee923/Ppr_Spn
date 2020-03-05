@@ -41,6 +41,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
+        self.label.numberOfLines = 2
         self.addIngredientImage()
         self.addMeasureAmount()
         self.addLabel()
