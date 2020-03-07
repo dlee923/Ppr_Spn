@@ -15,7 +15,8 @@ extension BrandDashboardController {
         passBrand()
         passMenuOptionsObj()
         
-        controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
+//        controllers = [helloFreshViewController, blueApronViewController, platedViewController, homeChefViewController]
+        controllers = [helloFreshViewController, homeChefViewController]
         
         if let recipeListVC1 = controllers.first {
             self.setViewControllers([recipeListVC1], direction: .forward, animated: false, completion: nil)
@@ -28,7 +29,7 @@ extension BrandDashboardController {
         
         blueApronViewController.brandDashboardControllerDelegate = self
         blueApronViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
-        
+
         platedViewController.brandDashboardControllerDelegate = self
         platedViewController.parentViewControllerDelegate = self.parentViewControllerDelegate
         
@@ -64,7 +65,8 @@ extension BrandDashboardController {
         switch brand {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
         case .BlueApron  : brandAPI = BlueApronAPI.shared
-        case .HomeChef   :  brandAPI = HomeChefAPI.shared
+        case .HomeChef   : brandAPI = HomeChefAPI.shared
+        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
         default: return
         }
         
@@ -92,6 +94,7 @@ extension BrandDashboardController {
         case .HelloFresh : brandAPI = HelloFreshAPI.shared
         case .BlueApron  : brandAPI = BlueApronAPI.shared
         case .HomeChef   : brandAPI = HomeChefAPI.shared
+        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
         default: return
         }
         
@@ -154,7 +157,7 @@ extension BrandDashboardController {
                                image:       UIImage(named: "blueapron_x1.png")!,
                                largeImage:  UIImage(named: "blueapron_x2.png")!)
         
-        let everyPlate = Brand(name:        .EveryPlate,
+        let marleySpoon = Brand(name:        .EveryPlate,
                                image:       UIImage(named: "plated_x1.png")!,
                                largeImage:  UIImage(named: "hellofresh_x2.png")!)
         
@@ -167,8 +170,6 @@ extension BrandDashboardController {
         
         self.brands = [
             helloFresh,
-            blueApron,
-            everyPlate,
             homeChef
         ]
     }

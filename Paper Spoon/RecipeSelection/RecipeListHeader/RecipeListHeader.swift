@@ -80,7 +80,7 @@ class RecipeListHeader: UIView {
         NSLayoutConstraint.activate([
             self.brandsSelectorArrow.heightAnchor.constraint(equalToConstant: 7),
             self.brandsSelectorArrow.centerYAnchor.constraint(equalTo: self.topAnchor),
-            self.brandsSelectorArrow.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4),
+            self.brandsSelectorArrow.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2),
             brandsSelectorLeadingConstraint
         ])
     }
@@ -134,7 +134,7 @@ class RecipeListHeader: UIView {
     }
     
     func moveBrandsSelectorView(index: Int) {
-        let indexLength = self.frame.width / 4
+        let indexLength = self.frame.width / CGFloat(self.brands?.count ?? 1)
         self.brandsSelectorLeadingConstraint?.constant = indexLength * CGFloat(index)
     }
     

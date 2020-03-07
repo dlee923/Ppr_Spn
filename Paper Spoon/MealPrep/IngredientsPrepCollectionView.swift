@@ -17,7 +17,7 @@ class IngredientsPrepCollectionView: UICollectionView {
     
     var recipe: Recipe? {
         didSet {
-            self.contentInset = UIEdgeInsets(top: 260, left: 0, bottom: 0, right: 0)
+            self.contentInset = UIEdgeInsets(top: 260, left: 0, bottom: 50, right: 0)
         }
     }
     

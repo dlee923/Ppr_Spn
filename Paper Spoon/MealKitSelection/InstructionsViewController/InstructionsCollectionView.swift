@@ -15,6 +15,10 @@ class InstructionsCollectionView: UICollectionView {
         self.setup()
     }
     
+    deinit {
+        print("letting go of instructions collectionview")
+    }
+    
     private func setup() {
         self.backgroundColor = UIColor.themeColor1
         self.isPagingEnabled = true
@@ -23,13 +27,14 @@ class InstructionsCollectionView: UICollectionView {
         self.register(InstructionsCollectionViewCell.self, forCellWithReuseIdentifier: "instructionsCollectionViewCell")
     }
     
-    var menuOption: MenuOption? { didSet { self.reloadData() } }
+    weak var menuOption: MenuOption? { didSet { self.reloadData() } }
     
     // MARK:  Delegate
-    var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
+    weak var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        self.setup()
     }
 
 }
@@ -47,7 +52,7 @@ extension InstructionsCollectionView: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "instructionsCollectionViewCell", for: indexPath) as? InstructionsCollectionViewCell {
             
             switch self.menuOption?.brandType {
-            case .HelloFresh:
+            case .HelloFresh, .HomeChef :
                 let instructions = self.menuOption?.recipe?.instructions?[indexPath.item]
                 cell.instructions = instructions
             case .BlueApron :

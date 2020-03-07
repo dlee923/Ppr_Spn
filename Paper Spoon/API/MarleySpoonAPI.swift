@@ -1,19 +1,19 @@
 //
-//  HomeChefAPI.swift
+//  MarleySpoonAPI.swift
 //  Paper Spoon
 //
-//  Created by Daniel Lee on 12/22/19.
-//  Copyright © 2019 DLEE. All rights reserved.
+//  Created by Daniel Lee on 3/5/20.
+//  Copyright © 2020 DLEE. All rights reserved.
 //
 
 import Foundation
 
-class HomeChefAPI: BrandAPI {
+class MarleySpoonAPI: BrandAPI {
     
-    static let shared = HomeChefAPI()
+    static let shared = MarleySpoonAPI()
     
     override func retrieveMenuOptions(completion: ((Any) -> ())? ) {
-        let urlString = "https://www.homechef.com/our-menu"
+        let urlString = "https://marleyspoon.com/menu"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -21,6 +21,7 @@ class HomeChefAPI: BrandAPI {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
+                
                 let menuOptions = self.parseMenuOptions(htmlCode: htmlCode)
                 completion?(menuOptions)
             }
@@ -75,7 +76,7 @@ class HomeChefAPI: BrandAPI {
 
 
 // MARK:  All parsing of html functions
-extension HomeChefAPI {
+extension MarleySpoonAPI {
     
     // Retrieve recipe MENU OPTIONS
     fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {
@@ -83,6 +84,7 @@ extension HomeChefAPI {
         var menuOptions = [MenuOption]()
         
         // cut html range
+        print(htmlCode)
         let htmlCodeLimit = htmlCode.components(separatedBy: "Protein Packs").first ?? ""
         
         // parse html code here
@@ -108,7 +110,7 @@ extension HomeChefAPI {
             let recipeLink = recipeLinkSection0?.components(separatedBy: "\" data-pin-description").first ?? ""
             
             // create menu option
-            let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HomeChef)
+            let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .MarleySpoon)
             menuOptions.append(menuOption)
         }
         
@@ -154,7 +156,7 @@ extension HomeChefAPI {
             let ingredientName = ingredientDetails?[2] ?? ""
             let ingredientName0 = ingredientName.replacingOccurrences(of: "amp;", with: "")
             
-//            print("\(ingredientAmount) \(unitMeasure) \(ingredientName0)")
+            print("\(ingredientAmount) \(unitMeasure) \(ingredientName0)")
             
             let ingredientData = Ingredients(name: ingredientName0,
                                              amount: ingredientAmount,
@@ -186,11 +188,9 @@ extension HomeChefAPI {
         for x in 1..<instructionsSection0.count {
             let instructionsSection = instructionsSection0[x].components(separatedBy: "itemprop='description'><p>").last
             let instruction = instructionsSection?.components(separatedBy: "</p>").first ?? ""
-            let filteredInstruction_ = instruction.replacingOccurrences(of: "&#39;", with: "'")
-            let filteredInstruction = filteredInstruction_.replacingOccurrences(of: "<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
+            let filteredInstruction = instruction.replacingOccurrences(of: "&#39;|<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
             let filteredInstruction0 = filteredInstruction.replacingOccurrences(of: "&frac12;&quot;", with: "1/2")
-            print(filteredInstruction0)
-            instructions.append(filteredInstruction0)
+            instructions.append(filteredInstruction)
         }
         
         return instructions
@@ -275,8 +275,7 @@ extension HomeChefAPI {
         descriptionSection0.removeFirst()
         let descriptionsSection1 = descriptionSection0[0].components(separatedBy: "itemprop='description'>\n<p>").last
         let description = descriptionsSection1?.components(separatedBy: "</p>").first
-        let filteredDescription0 = description?.replacingOccurrences(of: "&#39;", with: "'")
-        let filteredDescription = filteredDescription0?.replacingOccurrences(of: "<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
+        let filteredDescription = description?.replacingOccurrences(of: "&#39;|<strong>|</strong>|<em>|</em>", with: "'")
         
         return filteredDescription ?? ""
     }

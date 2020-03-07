@@ -59,6 +59,7 @@
 		70AD620423137A0200ABE458 /* MealsPrepCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */; };
 		70AD620723137EFD00ABE458 /* MealsPrepCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */; };
 		70AD620823137EFD00ABE458 /* MealsPrepCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */; };
+		70C00FF02411FE7B007B16F2 /* MarleySpoonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C00FEF2411FE7B007B16F2 /* MarleySpoonAPI.swift */; };
 		70D46CA2235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CA1235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift */; };
 		70D46CAC235C109900AB3488 /* IngredientsListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CA9235C109800AB3488 /* IngredientsListCollectionView.swift */; };
 		70D46CAD235C109900AB3488 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D46CAA235C109800AB3488 /* RatingView.swift */; };
@@ -176,6 +177,7 @@
 		70AD620323137A0200ABE458 /* MealsPrepCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionView.swift; sourceTree = "<group>"; };
 		70AD620523137EFD00ABE458 /* MealsPrepCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPrepCollectionViewCell.swift; sourceTree = "<group>"; };
 		70AD620623137EFD00ABE458 /* MealsPrepCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealsPrepCollectionViewCell.xib; sourceTree = "<group>"; };
+		70C00FEF2411FE7B007B16F2 /* MarleySpoonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarleySpoonAPI.swift; sourceTree = "<group>"; };
 		70D46CA1235BFFC600AB3488 /* EmptyCompiledIngredientsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCompiledIngredientsCell.swift; sourceTree = "<group>"; };
 		70D46CA9235C109800AB3488 /* IngredientsListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsListCollectionView.swift; sourceTree = "<group>"; };
 		70D46CAA235C109800AB3488 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				70E6F4B12198EE93005C08EE /* HelloFreshAPI.swift */,
 				70FCDD8823A6D59B00DC7BA2 /* BlueApronAPI.swift */,
 				70FCDD8E23B0739A00DC7BA2 /* HomeChefAPI.swift */,
+				70C00FEF2411FE7B007B16F2 /* MarleySpoonAPI.swift */,
 				701058D922FF0CCB00D4D9FD /* ImageAPI.swift */,
 			);
 			path = API;
@@ -748,6 +751,7 @@
 				700D4EEE23DAA3E4003E6503 /* BrandDashboardControllerTransitions.swift in Sources */,
 				701058F12308C3BF00D4D9FD /* CompiledIngredientsList.swift in Sources */,
 				700D4EFA23DCF55F003E6503 /* IngredientsModel.swift in Sources */,
+				70C00FF02411FE7B007B16F2 /* MarleySpoonAPI.swift in Sources */,
 				701058EE2308C33B00D4D9FD /* CompiledIngredientsViewController.swift in Sources */,
 				707EE0A22365F3660038592A /* EmptyMealKitsCell.swift in Sources */,
 				70FCDD8723A55A3900DC7BA2 /* InstructionsImgCollectionViewCell.swift in Sources */,

@@ -36,6 +36,7 @@ class BlueApronAPI: BrandAPI {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
+                print(htmlCode)
                 let menuOptions = self.parseMenuOptions(htmlCode: htmlCode)
                 completion?(menuOptions)
             }
@@ -85,7 +86,6 @@ extension BlueApronAPI {
             // create container to store menu options
             var menuOptions = [MenuOption]()
             // parse html code here
-            print(htmlCode)
             let weeklyRecipes = htmlCode.components(separatedBy: "Week of")[1]
             
             let recipeLinks = htmlCode.components(separatedBy: "class=\"recipe-card recipe-product-card\" href=\"")

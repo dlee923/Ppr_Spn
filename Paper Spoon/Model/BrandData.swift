@@ -21,4 +21,5 @@ enum BrandType {
     case EveryPlate
     case Plated
     case PurpleCarrot
+    case MarleySpoon
 }

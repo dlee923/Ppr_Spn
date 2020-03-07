@@ -44,10 +44,10 @@ class BrandDashboardController: UIPageViewController {
         // must wrap in a background thread in order to avoid pausing the launch screen
         DispatchQueue.global().async {
             
-//            self.downloadData(brand: .HelloFresh)
+            self.downloadData(brand: .HelloFresh)
             self.downloadData(brand: .HomeChef)
 //            self.downloadData(brand: .BlueApron)
-            
+//            self.downloadData(brand: .MarleySpoon)
             
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI

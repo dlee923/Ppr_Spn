@@ -16,7 +16,7 @@ class InstructionsViewController: UIViewController {
     }
     
     deinit {
-        print("letting go of instructions view")
+        print("letting go of instructions viewcontroller")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -27,7 +27,7 @@ class InstructionsViewController: UIViewController {
     var instructionsCollectionView: InstructionsCollectionView?
     var instructionsImgCollectionView: InstructionsImgCollectionView?
     var finishedCookingBtn = UIButton()
-    var menuOption: MenuOption? {
+    weak var menuOption: MenuOption? {
         didSet {
             self.instructionsCollectionView?.menuOption = self.menuOption
             self.instructionsImgCollectionView?.menuOption = self.menuOption

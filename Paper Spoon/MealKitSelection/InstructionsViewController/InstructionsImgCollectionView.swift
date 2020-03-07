@@ -15,6 +15,10 @@ class InstructionsImgCollectionView: UICollectionView {
         self.setup()
     }
     
+    deinit {
+        print("letting go of instructions img collectionview")
+    }
+    
     private func setup() {
         self.delegate = self
         self.dataSource = self
@@ -25,8 +29,8 @@ class InstructionsImgCollectionView: UICollectionView {
         self.register(InstructionsImgCollectionViewCell.self, forCellWithReuseIdentifier: "InstructionsImgCollectionViewCell")
     }
     
-    var menuOption: MenuOption?
-    var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
+    weak var menuOption: MenuOption?
+    weak var instructionsViewControllerDelegate: InstructionsViewControllerDelegate?
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)

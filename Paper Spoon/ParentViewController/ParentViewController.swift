@@ -35,7 +35,6 @@ class ParentViewController: UITabBarController {
         
         // set random splash image
         let splashImageNumber = Int.random(in: 0 ..< 6)
-        print(splashImageNumber)
         self.splashImageView?.splashImage.image = UIImage(named: "splash\(splashImageNumber)")
     }
     
