@@ -57,6 +57,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.backgroundColor = UIColor.clear
         self.subtitleView.textColor = UIColor.black.withAlphaComponent(0.7)
         self.subtitleView.backgroundColor = UIColor.clear
+        self.titleView.textColor = self.titleViewColor
         self.caloriesLabel.textColor = UIColor.themeColor2
     }
     
@@ -111,7 +112,7 @@ class MenuOptionListCell: UICollectionViewCell {
         self.selectionCheckMarkView.isHidden = true
         self.selectionCheckMarkView.layer.borderWidth = 3
         self.selectionCheckMarkView.layer.borderColor = self.titleViewColorSelected.cgColor
-        self.selectionCheckMarkView.backgroundColor = UIColor.themeColor1.withAlphaComponent(0.6)
+        self.selectionCheckMarkView.backgroundColor = UIColor.themeColor2.withAlphaComponent(0.2)
         
         self.selectionCheckMarkView.contentMode = .scaleAspectFill
         self.selectionCheckMarkView.layer.cornerRadius = 5

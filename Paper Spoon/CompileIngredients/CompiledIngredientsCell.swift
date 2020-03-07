@@ -13,7 +13,9 @@ class CompiledIngredientsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.setDefaultImg()
         self.selectionStyle = .none
+        self.backgroundColor = UIColor.themeColor1
         self.ingredientName.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1
         self.setFonts()
@@ -53,8 +55,15 @@ class CompiledIngredientsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    private func setDefaultImg() {
+        // add default image
+        self.ingredientImg.image = UIImage(named: "ingredients_hf")?.withRenderingMode(.alwaysTemplate)
+        self.ingredientImg.tintColor = UIColor.themeColor4
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.setDefaultImg()
         self.selectionStyle = .none
         self.ingredientName.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1

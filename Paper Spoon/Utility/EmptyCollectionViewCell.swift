@@ -14,6 +14,7 @@ class EmptyCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.addEmptyContainer()
         self.addMessage()
+        self.backgroundColor = UIColor.themeColor1
     }
     
     var image = UIImageView()
@@ -74,6 +75,7 @@ class EmptyTableViewCell: UITableViewCell {
         self.addEmptyContainer()
         self.addMessage()
 //        self.addImage()
+        self.backgroundColor = UIColor.themeColor1
     }
     
     var cellImageView = UIImageView()

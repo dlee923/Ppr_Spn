@@ -52,6 +52,7 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
         //here, be sure you set the font type and size that matches the one set in the storyboard label
         label.font = UIFont.fontSunflower?.withSize(20)
         label.text = "Favorite Recipes"
+        label.textColor = UIColor.themeColor2
         label.sizeToFit()
         return CGSize(width: collectionView.frame.width, height: label.frame.height + 30)
     }

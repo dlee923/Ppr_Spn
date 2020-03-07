@@ -17,14 +17,14 @@ extension MealKitsCollectionViewCell {
         self.likeButton.tintColor = self.splashColor ?? UIColor.blue
         
         // modify nutrition colors
-        self.proteinLbl.backgroundColor = self.splashColor ?? UIColor.blue
-        self.fatsLbl.backgroundColor = self.splashColor ?? UIColor.blue
-        self.carbsLbl.backgroundColor = self.splashColor ?? UIColor.blue
-        self.caloriesLbl.backgroundColor = self.splashColor ?? UIColor.blue
-        self.protein.backgroundColor = self.splashColor ?? UIColor.blue
-        self.fats.backgroundColor = self.splashColor ?? UIColor.blue
-        self.carbs.backgroundColor = self.splashColor ?? UIColor.blue
-        self.calories.backgroundColor = self.splashColor ?? UIColor.blue
+        self.proteinLbl.textColor = self.splashColor ?? UIColor.blue
+        self.fatsLbl.textColor = self.splashColor ?? UIColor.blue
+        self.carbsLbl.textColor = self.splashColor ?? UIColor.blue
+        self.caloriesLbl.textColor = self.splashColor ?? UIColor.blue
+        self.protein.textColor = self.splashColor ?? UIColor.blue
+        self.fats.textColor = self.splashColor ?? UIColor.blue
+        self.carbs.textColor = self.splashColor ?? UIColor.blue
+        self.calories.textColor = self.splashColor ?? UIColor.blue
     }
     
 }
@@ -87,15 +87,15 @@ extension MealKitsCollectionViewCell {
         carbsLbl.clipsToBounds = true
         caloriesLbl.clipsToBounds = true
         
-        proteinLbl.textAlignment = .center
-        fatsLbl.textAlignment = .center
-        carbsLbl.textAlignment = .center
-        caloriesLbl.textAlignment = .center
+        proteinLbl.textAlignment = .right
+        fatsLbl.textAlignment = .right
+        carbsLbl.textAlignment = .right
+        caloriesLbl.textAlignment = .right
         
-        protein.textAlignment = .center
-        fats.textAlignment = .center
-        carbs.textAlignment = .center
-        calories.textAlignment = .center
+        protein.textAlignment = .right
+        fats.textAlignment = .right
+        carbs.textAlignment = .right
+        calories.textAlignment = .right
         
         // create stackviews
         let labelStackView = UIStackView(arrangedSubviews: [proteinLbl, fatsLbl, carbsLbl, caloriesLbl])
@@ -106,13 +106,21 @@ extension MealKitsCollectionViewCell {
         
         let nutritionStackSubviews = [labelStackView, dataStackView]
         let nutritionFontSize = DeviceViews.nutritionFontSize[Device.current.deviceType] ?? 12
+        let nutritionDataFontSize = DeviceViews.nutritionDataFontSize[Device.current.deviceType] ?? 12
         
-        for stackView in nutritionStackSubviews {
-            for view in stackView.arrangedSubviews {
-                if let label = view as? UILabel {
-                    label.font = UIFont.fontCoolvetica?.withSize(nutritionFontSize)
-                    label.textColor = UIColor.white
-                }
+        // set nutrition title properties
+        for view in nutritionStackSubviews[0].arrangedSubviews {
+            if let label = view as? UILabel {
+                label.font = UIFont.fontBebas?.withSize(nutritionFontSize)
+                label.textColor = UIColor.themeColor2
+            }
+        }
+        
+        // set nutrition data properties
+        for view in nutritionStackSubviews[1].arrangedSubviews {
+            if let label = view as? UILabel {
+                label.font = UIFont.fontBebas?.withSize(nutritionDataFontSize)
+                label.textColor = UIColor.themeColor2
             }
         }
         

@@ -29,7 +29,7 @@ class RecipeListHeader: UIView {
     let headerLabel = UILabel()
     var clearSelectionView = UIStackView()
     let blurView = UIVisualEffectView()
-    let blurEffect = UIBlurEffect(style: .prominent)
+    let blurEffect = UIBlurEffect(style: .extraLight)
     
     // MARK:  Data Variables
     var brands: [Brand]? {
@@ -112,10 +112,11 @@ class RecipeListHeader: UIView {
         clearSelectionText.text = "Clear All"
         clearSelectionText.textAlignment = .right
         clearSelectionText.font = UIFont.fontCoolvetica?.withSize(10)
-        clearSelectionText.textColor = UIColor.themeColor2
+        clearSelectionText.textColor = UIColor.themeColor4
         
         let clearSelectionImage = UIImageView()
-        clearSelectionImage.image = UIImage(named: "cancel_x")
+        clearSelectionImage.image = UIImage(named: "cancel_x")?.withRenderingMode(.alwaysTemplate)
+        clearSelectionImage.tintColor = UIColor.themeColor4
         clearSelectionImage.contentMode = .scaleAspectFit
         clearSelectionImage.translatesAutoresizingMaskIntoConstraints = false
         clearSelectionImage.widthAnchor.constraint(equalToConstant: 10).isActive = true

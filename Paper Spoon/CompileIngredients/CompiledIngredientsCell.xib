@@ -70,6 +70,7 @@
                     <constraint firstItem="ErJ-VA-OXD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="wAQ-3L-4Yf"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="YY0-4v-nvT" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" multiplier="0.35" id="iEe-DD-DgK"/>
             </constraints>

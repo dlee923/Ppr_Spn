@@ -50,6 +50,11 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func addIngredientImage() {
         self.addSubview(self.ingredientImg)
+        
+        // add default image
+        self.ingredientImg.image = UIImage(named: "ingredients_hf.png")?.withRenderingMode(.alwaysTemplate)
+        self.ingredientImg.tintColor = UIColor.themeColor4
+            
         self.ingredientImg.contentMode = .scaleAspectFit
         self.ingredientImg.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -62,6 +67,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func addMeasureAmount() {
         self.measureAmountLbl.font = UIFont.fontSunflower?.withSize(15)
+        self.measureAmountLbl.textColor = UIColor.themeColor2
         self.addSubview(self.measureAmountLbl)
         self.measureAmountLbl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -74,6 +80,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func addLabel() {
         self.label.font = UIFont.fontCoolvetica?.withSize(10)
+        self.label.textColor = UIColor.themeColor2
         self.addSubview(self.label)
         self.label.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -86,7 +93,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
     
     private func addCheckMarkView() {
         self.checkMarkView.isHidden = true
-        self.checkMarkView.backgroundColor = UIColor.themeColor3.withAlphaComponent(0.8)
+        self.checkMarkView.backgroundColor = UIColor.themeColor4
         self.checkMarkView.layer.cornerRadius = 20
         self.checkMarkView.clipsToBounds = true
         self.addSubview(self.checkMarkView)

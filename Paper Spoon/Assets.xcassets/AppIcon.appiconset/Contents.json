@@ -3,13 +3,13 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iPhone_40pt_@1x-3.png",
+      "filename" : "iPhone_40pt_@1x-2.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "iPhone_60pt_@1x-1.png",
+      "filename" : "iPhone_60pt_@1x.png",
       "scale" : "3x"
     },
     {
@@ -80,49 +80,49 @@
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPhone_29pt_@1x-1.png",
+      "filename" : "iPhone_29pt_@1x.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "iPhone_58pt_@2x-1.png",
+      "filename" : "iPhone_58pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "iPhone_40pt_@1x-2.png",
+      "filename" : "iPhone_40pt_@1x.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "iPhone_80pt_@2x-1.png",
+      "filename" : "iPhone_80pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "iPad_76pt_@1x-1.png",
+      "filename" : "iPad_76pt_@1x.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "iPad_152pt_@2x-1.png",
+      "filename" : "iPad_152pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "iPadPro_167pt_@2x-1.png",
+      "filename" : "iPadPro_167pt_@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "iTunes_1024pt_@2x-1.png",
+      "filename" : "iTunes_1024pt_@2x.png",
       "scale" : "1x"
     },
     {

@@ -112,6 +112,7 @@ class CompiledIngredientsList: UITableView, UITableViewDataSource {
         let cell = UITableViewHeaderFooterView(reuseIdentifier: "compiledIngredientsHeader")
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 55))
         label.backgroundColor = UIColor.themeColor1
+        label.textColor = UIColor.themeColor2
         label.textAlignment = .center
         label.numberOfLines = 2
         
