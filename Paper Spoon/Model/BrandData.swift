@@ -14,12 +14,12 @@ struct Brand {
     var largeImage: UIImage
 }
 
-enum BrandType {
-    case HelloFresh
-    case BlueApron
-    case HomeChef
-    case EveryPlate
-    case Plated
-    case PurpleCarrot
-    case MarleySpoon
+enum BrandType: String {
+    case HelloFresh = "HelloFresh"
+    case BlueApron = "BlueApron"
+    case HomeChef = "HomeChef"
+    case EveryPlate = "EveryPlate"
+    case Plated = "Plated"
+    case PurpleCarrot = "PurpleCarrot"
+    case MarleySpoon = "MarleySpoon"
 }

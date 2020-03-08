@@ -189,7 +189,7 @@ extension HomeChefAPI {
             let filteredInstruction_ = instruction.replacingOccurrences(of: "&#39;", with: "'")
             let filteredInstruction = filteredInstruction_.replacingOccurrences(of: "<strong>|</strong>|<em>|</em>", with: "", options: .regularExpression, range: nil)
             let filteredInstruction0 = filteredInstruction.replacingOccurrences(of: "&frac12;&quot;", with: "1/2")
-            print(filteredInstruction0)
+            
             instructions.append(filteredInstruction0)
         }
         

@@ -109,7 +109,9 @@ extension BrandDashboardController {
                         
                         // increment count through menu options
                         menuOptionsCount += 1
-                        print("\(menuOptionsCount) / \(menuOptions.count)")
+                        self.mainThread.async {
+                            self.activityIndicator.progressLabel.text = "Loading\n\(brand.rawValue):\n\n\(menuOptionsCount) / \(menuOptions.count)"
+                        }
                         
                         // trigger leave group if final completion
                         if menuOptionsCount >= menuOptions.count {
@@ -122,6 +124,34 @@ extension BrandDashboardController {
         }
         self.dispatchGroup.enter()
         self.dispatchGroup.wait()
+    }
+    
+    
+    internal func retrieveSingleRecipeData(brand: BrandType) {
+        guard let menuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
+        var brandAPI: BrandAPI?
+        
+        switch brand {
+        case .HelloFresh : brandAPI = HelloFreshAPI.shared
+        case .BlueApron  : brandAPI = BlueApronAPI.shared
+        case .HomeChef   : brandAPI = HomeChefAPI.shared
+        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
+        default: return
+        }
+        
+        // download recipe details for each menu option
+        for menuOption in menuOptions {
+            let retrieveRecipeData = DispatchWorkItem {
+                brandAPI?.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
+                    
+                    // find index for recipe in menu options and attach recipe object
+                    if let menuIndex = self.menuOptionsObj?.selectedMenuOptions.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                        self.menuOptionsObj?.selectedMenuOptions[menuIndex].recipe = recipe
+                    }
+                })
+            }
+            self.backgroundThread.async(group: dispatchGroup, execute: retrieveRecipeData)
+        }
     }
     
     
@@ -153,20 +183,9 @@ extension BrandDashboardController {
                                image:       UIImage(named: "hellofresh_x1.png")!,
                                largeImage:  UIImage(named: "hellofresh_x2.png")!)
         
-        let blueApron =  Brand(name:        .BlueApron,
-                               image:       UIImage(named: "blueapron_x1.png")!,
-                               largeImage:  UIImage(named: "blueapron_x2.png")!)
-        
-        let marleySpoon = Brand(name:        .EveryPlate,
-                               image:       UIImage(named: "plated_x1.png")!,
-                               largeImage:  UIImage(named: "hellofresh_x2.png")!)
-        
         let homeChef =   Brand(name:        .HomeChef,
                                image:       UIImage(named: "homechef_x1.png")!,
                                largeImage:  UIImage(named: "homechef_x2.png")!)
-        
-//        let plated = Brand(name: .Plated, image: UIImage(named: "plated_x1.png")!)
-//        let purpleCarrot = Brand(name: .PurpleCarrot, image: UIImage(named: "plated_x1.png")!)
         
         self.brands = [
             helloFresh,
@@ -186,14 +205,11 @@ extension BrandDashboardController {
             let dispatchWorkItem = DispatchWorkItem(block: {
                 
                 if let imageLink = self.reducedCompiledIngredients[x].imageLink {
-                    print(imageLink)
                     ImageAPI.shared.downloadImage(urlLink: imageLink, completion: {
                         self.reducedCompiledIngredients[x].image = UIImage(data: $0)
                         self.workItemCompletionCount += 1
                         
                         if self.workItemCompletionCount >= self.workItemCompletionLimit {
-                            print("\(self.workItemCompletionCount) / \(self.workItemCompletionLimit)")
-                            print("done")
                             self.dispatchGroup.leave()
                         }
                     })
@@ -239,5 +255,20 @@ extension BrandDashboardController {
             }
             self.backgroundThread.async(group: self.dispatchGroup, execute: dispatchWorkItem)
         }
+    }
+    
+    
+    internal func loadSavedData() {
+//        if let favoritesMenuOptions = self.loadModel.loadObject(variable: "favoritesMenuOptions") as? [MenuOption] {
+//            for menuOption in favoritesMenuOptions {
+//                self.retrieveRecipeData(brand: menuOption.brandType)
+//            }
+//        }
+        
+        if let selectedMenuOptions = self.loadModel.loadObject(variable: "selectedMenuOptions") as? [MenuOption] {
+            self.menuOptionsObj?.selectedMenuOptions = selectedMenuOptions
+            self.retrieveSingleRecipeData(brand: selectedMenuOptions.first?.brandType ?? .HelloFresh)
+        }
+        
     }
 }

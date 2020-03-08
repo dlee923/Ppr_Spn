@@ -60,7 +60,7 @@ class MenuOption: NSObject, NSCoding {
         coder.encode(recipeName, forKey: "recipeName")
         coder.encode(recipeLink, forKey: "recipeLink")
         coder.encode(recipeSubtitle, forKey: "recipeSubtitle")
-        coder.encode(brandType, forKey: "brandType")
+        coder.encode(brandType.rawValue, forKey: "brandType")
     }
     
     // load object with saved data
@@ -68,7 +68,19 @@ class MenuOption: NSObject, NSCoding {
         let recipeName = coder.decodeObject(forKey: "recipeName") as? String ?? ""
         let recipeLink = coder.decodeObject(forKey: "recipeLink") as? String ?? ""
         let recipeSubtitle = coder.decodeObject(forKey: "recipeSubtitle") as? String ?? ""
-        self.init(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
+        let brandTypeString = coder.decodeObject(forKey: "brandType") as? String ?? ""
+        
+        var brandType: BrandType?
+        
+        switch brandTypeString {
+        case "HelloFresh" : brandType = .HelloFresh
+        case "BlueApron" : brandType = .BlueApron
+        case "HomeChef" : brandType = .HomeChef
+        case "Plated" : brandType = .Plated
+        default : break
+        }
+        
+        self.init(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: brandType ?? .HelloFresh)
     }
     
 }

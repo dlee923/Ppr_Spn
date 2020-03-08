@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SaveModel {
+class LoadModel {
     
     func loadData(variable: String) -> Any {
         if let object = UserDefaults.standard.value(forKey: variable) {

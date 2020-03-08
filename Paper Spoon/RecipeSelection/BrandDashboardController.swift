@@ -59,6 +59,10 @@ class BrandDashboardController: UIPageViewController {
             }
         }
         
+        DispatchQueue.global().async {
+            self.loadSavedData()
+        }
+        
     }
     
     
@@ -162,6 +166,8 @@ class BrandDashboardController: UIPageViewController {
     // MARK: DispatchGroup variables
     var workItemCompletionCount: Int = 0
     var workItemCompletionLimit: Int = 0
+    
+    let loadModel = LoadModel()
 
 }
 
