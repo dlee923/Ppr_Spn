@@ -71,7 +71,7 @@ class FavCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.recipeTitle)
         self.recipeTitle.backgroundColor = UIColor.themeColor1
         self.recipeTitle.font = UIFont.fontBebas?.withSize(20)
-        self.recipeTitle.textColor = UIColor.themeColor1
+        self.recipeTitle.textColor = UIColor.themeColor2
         self.recipeTitle.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -86,7 +86,7 @@ class FavCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.recipeSubtitle)
         self.recipeSubtitle.backgroundColor = UIColor.themeColor1
         self.recipeSubtitle.font = UIFont.fontBebas?.withSize(13)
-        self.recipeSubtitle.textColor = UIColor.themeColor1
+        self.recipeSubtitle.textColor = UIColor.themeColor2
         self.recipeSubtitle.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

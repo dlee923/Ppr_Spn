@@ -14,12 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    let parentViewController = ParentViewController()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ParentViewController()
+        window?.rootViewController = parentViewController
         
         return true
     }
@@ -32,6 +33,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        let selectedMenuOptions = try? NSKeyedArchiver.archivedData(withRootObject: parentViewController.menuOptionsObj.selectedMenuOptions as Any, requiringSecureCoding: false)
+        UserDefaults.standard.set(selectedMenuOptions, forKey: "selectedMenuOptions")
+        
+        let favorites = parentViewController.menuOptionsObj.selectedMenuOptions.filter({ $0.isLiked == true })
+        let favoritesMenuOptions = try? NSKeyedArchiver.archivedData(withRootObject: favorites as Any, requiringSecureCoding: false)
+        UserDefaults.standard.set(favoritesMenuOptions, forKey: "favoritesMenuOptions")
+        
+        UserDefaults.standard.synchronize()
+        
+        print("data saving...")
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {

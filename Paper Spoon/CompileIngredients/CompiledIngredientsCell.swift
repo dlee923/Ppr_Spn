@@ -13,12 +13,13 @@ class CompiledIngredientsCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.setDefaultImg()
+
         self.selectionStyle = .none
         self.backgroundColor = UIColor.themeColor1
         self.ingredientName.backgroundColor = UIColor.themeColor1
         self.measureAmount.backgroundColor = UIColor.themeColor1
         self.setFonts()
+        self.setDefaultImg()
     }
 
     @IBOutlet weak var ingredientName: UILabel!
@@ -29,8 +30,8 @@ class CompiledIngredientsCell: UITableViewCell {
     var ingredient: Ingredients? {
         didSet {
             self.ingredientName.text = self.ingredient?.name
-            self.measureAmount.text = "\(self.ingredient?.amount?.clean ?? "1") \(self.ingredient?.measurementType ?? "")"
-            self.ingredientImg.image = self.ingredient?.image
+            self.measureAmount.text = "\(self.ingredient?.amount?.clean ?? "1") \(self.ingredient?.measurementType ?? "")"  
+            if self.ingredient?.image != nil { self.ingredientImg.image = self.ingredient?.image }
         }
     }
     

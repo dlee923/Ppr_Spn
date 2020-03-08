@@ -26,8 +26,8 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
                 self.measureAmountLbl.text = "\(ingredientAmount.clean) \(ingredientMeasure)"
             }
             
-            // set ingredient image
-            self.ingredientImg.image = self.ingredient?.image
+            // set ingredient image if not nil
+            if self.ingredient?.image != nil { self.ingredientImg.image = self.ingredient?.image }
             
             // enable visibility of 'packed' label
             self.checkMarkView.isHidden = self.ingredient?.isPacked == true ? false : true
@@ -52,7 +52,7 @@ class IngredientsPrepCollectionViewCell: UICollectionViewCell {
         self.addSubview(self.ingredientImg)
         
         // add default image
-        self.ingredientImg.image = UIImage(named: "ingredients_hf.png")?.withRenderingMode(.alwaysTemplate)
+        self.ingredientImg.image = UIImage(named: "ingredients_hf")?.withRenderingMode(.alwaysTemplate)
         self.ingredientImg.tintColor = UIColor.themeColor4
             
         self.ingredientImg.contentMode = .scaleAspectFit

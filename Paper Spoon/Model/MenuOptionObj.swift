@@ -8,7 +8,8 @@
 
 import UIKit
 
-class MenuOptionObj {
+class MenuOptionObj{
+    
     var menuOptions = [BrandType: [MenuOption]]()
     var selectedMenuOptions = [MenuOption]()
     var kittedMenuOptions = [MenuOption]()
@@ -29,7 +30,8 @@ class MenuOptionObj {
 }
 
 
-class MenuOption {
+class MenuOption: NSObject, NSCoding {
+    
     var recipeName: String
     var recipeLink: String
     var recipe: Recipe?
@@ -44,10 +46,29 @@ class MenuOption {
     init(recipeName: String, recipeLink: String, recipe: Recipe?, recipeSubtitle: String, brandType: BrandType) {
         self.recipeName = recipeName
         self.recipeLink = recipeLink
+        
         if let recipe0 = recipe {
             self.recipe = recipe0
         }
+        
         self.recipeSubtitle = recipeSubtitle
         self.brandType = brandType
     }
+    
+    // assign a key for items to be saved
+    func encode(with coder: NSCoder) {
+        coder.encode(recipeName, forKey: "recipeName")
+        coder.encode(recipeLink, forKey: "recipeLink")
+        coder.encode(recipeSubtitle, forKey: "recipeSubtitle")
+        coder.encode(brandType, forKey: "brandType")
+    }
+    
+    // load object with saved data
+    required convenience init?(coder: NSCoder) {
+        let recipeName = coder.decodeObject(forKey: "recipeName") as? String ?? ""
+        let recipeLink = coder.decodeObject(forKey: "recipeLink") as? String ?? ""
+        let recipeSubtitle = coder.decodeObject(forKey: "recipeSubtitle") as? String ?? ""
+        self.init(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .HelloFresh)
+    }
+    
 }

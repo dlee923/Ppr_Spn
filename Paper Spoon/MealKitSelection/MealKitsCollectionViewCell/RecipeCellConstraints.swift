@@ -129,8 +129,8 @@ extension MealKitsCollectionViewCell {
         self.nutritionStackContainer.translatesAutoresizingMaskIntoConstraints = false
         self.nutritionStackContainer.heightAnchor.constraint(equalTo: self.ingredientsButton.heightAnchor, constant: -5).isActive = true
         self.nutritionStackContainer.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-        self.nutritionStackContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.8).isActive = true
-        self.nutritionStackContainer.trailingAnchor.constraint(equalTo: self.ingredientsButton.leadingAnchor, constant: -sideMargin * 0.4).isActive = true
+        self.nutritionStackContainer.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: sideMargin * 0.4).isActive = true
+        self.nutritionStackContainer.trailingAnchor.constraint(equalTo: self.ingredientsButton.leadingAnchor, constant: -sideMargin * 0.8).isActive = true
         
         self.nutritionStack.translatesAutoresizingMaskIntoConstraints = false
         self.nutritionStack.topAnchor.constraint(equalTo: self.nutritionStackContainer.topAnchor).isActive = true
