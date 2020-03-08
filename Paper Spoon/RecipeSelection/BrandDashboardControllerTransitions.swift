@@ -92,7 +92,7 @@ extension BrandDashboardController {
         self.view.addSubview(selectedMenuOptionView)
         selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
         self.selectedOptionsClosed = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
-        self.selectedOptionsOpen = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        self.selectedOptionsOpen = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 75)
         
         NSLayoutConstraint.activate([
             selectedMenuOptionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),

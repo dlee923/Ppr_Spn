@@ -302,11 +302,12 @@ extension BrandDashboardController {
 //        }
         
         if let selectedMenuOptions = self.loadModel.loadObject(variable: "selectedMenuOptions") as? [MenuOption] {
-            self.menuOptionsObj?.kittedMenuOptions = selectedMenuOptions
-            backgroundThread.sync {
-                self.retrieveSingleRecipeData(brand: selectedMenuOptions.first?.brandType ?? .HelloFresh)
+            if selectedMenuOptions.count > 0 {
+                self.menuOptionsObj?.kittedMenuOptions = selectedMenuOptions
+                backgroundThread.sync {
+                    self.retrieveSingleRecipeData(brand: selectedMenuOptions.first?.brandType ?? .HelloFresh)
+                }
             }
-            
         }
         
     }

@@ -26,7 +26,7 @@ class IngredientsPillCell: UICollectionViewCell {
     internal func setup() {
         self.layer.cornerRadius = 10
         self.clipsToBounds = true
-        self.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         
         self.addLabel()
         self.modifyLabel()

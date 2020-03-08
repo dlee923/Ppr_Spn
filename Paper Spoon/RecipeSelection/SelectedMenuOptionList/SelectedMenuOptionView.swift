@@ -19,16 +19,18 @@ class SelectedMenuOptionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSelectNewMealsBtnView()
-        self.addSelectNewMealsBtn()
+
         self.addSelectedMenuOptionList()
-        self.layer.cornerRadius = 5
+        self.backgroundColor = UIColor.themeColor1
+        self.layer.cornerRadius = 20
+        self.clipsToBounds = true
     }
     
     // MARK: Variables
     var selectedMenuOptionList = SelectedMenuOptionList(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var selectNewMealsBtn = UIButton()
-    let selectNewMealsBtnView = UIView()
-    var contentInsetValue: CGFloat = 100
+//    var selectNewMealsBtn = UIButton()
+    let selectNewMealsBtnView = NextStepBtnView()
+    var contentInsetValue: CGFloat = 20
     
     // MARK: Delegates
     var brandDashboardControllerDelegate: BrandDashboardControllerDelegate?
@@ -47,28 +49,33 @@ class SelectedMenuOptionView: UIView {
             self.selectNewMealsBtnView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.06),
             self.selectNewMealsBtnView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             self.selectNewMealsBtnView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            self.selectNewMealsBtnView.topAnchor.constraint(equalTo: self.topAnchor, constant: (headerSize + menuOptionListInset + statusBar))
+            self.selectNewMealsBtnView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
         ])
+        
+        self.selectNewMealsBtnView.compileIngredientsBtn?.setTitle("Select Different Meals", for: .normal)
+        self.selectNewMealsBtnView.compileIngredientsBtn?.addTarget(self, action: #selector(self.resetMealSelection), for: .touchUpInside)
+        self.selectNewMealsBtnView.finger.removeFromSuperview()
+        self.selectNewMealsBtnView.compileIngredientsBtn?.startPulseAnimation()
     }
     
-    private func addSelectNewMealsBtn() {
-        self.selectNewMealsBtn.setTitle("Select Different Meals", for: .normal)
-        self.selectNewMealsBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
-        self.selectNewMealsBtn.layer.cornerRadius = 5
-        self.selectNewMealsBtn.backgroundColor = UIColor.themeColor4
-        self.selectNewMealsBtnView.addSubview(self.selectNewMealsBtn)
-        
-        self.selectNewMealsBtn.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            self.selectNewMealsBtn.heightAnchor.constraint(equalTo: self.selectNewMealsBtnView.heightAnchor, multiplier: 0.85),
-            self.selectNewMealsBtn.centerXAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerXAnchor),
-            self.selectNewMealsBtn.widthAnchor.constraint(equalTo: self.selectNewMealsBtnView.widthAnchor, multiplier: 0.5),
-            self.selectNewMealsBtn.centerYAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerYAnchor)
-        ])
-        
-        self.selectNewMealsBtn.addTarget(self, action: #selector(self.resetMealSelection), for: .touchUpInside)
-    }
+//    private func addSelectNewMealsBtn() {
+//        self.selectNewMealsBtn.setTitle("Select Different Meals", for: .normal)
+//        self.selectNewMealsBtn.titleLabel?.font = UIFont.fontSunflower?.withSize(12)
+//        self.selectNewMealsBtn.layer.cornerRadius = 5
+//        self.selectNewMealsBtn.backgroundColor = UIColor.themeColor4
+//        self.selectNewMealsBtnView.addSubview(self.selectNewMealsBtn)
+//
+//        self.selectNewMealsBtn.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            self.selectNewMealsBtn.heightAnchor.constraint(equalTo: self.selectNewMealsBtnView.heightAnchor, multiplier: 0.85),
+//            self.selectNewMealsBtn.centerXAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerXAnchor),
+//            self.selectNewMealsBtn.widthAnchor.constraint(equalTo: self.selectNewMealsBtnView.widthAnchor, multiplier: 0.5),
+//            self.selectNewMealsBtn.centerYAnchor.constraint(equalTo: self.selectNewMealsBtnView.centerYAnchor)
+//        ])
+//
+//        self.selectNewMealsBtn.addTarget(self, action: #selector(self.resetMealSelection), for: .touchUpInside)
+//    }
     
     private func addSelectedMenuOptionList() {
         self.addSubview(selectedMenuOptionList)

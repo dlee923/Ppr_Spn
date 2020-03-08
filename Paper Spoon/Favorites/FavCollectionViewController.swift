@@ -93,6 +93,7 @@ class FavCollectionViewController: UICollectionViewController, UICollectionViewD
         if let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "favHeader", for: indexPath) as? PlainHeaderCell {
             
             header.titleLabel.numberOfLines = 2
+            header.titleLabel.textColor = UIColor.themeColor2
             
             let titleText = NSMutableAttributedString(string: "Favorite Recipes\nSelect from your favorites here!")
             titleText.addAttributes([NSAttributedString.Key.font : UIFont.fontSunflower?.withSize(10) ?? UIFont.systemFont(ofSize: 20)], range: NSRange(location: 0, length: titleText.length))
