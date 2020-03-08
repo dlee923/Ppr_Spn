@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        let selectedMenuOptions = try? NSKeyedArchiver.archivedData(withRootObject: parentViewController.menuOptionsObj.selectedMenuOptions as Any, requiringSecureCoding: false)
+        let selectedMenuOptions = try? NSKeyedArchiver.archivedData(withRootObject: parentViewController.menuOptionsObj.kittedMenuOptions as Any, requiringSecureCoding: false)
         UserDefaults.standard.set(selectedMenuOptions, forKey: "selectedMenuOptions")
         
         let favorites = parentViewController.menuOptionsObj.selectedMenuOptions.filter({ $0.isLiked == true })

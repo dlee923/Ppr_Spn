@@ -110,7 +110,7 @@ extension BrandDashboardController {
                         // increment count through menu options
                         menuOptionsCount += 1
                         self.mainThread.async {
-                            self.activityIndicator.progressLabel.text = "Loading\n\(brand.rawValue):\n\n\(menuOptionsCount) / \(menuOptions.count)"
+                            self.activityIndicator.progressLabel.text = "Loading\n\(brand.rawValue):\n\(menuOptionsCount) / \(menuOptions.count)"
                         }
                         
                         // trigger leave group if final completion
@@ -128,7 +128,7 @@ extension BrandDashboardController {
     
     
     internal func retrieveSingleRecipeData(brand: BrandType) {
-        guard let menuOptions = self.menuOptionsObj?.selectedMenuOptions else { return }
+        guard let menuOptions = self.menuOptionsObj?.kittedMenuOptions else { return }
         var brandAPI: BrandAPI?
         
         switch brand {
@@ -145,13 +145,15 @@ extension BrandDashboardController {
                 brandAPI?.retrieveRecipeInfo(urlString: menuOption.recipeLink, completion: { (recipe) in
                     
                     // find index for recipe in menu options and attach recipe object
-                    if let menuIndex = self.menuOptionsObj?.selectedMenuOptions.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
-                        self.menuOptionsObj?.selectedMenuOptions[menuIndex].recipe = recipe
+                    if let menuIndex = menuOptions.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                        menuOptions[menuIndex].recipe = recipe
+                        self.retrieveSingleThumbnail(brand: brand)
                     }
                 })
             }
             self.backgroundThread.async(group: dispatchGroup, execute: retrieveRecipeData)
         }
+        
     }
     
     
@@ -174,6 +176,40 @@ extension BrandDashboardController {
                 
             }
             self.dispatchGroup.enter()
+            backgroundThread.async(group: dispatchGroup, execute: retrieveThumbnail)
+        }
+    }
+    
+    
+    internal func retrieveSingleThumbnail(brand: BrandType) {
+        guard let menuOptions = self.menuOptionsObj?.kittedMenuOptions else { return }
+        
+        // download thumbnail for each menu option
+        for menuOption in menuOptions {
+            let retrieveThumbnail = DispatchWorkItem {
+                
+                if let thumbnailLink = menuOption.recipe?.recipeImageLink {
+                    ImageAPI.shared.downloadImage(urlLink: thumbnailLink, completion: { (thumbnailData) in
+                        if let menuIndex = menuOptions.firstIndex(where: { $0.recipeLink == menuOption.recipeLink }) {
+                            menuOptions[menuIndex].recipe?.recipeImage = UIImage(data: thumbnailData)
+                            menuOptions[menuIndex].recipe?.thumbnail = UIImage(data: thumbnailData)
+                            
+                            self.mainThread.async {
+                                self.parentViewControllerDelegate?.reloadMealKitSelection()
+                                
+                                // if selected menu options exist then present selection options screen to force user to reset
+                                if self.selectedMenuOptionView == nil {
+                                    // only do it once
+                                    self.setUpIngredientSelectionsView(menuOptions: menuOptions)
+                                }
+                                
+                                self.selectedMenuOptionView?.selectedMenuOptionList.reloadData()
+                            }
+                        }
+                    })
+                }
+                
+            }
             backgroundThread.async(group: dispatchGroup, execute: retrieveThumbnail)
         }
     }
@@ -266,8 +302,11 @@ extension BrandDashboardController {
 //        }
         
         if let selectedMenuOptions = self.loadModel.loadObject(variable: "selectedMenuOptions") as? [MenuOption] {
-            self.menuOptionsObj?.selectedMenuOptions = selectedMenuOptions
-            self.retrieveSingleRecipeData(brand: selectedMenuOptions.first?.brandType ?? .HelloFresh)
+            self.menuOptionsObj?.kittedMenuOptions = selectedMenuOptions
+            backgroundThread.sync {
+                self.retrieveSingleRecipeData(brand: selectedMenuOptions.first?.brandType ?? .HelloFresh)
+            }
+            
         }
         
     }

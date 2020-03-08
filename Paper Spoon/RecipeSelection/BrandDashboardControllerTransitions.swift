@@ -60,7 +60,9 @@ extension BrandDashboardController {
                     self.parentViewControllerDelegate?.changeViewController(index: 1)
                     
                     // setting up selected menu options
-                    self.setUpIngredientSelectionsView()
+                    if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
+                        self.setUpIngredientSelectionsView(menuOptions: selectedMenuOptions)
+                    }
                 })
             })
         }
@@ -82,24 +84,24 @@ extension BrandDashboardController {
     
     
     // setting up selected menu options
-    func setUpIngredientSelectionsView() {
-        if let selectedMenuOptions = self.menuOptionsObj?.selectedMenuOptions {
-            let selectedMenuOptionView = SelectedMenuOptionView(frame: self.view.frame, selectedMenuOptions: selectedMenuOptions)
-            
-            self.view.addSubview(selectedMenuOptionView)
-            selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
-            self.selectedOptionsClosed = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
-            self.selectedOptionsOpen = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor)
-            
-            NSLayoutConstraint.activate([
-                selectedMenuOptionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                selectedMenuOptionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                selectedMenuOptionView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
-            ])
-            self.selectedOptionsOpen?.isActive = true
-            
-            selectedMenuOptionView.brandDashboardControllerDelegate = self
-        }
+    func setUpIngredientSelectionsView(menuOptions: [MenuOption]) {
+        self.selectedMenuOptionView = SelectedMenuOptionView(frame: self.view.frame, selectedMenuOptions: menuOptions)
+        
+        guard let selectedMenuOptionView = self.selectedMenuOptionView else { return }
+        
+        self.view.addSubview(selectedMenuOptionView)
+        selectedMenuOptionView.translatesAutoresizingMaskIntoConstraints = false
+        self.selectedOptionsClosed = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
+        self.selectedOptionsOpen = selectedMenuOptionView.topAnchor.constraint(equalTo: self.view.topAnchor)
+        
+        NSLayoutConstraint.activate([
+            selectedMenuOptionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            selectedMenuOptionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            selectedMenuOptionView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+        ])
+        self.selectedOptionsOpen?.isActive = true
+        
+        selectedMenuOptionView.brandDashboardControllerDelegate = self
     }
     
     

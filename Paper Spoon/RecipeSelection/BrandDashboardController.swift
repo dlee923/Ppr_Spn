@@ -125,6 +125,8 @@ class BrandDashboardController: UIPageViewController {
     var platedViewController = BrandViewController()
     var homeChefViewController = BrandViewController()
     
+    var selectedMenuOptionView: SelectedMenuOptionView?
+    
     // MARK: Multi-threading
     let dispatchGroup = DispatchGroup()
     let backgroundThread = DispatchQueue(label: "backgroundThread")

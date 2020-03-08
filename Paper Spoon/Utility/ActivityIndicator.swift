@@ -32,8 +32,8 @@ class ActivityIndicator: UIActivityIndicatorView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.centerXAnchor.constraint(equalTo: UIApplication.shared.keyWindow!.centerXAnchor).isActive = true
         self.centerYAnchor.constraint(equalTo: UIApplication.shared.keyWindow!.centerYAnchor).isActive = true
-        self.widthAnchor.constraint(equalTo: UIApplication.shared.keyWindow!.widthAnchor, multiplier: 0.25).isActive = true
-        self.heightAnchor.constraint(equalTo: UIApplication.shared.keyWindow!.widthAnchor, multiplier: 0.25).isActive = true
+        self.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         // Add progress label on top of blank layer
         progressLabel.layer.cornerRadius = 10
@@ -42,16 +42,16 @@ class ActivityIndicator: UIActivityIndicatorView {
         progressLabel.textAlignment = .center
         progressLabel.clipsToBounds = true
         progressLabel.numberOfLines = 4
-        progressLabel.font = UIFont.fontSunflower?.withSize(10)
-        progressLabel.text = "Downloading..."
+        progressLabel.font = UIFont.fontBebas?.withSize(13)
+        progressLabel.text = "Loading..."
 
         self.addSubview(progressLabel)
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.progressLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            self.progressLabel.heightAnchor.constraint(equalToConstant: 50),
+            self.progressLabel.heightAnchor.constraint(equalToConstant: 60),
             self.progressLabel.widthAnchor.constraint(equalTo: self.widthAnchor),
-            self.progressLabel.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 15)
+            self.progressLabel.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 20)
         ])
         
         // Start animating indicator
