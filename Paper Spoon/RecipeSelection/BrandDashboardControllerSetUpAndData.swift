@@ -63,10 +63,10 @@ extension BrandDashboardController {
         var brandAPI: BrandAPI?
         
         switch brand {
-        case .HelloFresh : brandAPI = HelloFreshAPI.shared
-        case .BlueApron  : brandAPI = BlueApronAPI.shared
-        case .HomeChef   : brandAPI = HomeChefAPI.shared
-        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
+        case .HelloFresh    : brandAPI = HelloFreshAPI.shared
+        case .BlueApron     : brandAPI = BlueApronAPI.shared
+        case .HomeChef      : brandAPI = HomeChefAPI.shared
+        case .PurpleCarrot  : brandAPI = PurpleCarrotAPI.shared
         default: return
         }
         
@@ -91,10 +91,10 @@ extension BrandDashboardController {
         var brandAPI: BrandAPI?
         
         switch brand {
-        case .HelloFresh : brandAPI = HelloFreshAPI.shared
-        case .BlueApron  : brandAPI = BlueApronAPI.shared
-        case .HomeChef   : brandAPI = HomeChefAPI.shared
-        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
+        case .HelloFresh    : brandAPI = HelloFreshAPI.shared
+        case .BlueApron     : brandAPI = BlueApronAPI.shared
+        case .HomeChef      : brandAPI = HomeChefAPI.shared
+        case .PurpleCarrot  : brandAPI = PurpleCarrotAPI.shared
         default: return
         }
         
@@ -132,10 +132,10 @@ extension BrandDashboardController {
         var brandAPI: BrandAPI?
         
         switch brand {
-        case .HelloFresh : brandAPI = HelloFreshAPI.shared
-        case .BlueApron  : brandAPI = BlueApronAPI.shared
-        case .HomeChef   : brandAPI = HomeChefAPI.shared
-        case .MarleySpoon: brandAPI = MarleySpoonAPI.shared
+        case .HelloFresh    : brandAPI = HelloFreshAPI.shared
+        case .BlueApron     : brandAPI = BlueApronAPI.shared
+        case .HomeChef      : brandAPI = HomeChefAPI.shared
+        case .PurpleCarrot  : brandAPI = PurpleCarrotAPI.shared
         default: return
         }
         

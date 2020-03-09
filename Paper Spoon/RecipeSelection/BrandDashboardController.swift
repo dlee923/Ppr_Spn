@@ -47,7 +47,7 @@ class BrandDashboardController: UIPageViewController {
             self.downloadData(brand: .HelloFresh)
             self.downloadData(brand: .HomeChef)
 //            self.downloadData(brand: .BlueApron)
-//            self.downloadData(brand: .MarleySpoon)
+//            self.downloadData(brand: .PurpleCarrot)
             
             self.dispatchGroup.notify(queue: self.mainThread) {
                 // update UI

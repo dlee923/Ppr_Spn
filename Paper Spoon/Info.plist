@@ -15,11 +15,21 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Sunflower_personal.otf</string>
+		<string>coolvetica rg.ttf</string>
+		<string>BebasNeue-Regular.otf</string>
+		<string>MavenPro-Regular.ttf</string>
+		<string>Cosima-DemoBold.otf</string>
+		<string>Renogare-Regular.otf</string>
+		<string>OldSansBlack.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -36,16 +46,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Sunflower_personal.otf</string>
-		<string>coolvetica rg.ttf</string>
-		<string>BebasNeue-Regular.otf</string>
-		<string>MavenPro-Regular.ttf</string>
-		<string>Cosima-DemoBold.otf</string>
-		<string>Renogare-Regular.otf</string>
-		<string>OldSansBlack.ttf</string>
 	</array>
 </dict>
 </plist>

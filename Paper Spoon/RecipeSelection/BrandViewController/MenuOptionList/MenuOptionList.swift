@@ -121,11 +121,12 @@ class MenuOptionList: OptionListCollectionView {
             // modify recipe header
             self.brandDashboardControllerDelegate?.changeRecipeHeadertext()
             
+            // lock / unlock scrolling
+            self.brandDashboardControllerDelegate?.lockUnlockScrollView()
+            
             // show / hide compile button
             self.brandDashboardControllerDelegate?.showHideCompileButton()
             
-            // lock / unlock scrolling
-            self.brandDashboardControllerDelegate?.lockUnlockScrollView()
         }
     }
     

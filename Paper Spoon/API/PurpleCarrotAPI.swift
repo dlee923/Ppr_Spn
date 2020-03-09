@@ -1,5 +1,5 @@
 //
-//  MarleySpoonAPI.swift
+//  PurpleCarrotAPI.swift
 //  Paper Spoon
 //
 //  Created by Daniel Lee on 3/5/20.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-class MarleySpoonAPI: BrandAPI {
+class PurpleCarrotAPI: BrandAPI {
     
-    static let shared = MarleySpoonAPI()
+    static let shared = PurpleCarrotAPI()
     
     override func retrieveMenuOptions(completion: ((Any) -> ())? ) {
-        let urlString = "https://marleyspoon.com/menu"
+        let urlString = "https://www.purplecarrot.com/weekly-menu"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let err = error {
@@ -21,7 +21,6 @@ class MarleySpoonAPI: BrandAPI {
             }
             if let htmlData = data {
                 guard let htmlCode = String(data: htmlData, encoding: String.Encoding.utf8) else { return }
-                
                 let menuOptions = self.parseMenuOptions(htmlCode: htmlCode)
                 completion?(menuOptions)
             }
@@ -76,7 +75,7 @@ class MarleySpoonAPI: BrandAPI {
 
 
 // MARK:  All parsing of html functions
-extension MarleySpoonAPI {
+extension PurpleCarrotAPI {
     
     // Retrieve recipe MENU OPTIONS
     fileprivate func parseMenuOptions(htmlCode: String) -> [MenuOption] {
@@ -84,34 +83,35 @@ extension MarleySpoonAPI {
         var menuOptions = [MenuOption]()
         
         // cut html range
-        print(htmlCode)
-        let htmlCodeLimit = htmlCode.components(separatedBy: "Protein Packs").first ?? ""
+        let htmlCodeLimit0 = htmlCode.components(separatedBy: "four-servings-dinners-tab-control").last
+        let htmlCodeLimit1 = htmlCode.components(separatedBy: "<h3 id=\"breakfasts\"").first
         
         // parse html code here
-        let recipeLinks = htmlCodeLimit.components(separatedBy: "meal_title\" data-amplitude-value=\"")
+        let recipeLinks = htmlCodeLimit1?.components(separatedBy: "/plant-based-recipes/") ?? [String]()
         
         for x in 1..<(recipeLinks.count) {
                 
             // parse recipe titles
-            let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "data-pin-description=\"").last
-            let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "\" data-pin-media").first ?? ""
-            let recipeSubtitleSection2 = recipeSubtitleSection1.components(separatedBy: "&amp; ").joined()
+            let recipeSubtitleSection0 = recipeLinks[x].components(separatedBy: "<h3 class=\"c-recipe__title c-heading c-heading--brand-7\">").last
+            let recipeSubtitleSection1 = recipeSubtitleSection0?.components(separatedBy: "</span>").first ?? ""
             
             // parse recipe name
-            let recipeName = recipeSubtitleSection2.components(separatedBy: " with").first ?? ""
+            let recipeName0 = recipeSubtitleSection1.components(separatedBy: "<span").first ?? ""
+            let recipeName = recipeName0.replacingOccurrences(of: "\n", with: "")
             
             // parse subtitle
-            var recipeSubtitleSection3 = recipeSubtitleSection2.components(separatedBy: "with ")
-            recipeSubtitleSection3.removeFirst()
-            let recipeSubtitle = "with " + recipeSubtitleSection3.joined(separator: "with ")
+            let recipeSubtitleSection3 = recipeSubtitleSection1.components(separatedBy: "<span class=\"u-text--md\">").last
+            let recipeSubtitle0 = recipeSubtitleSection3?.replacingOccurrences(of: "&amp;", with: "&") ?? ""
+            let recipeSubtitle = recipeSubtitle0.replacingOccurrences(of: "\n", with: "")
             
             // parse recipe link
-            let recipeLinkSection0 = recipeLinks[x].components(separatedBy: "data-pin-url=\"").last
-            let recipeLink = recipeLinkSection0?.components(separatedBy: "\" data-pin-description").first ?? ""
+            let recipeLinkSection0 = recipeLinks[x].components(separatedBy: "\">").first ?? ""
+            let recipeLink = "https://www.purplecarrot.com/plant-based-recipes/\(recipeLinkSection0)"
             
             // create menu option
-            let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .MarleySpoon)
+            let menuOption = MenuOption(recipeName: recipeName, recipeLink: recipeLink, recipe: nil, recipeSubtitle: recipeSubtitle, brandType: .PurpleCarrot)
             menuOptions.append(menuOption)
+            
         }
         
         return menuOptions
